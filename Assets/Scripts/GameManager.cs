@@ -1,24 +1,61 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private string saveDataDir;
+    [SerializeField] private string defaultSaveDataPath;
+    [SerializeField] private List<string> abortSceneNameList = new();
+    private HashSet<string> abortSceneNames = new();
+
     public static GameManager instance { get; private set; }
-    void Start()
+    public GameContext gameContext;
+
+    void Awake()
     {
-        if(instance != null)
-        {
+        if (instance != null) {
+            Destroy(gameObject);
             return;
-        }        
+        }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+        gameContext = new GameContext(saveDataDir, defaultSaveDataPath);
+
+        foreach(string name in abortSceneNameList)
+        {
+            abortSceneNames.Add(name);
+        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnApplicationQuit()
     {
-        
+        if (abortSceneNames.Contains(SceneManager.GetActiveScene().name))
+        {
+            return;
+        }
+        gameContext.SaveCurrentScene();
+            gameContext.Save();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (abortSceneNames.Contains(SceneManager.GetActiveScene().name))
+        {
+            return;
+        }
+        gameContext.SetCurrentScene(scene.name);
+        gameContext.LoadCurrentSceneData();
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        if (abortSceneNames.Contains(SceneManager.GetActiveScene().name))
+        {
+            return;
+        }
+        gameContext.SaveCurrentScene();
     }
 }
