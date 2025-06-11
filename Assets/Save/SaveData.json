@@ -7,9 +7,9 @@
     "SceneA": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": 0.0,
-        "posY": 0.0,
-        "posZ": 0.0
+        "posX": -3.08139014,
+        "posY": -3.479314,
+        "posZ": 2.51014376
       },
       "npcDataQueue": [
         {
@@ -25,6 +25,31 @@
           "posZ": 0.0
         }
       ]
+    },
+    "SceneB": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": 4.15598536,
+        "posY": -3.1487124,
+        "posZ": 0.0
+      },
+      "npcDataQueue": [
+        {
+          "prefabPath": "Prefabs/NPC",
+          "posX": 4.0,
+          "posY": -1.0,
+          "posZ": 0.0
+        }
+      ]
+    },
+    "SceneC": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": 6.402682,
+        "posY": -1.80272424,
+        "posZ": 0.0
+      },
+      "npcDataQueue": []
     }
   }
 }
