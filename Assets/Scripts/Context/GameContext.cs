@@ -11,7 +11,7 @@ public class GameContext
     public SaveData saveData;
 
     public string currentSceneName = null;
-    public PlayerData playerData = new PlayerData();
+    public PlayerData playerData = null;
     public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
     public Queue<NPCData> npcDataQueue = new Queue<NPCData>();
     public Dictionary<GameObject, NPCData> npcDatas = new Dictionary<GameObject, NPCData>();
