@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New CutSceneData", menuName = "CutSceneData")]
+[CreateAssetMenu(fileName = "New CutSceneData", menuName = "CutSceneData/Create New Scene")]
 public class CutSceneData : ScriptableObject
 {
     [Header("컷씬 리스트")]
@@ -30,6 +30,9 @@ public class CameraSceneData
     public bool isEvent = false; // 컷씬 이벤트 있을지
     public int eventCode = -1; // 이벤트 없을 시 -1
     public float delayTime; // 컷씬 후 다음으로 넘어가기 전 딜레이 타임
+
+    [Header("컷씬 사운드")]
+    public AudioClip cutSound; // 카메라 이벤트 효과음
 }
 
 [System.Serializable]
@@ -41,9 +44,9 @@ public class DialogueSceneData
 [System.Serializable]
 public enum DialogueType
 {
-    Left,
-    Center,
-    Right
+    Left, // 왼쪽(상대방)
+    Center, // 중앙(해설)
+    Right // 오른쪽(플레이어)
 }
 
 [System.Serializable]
@@ -61,6 +64,12 @@ public class DialogueData
     public bool isSelectDialogue; // 선택 다이얼로그 인지
     [Header("선택지 대화 리스트")]
     public List<SubDialogueData> subDialogueDataList; // 선택 다이얼로그
+    [Header("출력 옵션")]
+    public float chatTime; // 대화 출력 시간
+    public float delayTime; // 다음 대화로 넘어가기 전 딜레이 타임
+
+    [Header("대화 사운드")]
+    public AudioClip chatSound; // 대화 음성
 }
 
 [System.Serializable]

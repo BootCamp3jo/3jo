@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ea1dc0a87cfd940b7b3b4b2a15954d, type: 3}
   m_Name: Opening
   m_EditorClassIdentifier: 
-  cutList: []
+  cutList:
+  - isDialogue: 0
+    cameraSceneData:
+      cameraWayPointList: []
+      cutTime: 0
+      isEvent: 0
+      eventCode: 0
+      delayTime: 0
+    dialogueSceneData:
+      dialogueList:
+      - dialogueType: 0
+        portrait: {fileID: 0}
+        title: 
+        content: 
+        dialogueCode: 0
+        isSelectDialogue: 0
+        subDialogueDataList: []
