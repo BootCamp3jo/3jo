@@ -37,15 +37,32 @@ public abstract class ANPC : MonoBehaviour
              */
         }
         // 동기화 위해서 gameContext에 등록하기
-        gameContext.RegisterNPC(gameObject, npcData);
+        gameContext.RegisterNPC(this, npcData);
+    }
+
+    // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?
+    public virtual void Save()
+    {
+        npcData.posX = gameObject.transform.position.x;
+        npcData.posY = gameObject.transform.position.y;
+        npcData.posZ = gameObject.transform.position.z;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        Save();
+    }
+
+    [ContextMenu("RemoveFromSceneBundle")]
+    public void RemoveFromSceneBundle()
+    {
+        gameContext.UnregisterNPC(this);
     }
 
     protected virtual void Update()
     {
         // 지속적 동기화
-        npcData.posX = gameObject.transform.position.x;
-        npcData.posY = gameObject.transform.position.y;
-        npcData.posZ = gameObject.transform.position.z;
+        //Save();
 
         /*
          * 

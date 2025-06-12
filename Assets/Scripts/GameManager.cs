@@ -60,9 +60,15 @@ public class GameManager : MonoBehaviour
         gameContext.SaveCurrentScene();
     }
 
+    [ContextMenu("ClearCurSceneBundle")]
+    public void ClearCurSceneBundle()
+    {
+        gameContext.ClearCurSceneBundle();
+    }
+
     [ContextMenu("DontSaveCurSceneBundle")]
     public void DontSaveCurSceneBundle()
     {
-        gameContext.dontSaveCurSceneBundle = true;
+        gameContext.DontSaveCurSceneBundle();
     }
 }

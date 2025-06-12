@@ -1,9 +1,31 @@
 {
-  "curSceneName": "SceneA",
+  "curSceneName": "SceneB",
   "playerData": {
     "prefabPath": "Prefabs/Player"
   },
   "sceneBundles": {
+    "SceneA": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0
+      },
+      "npcDataQueue": [
+        {
+          "prefabPath": "Prefabs/NPC",
+          "posX": -3.0,
+          "posY": 3.0,
+          "posZ": 0.0
+        },
+        {
+          "prefabPath": "Prefabs/NPC",
+          "posX": 6.0,
+          "posY": 0.0,
+          "posZ": 0.0
+        }
+      ]
+    },
     "SceneB": {
       "playerStateInScene": {
         "isPlayerExist": true,
@@ -19,15 +41,6 @@
           "posZ": 0.0
         }
       ]
-    },
-    "SceneC": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": 0.0,
-        "posY": 0.0,
-        "posZ": 0.0
-      },
-      "npcDataQueue": []
     }
   }
 }

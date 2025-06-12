@@ -42,9 +42,9 @@ public class SceneLoader : MonoBehaviour
         {
 
             SceneBundle saveData = gameContext.saveData.sceneBundles[scene.name];
-            while (saveData.npcDataQueue.Count > 0)
+            while (gameContext.npcDataQueue.Count > 0)
             {
-                NPCData npcData = saveData.npcDataQueue.Dequeue();
+                NPCData npcData = gameContext.npcDataQueue.Dequeue();
                 GameObject prefab = Resources.Load<GameObject>(npcData.prefabPath);
                 if (prefab != null)
                 {
