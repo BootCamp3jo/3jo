@@ -1,28 +1,36 @@
 using UnityEngine;
 
-public abstract class MonsterBase : MonoBehaviour
+public abstract class MonsterBase : ANPC
 {
     [field: SerializeField] public MonsterData monsterData;
 
-    // Å¸°ÙÀÌ µÉ ÇÃ·¹ÀÌ¾îÀÇ ·¹ÀÌ¾î
+    // íƒ€ê²Ÿì´ ë  í”Œë ˆì´ì–´ì˜ ë ˆì´ì–´
     [field: SerializeField] public LayerMask player { get; private set; }
 
     public MonsterStateMachine monsterStateMachine { get; private set; }
 
-    // ÇöÀç Ã¼·Â
+    // í˜„ì¬ ì²´ë ¥
     float hpCurrent;
-    // ÇöÀç ÄğÅ¸ÀÓ(º¸½º ÆĞÅÏ¸¶´Ù ÄğÅ¸ÀÓÀÌ ´Ş¶ó ±â¼ú »ç¿ë°ú µ¿½Ã¿¡ ½áÁÖ±â!!!)
+    // í˜„ì¬ ì¿¨íƒ€ì„(ë³´ìŠ¤ íŒ¨í„´ë§ˆë‹¤ ì¿¨íƒ€ì„ì´ ë‹¬ë¼ ê¸°ìˆ  ì‚¬ìš©ê³¼ ë™ì‹œì— ì¨ì£¼ê¸°!!!)
     public float atkDelay { get; set; }
 
-    private void Awake()
+    protected override void Awake()
     {
-        monsterStateMachine = new MonsterStateMachine(this);
+        base.Awake();
+        //monsterStateMachine = new MonsterStateMachine(this);
     }
 
-    private void Start()
+    protected override void Start()
     {
-        // ½ÃÀÛÇÒ ¶§ ÇöÀç HP¸¦ ÃÖ´ë HP·Î
+        base.Start();
+        // ì‹œì‘í•  ë•Œ í˜„ì¬ HPë¥¼ ìµœëŒ€ HPë¡œ
         hpCurrent = monsterData.hp;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
     }
 
     public void ChangeAtkDelay(float newDelay)
@@ -30,20 +38,20 @@ public abstract class MonsterBase : MonoBehaviour
         atkDelay = newDelay;
     }
 
-    // ´ë¹ÌÁö °è»ê
+    // ëŒ€ë¯¸ì§€ ê³„ì‚°
     public void GetDamage(float damage)
     {
         if (hpCurrent <= 0) return;
         hpCurrent = Mathf.Max(hpCurrent-damage, 0);
-        // ÇÇ°İ ÀÌÆåÆ®°¡ ÀÖ´Ù¸é ¿©±â¿¡!
+        // í”¼ê²© ì´í™íŠ¸ê°€ ìˆë‹¤ë©´ ì—¬ê¸°ì—!
         if (hpCurrent <= 0)
             Dead();
     }
 
-    // »ç¸Á Ã³¸®
-    void Dead()
+    // ì‚¬ë§ ì²˜ë¦¬
+    protected void Dead()
     {
-        // Á×À½ ¸ğ¼Ç
+        // ì£½ìŒ ëª¨ì…˜
         monsterStateMachine.ChangeState(monsterStateMachine.deathState);
     }
 }

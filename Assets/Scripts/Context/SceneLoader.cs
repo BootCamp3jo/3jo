@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -50,7 +50,7 @@ public class SceneLoader : MonoBehaviour
                 {
                     GameObject npc = GameObject.Instantiate(prefab);
                     npc.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
-                    if(npc.TryGetComponent<NPC>(out NPC _npc))
+                    if(npc.TryGetComponent<ANPC>(out ANPC _npc))
                     {
                         _npc.isCreatedBySceneLoader = true;
                         _npc.npcData = npcData;
