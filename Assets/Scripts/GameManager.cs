@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -57,5 +58,17 @@ public class GameManager : MonoBehaviour
             return;
         }
         gameContext.SaveCurrentScene();
+    }
+
+    [ContextMenu("ClearCurSceneBundle")]
+    public void ClearCurSceneBundle()
+    {
+        gameContext.ClearCurSceneBundle();
+    }
+
+    [ContextMenu("DontSaveCurSceneBundle")]
+    public void DontSaveCurSceneBundle()
+    {
+        gameContext.DontSaveCurSceneBundle();
     }
 }

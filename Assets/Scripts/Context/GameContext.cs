@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class GameContext
 {
@@ -14,16 +15,27 @@ public class GameContext
     public PlayerData playerData = null;
     public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
     public Queue<NPCData> npcDataQueue = new Queue<NPCData>();
-    public Dictionary<GameObject, NPCData> npcDatas = new Dictionary<GameObject, NPCData>();
+    public Dictionary<ANPC, NPCData> npcDatas = new Dictionary<ANPC, NPCData>();
+    public bool dontSaveCurSceneBundle = false;
 
-    public void RegisterNPC(GameObject obj, NPCData data)
+    public void ClearCurSceneBundle()
     {
-        npcDatas[obj] = data;
+        saveData.sceneBundles.Remove(currentSceneName);
     }
 
-    public void UnregisterNPC(GameObject obj)
+    public void DontSaveCurSceneBundle()
     {
-        npcDatas.Remove(obj);
+        dontSaveCurSceneBundle = true;
+    }
+
+    public void RegisterNPC(ANPC anpc, NPCData data)
+    {
+        npcDatas[anpc] = data;
+    }
+
+    public void UnregisterNPC(ANPC anpc)
+    {
+        npcDatas.Remove(anpc);
     }
 
     public GameContext(string savePath, string defaultPath)
@@ -84,24 +96,28 @@ public class GameContext
 
     public void SaveCurrentScene()
     {
-        string scene = currentSceneName;
-
-        var bundle = new SceneBundle
+        if (!dontSaveCurSceneBundle)
         {
-            playerStateInScene = playerStateInScene,
-            npcDataQueue = new Queue<NPCData>(npcDatas.Values)
-        };
-
-        saveData.curSceneName = currentSceneName;
-        saveData.playerData = playerData;
-        if (saveData.sceneBundles.ContainsKey(scene))
-        {
-            saveData.sceneBundles[scene] = bundle;
+            var bundle = new SceneBundle
+            {
+                playerStateInScene = playerStateInScene,
+                npcDataQueue = new Queue<NPCData>(npcDatas.Values)
+            };
+            if (saveData.sceneBundles.ContainsKey(currentSceneName))
+            {
+                saveData.sceneBundles[currentSceneName] = bundle;
+            }
+            else
+            {
+                saveData.sceneBundles.Add(currentSceneName, bundle);
+            }
         }
         else
         {
-            saveData.sceneBundles.Add(scene, bundle);
+            dontSaveCurSceneBundle = false;
         }
+        saveData.curSceneName = currentSceneName;
+        saveData.playerData = playerData;
         ClearAfterSave();
     }
 
@@ -113,7 +129,7 @@ public class GameContext
         {
             playerStateInScene = bundle.playerStateInScene ?? new PlayerStateInScene();
             npcDatas.Clear();
-            npcDataQueue.Clear();
+            npcDataQueue = new Queue<NPCData>(bundle.npcDataQueue);
 
             Logger.Log($"[GameContext] Loaded existing SceneBundle for: {sceneName}");
         }

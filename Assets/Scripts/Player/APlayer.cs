@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using System.Xml.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public abstract class APlayer : MonoBehaviour
@@ -46,18 +47,22 @@ public abstract class APlayer : MonoBehaviour
         gameContext.playerStateInScene = playerStateInScene;
     }
 
-    protected virtual void Update()
+    // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?
+    public virtual void Save()
     {
-        // 지속적 동기화
         playerStateInScene.posX = gameObject.transform.position.x;
         playerStateInScene.posY = gameObject.transform.position.y;
         playerStateInScene.posZ = gameObject.transform.position.z;
+    }
 
-        /*
-         * 
-         * 세이브 원하는 데이터 추가 시 동기화
-         * 
-         * 
-         */
+    protected virtual void OnDestroy()
+    {
+        Save();
+    }
+
+    [ContextMenu("RemoveFromSceneBundle")]
+    public void RemoveFromSceneBundle()
+    {
+        playerStateInScene.isPlayerExist = false;
     }
 }

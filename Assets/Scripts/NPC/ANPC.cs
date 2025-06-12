@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -37,21 +37,26 @@ public abstract class ANPC : MonoBehaviour
              */
         }
         // 동기화 위해서 gameContext에 등록하기
-        gameContext.RegisterNPC(gameObject, npcData);
+        gameContext.RegisterNPC(this, npcData);
+        Logger.Log("asdf");
     }
 
-    protected virtual void Update()
+    // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?
+    public virtual void Save()
     {
-        // 지속적 동기화
         npcData.posX = gameObject.transform.position.x;
         npcData.posY = gameObject.transform.position.y;
         npcData.posZ = gameObject.transform.position.z;
+    }
 
-        /*
-         * 
-         * 세이브 원하는 데이터 추가 시 동기화
-         * 
-         * 
-         */
+    protected virtual void OnDestroy()
+    {
+        Save();
+    }
+
+    [ContextMenu("RemoveFromSceneBundle")]
+    public void RemoveFromSceneBundle()
+    {
+        gameContext.UnregisterNPC(this);
     }
 }
