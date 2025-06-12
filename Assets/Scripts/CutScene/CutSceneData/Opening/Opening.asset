@@ -106,3 +106,97 @@ MonoBehaviour:
         delayTime: 2
         chatSound: {fileID: 0}
         lastState: 0
+      - dialogueType: 0
+        portrait: {fileID: 21300000, guid: 65d0079b81f456a439009084c70069e9, type: 3}
+        title: "\uBB38\uC9C0\uAE30"
+        content: "\uC120\uD0DD \uC9C0\uBB38 \uD55C\uBC88 \uB354 \u3131"
+        dialogueCode: 7
+        isSelectDialogue: 1
+        subDialogueDataList:
+        - content: "1\uBC88\uC744 \uC120\uD0DD\uD55C\uB2E4."
+          nextDialogue: 8
+        - content: "2\uBC88\uC744 \uC120\uD0DD\uD55C\uB2E4."
+          nextDialogue: 9
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 0
+        portrait: {fileID: 21300000, guid: 65d0079b81f456a439009084c70069e9, type: 3}
+        title: "\uBB38\uC9C0\uAE30"
+        content: "1\uBC88\uC744 \uC120\uD0DD\uD588\uAD6C\uB098"
+        dialogueCode: 8
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 0
+        portrait: {fileID: 21300000, guid: 65d0079b81f456a439009084c70069e9, type: 3}
+        title: "\uBB38\uC9C0\uAE30"
+        content: "2\uBC88\uC744 \uC120\uD0DD\uD588\uAD6C\uB098"
+        dialogueCode: 9
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 1
+        portrait: {fileID: 0}
+        title: 
+        content: "\uBAA8\uB450 \uBCF4\uC558\uC2B5\uB2C8\uB2E4. \uC774\uC81C \uCE74\uBA54\uB77C\uB85C
+          \uB118\uC5B4\uAC11\uB2C8\uB2E4."
+        dialogueCode: 10
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+  - isDialogue: 0
+    cameraSceneData:
+      cameraWayPointList:
+      - {x: -6.82, y: 0, z: -10}
+      - {x: 3.74, y: 0, z: -10}
+      cutTime: 5
+      isEvent: 0
+      eventCode: 0
+      delayTime: 2
+      cutSound: {fileID: 0}
+    dialogueSceneData:
+      dialogueList: []
+  - isDialogue: 1
+    cameraSceneData:
+      cameraWayPointList: []
+      cutTime: 0
+      isEvent: 0
+      eventCode: 0
+      delayTime: 0
+      cutSound: {fileID: 0}
+    dialogueSceneData:
+      dialogueList:
+      - dialogueType: 0
+        portrait: {fileID: 21300000, guid: 65d0079b81f456a439009084c70069e9, type: 3}
+        title: "\uBB38\uC9C0\uAE30"
+        content: "\uBB38\uC9C0\uAE30 \uD55C\uBC88 \uB354 \uB098\uC634"
+        dialogueCode: 0
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 3
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 2
+        portrait: {fileID: -7671731733252231486, guid: 09aa6723253a2c748abd76d8eae9f5ba, type: 3}
+        title: "\uD50C\uB808\uC774\uC5B4"
+        content: "\uB2E4 \uBCF4\uC558\uC2B5\uB2C8\uB2E4."
+        dialogueCode: 1
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 3
+        chatSound: {fileID: 0}
+        lastState: 0
+  nextScene: 

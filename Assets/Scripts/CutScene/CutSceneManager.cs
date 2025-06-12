@@ -44,7 +44,31 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
             if (data.isDialogue == false) // 카메라 컷씬
             {
                 dialogueManager.gameObject.SetActive(false);
+                if (data.cameraSceneData.cutSound != null)
+                {
+                    audio.PlayOneShot(data.cameraSceneData.cutSound);
+                }
+                mainCamera.transform.position = data.cameraSceneData.cameraWayPointList[0]; // 카메라 위치 초기화
 
+                float timer = 0f;
+                float segmentTime = data.cameraSceneData.cutTime / (data.cameraSceneData.cameraWayPointList.Count - 1);
+
+                for (int i = 0; i < data.cameraSceneData.cameraWayPointList.Count - 1; i++) // 카메라 이동
+                {
+                    Vector3 startPos = data.cameraSceneData.cameraWayPointList[i];
+                    Vector3 endPos = data.cameraSceneData.cameraWayPointList[i + 1];
+
+                    timer = 0f;
+                    while (timer < segmentTime)
+                    {
+                        timer += Time.deltaTime;
+                        float t = Mathf.Clamp01(timer / segmentTime);
+                        mainCamera.transform.position = Vector3.Lerp(startPos, endPos, t);
+                        yield return null;
+                    }
+                }
+
+                yield return new WaitForSeconds(data.cameraSceneData.delayTime);
                 mainCamera.transform.position = cameraOriginPos; // 카메라 다시 원래대로
             }
             else // 다이얼로그 컷씬
@@ -62,9 +86,14 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
                     }
                     else
                     {
+                        if (data.dialogueSceneData.dialogueList[i].chatSound != null)
+                        {
+                            audio.PlayOneShot(data.dialogueSceneData.dialogueList[i].chatSound);
+                        }
+
                         yield return dialogueManager.ShowDialogue(data.dialogueSceneData.dialogueList[i], () =>
-                            {
-                            });
+                        {
+                        });
 
                         if (data.dialogueSceneData.dialogueList[i].isSelectDialogue == true) // 선택지문 있을 시
                         {
@@ -72,6 +101,7 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
                             dialogueManager.ShowSelect();
 
                             yield return new WaitUntil(() => _selectActionTriggered); // 선택 대기
+                            _selectActionTriggered = false;
 
                             if (selectedNum != -1)
                             {
@@ -85,11 +115,17 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
                         }
                     }
                 }
+
                 dialogueManager.Init();
                 dialogueManager.gameObject.SetActive(false);
             }
         }
         yield return null;
+
+        if (streamCutSceneData.nextScene != null && streamCutSceneData.nextScene != "")
+        {
+            //씬 로드
+        }
     }
 
     public void OnSelectDialogue(int num)

@@ -81,6 +81,7 @@ public class DialoguePanelManager : MonoBehaviour
                     }
                 case DialogueLastState.None: // hide(안 보임)
                     {
+                        chatItems[(int)data.dialogueType].GetComponent<CanvasGroup>().alpha = 0f;
                         break;
                     }
             }

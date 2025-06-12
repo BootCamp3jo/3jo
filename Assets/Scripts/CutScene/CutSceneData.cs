@@ -8,6 +8,7 @@ public class CutSceneData : ScriptableObject
 {
     [Header("컷씬 리스트")]
     public List<CutData> cutList;
+    public string nextScene;
 }
 
 [System.Serializable]
@@ -76,9 +77,9 @@ public class DialogueData
     [Header("출력 옵션")]
     [Tooltip("글자 출력 속도 (초당 글자 수)")]
     [Range(5, 50)]
-    public float chatTime; // 대화 출력 시간
+    public float chatTime = 5; // 대화 출력 시간
     [Range(0.5f, 10)]
-    public float delayTime; // 다음 대화로 넘어가기 전 딜레이 타임
+    public float delayTime = 2f; // 다음 대화로 넘어가기 전 딜레이 타임
 
     [Header("대화 사운드")]
     public AudioClip chatSound; // 대화 음성
