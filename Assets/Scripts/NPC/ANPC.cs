@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ANPC : MonoBehaviour
+public abstract class ANPC : MonoBehaviour
 {
     [SerializeField]
     public NPCData npcData;
