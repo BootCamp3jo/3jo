@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : APlayer
+public class PlayerSaveInfo : PlayerSaver
 {
     protected override void Awake()
     {
