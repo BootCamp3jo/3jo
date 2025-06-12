@@ -52,6 +52,8 @@ public class ExpBar : MonoBehaviour
         expBarImg.fillAmount = (float)nowExp / maxExp;
     }
 
+
+    // 애니메이션 바 효과
     void AnimateBarPop()
     {
         RectTransform rt = expBarImg.rectTransform;
@@ -78,6 +80,7 @@ public class ExpBar : MonoBehaviour
         }
     }
 
+    // 경험치 파티클 생성
     void SpawnParticleAt()
     {
         RectTransform rect = expBarImg.rectTransform;

@@ -12,7 +12,7 @@ public class TestInputPlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            expManager.SpawnXP(this.transform.position,1);
+            expManager.SpawnExp(this.transform.position,1);
         }
     }
 }

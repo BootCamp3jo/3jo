@@ -23,7 +23,6 @@ public class ExpOrb : MonoBehaviour
         Canvas canvas = expBarRT.GetComponentInParent<Canvas>();
         Camera uiCamera = canvas.worldCamera;
 
-        // local -> screen -> world
         Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(uiCamera, expBarRT.TransformPoint(localEndPos));
         Vector3 end = Camera.main.ScreenToWorldPoint(screenPos);
         end.z = 0; // z º¸Á¤

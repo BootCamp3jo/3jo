@@ -8,15 +8,20 @@ public class ExpManager : MonoBehaviour
     public GameObject xpOrbPrefab;
     public RectTransform uiTarget;
     public Image uiImage;
+    public static event Action<int> OnExpGained;
 
-    public static event Action<int> OnExpGained; 
-
-    public void SpawnXP(Vector3 worldPosition, int count)
+    private WaitForSeconds waitTime = new WaitForSeconds(0.1f);
+    private AudioManager audioManager;
+    private void Awake()
     {
-        StartCoroutine(SpawnXPCoroutine(worldPosition, count));
+        audioManager = AudioManager.instance;
+    }
+    public void SpawnExp(Vector3 worldPosition, int count)
+    {
+        StartCoroutine(SpawnExpCoroutine(worldPosition, count));
     }
 
-    IEnumerator SpawnXPCoroutine(Vector3 worldPosition, int count)
+    IEnumerator SpawnExpCoroutine(Vector3 worldPosition, int count)
     {
         for (int i = 0; i < count; i++)
         {
@@ -24,12 +29,13 @@ public class ExpManager : MonoBehaviour
             GameObject orb = Instantiate(xpOrbPrefab, spawnPos, Quaternion.identity);
             orb.GetComponent<ExpOrb>().Init(uiImage, uiTarget, () => OnXPCollected(10));
 
-            yield return new WaitForSeconds(0.1f); // ер аж╠Б
+            yield return waitTime; // ер аж╠Б
         }
     }
 
     void OnXPCollected(int amount)
     {
+        audioManager.PlaySFX(SFXType.AddExp,0.7f,1.0f);
         OnExpGained?.Invoke(amount);
     }
 }
