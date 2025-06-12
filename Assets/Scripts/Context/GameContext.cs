@@ -15,6 +15,12 @@ public class GameContext
     public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
     public Queue<NPCData> npcDataQueue = new Queue<NPCData>();
     public Dictionary<GameObject, NPCData> npcDatas = new Dictionary<GameObject, NPCData>();
+    public bool dontSaveCurSceneBundle = false;
+
+    public void DontSaveCurSceneBundle()
+    {
+        dontSaveCurSceneBundle = true;
+    }
 
     public void RegisterNPC(GameObject obj, NPCData data)
     {
@@ -85,22 +91,28 @@ public class GameContext
     public void SaveCurrentScene()
     {
         string scene = currentSceneName;
-
-        var bundle = new SceneBundle
-        {
-            playerStateInScene = playerStateInScene,
-            npcDataQueue = new Queue<NPCData>(npcDatas.Values)
-        };
-
         saveData.curSceneName = currentSceneName;
         saveData.playerData = playerData;
-        if (saveData.sceneBundles.ContainsKey(scene))
+        if (!dontSaveCurSceneBundle)
         {
-            saveData.sceneBundles[scene] = bundle;
+            var bundle = new SceneBundle
+            {
+                playerStateInScene = playerStateInScene,
+                npcDataQueue = new Queue<NPCData>(npcDatas.Values)
+            };
+            if (saveData.sceneBundles.ContainsKey(scene))
+            {
+                saveData.sceneBundles[scene] = bundle;
+            }
+            else
+            {
+                saveData.sceneBundles.Add(scene, bundle);
+            }
         }
         else
         {
-            saveData.sceneBundles.Add(scene, bundle);
+            saveData.sceneBundles.Remove(scene);
+            dontSaveCurSceneBundle = false;
         }
         ClearAfterSave();
     }
