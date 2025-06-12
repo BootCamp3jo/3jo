@@ -7,10 +7,12 @@ Shader "Unlit/URP2DShockWave"
         _WaveTime ("Wave Time", Float) = 0
         _Speed ("Speed", Float) = 1.0
         _WaveWidth ("Wave Width", Float) = 0.1
+        _WaveCount ("Wave Count", Float) = 3
+        _WaveGap ("Wave Gap", Float) = 0.3
     }
     SubShader
     {
-        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" "Queue"="Transparent" }
+        Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" "Queue" = "Transparent" }
         LOD 100
 
         Pass
@@ -33,6 +35,8 @@ Shader "Unlit/URP2DShockWave"
             float _WaveTime;
             float _Speed;
             float _WaveWidth;
+            float _WaveCount;
+            float _WaveGap;
 
             struct Attributes
             {
@@ -60,17 +64,18 @@ Shader "Unlit/URP2DShockWave"
                 float2 dir = uv - _Center.xy;
                 float dist = length(dir);
 
-                // 파장 위치 (시간에 속도 곱해서 조절)
-                float waveRadius = _WaveTime * _Speed;
+                float wave = 0.0;
 
-                // 링 두께
-                float waveWidth = _WaveWidth;
+                // 최대 10개까지만 처리
+                [unroll(10)]
+                for (int i = 0; i < 10; i++)
+                {
+                    if (i >= (int)_WaveCount) break;
 
-                // 현재 픽셀과 파장 링 중심과 차이
-                float diff = abs(dist - waveRadius);
-
-                // 부드러운 링 형태 (두께 안쪽만 왜곡)
-                float wave = smoothstep(waveWidth, 0.0, diff) * 0.02;
+                    float waveRadius = _WaveTime * _Speed - i * _WaveGap;
+                    float diff = abs(dist - waveRadius);
+                    wave += smoothstep(_WaveWidth, 0.0, diff) * 0.02;
+                }
 
                 uv += normalize(dir) * wave;
 

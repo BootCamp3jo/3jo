@@ -1582,6 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec762012c501d684f8f9649ddb1a0856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shockWaveMaterial: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
   expManager: {fileID: 1546226495}
 --- !u!1001 &1800334796
 PrefabInstance:

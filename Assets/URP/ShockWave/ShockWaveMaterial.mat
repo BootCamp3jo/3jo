@@ -44,10 +44,13 @@ Material:
     - _Amplitude: 0.03
     - _EnableExternalAlpha: 0
     - _Frequency: 30
-    - _Speed: 4
-    - _WaveTime: 1.5047561
+    - _Speed: 0.5
+    - _WaveCount: 3
+    - _WaveGap: 0.25
+    - _WaveTime: 6.186947
+    - _WaveWidth: 0.1
     m_Colors:
-    - _Center: {r: 0.47581637, g: 0.397, b: 0, a: 0}
+    - _Center: {r: 0.17048115, g: 0.268, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
