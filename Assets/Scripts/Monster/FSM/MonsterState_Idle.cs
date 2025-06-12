@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class MonsterState_Idle : IState
 {
-    MonsterStateMachine monsterStateMachine;
-    public MonsterState_Idle(MonsterStateMachine monsterStateMachine) => this.monsterStateMachine = monsterStateMachine;
+    MonsterStateMachine stateMachine;
+    public MonsterState_Idle(MonsterStateMachine monsterStateMachine)
+    {
+        this.stateMachine = monsterStateMachine;
+    }
 
     public void Enter()
     {
-        throw new System.NotImplementedException();
+        // 대기 모션 재생 시작
+        stateMachine.StartAnime(stateMachine.AnimatorParameters.idleHash);
     }
 
     public void Execute()
     {
-        throw new System.NotImplementedException();
+        //stateMachine.monster.
     }
 
     public void Exit()
     {
-        throw new System.NotImplementedException();
+        // 대기 모션 재생 종료
+        stateMachine.StopAnime(stateMachine.AnimatorParameters.idleHash);
     }
 }
