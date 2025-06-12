@@ -5,6 +5,9 @@ using System.Linq;
 
 public class CutSceneManager : MonoSingleton<CutSceneManager>
 {
+    [Header("컷씬 테스트")]
+    public bool isTest;
+
     public CutSceneData streamCutSceneData; // 컷씬 데이터 받아오기
     public DialoguePanelManager dialogueManager;
     private Transform mainCamera;
@@ -22,7 +25,10 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
         if (audio == null) { audio = GetComponent<AudioSource>(); }
         if (dialogueManager == null) { dialogueManager = FindAnyObjectByType<DialoguePanelManager>(); }
 
-        StartCutScene(streamCutSceneData);
+        if (isTest == true)
+        {
+            StartCutScene(streamCutSceneData);
+        }
     }
 
     public void StartCutScene(CutSceneData cutSceneData) // 사용법 : CutSceneManager.Instance.StartCutScene(컷씬 데이터);
