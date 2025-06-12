@@ -7,7 +7,12 @@ public class PlayerAnimationHandler : MonoBehaviour
     [SerializeField] private Animator animator;
 
     private int isRunning;
-    private int isAttacking;
+    private int isAttackState;
+    private int isFrontAttacking;
+    private int isUpAttacking;
+    private int isDownAttacking;
+
+    //------------------------------------------//
 
     private void Awake()
     {
@@ -22,8 +27,13 @@ public class PlayerAnimationHandler : MonoBehaviour
     private void Init()
     {
         isRunning = Animator.StringToHash("IsRunning");
-        isAttacking = Animator.StringToHash("IsAttacking");
+        isAttackState = Animator.StringToHash("IsAttackState");
+        isFrontAttacking = Animator.StringToHash("IsFrontAttacking");
+        isUpAttacking = Animator.StringToHash("IsUpAttacking");
+        isDownAttacking = Animator.StringToHash("IsDownAttacking");
     }
+
+    //------------------------------------------//
 
     public void EnterRunning()
     {
@@ -35,13 +45,51 @@ public class PlayerAnimationHandler : MonoBehaviour
         animator.SetBool(isRunning, false);
     }
 
-    public void EnterAttacking()
+    //------------------------------------------//
+
+    public void EnterAttackingState()
     {
-        animator.SetBool(isAttacking, true);
+        animator.SetBool(isAttackState, true);
     }
 
-    public void ExitAttacking()
+    public void ExitAttackingState()
     {
-        animator.SetBool(isAttacking, false);
+        animator.SetBool(isAttackState, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterFrontAttacking()
+    {
+        animator.SetBool(isFrontAttacking, true);
+    }
+
+    public void ExitFrontAttacking()
+    {
+        animator.SetBool(isFrontAttacking, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterUpAttacking()
+    {
+        animator.SetBool(isUpAttacking, true); // 위쪽 공격은 별도의 상태로 처리
+    }
+
+    public void ExitUpAttacking()
+    {
+        animator.SetBool(isUpAttacking, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterDownAttacking()
+    {
+        animator.SetBool(isDownAttacking, true); // 아래쪽 공격은 별도의 상태로 처리
+    }
+
+    public void ExitDownAttacking()
+    {
+        animator.SetBool(isDownAttacking, false);
     }
 }

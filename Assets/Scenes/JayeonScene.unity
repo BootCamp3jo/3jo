@@ -330,7 +330,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 801620546}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnRun
+        m_MethodName: OnRunOrDash
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -386,6 +386,9 @@ MonoBehaviour:
   moveSpeed: 2
   jumpHeight: 1
   jumpDuration: 0.5
+  dashPower: 3
+  dashDuration: 0.1
+  doubleTabThreshold: 0.25
 --- !u!114 &801620547
 MonoBehaviour:
   m_ObjectHideFlags: 0
