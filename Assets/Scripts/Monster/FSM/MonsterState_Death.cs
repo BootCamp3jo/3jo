@@ -1,21 +1,16 @@
 
 public class MonsterState_Death : IState
 {
-    MonsterStateMachine monsterStateMachine;
-    public MonsterState_Death(MonsterStateMachine monsterStateMachine) => this.monsterStateMachine = monsterStateMachine;
+    MonsterStateMachine StateMachine;
+    public MonsterState_Death(MonsterStateMachine monsterStateMachine) => StateMachine = monsterStateMachine;
 
     public void Enter()
     {
-        throw new System.NotImplementedException();
+        // 
+        StateMachine.StartAnimeTrigger(StateMachine.AnimatorParameters.deathHash);
     }
 
-    public void Execute()
-    {
-        throw new System.NotImplementedException();
-    }
+    public void Execute(){}
 
-    public void Exit()
-    {
-        throw new System.NotImplementedException();
-    }
+    public void Exit(){}
 }
