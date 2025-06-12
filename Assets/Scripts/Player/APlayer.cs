@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -64,18 +64,5 @@ public abstract class APlayer : MonoBehaviour
     public void RemoveFromSceneBundle()
     {
         playerStateInScene.isPlayerExist = false;
-    }
-
-    protected virtual void Update()
-    {
-        // 지속적 동기화
-        //Save();
-
-        /*
-         * 
-         * 세이브 원하는 데이터 추가 시 동기화
-         * 
-         * 
-         */
     }
 }
