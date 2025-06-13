@@ -1,72 +1,17 @@
 {
-  "curSceneName": "SceneA",
-  "playerData": {
-    "prefabPath": "Prefabs/Player"
-  },
-  "sceneBundles": {
-    "SceneA": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": 0.0,
-        "posY": 0.0,
-        "posZ": 0.0
-      },
-      "npcDataQueue": [
-        {
-          "prefabPath": "Prefabs/NPC",
-          "hp": 0,
-          "posX": 6.0,
-          "posY": 0.0,
-          "posZ": 0.0
-        },
-        {
-          "prefabPath": "Prefabs/NPC",
-          "hp": 0,
-          "posX": -3.0,
-          "posY": 3.0,
-          "posZ": 0.0
-        },
-        {
-          "prefabPath": "Prefabs/Monster",
-          "hp": 0,
-          "posX": 2.33,
-          "posY": 0.0,
-          "posZ": 0.0
-        },
-        {
-          "prefabPath": "Prefabs/Monster",
-          "hp": 0,
-          "posX": 2.17,
-          "posY": 1.97,
-          "posZ": 0.0
-        }
-      ]
+  "difficultLevel": 0,
+  "curSceneName": null,
+  "KillCount": 100,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
     },
-    "SceneB": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": 0.0,
-        "posY": 0.0,
-        "posZ": 0.0
-      },
-      "npcDataQueue": [
-        {
-          "prefabPath": "Prefabs/NPC",
-          "hp": 0,
-          "posX": 4.0,
-          "posY": -1.0,
-          "posZ": 0.0
-        }
-      ]
-    },
-    "SceneC": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": 0.0,
-        "posY": 0.0,
-        "posZ": 0.0
-      },
-      "npcDataQueue": []
+    "PentaKill": {
+      "achievementID": 1,
+      "unlocked": true
     }
-  }
+  },
+  "playerData": null,
+  "sceneBundles": {}
 }

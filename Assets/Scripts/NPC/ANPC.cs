@@ -12,7 +12,7 @@ public abstract class ANPC : MonoBehaviour
 
     protected virtual void Awake()
     {
-        gameContext = GameManager.instance.gameContext;
+        gameContext = DataManager.Instance.gameContext;
     }
 
     protected virtual void Start()
@@ -38,7 +38,6 @@ public abstract class ANPC : MonoBehaviour
         }
         // 동기화 위해서 gameContext에 등록하기
         gameContext.RegisterNPC(this, npcData);
-        Logger.Log("asdf");
     }
 
     // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?

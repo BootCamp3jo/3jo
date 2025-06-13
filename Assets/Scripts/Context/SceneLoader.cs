@@ -4,18 +4,19 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoSingleton<SceneLoader>
 {
     GameContext gameContext;
     private static SceneLoader instance;
     [SerializeField] private List<string> abortSceneNameList = new();
     private HashSet<string> abortSceneNames = new();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
     }
 
-    private void Start()
+    protected void Start()
     {
         if (instance != null)
         {
@@ -28,11 +29,11 @@ public class SceneLoader : MonoBehaviour
         {
             abortSceneNames.Add(name);
         }
-        gameContext = GameManager.instance.gameContext;
+        gameContext = DataManager.Instance.gameContext;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    protected void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (abortSceneNames.Contains(scene.name))
         {

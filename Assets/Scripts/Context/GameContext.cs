@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,15 +8,47 @@ public class GameContext
 {
     private readonly string saveDataPath;
     private readonly string defaultSaveDataPath;
+    private readonly string achievementSODir;
+    private readonly AchievementUnlockUI achievementUnlockUI;
 
     public SaveData saveData;
 
+    private Dictionary<AchievementID, AchievementSO> achievementSOs = 
+        new Dictionary<AchievementID, AchievementSO>();
+
     public string currentSceneName = null;
+    public APlayer player = null;
     public PlayerData playerData = null;
     public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
     public Queue<NPCData> npcDataQueue = new Queue<NPCData>();
     public Dictionary<ANPC, NPCData> npcDatas = new Dictionary<ANPC, NPCData>();
     public bool dontSaveCurSceneBundle = false;
+
+    #region API
+    // 난이도 선택 옵션
+    public void SelectDifficultLevel(DifficultLevel difficultLevel)
+    {
+        saveData.difficultLevel = difficultLevel;
+    }
+    
+    public DifficultLevel GetDifficultLevel()
+    {
+        return saveData.difficultLevel;
+    }
+
+    public void addKillCount(int count)
+    {
+        int tmp = saveData.KillCount;
+        saveData.KillCount += count;
+        if (tmp < 1 && saveData.KillCount >= 1)
+        {
+            Unlock(AchievementID.FirstBlood);
+        }
+        if (tmp < 5 && saveData.KillCount >= 5)
+        {
+            Unlock(AchievementID.PentaKill);
+        }
+    }
 
     public void ClearCurSceneBundle()
     {
@@ -28,20 +60,40 @@ public class GameContext
         dontSaveCurSceneBundle = true;
     }
 
-    public void RegisterNPC(ANPC anpc, NPCData data)
+    // 업적 언락
+    public void Unlock(AchievementID achievementID)
     {
-        npcDatas[anpc] = data;
+        AchievementData achievementData;
+        if (!saveData.achievements.ContainsKey(achievementID))
+        {
+            achievementData = new AchievementData(achievementID, false);
+            saveData.achievements.Add(achievementID, achievementData);
+        }
+        else
+        {
+            achievementData = saveData.achievements[achievementID];
+        }
+        if (achievementData.unlocked == false)
+        {
+            if (achievementSOs.TryGetValue(achievementID, out AchievementSO achievementSO))
+            {
+                achievementData.unlocked = true;
+                achievementUnlockUI.Unlock(achievementSO);
+            }
+        }
     }
+    #endregion
 
-    public void UnregisterNPC(ANPC anpc)
+    public GameContext(string saveDataPath,
+        string defaultSaveDataPath,
+        string achievementSODir,
+        AchievementUnlockUI achievementUnlockUI)
     {
-        npcDatas.Remove(anpc);
-    }
-
-    public GameContext(string savePath, string defaultPath)
-    {
-        saveDataPath = savePath;
-        defaultSaveDataPath = defaultPath;
+        this.saveDataPath = saveDataPath;
+        this.defaultSaveDataPath = defaultSaveDataPath;
+        this.achievementSODir = achievementSODir;
+        this.achievementUnlockUI = achievementUnlockUI;
+        InitializeAchievements();
         if (File.Exists(saveDataPath))
         {
             Load();
@@ -56,6 +108,25 @@ public class GameContext
             saveData = new SaveData();
             Save();
         }
+    }
+
+    private void InitializeAchievements()
+    {
+        AchievementSO[] loadedSOs = Resources.LoadAll<AchievementSO>(achievementSODir);
+        for(int i = 0; i < loadedSOs.Length; i++)
+        {
+            achievementSOs[loadedSOs[i].achievementID] = loadedSOs[i];
+        }
+    }
+
+    public void RegisterNPC(ANPC anpc, NPCData data)
+    {
+        npcDatas[anpc] = data;
+    }
+
+    public void UnregisterNPC(ANPC anpc)
+    {
+        npcDatas.Remove(anpc);
     }
 
     public void Load()
@@ -87,7 +158,6 @@ public class GameContext
         npcDataQueue.Clear();
         npcDatas.Clear();
     }
-
 
     public void SetCurrentScene(string sceneName)
     {

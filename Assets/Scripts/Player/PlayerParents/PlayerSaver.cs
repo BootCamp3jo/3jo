@@ -12,7 +12,8 @@ public abstract class PlayerSaver : MonoBehaviour
 
     protected virtual void Awake()
     {
-        gameContext = GameManager.instance.gameContext;
+        gameContext = DataManager.Instance.gameContext;
+        gameContext.player = this;
         string curSceneName = SceneManager.GetActiveScene().name;
         // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기
         if (gameContext.IsSceneSaved(curSceneName))
@@ -58,6 +59,7 @@ public abstract class PlayerSaver : MonoBehaviour
     protected virtual void OnDestroy()
     {
         Save();
+        gameContext.player = null;
     }
 
     [ContextMenu("RemoveFromSceneBundle")]
