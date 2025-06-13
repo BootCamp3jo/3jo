@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2269dfd20d037449f354ad1063e859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subtitleText: {fileID: 0}
+  subtitleText: {fileID: 7525746919394444035}
   fadeTime: 3
 --- !u!1 &1141090716160922038
 GameObject:
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a7b75e1d06efc49b98b0b382a0e5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 0
+  isTest: 1
   streamCutSceneData: {fileID: 11400000, guid: 5e5d1d80647e5de439b7f796e93352c1, type: 2}
   dialogueManager: {fileID: 4654131531209806458}
   imagePanel: {fileID: 1141090716160922038}
@@ -2199,8 +2199,8 @@ MonoBehaviour:
   - {fileID: 1191743890931509604}
   - {fileID: 615283184299559}
   - {fileID: 2249926497273393524}
-  selectPanel: {fileID: 0}
-  selectItemPrefab: {fileID: 0}
+  selectPanel: {fileID: 9041889249597999161}
+  selectItemPrefab: {fileID: 2820305008125793986, guid: ff9225b5d5ee75c42b24f86c34c56443, type: 3}
 --- !u!1 &8783178497380004096
 GameObject:
   m_ObjectHideFlags: 0
