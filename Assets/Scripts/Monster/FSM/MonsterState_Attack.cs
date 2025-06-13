@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MonsterState_Attack : MonoBehaviour
+// 공격 상태의 기본형. 해당 클래스를 상속받아 패턴 구현
+public class MonsterState_Attack : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    protected MonsterStateMachine stateMachine;
+    protected MonsterState_Attack(MonsterStateMachine monsterStateMachine)
     {
-        
+        this.stateMachine = monsterStateMachine;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Enter() 
     {
-        
+
+
+        // 공격 상태 진입
+        stateMachine.SetAnimeTrigger(stateMachine.AnimatorParameters.attackLayerHash);
     }
+
+    public virtual void Execute() {}
+
+    public virtual void Exit(){}
 }

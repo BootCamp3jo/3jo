@@ -4,30 +4,35 @@ using System;
 [CreateAssetMenu(fileName ="Monster", menuName ="Data/Monster")]
 public class MonsterData : ScriptableObject
 {
-    // º¸½º ¸ó½ºÅÍ¿¡´Â ¹«¾ùÀÌ ÀÖ¾î¾ß ÇÒ±î?
-    // ÀÌ¸§
+    // ë³´ìŠ¤ ëª¬ìŠ¤í„°ì—ëŠ” ë¬´ì—‡ì´ ìˆì–´ì•¼ í• ê¹Œ?
+    // ì´ë¦„
     [field: SerializeField] public string monsterName { get; private set; } 
-    // µğ¹öÇÁ/¹öÇÁ µîÀ¸·Î ÀÎÇÑ ¼Ò¼ıÁ¡ÀÌ ÇÊ¿äÇÒÁö ¸ğ¸£´Ï ¹Ì¸® float ÇüÀ¸·Î ¼±¾ğ
-    // Ã¼·Â
-    [field: SerializeField] public float hp { get; private set; }
-    // ±âº» °ø°İ·Â >> ÀÌ¸¦ ±â¹İÀ¸·Î ÆĞÅÏ¸¶´Ù °è¼ö°¡ ÀÖ´Â ¹æ½Ä(°­ÇÑ ÆĞÅÏ Ç¥Çö¿¡ ¿ëÀÌ)
+    // ë””ë²„í”„/ë²„í”„ ë“±ìœ¼ë¡œ ì¸í•œ ì†Œìˆ«ì ì´ í•„ìš”í• ì§€ ëª¨ë¥´ë‹ˆ ë¯¸ë¦¬ float í˜•ìœ¼ë¡œ ì„ ì–¸
+    // ìµœëŒ€ ì²´ë ¥
+    [field: SerializeField] public float hpMax { get; private set; }
+    // ê¸°ë³¸ ê³µê²©ë ¥ >> ì´ë¥¼ ê¸°ë°˜ìœ¼ë¡œ íŒ¨í„´ë§ˆë‹¤ ê³„ìˆ˜ê°€ ìˆëŠ” ë°©ì‹(ê°•í•œ íŒ¨í„´ í‘œí˜„ì— ìš©ì´)
     [field: SerializeField] public float atk { get; private set; }
-    // ¹æ¾î·Â..Àº ÀÌ¹ø ÆÀÇÁ ±â°£ÀÌ ÂªÀ¸´Ï ÆĞ½º(Ã¼·Â¸¸À¸·Î ¹ë·±½Ì Á¶Á¤ÇÏ±â¿¡µµ ºüµíÇÒ µí)
-    // »ç¸Á ½Ã µå¶øÇÏ´Â ³»¿ë
+    // ë°©ì–´ë ¥..ì€ ì´ë²ˆ íŒ€í”„ ê¸°ê°„ì´ ì§§ìœ¼ë‹ˆ íŒ¨ìŠ¤(ì²´ë ¥ë§Œìœ¼ë¡œ ë°¸ëŸ°ì‹± ì¡°ì •í•˜ê¸°ì—ë„ ë¹ ë“¯í•  ë“¯)
+    // ê³µê²© ë”œë ˆì´ëŠ” íŒ¨í„´ ë°ì´í„°ì—
+
+    // íŒ¨í„´ë“¤ì˜ ë°ì´í„°
+    [field: SerializeField] public PatternData[] patternDatas { get; private set; }
+
+    // ì‚¬ë§ ì‹œ ë“œëí•˜ëŠ” ë‚´ìš©
     [field: SerializeField] DropData dropData; 
 }
 
 [Serializable]
 public class DropData
 {
-    int exp; // °æÇèÄ¡
-    DropItem[] dropItems; // µå¶ø ¾ÆÀÌÅÛ Ç®
+    int exp; // ê²½í—˜ì¹˜
+    DropItem[] dropItems; // ë“œë ì•„ì´í…œ í’€
 }
 
-// !!! ¾ÆÀÌÅÛÀÌ ¸¸µé¾îÁø ÈÄ ÀÛ¼ºÇÏ±â!
+// !!! ì•„ì´í…œì´ ë§Œë“¤ì–´ì§„ í›„ ì‘ì„±í•˜ê¸°!
 [Serializable]
 public class DropItem
 {
-    // ¾ÆÀÌÅÛ Á¾·ù
-    // µå¶ø ¼ö·®
+    // ì•„ì´í…œ ì¢…ë¥˜
+    // ë“œë ìˆ˜ëŸ‰
 }
