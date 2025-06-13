@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class PlayerManager : MonoSingleton<PlayerManager>
 {
+    [Header("Player Prefab")]
     [SerializeField] public GameObject playerPrefab;
+
+    [Header("Player Components")]
     [SerializeField] public PlayerMovement playerMovement;
-    [SerializeField] public PlayerAnimationHandler playerAnimationHandler;  
+    [SerializeField] public PlayerAnimationHandler playerAnimationHandler;
+    [SerializeField] public PlayerStatData playerStatData;
+    [SerializeField] public PlayerCombatHandler playerCombatHandler;
 
     private void Awake()
     {
@@ -13,8 +18,10 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     private void Init()
     {
-        playerMovement = playerPrefab.GetComponent<PlayerMovement>();
-        playerAnimationHandler = playerPrefab.GetComponent<PlayerAnimationHandler>();
+        playerMovement = GetComponent<PlayerMovement>();
+        playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
+        playerStatData = GetComponent<PlayerStatData>();
+        playerCombatHandler = GetComponent<PlayerCombatHandler>();
     }
 
 }

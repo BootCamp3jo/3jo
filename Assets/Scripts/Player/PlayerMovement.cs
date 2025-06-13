@@ -5,6 +5,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerAnimationHandler playerAnimationHandler;
+
     [Header("Movement Settings")]
     [SerializeField] private float baseMoveSpeed = 3f; // 기본 이동 속도  
     [SerializeField] private float moveSpeedMultiplier = 2f; // 달리기 속도 배수
@@ -48,12 +50,14 @@ public class PlayerMovement : MonoBehaviour
     // Attack
     private bool isAttacking = false; // 공격 여부를 위한 변수
     private WaitForSeconds waitFor1_19sec;
-    
+
 
 
     //----------------------------------------------------
+
     private void Start()
     {
+        playerAnimationHandler = PlayerManager.Instance.playerAnimationHandler;
         waitFor1_19sec = new WaitForSeconds(1.19f);
         waitForDashCoolDown = new WaitForSeconds(dashCoolDown);
         moveSpeed = baseMoveSpeed; // 초기 이동 속도 설정
@@ -86,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         // 이동 입력이 있을 때 애니메이션 상태 변경
         if (moveInput != Vector2.zero)
         {
-            PlayerManager.Instance.playerAnimationHandler.EnterRunning();
+            playerAnimationHandler.EnterRunning();
             SetLookDirection();
             lastDashDirection = moveInput.normalized; // 마지막 대시 방향 업데이트 (Vector.zero일 때 바라보고 있는 방향으로 대시하기 위함)
         }
@@ -295,11 +299,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // 공격 애니메이션 재생 시간 동안 대기
         isAttacking = true;
-        PlayerManager.Instance.playerAnimationHandler.EnterAttackingState();
-        PlayerManager.Instance.playerAnimationHandler.EnterFrontAttacking();
+        playerAnimationHandler.EnterAttackingState();
+        playerAnimationHandler.EnterFrontAttacking();
         yield return waitFor1_19sec; // 예시로 0.5초 대기
-        PlayerManager.Instance.playerAnimationHandler.ExitFrontAttacking();
-        PlayerManager.Instance.playerAnimationHandler.ExitAttackingState();
+        playerAnimationHandler.ExitFrontAttacking();
+        playerAnimationHandler.ExitAttackingState();
         isAttacking = false;
     }
 
@@ -307,11 +311,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // 위쪽 공격 애니메이션 재생 시간 동안
         isAttacking = true;
-        PlayerManager.Instance.playerAnimationHandler.EnterAttackingState();
-        PlayerManager.Instance.playerAnimationHandler.EnterUpAttacking();
+        playerAnimationHandler.EnterAttackingState();
+        playerAnimationHandler.EnterUpAttacking();
         yield return waitFor1_19sec;
-        PlayerManager.Instance.playerAnimationHandler.ExitUpAttacking();
-        PlayerManager.Instance.playerAnimationHandler.ExitAttackingState();
+        playerAnimationHandler.ExitUpAttacking();
+        playerAnimationHandler.ExitAttackingState();
         isAttacking = false;
     }
 
@@ -319,11 +323,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // 아래쪽 공격 애니메이션 재생 시간 동안 
         isAttacking = true;
-        PlayerManager.Instance.playerAnimationHandler.EnterAttackingState();
-        PlayerManager.Instance.playerAnimationHandler.EnterDownAttacking();
+        playerAnimationHandler.EnterAttackingState();
+        playerAnimationHandler.EnterDownAttacking();
         yield return waitFor1_19sec;
-        PlayerManager.Instance.playerAnimationHandler.ExitDownAttacking();
-        PlayerManager.Instance.playerAnimationHandler.ExitAttackingState();
+        playerAnimationHandler.ExitDownAttacking();
+        playerAnimationHandler.ExitAttackingState();
         isAttacking = false;
     }
 }
