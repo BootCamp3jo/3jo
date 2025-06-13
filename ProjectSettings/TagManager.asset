@@ -44,6 +44,9 @@ TagManager:
   - name: TestSortingLayer
     uniqueID: 4270783867
     locked: 0
-  - name: CameraSortingLayer
+  - name: Map
+    uniqueID: 4046017327
+    locked: 0
+  - name: Deco
     uniqueID: 453080195
     locked: 0

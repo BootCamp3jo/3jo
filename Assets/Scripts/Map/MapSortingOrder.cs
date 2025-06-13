@@ -6,6 +6,7 @@ public class MapSortingOrder : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isUpdateOrder = false;
+    [SerializeField] private float pivotYOffset = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class MapSortingOrder : MonoBehaviour
     {
         if (!isUpdateOrder)
             return;
-        spriteRenderer.sortingOrder = -(int)(transform.position.y * 100);
+
+        float adjustedY = transform.position.y + pivotYOffset;
+        spriteRenderer.sortingOrder = -(int)(adjustedY * 100);
     }
 }

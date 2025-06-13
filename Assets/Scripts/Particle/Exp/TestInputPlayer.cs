@@ -92,7 +92,7 @@ public class TestInputPlayer : MonoBehaviour
             if (player != null)
             {
                 Vector2 playerPos = player.transform.position;
-                waveGrayEffectManager.StartWaveEffect(playerPos);  // 수정된 부분
+                waveGrayEffectManager.StartWaveEffect();  // 수정된 부분
             }
             else
             {

@@ -1,126 +1,105 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 public class WaveGrayEffectManager : MonoBehaviour
 {
-    [SerializeField] private Material grayUnlitMaterial;  // 회색조 머티리얼 (SpriteRenderer용)
-    [SerializeField] private Material grayTilemapMaterial; // 회색조 머티리얼 (타일맵용)
+    [SerializeField] private Material grayUnlitMaterial;
+    [SerializeField] private float waveDuration = 1.0f;  // 확산 or 수축 각각 시간
     [SerializeField] private float maxWaveRadius = 5f;
-    [SerializeField] private float waveDuration = 1f;
+    [SerializeField] private Transform playerTransform;
 
-    private List<SpriteRenderer> spriteTargets = new List<SpriteRenderer>();
-    private Dictionary<SpriteRenderer, Material> originalSpriteMaterials = new Dictionary<SpriteRenderer, Material>();
-
-    private List<TilemapRenderer> tilemapTargets = new List<TilemapRenderer>();
-    private Dictionary<TilemapRenderer, Material> originalTilemapMaterials = new Dictionary<TilemapRenderer, Material>();
+    private List<Renderer> targets = new List<Renderer>();
+    private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>();
 
     private bool isEffectActive = false;
+    private float timer = 0f;
+    private bool isExpanding = true;  // 확산 중인지 수축 중인지 상태
 
-    void Awake()
+    private void Start()
     {
-        // SpriteRenderer 수집 (Player 태그 제외)
-        SpriteRenderer[] allSprites = FindObjectsOfType<SpriteRenderer>();
-        foreach (var sr in allSprites)
+        foreach (var renderer in FindObjectsOfType<Renderer>())
         {
-            if (sr.CompareTag("Player")) continue;
-            spriteTargets.Add(sr);
-            originalSpriteMaterials[sr] = sr.material;
-        }
+            if (renderer.gameObject.CompareTag("Player")) continue;
 
-        // TilemapRenderer 수집 (Player 태그는 없지만 혹시 태그로 필터링 필요하면 추가)
-        TilemapRenderer[] allTilemaps = FindObjectsOfType<TilemapRenderer>();
-        foreach (var tr in allTilemaps)
-        {
-            tilemapTargets.Add(tr);
-            originalTilemapMaterials[tr] = tr.material;
+            if (renderer is SpriteRenderer || renderer is TilemapRenderer)
+            {
+                targets.Add(renderer);
+                originalMaterials[renderer] = renderer.sharedMaterial;
+            }
         }
     }
 
-    public void StartWaveEffect(Vector2 playerPos)
+    public void StartWaveEffect()
     {
         if (isEffectActive) return;
-        StartCoroutine(WaveRoutine(playerPos));
-    }
 
-    private IEnumerator WaveRoutine(Vector2 playerPos)
-    {
-        isEffectActive = true;
-
-        // 머티리얼 교체 (SpriteRenderer)
-        foreach (var sr in spriteTargets)
+        // 인스턴스화 및 초기 셋팅
+        foreach (var renderer in targets)
         {
-            sr.material = new Material(grayUnlitMaterial);
-        }
-
-        // 머티리얼 교체 (TilemapRenderer)
-        foreach (var tr in tilemapTargets)
-        {
-            tr.material = new Material(grayTilemapMaterial);
-        }
-
-        float timer = 0f;
-        // 확장하며 회색조 유지 (grayStrength=1)
-        while (timer < waveDuration)
-        {
-            float radius = Mathf.Lerp(0, maxWaveRadius, timer / waveDuration);
-            float grayStrength = 1f;
-
-            foreach (var sr in spriteTargets)
-            {
-                sr.material.SetVector("_PlayerPos", playerPos);
-                sr.material.SetFloat("_WaveRadius", radius);
-                sr.material.SetFloat("_GrayStrength", grayStrength);
-            }
-
-            foreach (var tr in tilemapTargets)
-            {
-                tr.material.SetVector("_PlayerPos", playerPos);
-                tr.material.SetFloat("_WaveRadius", radius);
-                tr.material.SetFloat("_GrayStrength", grayStrength);
-            }
-
-            timer += Time.deltaTime;
-            yield return null;
+            Material instancedMat = new Material(grayUnlitMaterial);
+            instancedMat.renderQueue = 2000; // Geometry queue (Tilemap보다 앞)
+            renderer.material = instancedMat;
         }
 
         timer = 0f;
-        // 회색조 서서히 풀기 (grayStrength 1->0)
-        while (timer < waveDuration)
-        {
-            float grayStrength = Mathf.Lerp(1f, 0f, timer / waveDuration);
+        isExpanding = true;
+        isEffectActive = true;
+    }
 
-            foreach (var sr in spriteTargets)
+    private void Update()
+    {
+        if (!isEffectActive) return;
+        if (playerTransform == null) return;
+
+        timer += Time.deltaTime;
+
+        Vector2 playerPos = playerTransform.position;
+        float radius;
+        float grayStrength;
+
+        if (isExpanding)
+        {
+            // 확산 (0 -> maxWaveRadius)
+            radius = Mathf.Lerp(0f, maxWaveRadius, timer / waveDuration);
+            grayStrength = 1f;
+
+            if (timer >= waveDuration)
             {
-                sr.material.SetVector("_PlayerPos", playerPos);
-                sr.material.SetFloat("_WaveRadius", maxWaveRadius);
-                sr.material.SetFloat("_GrayStrength", grayStrength);
+                // 확산 끝, 수축 시작
+                timer = 0f;
+                isExpanding = false;
             }
+        }
+        else
+        {
+            // 수축 (maxWaveRadius -> 0)
+            radius = Mathf.Lerp(maxWaveRadius, 0f, timer / waveDuration);
+            grayStrength = 1f;
 
-            foreach (var tr in tilemapTargets)
+            if (timer >= waveDuration)
             {
-                tr.material.SetVector("_PlayerPos", playerPos);
-                tr.material.SetFloat("_WaveRadius", maxWaveRadius);
-                tr.material.SetFloat("_GrayStrength", grayStrength);
+                // 수축 끝, 복원 및 종료
+                foreach (var renderer in targets)
+                {
+                    if (originalMaterials.TryGetValue(renderer, out var mat))
+                    {
+                        renderer.material = mat;
+                    }
+                }
+                isEffectActive = false;
+                return;
             }
-
-            timer += Time.deltaTime;
-            yield return null;
         }
 
-        // 머티리얼 원복
-        foreach (var sr in spriteTargets)
+        // 머티리얼 파라미터 업데이트
+        foreach (var renderer in targets)
         {
-            if (originalSpriteMaterials.TryGetValue(sr, out var mat))
-                sr.material = mat;
-        }
-        foreach (var tr in tilemapTargets)
-        {
-            if (originalTilemapMaterials.TryGetValue(tr, out var mat))
-                tr.material = mat;
-        }
+            if (renderer.material == null) continue;
 
-        isEffectActive = false;
+            renderer.material.SetVector("_PlayerPos", playerPos);
+            renderer.material.SetFloat("_WaveRadius", radius);
+            renderer.material.SetFloat("_GrayStrength", grayStrength);
+        }
     }
 }
