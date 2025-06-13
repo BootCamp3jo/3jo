@@ -68,7 +68,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 5
         delayTime: 2
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: 07d5fa791e7c4ce4d978f109b53ad471, type: 3}
         lastState: 0
       - dialogueType: 2
         portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
@@ -79,7 +79,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 6
         delayTime: 3
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: 58488069d40ca0d4e9d2eb99356f5269, type: 3}
         lastState: 0
     imageSceneData:
       cutImage: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 5
         delayTime: 2
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: 7a118f27ecafadf479c02d549c351f3f, type: 3}
         lastState: 0
       - dialogueType: 0
         portrait: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
@@ -163,7 +163,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 5
         delayTime: 2
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: b14e685294fe188428363e12307124b0, type: 3}
         lastState: 0
       - dialogueType: 1
         portrait: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 5
         delayTime: 2
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: ffffc487d802a754cacd142a4dfefe68, type: 3}
         lastState: 0
       - dialogueType: 0
         portrait: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
@@ -200,7 +200,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 5
         delayTime: 2
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: 3443310a86f26d940aa4d7187999f917, type: 3}
         lastState: 0
       - dialogueType: 2
         portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
@@ -211,7 +211,7 @@ MonoBehaviour:
         subDialogueDataList: []
         chatTime: 5
         delayTime: 2
-        chatSound: {fileID: 0}
+        chatSound: {fileID: 8300000, guid: 44ea7929dcfd7ca419858a2cc55613ac, type: 3}
         lastState: 0
     imageSceneData:
       cutImage: {fileID: 0}
