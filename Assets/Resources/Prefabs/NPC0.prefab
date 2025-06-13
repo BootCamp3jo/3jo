@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcData:
-    prefabPath: 
+    prefabPath: Prefabs/NPC0
     posX: 0
     posY: 0
     posZ: 0
