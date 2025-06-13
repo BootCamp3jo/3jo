@@ -76,8 +76,8 @@ GameObject:
   - component: {fileID: 2744920610279156458}
   - component: {fileID: 2080873543047265347}
   - component: {fileID: 8795419104019595138}
-  - component: {fileID: 2938508338975521212}
-  - component: {fileID: -4819710995041189194}
+  - component: {fileID: 7694232084275543480}
+  - component: {fileID: 8394472092896199471}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -282,10 +282,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 8359704718906564383}
+  player: {fileID: 7694232084275543480}
+  playerData:
+    prefabPath: 
+    _currentHealth: 0
+    _currentMana: 0
+    _level: 1
+    _experience: 0
+    _coin: 0
   playerMovement: {fileID: 8795419104019595138}
-  playerAnimationHandler: {fileID: 0}
-  playerStatData: {fileID: 0}
-  playerCombatHandler: {fileID: 0}
+  playerAnimationHandler: {fileID: 5795661413467567411}
+  playerCombatHandler: {fileID: 1428079564808094703}
+  playerStatHandler: {fileID: 8394472092896199471}
 --- !u!114 &8795419104019595138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +314,7 @@ MonoBehaviour:
   dashDuration: 0.1
   dashCoolDown: 1
   doubleTabThreshold: 0.25
---- !u!114 &2938508338975521212
+--- !u!114 &7694232084275543480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,29 +323,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8359704718906564383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 833d669f02d570d48b59a966a7f1e57c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 100
-  _mana: 100
-  _level: 1
-  _experience: 100
-  _coin: 100
---- !u!114 &-4819710995041189194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8359704718906564383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f490825191e1b45889b1272f5e4683, type: 3}
+  m_Script: {fileID: 11500000, guid: b7d687c38f7de5848a0b5786ca29573d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerData:
     prefabPath: Prefabs/Player
-    currentHP: 400
+    _currentHealth: 100
+    _currentMana: 100
+    _level: 1
+    _experience: 100
+    _coin: 100
+--- !u!114 &8394472092896199471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359704718906564383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2819f2d768c7e0e47891e1959c99b85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9070524762760038767
 GameObject:
   m_ObjectHideFlags: 0

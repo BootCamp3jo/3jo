@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    [SerializeField] InGameUIButtons inGameUIButtons;
-    [SerializeField] PlayerStatsUI playerStatsUI;
-    [SerializeField] SkillUI skillUI;
+    [SerializeField] public InGameUIButtons inGameUIButtons;
+    [SerializeField] public PlayerStatsUI playerStatsUI;
+    [SerializeField] public SkillUI skillUI;
 
     void Awake()
     {
         inGameUIButtons = GetComponent<InGameUIButtons>();
         playerStatsUI = GetComponentInChildren<PlayerStatsUI>();
-        SkillUI skillUI = GetComponentInChildren<SkillUI>();
+        skillUI = GetComponentInChildren<SkillUI>();
     }
 
     void Start()

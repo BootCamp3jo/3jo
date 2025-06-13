@@ -6,10 +6,12 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     [SerializeField] public GameObject playerPrefab;
 
     [Header("Player Components")]
+    [SerializeField] public Player player;
+    [SerializeField] public PlayerData playerData;
     [SerializeField] public PlayerMovement playerMovement;
     [SerializeField] public PlayerAnimationHandler playerAnimationHandler;
-    [SerializeField] public PlayerStatData playerStatData;
     [SerializeField] public PlayerCombatHandler playerCombatHandler;
+    [SerializeField] public PlayerStatHandler playerStatHandler;
 
     private void Awake()
     {
@@ -18,10 +20,12 @@ public class PlayerManager : MonoSingleton<PlayerManager>
 
     private void Init()
     {
+        player = GetComponent<Player>();
+        playerData = player.PlayerData;
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
-        playerStatData = GetComponent<PlayerStatData>();
         playerCombatHandler = GetComponent<PlayerCombatHandler>();
+        playerStatHandler = GetComponent<PlayerStatHandler>();
     }
 
 }
