@@ -1495,6 +1495,7 @@ GameObject:
   - component: {fileID: 1682182597}
   - component: {fileID: 1682182596}
   - component: {fileID: 1682182599}
+  - component: {fileID: 1682182600}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1543,7 +1544,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1347241579867961837, guid: 83884a65e5b17b446a6ba4efbf345cc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1563,7 +1564,7 @@ Transform:
   m_GameObject: {fileID: 1682182595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.86, y: -2.32, z: 0}
+  m_LocalPosition: {x: -2.7, y: -2.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1584,6 +1585,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shockWaveMaterial: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
   expManager: {fileID: 1546226495}
+  dashDistance: 3
+  dashDuration: 0.2
+  ghostTrail: {fileID: 1682182600}
+--- !u!114 &1682182600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682182595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890c465e281b698478b61883e54ea749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 3749456048257060111, guid: 6c7beac9503e2d6418e701728bceb075, type: 3}
+  spawnInterval: 0.035
+  ghostLifetime: 0.3
+  ghostColor: {r: 1, g: 1, b: 1, a: 0.5}
 --- !u!1001 &1800334796
 PrefabInstance:
   m_ObjectHideFlags: 0
