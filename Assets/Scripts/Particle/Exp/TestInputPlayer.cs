@@ -20,6 +20,16 @@ public class TestInputPlayer : MonoBehaviour
     [SerializeField] private float dustEmitInterval = 0.2f;
     private float lastDustTime = 0f;
 
+    [Header("무적 관련(깜빡임)")]
+    [SerializeField] private BlinkEffect blinkEffect;
+    [SerializeField] private float invincibleDuration = 2f;
+
+    [Header("피격 관련(깜빡임)")]
+    [SerializeField] private FlashEffect flashEffect;
+
+    [Header("피격 관련(파티클)")]
+    [SerializeField] private HitEffect hitEffect;
+
     private Rigidbody2D rb;
     private Vector2 input;
 
@@ -57,7 +67,15 @@ public class TestInputPlayer : MonoBehaviour
         {
             ParticleManager.Instance.Play(ParticleType.LandDust, footPoint.position);
         }
-
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            blinkEffect.StartBlink(invincibleDuration);
+        }
+        if (Input.GetKeyDown(KeyCode.F7)) // 예시 키
+        {
+            hitEffect.PlayHitEffect(1);
+            flashEffect.TriggerFlash(); // 직접 호출
+        }
 
 
         // 이동 중 먼지 파티클 생성

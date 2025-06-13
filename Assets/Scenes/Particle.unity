@@ -1469,6 +1469,8 @@ MonoBehaviour:
     prefab: {fileID: 8679221894263147564, guid: fb53deafbf9f6b14c9ecc6422e4a6021, type: 3}
   - type: 2
     prefab: {fileID: 8919481179360720422, guid: 0c979cffb331d7a408afb9d73ff4b893, type: 3}
+  - type: 3
+    prefab: {fileID: 8398885080573071077, guid: ba2840445f553b74f932ece24f0a8126, type: 3}
 --- !u!4 &1679391235
 Transform:
   m_ObjectHideFlags: 0
@@ -1497,6 +1499,9 @@ GameObject:
   - component: {fileID: 1682182599}
   - component: {fileID: 1682182600}
   - component: {fileID: 1682182601}
+  - component: {fileID: 1682182602}
+  - component: {fileID: 1682182603}
+  - component: {fileID: 1682182604}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1565,8 +1570,8 @@ Transform:
   m_GameObject: {fileID: 1682182595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.342, y: -1.807, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.7437, y: -1.4053, z: 0}
+  m_LocalScale: {x: 0.7322, y: 0.7322, z: 0.7322}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 515819312}
@@ -1593,6 +1598,10 @@ MonoBehaviour:
   dashDuration: 0.2
   ghostTrail: {fileID: 1682182600}
   dustEmitInterval: 0.2
+  blinkEffect: {fileID: 1682182602}
+  invincibleDuration: 2
+  flashEffect: {fileID: 1682182603}
+  hitEffect: {fileID: 1682182604}
 --- !u!114 &1682182600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,6 +1645,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1682182602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682182595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdc8e966c43b2c47bb3247e36ba598b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1682182596}
+  blinkDuration: 0.5
+  totalBlinkTime: 2
+  minAlpha: 0.5
+--- !u!114 &1682182603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682182595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80aee12886b34ea4bb9c29ff934d05a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1682182596}
+  flashMaterial: {fileID: 2100000, guid: e233cf4323f121247aecc683ab44d719, type: 2}
+  flashDuration: 0.15
+--- !u!114 &1682182604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682182595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809471d3e7c9c6144b94d1f1a7c68d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1682182596}
+  hitParticleType: 3
 --- !u!1001 &1800334796
 PrefabInstance:
   m_ObjectHideFlags: 0

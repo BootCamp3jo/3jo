@@ -5,6 +5,7 @@ public enum ParticleType
     WalkDust,
     JumpDust,
     LandDust,
+    Hit,
 }
 
 public class ParticleManager : MonoBehaviour
