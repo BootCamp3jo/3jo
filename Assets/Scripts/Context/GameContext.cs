@@ -122,6 +122,7 @@ public class GameContext
     public void RegisterNPC(ANPC anpc, NPCData data)
     {
         npcDatas[anpc] = data;
+        
     }
 
     public void UnregisterNPC(ANPC anpc)
@@ -153,7 +154,7 @@ public class GameContext
         Save();
     }
 
-    public void ClearAfterSave()
+    public void ClearBeforeLoad()
     {
         npcDataQueue.Clear();
         npcDatas.Clear();
@@ -166,6 +167,17 @@ public class GameContext
 
     public void SaveCurrentScene()
     {
+        if (player != null)
+        {
+            player.Save();
+        }
+        foreach (ANPC aNPC in npcDatas.Keys)
+        {
+            if (aNPC != null)
+            {
+                aNPC.Save();
+            }
+        }
         if (!dontSaveCurSceneBundle)
         {
             var bundle = new SceneBundle
@@ -188,7 +200,6 @@ public class GameContext
         }
         saveData.curSceneName = currentSceneName;
         saveData.playerData = playerData;
-        ClearAfterSave();
     }
 
     public void LoadCurrentSceneData()

@@ -2,39 +2,33 @@ using UnityEngine;
 
 public class MonsterAnimatorParameters
 {
-    // ¾Ö´Ï¸ŞÀÌÅÍ ÆÄ¶ó¹ÌÅÍ ÀÌ¸§µé
+    // ì• ë‹ˆë©”ì´í„° íŒŒë¼ë¯¸í„° ì´ë¦„ë“¤
     #region Animatior Transition Parameters Name
     [field: SerializeField] public string idleName { get; private set; } = "Idle";
     [field: SerializeField] public string moveName { get; private set; } = "Move";
     [field: SerializeField] public string deathName { get; private set; } = "Death";
-    // °ø°İ ·¹ÀÌ¾î Æ®·£Áö¼Ç Á¶°ÇÀ¸·Î µé¾î°¥ ÆÄ¶ó¹ÌÅÍ ÀÌ¸§
+    // ê³µê²© ë ˆì´ì–´ íŠ¸ëœì§€ì…˜ ì¡°ê±´ìœ¼ë¡œ ë“¤ì–´ê°ˆ íŒŒë¼ë¯¸í„° ì´ë¦„
     [field: SerializeField] public string attackLayerName { get; private set; } = "@Attack";
-    // ÆĞÅÏ ¼ö°¡ º¸½º¸¶´Ù ´Ù¸¦ ¼ö ÀÖ±â¿¡ ÀÌ¿¡ ´ëÀÀÇÏ±â À§ÇØ ¹è¿­·Î ¼±¾ğ
-    // ¹è¿­ ÀÎµ¦½º¿¡ µû¶ó 0 ~ n-1¹ø±îÁö (n = ÆĞÅÏ ¼ö)
-    [field: SerializeField] public string[] attckNames { get; private set; } = new string[1] { "Attack0" };
+    // í•´ë‹¹ íŒŒë¼ë¯¸í„°ëŠ” boolì´ ì•„ë‹Œ intë¡œ ê³µê²© íŒ¨í„´ ê°ˆë˜ë¥¼ í‘œí˜„
+    [field: SerializeField] public string attackName { get; private set; } = "Attack";
     #endregion
 
-    // ÀÌ¸§µéÀ» ÇØ½Ã·Î º¯È¯ÇØµĞ °ª
+    // ì´ë¦„ë“¤ì„ í•´ì‹œë¡œ ë³€í™˜í•´ë‘” ê°’
     #region Animatior Transition Parameters Hash
     public int idleHash { get; private set; }
     public int moveHash { get; private set; }
     public int deathHash { get; private set; }
     public int attackLayerHash { get; private set; }
-    public int[] attckHashs { get; private set; }
+    public int attackHash { get; private set; }
     #endregion
 
-    // »ı¼ºÀÚ·Î ÆÄ¶ó¹ÌÅÍ ÀÌ¸§À» ÇØ½Ã·Î º¯È¯
+    // ìƒì„±ìë¡œ íŒŒë¼ë¯¸í„° ì´ë¦„ì„ í•´ì‹œë¡œ ë³€í™˜
     public MonsterAnimatorParameters()
     {
         idleHash = Animator.StringToHash(idleName);
         moveHash = Animator.StringToHash(moveName);
         deathHash = Animator.StringToHash(deathName);
         attackLayerHash = Animator.StringToHash(attackLayerName);
-
-        attckHashs = new int[attckNames.Length];
-        for (int i = 0; i < attckNames.Length; i++)
-        {
-            attckHashs[i] = Animator.StringToHash(attckNames[i]);
-        }
+        attackHash = Animator.StringToHash(attackName);
     }
 }

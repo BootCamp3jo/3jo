@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public abstract class APlayer : MonoBehaviour
 {
     [SerializeField]
-    protected PlayerData playerData;
+    protected PlayerData playerData = new PlayerData();
     protected PlayerStateInScene playerStateInScene;
     private GameContext gameContext;
 

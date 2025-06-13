@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 2080873543047265347}
   - component: {fileID: 8795419104019595138}
   - component: {fileID: 2938508338975521212}
+  - component: {fileID: -4819710995041189194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -322,6 +323,21 @@ MonoBehaviour:
   _level: 1
   _experience: 100
   _coin: 100
+--- !u!114 &-4819710995041189194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359704718906564383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f490825191e1b45889b1272f5e4683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    prefabPath: Prefabs/Player
+    currentHP: 400
 --- !u!1 &9070524762760038767
 GameObject:
   m_ObjectHideFlags: 0

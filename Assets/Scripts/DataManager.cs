@@ -29,6 +29,15 @@ public class DataManager : MonoSingleton<DataManager>
         SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
+    protected override void OnDestroy()
+    {
+        if (!abortSceneNames.Contains(SceneManager.GetActiveScene().name))
+        {
+            gameContext.SaveCurrentScene();
+        }
+        gameContext.Save();
+    }
+
     protected override void OnApplicationQuit()
     {
         if (!abortSceneNames.Contains(SceneManager.GetActiveScene().name))
@@ -44,6 +53,7 @@ public class DataManager : MonoSingleton<DataManager>
         {
             return;
         }
+        gameContext.ClearBeforeLoad();
         gameContext.SetCurrentScene(scene.name);
         gameContext.LoadCurrentSceneData();
     }
