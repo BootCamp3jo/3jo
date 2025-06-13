@@ -217,4 +217,4 @@ MonoBehaviour:
       cutImage: {fileID: 0}
       delayTime: 0
       cutSound: {fileID: 0}
-  nextScene: 
+  nextScene: StartScene

@@ -178,7 +178,10 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
     public void OnSkip()
     {
         skipButton.gameObject.SetActive(false);
-        StopCoroutine(cutSceneCorWrap);
+        if (cutSceneCorWrap != null)
+        {
+            StopCoroutine(cutSceneCorWrap);
+        }
         LoadNextScene();
     }
 
@@ -187,6 +190,7 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
         if (streamCutSceneData.nextScene != null && streamCutSceneData.nextScene != "")
         {
             //씬 로드
+            Fade.LoadScene(streamCutSceneData.nextScene);
         }
     }
 }
