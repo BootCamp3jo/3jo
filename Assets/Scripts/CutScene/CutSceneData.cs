@@ -28,18 +28,40 @@ public class CutData
     public CameraSceneData cameraSceneData;
     [Header("대화 컷")]
     public DialogueSceneData dialogueSceneData;
+    [Header("이미지 컷")]
+    public ImageSceneData imageSceneData;
+}
+
+[System.Serializable]
+public class ImageSceneData
+{
+    public Sprite cutImage;
+    public float delayTime; // 컷씬 후 다음으로 넘어가기 전 딜레이 타임
+    [Header("컷씬 사운드")]
+    public AudioClip cutSound; // 카메라 이벤트 효과음
 }
 
 [System.Serializable]
 public class CameraSceneData
 {
-    [Header("카메라 움직임 포인트")]
-    public List<Vector3> cameraWayPointList;
+    [Header("카메라 움직임 포지션/자막 리스트")]
+    public List<CameraWayData> cameraWayPointList;
     public float cutTime;
     public bool isEvent = false; // 컷씬 이벤트 있을시
     public int eventCode = -1; // 이벤트 없을 시 -1
     public float delayTime; // 컷씬 후 다음으로 넘어가기 전 딜레이 타임
 
+    [Header("컷 종료 후 카메라 위치 (-1은 처음 포지션으로)")]
+    public int activePoint = -1;
+}
+
+[System.Serializable]
+public class CameraWayData
+{
+    [Header("포지션")]
+    public Vector3 position = new Vector3(0, 0, -10);
+    [Header("자막")]
+    public string title;
     [Header("컷씬 사운드")]
     public AudioClip cutSound; // 카메라 이벤트 효과음
 }

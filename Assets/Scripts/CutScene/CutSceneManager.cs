@@ -20,6 +20,12 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
     private int selectedPoint;
     private int selectedNum;
 
+    [Header("이미지 씬")]
+    public GameObject imagePanel;
+
+    [Header("카메라 자막")]
+    public GameObject subTitlePanel;
+
     private void Start()
     {
         if (audio == null) { audio = GetComponent<AudioSource>(); }
@@ -50,19 +56,28 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
             if (data.sceneType == CutSceneType.Camera) // 카메라 컷씬
             {
                 dialogueManager.gameObject.SetActive(false);
-                if (data.cameraSceneData.cutSound != null)
-                {
-                    audio.PlayOneShot(data.cameraSceneData.cutSound);
-                }
-                mainCamera.transform.position = data.cameraSceneData.cameraWayPointList[0]; // 카메라 위치 초기화
+                mainCamera.transform.position = data.cameraSceneData.cameraWayPointList[0].position; // 카메라 위치 초기화
 
                 float timer = 0f;
                 float segmentTime = data.cameraSceneData.cutTime / (data.cameraSceneData.cameraWayPointList.Count - 1);
 
                 for (int i = 0; i < data.cameraSceneData.cameraWayPointList.Count - 1; i++) // 카메라 이동
                 {
-                    Vector3 startPos = data.cameraSceneData.cameraWayPointList[i];
-                    Vector3 endPos = data.cameraSceneData.cameraWayPointList[i + 1];
+                    //효과음 재생
+                    if (data.cameraSceneData.cameraWayPointList[i].cutSound != null)
+                    {
+                        audio.PlayOneShot(data.cameraSceneData.cameraWayPointList[i].cutSound);
+                    }
+
+                    //자막 표시
+                    if (data.cameraSceneData.cameraWayPointList[i].title != "" && data.cameraSceneData.cameraWayPointList[i].title != null)
+                    {
+                        subTitlePanel.SetActive(true);
+                        subTitlePanel.GetComponent<CameraCutSubTitle>().ChangeText(data.cameraSceneData.cameraWayPointList[i].title);
+                    }
+
+                    Vector3 startPos = data.cameraSceneData.cameraWayPointList[i].position;
+                    Vector3 endPos = data.cameraSceneData.cameraWayPointList[i + 1].position;
 
                     timer = 0f;
                     while (timer < segmentTime)
@@ -75,7 +90,18 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
                 }
 
                 yield return new WaitForSeconds(data.cameraSceneData.delayTime);
-                mainCamera.transform.position = cameraOriginPos; // 카메라 다시 원래대로
+
+                if (data.cameraSceneData.activePoint == -1)
+                {
+                    mainCamera.transform.position = cameraOriginPos; // 카메라 다시 원래대로
+                }
+                else
+                {
+                    if (data.cameraSceneData.activePoint < data.cameraSceneData.cameraWayPointList.Count)
+                    {
+                        mainCamera.transform.position = data.cameraSceneData.cameraWayPointList[data.cameraSceneData.activePoint].position;
+                    }
+                }
             }
             else if (data.sceneType == CutSceneType.Dialogue) // 다이얼로그 컷씬
             {
@@ -124,6 +150,13 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
 
                 dialogueManager.Init();
                 dialogueManager.gameObject.SetActive(false);
+            }
+            if (data.sceneType == CutSceneType.Picture) // 이미지 컷씬
+            {
+                imagePanel.SetActive(true);
+                imagePanel.GetComponent<ImagePanel>().Init(data.imageSceneData.cutImage);
+                yield return new WaitForSeconds(data.imageSceneData.delayTime);
+                imagePanel.SetActive(false);
             }
         }
         yield return null;
