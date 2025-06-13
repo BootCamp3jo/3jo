@@ -2,7 +2,7 @@ using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public abstract class APlayer : MonoBehaviour
+public abstract class PlayerSaver : MonoBehaviour
 {
     [SerializeField]
     protected PlayerData playerData;
