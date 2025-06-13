@@ -47,7 +47,7 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
     {
         foreach (CutData data in streamCutSceneData.cutList)
         {
-            if (data.isDialogue == false) // 카메라 컷씬
+            if (data.sceneType == CutSceneType.Camera) // 카메라 컷씬
             {
                 dialogueManager.gameObject.SetActive(false);
                 if (data.cameraSceneData.cutSound != null)
@@ -77,7 +77,7 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
                 yield return new WaitForSeconds(data.cameraSceneData.delayTime);
                 mainCamera.transform.position = cameraOriginPos; // 카메라 다시 원래대로
             }
-            else // 다이얼로그 컷씬
+            else if (data.sceneType == CutSceneType.Dialogue) // 다이얼로그 컷씬
             {
                 selectedPoint = -1;
                 dialogueManager.gameObject.SetActive(true);

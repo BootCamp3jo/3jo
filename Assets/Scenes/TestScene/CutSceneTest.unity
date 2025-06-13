@@ -437,6 +437,10 @@ PrefabInstance:
       propertyPath: selectItemPrefab
       value: 
       objectReference: {fileID: 2820305008125793986, guid: ff9225b5d5ee75c42b24f86c34c56443, type: 3}
+    - target: {fileID: 6930354727316478462, guid: b5bc7ee1cbfc67f419eed8305a22ef65, type: 3}
+      propertyPath: isTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7323580475942098648, guid: b5bc7ee1cbfc67f419eed8305a22ef65, type: 3}
       propertyPath: m_IsActive
       value: 0

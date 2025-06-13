@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestScene
   m_EditorClassIdentifier: 
   cutList:
-  - isDialogue: 1
+  - sceneType: 1
     cameraSceneData:
       cameraWayPointList: []
       cutTime: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
         delayTime: 2
         chatSound: {fileID: 0}
         lastState: 0
-  - isDialogue: 0
+  - sceneType: 0
     cameraSceneData:
       cameraWayPointList:
       - {x: -6.82, y: 0, z: -10}
@@ -167,7 +167,7 @@ MonoBehaviour:
       cutSound: {fileID: 0}
     dialogueSceneData:
       dialogueList: []
-  - isDialogue: 1
+  - sceneType: 1
     cameraSceneData:
       cameraWayPointList: []
       cutTime: 0

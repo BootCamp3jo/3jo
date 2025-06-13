@@ -12,10 +12,18 @@ public class CutSceneData : ScriptableObject
 }
 
 [System.Serializable]
+public enum CutSceneType
+{
+    Camera,
+    Dialogue, // 중앙(해설)
+    Picture, // 오른쪽(플레이어)
+}
+
+[System.Serializable]
 public class CutData
 {
-    [Header("false : 카메라컷 , true : 대화 컷")]
-    public bool isDialogue; // 카메라 이벤트인지 다이얼로그 이벤트인지 확인
+    [Header("컷씬 타입 지정")]
+    public CutSceneType sceneType; // 컷씬 타입
     [Header("카메라 컷")]
     public CameraSceneData cameraSceneData;
     [Header("대화 컷")]
