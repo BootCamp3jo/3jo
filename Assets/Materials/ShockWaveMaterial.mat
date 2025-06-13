@@ -47,7 +47,7 @@ Material:
     - _Speed: 0.5
     - _WaveCount: 1
     - _WaveGap: 0.25
-    - _WaveTime: 10.012472
+    - _WaveTime: 10.010088
     - _WaveWidth: 0.1
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}

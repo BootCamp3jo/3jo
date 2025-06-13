@@ -9,7 +9,10 @@ public class CircleMaskEffectController : MonoBehaviour
     public float holdDuration = 1f;
     public float shrinkDuration = 1f;
 
+    public Transform effectCenter; // ✅ 중심이 될 Transform (빈 오브젝트 지정 가능)
+
     public float CurrentRadius { get; private set; } = 0f;
+    public Vector2 CurrentCenter { get; private set; } = new Vector2(0.5f, 0.5f); // ✅ 쉐이더로 보낼 중심
 
     private enum State { Idle, Expanding, Holding, Shrinking }
     private State currentState = State.Idle;
@@ -19,12 +22,6 @@ public class CircleMaskEffectController : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        currentState = State.Expanding;
-        CurrentRadius = 0f;
     }
 
     private void Update()
@@ -68,10 +65,27 @@ public class CircleMaskEffectController : MonoBehaviour
         }
     }
 
-    // 이 함수로 효과를 시작할 수 있음
-    public void TriggerEffect()
+    public Vector3 pivotOffset = Vector3.zero; // 피벗 변경분 만큼 넣어줄 오프셋
+
+public void TriggerEffect()
+{
+    if (effectCenter != null)
     {
-        currentState = State.Expanding;
-        timer = 0f;
+        Camera cam = Camera.main;
+        if (cam != null)
+        {
+            Vector3 worldPos = effectCenter.position + pivotOffset;
+            Debug.Log($"Effect center worldPos: {worldPos}");
+
+            Vector3 viewportPos = cam.WorldToViewportPoint(worldPos);
+            Debug.Log($"Effect center viewportPos: {viewportPos}");
+
+            CurrentCenter = new Vector2(viewportPos.x, viewportPos.y);
+        }
     }
+
+    currentState = State.Expanding;
+    timer = 0f;
+}
+
 }

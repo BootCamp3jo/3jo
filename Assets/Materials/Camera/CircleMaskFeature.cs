@@ -30,24 +30,20 @@ public class CircleMaskFeature : ScriptableRendererFeature
         if (settings.material == null)
             return;
 
-        // 여기서 메인 카메라인지 체크 (예: 태그가 "MainCamera" 인 경우만)
+        // 메인 카메라인지 체크
         if (!renderingData.cameraData.camera.CompareTag("MainCamera"))
             return;
 
-        Vector3 playerPos = Vector3.zero;
-        var player = GameObject.FindWithTag("Player");
-        if (player != null)
+        float radius = 0f;
+        Vector2 center = new Vector2(0.5f, 0.5f); // 기본값
+
+        if (CircleMaskEffectController.Instance != null)
         {
-            Camera cam = renderingData.cameraData.camera;
-            Vector3 viewportPos = cam.WorldToViewportPoint(player.transform.position);
-            playerPos = viewportPos;
+            radius = CircleMaskEffectController.Instance.CurrentRadius;
+            center = CircleMaskEffectController.Instance.CurrentCenter; // ✅ 이 줄이 중요
         }
 
-        float radius = 0f;
-        if (CircleMaskEffectController.Instance != null)
-            radius = CircleMaskEffectController.Instance.CurrentRadius;
-
-        renderPass.Setup(radius, new Vector2(playerPos.x, playerPos.y));
+        renderPass.Setup(radius, center);
         renderer.EnqueuePass(renderPass);
     }
 }
