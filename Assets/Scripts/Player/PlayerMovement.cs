@@ -47,9 +47,17 @@ public class PlayerMovement : MonoBehaviour
     private Tween dashTween;
     private WaitForSeconds waitForDashCoolDown;
 
+    private float justDodgeTime = 0.3f;
+    private bool justDodgeWindow = false; // 대시 후 짧은 시간 동안 공격을 받을 시 저스트닷지를 발동시킬 수 있는 찰나
+    private Coroutine justDodgeCoroutine;// 저스트닷지 코루틴을 저장하기 위한 변수
+    private WaitForSeconds waitForDodgeTime;
+
     // Attack
     private bool isAttacking = false; // 공격 여부를 위한 변수
     private WaitForSeconds waitFor1_19sec;
+
+
+    public bool JustDodgeWindow => justDodgeWindow; // 저스트닷지 불값 반환
 
 
 
@@ -60,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimationHandler = PlayerManager.Instance.playerAnimationHandler;
         waitFor1_19sec = new WaitForSeconds(1.19f);
         waitForDashCoolDown = new WaitForSeconds(dashCoolDown);
+        waitForDodgeTime = new WaitForSeconds(justDodgeTime);
         moveSpeed = baseMoveSpeed; // 초기 이동 속도 설정
     }
 
@@ -197,6 +206,12 @@ public class PlayerMovement : MonoBehaviour
         // 이전 대시 트윈이 있다면 중지
         dashTween?.Kill();
 
+        // 저스트닷지 코루틴이 있다면 중지
+        if (justDodgeCoroutine != null)
+            StopCoroutine(justDodgeCoroutine);
+
+        justDodgeCoroutine = StartCoroutine(JustDodgeWindowCoroutine());
+
         // 인풋이 없는 상태에서 대쉬를 사용했을 때를 대비 (바라보고있는 방향으로 대시 사용)
         Vector2 dashDirection = moveInput != Vector2.zero ? moveInput.normalized : lastDashDirection;
 
@@ -293,6 +308,13 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return waitForDashCoolDown; // 대시 쿨타임 동안 대기
         canDash = true;                   // 대시 쿨타임이 끝나면 대시 가능
+    }
+
+    private IEnumerator JustDodgeWindowCoroutine()
+    {
+        justDodgeWindow = true;        // 저스트닷지 기회 활성화
+        yield return waitForDodgeTime; // 저스트닷지 기회 시간 동안 대기
+        justDodgeWindow = false;       // 저스트닷지 기회 비활성화
     }
 
     private IEnumerator OnFrontAttackCoroutine()

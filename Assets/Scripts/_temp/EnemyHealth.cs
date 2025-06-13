@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    public int _currentHealth;
-    public int CurrentHealth
+    public float _currentHealth;
+    public float CurrentHealth
     {
         get { return _currentHealth; }
         set { _currentHealth = Mathf.Clamp(value, 0, maxHealth); }
@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         _currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         _currentHealth -= amount;
 

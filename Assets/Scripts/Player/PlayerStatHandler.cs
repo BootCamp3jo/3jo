@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerStatHandler : MonoBehaviour
+public class PlayerStatHandler : MonoBehaviour, IDamageable
 {
     private PlayerData playerData;
     private PlayerStatsUI playerStatsUI;
