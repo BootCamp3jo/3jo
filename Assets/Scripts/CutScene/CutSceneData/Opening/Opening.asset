@@ -38,13 +38,181 @@ MonoBehaviour:
       - position: {x: 3, y: 95, z: -10}
         title: 
         cutSound: {fileID: 0}
-      cutTime: 25
+      cutTime: 27
       isEvent: 0
       eventCode: 0
-      delayTime: 5
+      delayTime: 1
+      activePoint: 6
+    dialogueSceneData:
+      dialogueList: []
+    imageSceneData:
+      cutImage: {fileID: 0}
+      delayTime: 0
+      cutSound: {fileID: 0}
+  - sceneType: 1
+    cameraSceneData:
+      cameraWayPointList: []
+      cutTime: 0
+      isEvent: 0
+      eventCode: 0
+      delayTime: 0
+      activePoint: -1
+    dialogueSceneData:
+      dialogueList:
+      - dialogueType: 0
+        portrait: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+        title: "\uBCD1\uC0AC\uB4E4"
+        content: "\uAC70\uAE30\uC11C\uB77C! \uADF8 \uC548\uC740 \uC704\uD5D8\uD574!"
+        dialogueCode: 0
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 2
+        portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
+        title: "\uC544\uB3CC"
+        content: "\uC774 \uACF3\uC774 \uC804\uC124\uC758 \uD0D1..."
+        dialogueCode: 1
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 6
+        delayTime: 3
+        chatSound: {fileID: 0}
+        lastState: 0
+    imageSceneData:
+      cutImage: {fileID: 0}
+      delayTime: 0
+      cutSound: {fileID: 0}
+  - sceneType: 2
+    cameraSceneData:
+      cameraWayPointList: []
+      cutTime: 0
+      isEvent: 0
+      eventCode: 0
+      delayTime: 0
       activePoint: -1
     dialogueSceneData:
       dialogueList: []
+    imageSceneData:
+      cutImage: {fileID: 21300000, guid: 58fe94217d35edc47b820b36fd76825d, type: 3}
+      delayTime: 5
+      cutSound: {fileID: 0}
+  - sceneType: 1
+    cameraSceneData:
+      cameraWayPointList: []
+      cutTime: 0
+      isEvent: 0
+      eventCode: 0
+      delayTime: 0
+      activePoint: -1
+    dialogueSceneData:
+      dialogueList:
+      - dialogueType: 1
+        portrait: {fileID: 0}
+        title: 
+        content: "\uC804\uC124\uC5D0 \uC758\uD558\uBA74"
+        dialogueCode: 0
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 1
+        portrait: {fileID: 0}
+        title: 
+        content: "\uC545\uB9C8\uC758 \uD0D1\uC744 5\uBC88 \uC774\uC0C1 \uD074\uB9AC\uC5B4\uD558\uBA74"
+        dialogueCode: 1
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 1
+        portrait: {fileID: 0}
+        title: 
+        content: "\uC8FD\uC740 \uC0DD\uBA85\uC744 \uC0B4\uB9B4 \uC218 \uC788\uB2E4\uACE0
+          \uD55C\uB2E4."
+        dialogueCode: 2
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 2
+        portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
+        title: "\uC544\uB3CC"
+        content: "\uAE30\uB2E4\uB824.. \uACE7 \uC0B4\uB824\uC904\uAC8C \uB0B4 \uC560\uC644\uAC1C\uBBF8\uC57C..!!"
+        dialogueCode: 3
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 0
+        portrait: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+        title: "\uBCD1\uC0AC\uB4E4"
+        content: "\uAC70..\uAC70\uAE30\uC11C\uB77C!! \uBA48\uCDB0!!!"
+        dialogueCode: 4
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 1
+        portrait: {fileID: 0}
+        title: 
+        content: "\uC5B4\uB5BB\uAC8C \uD560 \uAC83\uC778\uAC00?"
+        dialogueCode: 5
+        isSelectDialogue: 1
+        subDialogueDataList:
+        - content: "\uBB34\uC791\uC815 \uB4E4\uC5B4\uAC04\uB2E4."
+          nextDialogue: 6
+        - content: "\uBCD1\uC0AC\uB4E4\uC744 \uBC00\uCE58\uACE0 \uB4E4\uC5B4\uAC04\uB2E4."
+          nextDialogue: 7
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 0
+        portrait: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+        title: "\uBCD1\uC0AC\uB4E4"
+        content: "\uC5B4\uC5B4 \uB4E4\uC5B4\uAC00\uBA74 \uC548\uB3FC!!"
+        dialogueCode: 6
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 0
+        portrait: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+        title: "\uBCD1\uC0AC\uB4E4"
+        content: "\uC73C\uC544\uC545!!"
+        dialogueCode: 7
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
+      - dialogueType: 2
+        portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
+        title: "\uC544\uB3CC"
+        content: "\uC785\uC7A5..!!"
+        dialogueCode: 8
+        isSelectDialogue: 0
+        subDialogueDataList: []
+        chatTime: 5
+        delayTime: 2
+        chatSound: {fileID: 0}
+        lastState: 0
     imageSceneData:
       cutImage: {fileID: 0}
       delayTime: 0

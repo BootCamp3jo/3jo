@@ -10,6 +10,7 @@ public class DialoguePanelManager : MonoBehaviour
     public GameObject selectItemPrefab;
     private List<GameObject> selectItems;
     private DialogueData data;
+    public AudioClip textBeepSound;
 
     public void Init()
     {
@@ -65,6 +66,9 @@ public class DialoguePanelManager : MonoBehaviour
         {
             chatString += data.content[i]; // 한 글자씩 추가
             chatItems[(int)data.dialogueType].SetContent(chatString);
+            // 비프 사운드 재생
+            CutSceneManager.Instance.audio.PlayOneShot(textBeepSound);
+
             yield return new WaitForSeconds(delayPerCharacter); // 계산된 시간만큼 대기
         }
 

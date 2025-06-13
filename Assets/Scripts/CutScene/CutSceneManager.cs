@@ -12,7 +12,7 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
     public DialoguePanelManager dialogueManager;
     private Transform mainCamera;
     private Vector3 cameraOriginPos;
-    private AudioSource audio;
+    public AudioSource audio;
 
     // 컷씬 코루틴
     private Coroutine cutSceneCorWrap;
