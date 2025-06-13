@@ -5,14 +5,14 @@ using UnityEngine;
 public class UltimateSkillPattern02 : MonoBehaviour
 {
     public int damage = 30;
-    public float dealDamageInterval = 0.1f;
+    public float dealDamageInterval = 0.2f;
     public LayerMask targetLayer;
     public Vector2 damageAreaSize = new Vector2(5f, 5.5f);
 
     private Coroutine damageCoroutine;
     private WaitForSeconds waitForSeconds;
 
-    private void OnEnable02()
+    private void OnEnable()
     {
         waitForSeconds = new WaitForSeconds(dealDamageInterval);
     }

@@ -1,87 +1,81 @@
 using System;
 using UnityEngine;
 
-public class PlayerStatHandler : MonoBehaviour, IDamageable
+public class PlayerStatHandler : MonoBehaviour
 {
-    private PlayerStatData playerStatData;
+    private PlayerData playerData;
+    private PlayerStatsUI playerStatsUI;
 
-    public event Action OnHealthChanged;
-    public event Action OnManaChanged;
-    public event Action OnExperienceChanged;
-    public event Action OnLevelUp;
-    public event Action OnCoinsChanged;
-
-    private void Awake()
+    private void Start()
     {
-        playerStatData = PlayerManager.Instance.playerStatData;
+        playerData = PlayerManager.Instance.playerData;
+        playerStatsUI = UIManager.Instance.playerStatsUI;
     }
 
     // ------------------- 체력 ------------------- //
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        playerStatData.Health -= amount;
-        OnHealthChanged?.Invoke();
+        playerData.CurrentHealth -= amount;
+        playerStatsUI.UpdateHealthBar();
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
-        playerStatData.Health += amount;
-        OnHealthChanged?.Invoke();
+        playerData.CurrentHealth += amount;
+        playerStatsUI.UpdateHealthBar();
     }
 
     // ------------------- 마나 ------------------- //
-    public void UseMana(int amount)
+    public void UseMana(float amount)
     {
-        if (playerStatData.Mana >= amount)
+        if (playerData.CurrentMana >= amount)
         {
-            playerStatData.Mana -= amount;
+            playerData.CurrentMana -= amount;
+            playerStatsUI.UpdateManaBar();
         }
-
-        OnManaChanged?.Invoke();
     }
 
-    public void RecoverMana(int amount)
+    public void RecoverMana(float amount)
     {
-        playerStatData.Mana += amount;
+        playerData.CurrentMana += amount;
+        playerStatsUI.UpdateManaBar();
 
-        OnManaChanged?.Invoke();
     }
 
     // ------------------- 경험치 & 레벨 ------------------- //
-    public void AddExperience(int amount)
+    public void AddExperience(float amount)
     {
-        playerStatData.Experience += amount;
-        if (playerStatData.Experience >= playerStatData.GetMaxExperience())
+        playerData.Experience += amount;
+
+        while (playerData.Experience >= playerData.MaxExperience)
         {
+            playerData.Experience -= playerData.MaxExperience;
             LevelUp();
-            playerStatData.Experience -= playerStatData.GetMaxExperience();           // 경험치 초기화 또는 조정
-            playerStatData.SetMaxExperience(playerStatData.GetMaxExperience() + 100); // 레벨업 시 최대 경험치 증가
+            playerData.SetMaxExperience(playerData.Level);
         }
 
-        OnExperienceChanged?.Invoke();
+        playerStatsUI.UpdateExpBar();
     }
 
     private void LevelUp()
     {
-        playerStatData.Level++;
-
-        OnLevelUp?.Invoke();
+        playerData.Level++;
+        playerStatsUI.UpdateLevelText();
     }
 
     // ------------------- 코인 ------------------- //
     public void AddCoins(int amount)
     {
-        playerStatData.Coin += amount;
-
-        OnCoinsChanged?.Invoke();
+        playerData.Coin += amount;
+        playerStatsUI.UpdateCoinText();
     }
 
     public bool SpendCoins(int amount)
     {
-        if (playerStatData.Coin >= amount)
+        if (playerData.Coin >= amount)
         {
-            playerStatData.Coin -= amount;
-            OnCoinsChanged?.Invoke();
+            playerData.Coin -= amount;
+            playerStatsUI.UpdateCoinText();
             return true;
         }
         return false;

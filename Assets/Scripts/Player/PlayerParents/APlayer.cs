@@ -6,6 +6,7 @@ public abstract class APlayer : MonoBehaviour
 {
     [SerializeField]
     protected PlayerData playerData = new PlayerData();
+    public PlayerData PlayerData => playerData;
     protected PlayerStateInScene playerStateInScene;
     private GameContext gameContext;
 
