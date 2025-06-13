@@ -30,6 +30,10 @@ public class CircleMaskFeature : ScriptableRendererFeature
         if (settings.material == null)
             return;
 
+        // 여기서 메인 카메라인지 체크 (예: 태그가 "MainCamera" 인 경우만)
+        if (!renderingData.cameraData.camera.CompareTag("MainCamera"))
+            return;
+
         Vector3 playerPos = Vector3.zero;
         var player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -43,11 +47,7 @@ public class CircleMaskFeature : ScriptableRendererFeature
         if (CircleMaskEffectController.Instance != null)
             radius = CircleMaskEffectController.Instance.CurrentRadius;
 
-        // renderer.cameraColorTarget를 넘기지 말고, Setup은 radius와 center만 넘김
         renderPass.Setup(radius, new Vector2(playerPos.x, playerPos.y));
-
         renderer.EnqueuePass(renderPass);
     }
-
-
 }

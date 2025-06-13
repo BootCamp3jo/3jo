@@ -47,22 +47,23 @@ Shader "Hidden/CircleMaskEffect"
                 return OUT;
             }
 
-            half4 frag(Varyings IN) : SV_Target
-            {
-                float2 uv = IN.uv;
-                float dist = distance(uv, _Center);
+ half4 frag(Varyings IN) : SV_Target
+{
+    float2 uv = IN.uv;
+    float dist = distance(uv, _Center);
 
-                half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
+    half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, uv);
 
-                if (dist > _Radius)
-                {
-                    // 흑백 변환 (luminance)
-                    float gray = dot(col.rgb, float3(0.3, 0.59, 0.11));
-                    col.rgb = float3(gray, gray, gray);
-                }
+    // 반대로: 원 안쪽(dist <= _Radius)만 흑백 처리
+    if (dist <= _Radius)
+    {
+        float gray = dot(col.rgb, float3(0.3, 0.59, 0.11));
+        col.rgb = float3(gray, gray, gray);
+    }
 
-                return col;
-            }
+    return col;
+}
+
             ENDHLSL
         }
     }

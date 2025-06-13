@@ -12,6 +12,7 @@ TagManager:
   - Water
   - UI
   - Affected
+  - PlayerOnly
   - 
   - 
   - 
@@ -35,7 +36,6 @@ TagManager:
   - 
   - 
   - 
-  - Player
   - 
   m_SortingLayers:
   - name: Default
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Deco
     uniqueID: 453080195
+    locked: 0
+  - name: Player
+    uniqueID: 2735791077
     locked: 0
