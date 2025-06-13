@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class CutSceneManager : MonoSingleton<CutSceneManager>
@@ -26,6 +27,8 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
     [Header("카메라 자막")]
     public GameObject subTitlePanel;
 
+    public Button skipButton;
+
     private void Start()
     {
         if (audio == null) { audio = GetComponent<AudioSource>(); }
@@ -35,6 +38,8 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
         {
             StartCutScene(streamCutSceneData);
         }
+
+        skipButton.onClick.AddListener(OnSkip);
     }
 
     public void StartCutScene(CutSceneData cutSceneData) // 사용법 : CutSceneManager.Instance.StartCutScene(컷씬 데이터);
@@ -161,15 +166,27 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
         }
         yield return null;
 
-        if (streamCutSceneData.nextScene != null && streamCutSceneData.nextScene != "")
-        {
-            //씬 로드
-        }
+        LoadNextScene();
     }
 
     public void OnSelectDialogue(int num)
     {
         selectedNum = num;
         _selectActionTriggered = true;
+    }
+
+    public void OnSkip()
+    {
+        skipButton.gameObject.SetActive(false);
+        StopCoroutine(cutSceneCorWrap);
+        LoadNextScene();
+    }
+
+    public void LoadNextScene()
+    {
+        if (streamCutSceneData.nextScene != null && streamCutSceneData.nextScene != "")
+        {
+            //씬 로드
+        }
     }
 }
