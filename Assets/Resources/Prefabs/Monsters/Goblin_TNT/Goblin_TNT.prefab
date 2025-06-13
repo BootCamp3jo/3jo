@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcData:
-    prefabPath: 
-    hp: 0
+    prefabPath: Prefabs/Monsters/Goblin_TNT/Goblin_TNT
+    hp: 400
     posX: 0
     posY: 0
     posZ: 0

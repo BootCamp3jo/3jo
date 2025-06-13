@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerData
 {
     public string prefabPath;
+
+    public float currentHP;
 }
 
 [Serializable]

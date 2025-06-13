@@ -20,8 +20,6 @@ public abstract class MonsterBase : ANPC
     // 상태 머신 관리용 클래스
     public MonsterStateMachine stateMachine { get; private set; }
 
-    // 현재 체력
-    float hpCurrent;
     float atk;
     // 현재 쿨타임(보스 패턴마다 쿨타임이 달라 기술 사용과 동시에 써주기!!!)
     // 플레이어가 반응할 시간을 주기 위해 초기값 1초
@@ -50,8 +48,10 @@ public abstract class MonsterBase : ANPC
 
     protected override void Start()
     {
+        // 에러 때문에 일시적으로 아래로 뺌
+        base.Start();
         // 시작할 때 현재 HP를 최대 HP로
-        hpCurrent = monsterData.hpMax;
+
         atk = monsterData.atk;
 
         patterns = patternsParent.GetComponentsInChildren<Pattern>(true);
@@ -66,9 +66,6 @@ public abstract class MonsterBase : ANPC
             // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
             distanceRangePatterns[i] = new float2(tmpRange.x * tmpRange.x, tmpRange.y * tmpRange.y);
         }
-
-        // 에러 때문에 일시적으로 아래로 뺌
-        base.Start();
     }
 
     private void Update()
@@ -103,8 +100,8 @@ public abstract class MonsterBase : ANPC
     {
         if (isDead) return;
         // 피격 이펙트가 있다면 여기에!
-        hpCurrent = Mathf.Max(hpCurrent-damage, 0);
-        if (hpCurrent <= 0)
+        npcData.hp = Mathf.Max(npcData.hp-damage, 0);
+        if (npcData.hp <= 0)
             Dead();
     }
 

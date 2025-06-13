@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387b63d02ba980a4ebbe59c5d3beccba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultNextScene: SceneA
+  defaultNextScene: JayeonScene
 --- !u!1 &861327869
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9786705e77c19bc4097d065921203195, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 38f4bf8329a17254da991b116fa7b5c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
