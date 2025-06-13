@@ -1,19 +1,24 @@
-using System;
 using UnityEngine;
+using Unity.Mathematics;
+using UnityEngine.Events;
+
+public enum PatternType
+{
+    Melee, // 근접
+    Bullet, // 탄
+    Range, // 범위
+}
 
 [CreateAssetMenu(fileName = "Pattern_", menuName = "Data/Pattern")]
 public class PatternData : ScriptableObject
 {
     // 각 몬스터 패턴에는 무엇이 공통적으로 필요할까?
-    // 패턴의 프리팹(탄환 하나 or 장판 하나 or 근거리 공격 이펙트 하나)
-    [field: SerializeField] public GameObject prefab { get; private set; }
-    // 프리팹을 어떻게 얼마나 배치할지 정하는 메서드를 여기에 대입
-    [field: SerializeField] public Action Arrange { get; private set; }
+    // 패턴 타입
+    public PatternType patternType;
     // 공격력 계수(몬스터 공격력 * 계수 = 최종 대미지, 단, 플레이어가 HP를 int로 쓴다면 반올림)
     [field: SerializeField] public float atkCoefficient { get; private set; }
     // 해당 패턴이 공격 가능한 거리(최소, 최대)
-    [field: SerializeField] public float rangeMin { get; private set; }
-    [field: SerializeField] public float rangeMax { get; private set; }
+    [field: SerializeField] public float2 range { get; private set; }
     // 해당 패턴 이후의 공격 딜레이
     [field: SerializeField] public float delay { get; private set; }
 }

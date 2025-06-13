@@ -16,4 +16,4 @@ MonoBehaviour:
   <hpMax>k__BackingField: 10
   <atk>k__BackingField: 1
   <patternDatas>k__BackingField:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f244cd01d85fec647875e2440e12f17c, type: 2}

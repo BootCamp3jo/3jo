@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b75b72d7b6fab3348a43071d9467bde5, type: 3}
-  m_Name: Pattern_ThrowDynamite
+  m_Script: {fileID: 11500000, guid: 343b2829161730646bd2b141f2307a25, type: 3}
+  m_Name: PatternSpawner_ThrowDynamite
   m_EditorClassIdentifier: 
-  patternType: 2
-  <atkCoefficient>k__BackingField: 1
-  <range>k__BackingField:
-    x: 0
-    y: 10
-  <delay>k__BackingField: 4
+  <effectPrefab>k__BackingField: {fileID: 5502831718907999427, guid: adf3b8280b14c3448859e7ae2a5feb7a, type: 3}
+  <effectNum>k__BackingField: 1

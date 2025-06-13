@@ -306,7 +306,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7211377181039259906}
-  - component: {fileID: 2671979369541145257}
   m_Layer: 0
   m_Name: AttackEffect
   m_TagString: Untagged
@@ -329,16 +328,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6067447230675915263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2671979369541145257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4288427078084617645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a8f6836ba4f7f645b6142023ed91d21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectPrefab: {fileID: 0}

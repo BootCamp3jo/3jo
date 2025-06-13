@@ -16,6 +16,9 @@ public class MoveEffect : MonoBehaviour
 
     void OnEnable()
     {
+        startPoint = transform.parent.position;
+        endPoint = PlayerManager.Instance.playerPrefab.transform.position;
+
         switch (pathType)
         {
             case PathType.Linear:
