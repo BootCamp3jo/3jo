@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterState_Idle : IState
@@ -16,9 +14,11 @@ public class MonsterState_Idle : IState
         stateMachine.StartAnime(stateMachine.AnimatorParameters.idleHash);
     }
 
-    public void Execute()
+    // 가만히 대기하는 몬스터
+    public virtual void Execute()
     {
-        //stateMachine.monster.
+        // 몬스터 공격 딜레이를 줄여주다가 끝났다면, 공격 상태로!
+        stateMachine.monster.DecreaseDelay(Time.deltaTime);
     }
 
     public void Exit()
