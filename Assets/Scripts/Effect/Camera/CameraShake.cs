@@ -1,40 +1,41 @@
-using System.Collections;
 using UnityEngine;
+using Cinemachine;
+using System.Collections;
 
 public class CameraShake : MonoBehaviour
 {
     public static CameraShake Instance;
 
-    private Vector3 originalPos;
+    public CinemachineVirtualCamera virtualCam;
+    private CinemachineBasicMultiChannelPerlin noise;
+    private Coroutine shakeRoutine;
 
-    private void Awake()
+    void Awake()
     {
         Instance = this;
-        originalPos = transform.localPosition;
+
+        if (virtualCam != null)
+            noise = virtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    public void Shake(float duration = 0.2f, float magnitude = 0.1f)
+    public void Shake(float duration = 0.2f, float amplitude = 2f, float frequency = 2f)
     {
-        StopAllCoroutines();
-        StartCoroutine(ShakeCoroutine(duration, magnitude));
+        if (noise == null) return;
+
+        if (shakeRoutine != null)
+            StopCoroutine(shakeRoutine);
+
+        shakeRoutine = StartCoroutine(ShakeCoroutine(duration, amplitude, frequency));
     }
 
-    private IEnumerator ShakeCoroutine(float duration, float magnitude)
+    private IEnumerator ShakeCoroutine(float duration, float amplitude, float frequency)
     {
-        float elapsed = 0f;
+        noise.m_AmplitudeGain = amplitude;
+        noise.m_FrequencyGain = frequency;
 
-        while (elapsed < duration)
-        {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+        yield return new WaitForSeconds(duration);
 
-            transform.localPosition = originalPos + new Vector3(x, y, 0f);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        transform.localPosition = originalPos;
+        noise.m_AmplitudeGain = 0f;
+        noise.m_FrequencyGain = 0f;
     }
 }

@@ -50,22 +50,18 @@ public class TestInputPlayer : MonoBehaviour
         {
             expManager.SpawnExp(transform.position, 1);
         }
-
         if (Input.GetKeyDown(KeyCode.F2))
         {
             TriggerShockWave();
         }
-
         if (Input.GetKeyDown(KeyCode.F3))
         {
             DashWithGhost();
         }
-
         if (Input.GetKeyDown(KeyCode.F4))
         {
             ParticleManager.Instance.Play(ParticleType.JumpDust, footPoint.position);
         }
-
         if (Input.GetKeyDown(KeyCode.F5))
         {
             ParticleManager.Instance.Play(ParticleType.LandDust, footPoint.position);
@@ -76,15 +72,17 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F7)) // 예시 키
         {
-             hitEffect.PlayHitEffect(1);
+            hitEffect.PlayHitEffect(1);
             flashEffect.TriggerFlash(); // 직접 호출
         }
         if (Input.GetKeyDown(KeyCode.F8)) // 예시 키
         {
             shakeEffect.Shake();
         }
-
-
+        if (Input.GetKeyDown(KeyCode.F9)) // 예시 키
+        {
+            CameraShake.Instance.Shake(3);
+        }
         // 이동 중 먼지 파티클 생성
         if (input.magnitude > 0.1f && Time.time - lastDustTime > dustEmitInterval)
         {

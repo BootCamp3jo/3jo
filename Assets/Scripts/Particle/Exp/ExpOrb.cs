@@ -7,39 +7,75 @@ public class ExpOrb : MonoBehaviour
     public float moveDuration = 1.5f;
     private System.Action onReachTarget;
 
+    private RectTransform expBarRT;
+    private Image expBarImage;
+    private Camera uiCamera;
+    private Vector3 controlPoint;
+    private Vector3 startPos;
+    private float elapsed = 0f;
+
+    private bool isMoving = false;
+
     public void Init(Image expBarImage, RectTransform expBarRT, System.Action onReached)
     {
-        onReachTarget = onReached;
+        this.expBarImage = expBarImage;
+        this.expBarRT = expBarRT;
+        this.onReachTarget = onReached;
 
+        Canvas canvas = expBarRT.GetComponentInParent<Canvas>();
+        uiCamera = canvas.worldCamera;
+
+        startPos = transform.position;
+        isMoving = true;
+        elapsed = 0f;
+
+        // ì´ˆê¸° ê²½ë¡œ ê³„ì‚°ìš© ì œì–´ì  ì„¤ì •
+        Vector3 end = GetTargetWorldPosition();
+        Vector3 direction = end - startPos;
+        Vector3 perpendicular = Vector3.Cross(direction.normalized, Vector3.forward);
+        float curveStrength = Random.Range(-2.0f, 2.0f);
+        controlPoint = startPos + direction * 0.5f + perpendicular * curveStrength;
+    }
+
+    void Update()
+    {
+        if (!isMoving) return;
+
+        elapsed += Time.deltaTime;
+        float t = Mathf.Clamp01(elapsed / moveDuration);
+
+        Vector3 end = GetTargetWorldPosition();
+
+        // ë² ì§€ì–´ ê³¡ì„  ê³„ì‚° (Quadratic Bezier)
+        Vector3 m1 = Vector3.Lerp(startPos, controlPoint, t);
+        Vector3 m2 = Vector3.Lerp(controlPoint, end, t);
+        Vector3 pos = Vector3.Lerp(m1, m2, t);
+
+        transform.position = pos;
+
+        if (t >= 1f)
+        {
+            isMoving = false;
+            onReachTarget?.Invoke();
+            Destroy(gameObject);
+        }
+    }
+
+    private Vector3 GetTargetWorldPosition()
+    {
         float fill = expBarImage.fillAmount;
         Vector2 barSize = expBarRT.rect.size;
 
-        // pivot º¸Á¤ Àû¿ë
         Vector2 localEndPos = new Vector2(
             barSize.x * (fill - expBarRT.pivot.x),
             barSize.y * (0.5f - expBarRT.pivot.y)
         );
 
-        Canvas canvas = expBarRT.GetComponentInParent<Canvas>();
-        Camera uiCamera = canvas.worldCamera;
-
         Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(uiCamera, expBarRT.TransformPoint(localEndPos));
-        Vector3 end = Camera.main.ScreenToWorldPoint(screenPos);
-        end.z = 0; // z º¸Á¤
 
-        Vector3 start = transform.position;
-        Vector3 direction = end - start;
-        Vector3 perpendicular = Vector3.Cross(direction.normalized, Vector3.forward);
-        float curveStrength = Random.Range(-2.0f, 2.0f);
-        Vector3 control = start + direction * 0.5f + perpendicular * curveStrength;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        worldPos.z = 0;
 
-        Vector3[] path = new Vector3[] { start, control, end };
-
-        transform.DOPath(path, moveDuration, PathType.CatmullRom)
-            .SetEase(Ease.InOutQuad)
-            .OnComplete(() => {
-                onReachTarget?.Invoke();
-                Destroy(gameObject);
-            });
+        return worldPos;
     }
 }
