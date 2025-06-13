@@ -30,6 +30,9 @@ public class TestInputPlayer : MonoBehaviour
     [Header("피격 관련(파티클)")]
     [SerializeField] private HitEffect hitEffect;
 
+    [Header("피격 관련(진동)")]
+    [SerializeField] private ShakeEffect shakeEffect;
+
     private Rigidbody2D rb;
     private Vector2 input;
 
@@ -73,8 +76,12 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F7)) // 예시 키
         {
-            hitEffect.PlayHitEffect(1);
+             hitEffect.PlayHitEffect(1);
             flashEffect.TriggerFlash(); // 직접 호출
+        }
+        if (Input.GetKeyDown(KeyCode.F8)) // 예시 키
+        {
+            shakeEffect.Shake();
         }
 
 
