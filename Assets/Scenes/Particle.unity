@@ -1873,7 +1873,7 @@ GameObject:
   - component: {fileID: 302419355}
   - component: {fileID: 302419357}
   - component: {fileID: 302419356}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TespMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12123,7 +12123,7 @@ GameObject:
   - component: {fileID: 843838733}
   - component: {fileID: 843838735}
   - component: {fileID: 843838734}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Deco (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13327,7 +13327,7 @@ GameObject:
   - component: {fileID: 983613831}
   - component: {fileID: 983613833}
   - component: {fileID: 983613832}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Elevation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14253,7 +14253,7 @@ GameObject:
   - component: {fileID: 1085130552}
   - component: {fileID: 1085130551}
   - component: {fileID: 1085130553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16932,7 +16932,7 @@ GameObject:
   - component: {fileID: 1336604718}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18198,7 +18198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1639059727}
   - component: {fileID: 1639059726}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18304,7 +18304,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 87
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -18355,7 +18355,7 @@ MonoBehaviour:
   m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 87
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -18498,7 +18498,7 @@ GameObject:
   - component: {fileID: 1682182606}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18546,6 +18546,7 @@ MonoBehaviour:
   flashEffect: {fileID: 1682182603}
   hitEffect: {fileID: 1682182604}
   shakeEffect: {fileID: 1682182606}
+  waveGrayEffectManager: {fileID: 1858209005}
 --- !u!114 &1682182600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19222,6 +19223,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1858209004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1858209006}
+  - component: {fileID: 1858209005}
+  m_Layer: 0
+  m_Name: JustDodge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1858209005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858209004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cb4103087340349b1ae8bfe8190632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grayUnlitMaterial: {fileID: 2100000, guid: 14a6956478f7aad449247e9d0774fedb, type: 2}
+  maxWaveRadius: 20
+  waveDuration: 4
+--- !u!4 &1858209006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858209004}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.890258, y: -2.7600489, z: -10.0013275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1896278410
 GameObject:
   m_ObjectHideFlags: 0
@@ -20567,3 +20615,4 @@ SceneRoots:
   - {fileID: 453137372}
   - {fileID: 1353405081}
   - {fileID: 88842539}
+  - {fileID: 1858209006}

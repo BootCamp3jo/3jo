@@ -33,6 +33,9 @@ public class TestInputPlayer : MonoBehaviour
     [Header("피격 관련(진동)")]
     [SerializeField] private ShakeEffect shakeEffect;
 
+    [Header("저스트회피")]
+    [SerializeField] private WaveGrayEffectManager waveGrayEffectManager;
+
     private Rigidbody2D rb;
     private Vector2 input;
 
@@ -82,6 +85,19 @@ public class TestInputPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F9)) // 예시 키
         {
             CameraShake.Instance.Shake(3);
+        }
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                Vector2 playerPos = player.transform.position;
+                waveGrayEffectManager.StartWaveEffect(playerPos);  // 수정된 부분
+            }
+            else
+            {
+                Debug.LogWarning("Player 태그가 붙은 오브젝트를 찾을 수 없습니다.");
+            }
         }
         // 이동 중 먼지 파티클 생성
         if (input.magnitude > 0.1f && Time.time - lastDustTime > dustEmitInterval)

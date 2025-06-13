@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShockWaveMaterial
-  m_Shader: {fileID: 4800000, guid: 522789fbd21d37447ae4c98c76cd83a7, type: 3}
+  m_Name: WaveGrayMaterail
+  m_Shader: {fileID: 4800000, guid: 99e41bfcd5cf4f446adcbfc35b0a1fd8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,17 +41,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0.03
     - _EnableExternalAlpha: 0
-    - _Frequency: 30
-    - _Speed: 0.5
-    - _WaveCount: 1
-    - _WaveGap: 0.25
-    - _WaveTime: 10.006179
-    - _WaveWidth: 0.1
+    - _GrayStrength: 1
+    - _WaveRadius: 0
     m_Colors:
-    - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _PlayerPos: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
