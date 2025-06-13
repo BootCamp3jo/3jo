@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillDamageOvertimeDealer : MonoBehaviour
+public class UltimateSkillPattern01 : MonoBehaviour
 {
-    public string skillName;
     public int damage = 10;
     public float dealDamageInterval = 0.2f;
     public LayerMask targetLayer;
@@ -13,26 +12,24 @@ public class SkillDamageOvertimeDealer : MonoBehaviour
     private Coroutine damageCoroutine;
     private WaitForSeconds waitForSeconds;
 
-    private void OnEnable()
+    private void OnEnable01()
     {
         waitForSeconds = new WaitForSeconds(dealDamageInterval);
     }
 
-    public void StartDamage()
+    public void StartDamage01()
     {
         if (damageCoroutine == null)
-            damageCoroutine = StartCoroutine(DamageLoop());
+            damageCoroutine = StartCoroutine(DamageLoop01());
     }
 
-    public void StopDamage()
+    public void StopDamage01()
     {
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);
-
-        gameObject.SetActive(false);
     }
 
-    private IEnumerator DamageLoop()
+    private IEnumerator DamageLoop01()
     {
         while (true)
         {

@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    public int currentHealth;
+    public int _currentHealth;
     public int CurrentHealth
     {
-        get { return currentHealth; }
-        set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
+        get { return _currentHealth; }
+        set { _currentHealth = Mathf.Clamp(value, 0, maxHealth); }
     }
 
     public int maxHealth;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        _currentHealth = maxHealth;
     }
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        _currentHealth -= amount;
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Destroy(gameObject);
         }
 
-        Debug.Log($"Enemy took {amount} damage. Current health: {currentHealth}/{maxHealth}");
+        Debug.Log($"Enemy took {amount} damage. Current health: {_currentHealth}/{maxHealth}");
     }
 }
