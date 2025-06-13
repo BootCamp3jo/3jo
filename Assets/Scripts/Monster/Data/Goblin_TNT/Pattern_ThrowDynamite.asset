@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7002b6fb43a0ded42a863d406c6617c3, type: 3}
-  m_Name: Goblin
+  m_Script: {fileID: 11500000, guid: b75b72d7b6fab3348a43071d9467bde5, type: 3}
+  m_Name: Pattern_ThrowDynamite
   m_EditorClassIdentifier: 
-  <monsterName>k__BackingField: "\uACE0\uBE14\uACE0\uBE14\uB9B0"
-  <hp>k__BackingField: 10
-  <atk>k__BackingField: 1
+  patternType: 2
+  <atkCoefficient>k__BackingField: 1
+  <range>k__BackingField:
+    x: 0
+    y: 10
+  <delay>k__BackingField: 4

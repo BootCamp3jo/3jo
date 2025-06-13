@@ -1,49 +1,48 @@
-using UnityEngine;
-
-// ¸ó½ºÅÍ FSM °¢ »óÅÂ Å¬·¡½º¿¡¼­ °øÅëÀ¸·Î ±¸ÇöÇÒ ±¸Á¶¸¦ ¹Ì¸® Á¤ÀÇ
+// ëª¬ìŠ¤í„° FSM ê° ìƒíƒœ í´ë˜ìŠ¤ì—ì„œ ê³µí†µìœ¼ë¡œ êµ¬í˜„í•  êµ¬ì¡°ë¥¼ ë¯¸ë¦¬ ì •ì˜
 public interface IState
 {
-    void Enter(); // ÇØ´ç »óÅÂ¿¡ ÁøÀÔÇÒ ¶§ ¼öÇàÇÒ ³»¿ë
-    void Execute(); // ÇØ´ç »óÅÂ µµÁß ¼öÇàÇÒ ³»¿ë
-    void Exit(); // ÇØ´ç »óÅÂ¿¡¼­ ³ª°¥ ¶§ ¼öÇàÇÒ ³»¿ë
+    void Enter(); // í•´ë‹¹ ìƒíƒœì— ì§„ì…í•  ë•Œ ìˆ˜í–‰í•  ë‚´ìš©
+    void Execute(); // í•´ë‹¹ ìƒíƒœ ë„ì¤‘ ìˆ˜í–‰í•  ë‚´ìš©
+    void Exit(); // í•´ë‹¹ ìƒíƒœì—ì„œ ë‚˜ê°ˆ ë•Œ ìˆ˜í–‰í•  ë‚´ìš©
 }
 
-public class MonsterStateMachine : MonoBehaviour
+public class MonsterStateMachine
 {
-    // »óÅÂ Áß¿¡ ¸ó½ºÅÍÀÇ Á¤º¸¸¦ Âü ÀÖ±â¿¡ ¿¬°á!
+    // ìƒíƒœ ì¤‘ì— ëª¬ìŠ¤í„°ì˜ ë©”ì„œë“œë¥¼ ì‚¬ìš©í•  ìˆ˜ ìˆê¸°ì— ì—°ê²°!
     public MonsterBase monster {get; private set;}
-    public MonsterStateMachine(MonsterBase monster) => this.monster = monster;
-
-    // ÇöÀç ¾î¶² »óÅÂÀÎÁö ³Ö¾îµÑ º¯¼ö
-    private IState currentState;
-
-    // ¾Ö´Ï¸ŞÀÌÅÍ¿Í ÆÄ¶ó¹ÌÅÍ
-    Animator animator;
-    public MonsterAnimatorParameters AnimatorParameters = new();
-
-    // °¢ »óÅÂ¸¦ Á¤ÀÇÇØÁÖ±â(ÇÊ¿äÇÑ »óÅÂ Ãß°¡)
-    public MonsterState_Idle idleState { get; private set; }
-    public MonsterState_Death deathState { get; private set; }
-
-    void Start()
+    public MonsterStateMachine(MonsterBase monster)
     {
-        animator = GetComponent<Animator>();
+        this.monster = monster;
 
-        // °¢ »óÅÂ ÃÊ±âÈ­
-        idleState = new MonsterState_Idle(this);
-        deathState = new MonsterState_Death(this);
+        // ê° ìƒíƒœ ì´ˆê¸°í™”
+        idleState = new(this);
+        deathState = new(this);
+        attackState = new(this);
+        moveState = new(this);
 
-        // Ã³À½Àº ´ë±â
+        // ì²˜ìŒì€ ëŒ€ê¸°
         ChangeState(idleState);
     }
 
-    // Execute()´Â ÀÌ°÷¿¡¼­ °è¼Ó ¼öÇà
-    void Update()
+    // í˜„ì¬ ì–´ë–¤ ìƒíƒœì¸ì§€ ë„£ì–´ë‘˜ ë³€ìˆ˜
+    private IState currentState;
+
+    // ì• ë‹ˆë©”ì´í„°ì—ì„œ ì‚¬ìš©í•  íŒŒë¼ë¯¸í„°ì˜ í•´ì‹œë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ìˆë‹¤!
+    public MonsterAnimatorParameters AnimatorParameters = new();
+
+    // ê° ìƒíƒœë¥¼ ì •ì˜í•´ì£¼ê¸°(í•„ìš”í•œ ìƒíƒœ ì¶”ê°€)
+    public MonsterState_Idle idleState { get; private set; }
+    public MonsterState_Death deathState { get; private set; }
+    public MonsterState_Attack attackState { get; private set; }
+    public MonsterState_Move moveState { get; private set; }
+
+    // í˜„ì¬ ìƒíƒœì˜ Excute()ë¥¼ ì§€ì†ì ìœ¼ë¡œ ìˆ˜í–‰!
+    public void Execute()
     {
         currentState?.Execute();
     }
 
-    // »óÅÂ ÀüÈ¯
+    // ìƒíƒœ ì „í™˜
     public void ChangeState(IState nextState)
     {
         currentState?.Exit();
@@ -51,19 +50,19 @@ public class MonsterStateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    // bool Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ¸¦ ÀÌ¿ëÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç ÀüÈ¯
+    // bool íƒ€ì… íŒŒë¼ë¯¸í„°ë¥¼ ì´ìš©í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì „í™˜
     public void StartAnime(int parameterHash)
     {
-        animator.SetBool(parameterHash, true);
+        monster.animator.SetBool(parameterHash, true);
     }
     public void StopAnime(int parameterHash)
     {
-        animator.SetBool(parameterHash, false);
+        monster.animator.SetBool(parameterHash, false);
     }
 
-    // Æ®¸®°Å ÆÄ¶ó¹ÌÅÍ·Î µ¿ÀÛÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç È£Ãâ(Á×À½)
-    public void StartAnimeTrigger(int parameterHash)
+    // íŠ¸ë¦¬ê±° íŒŒë¼ë¯¸í„°ë¡œ ë™ì‘í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ í˜¸ì¶œ(ì£½ìŒ)
+    public void SetAnimeTrigger(int parameterHash)
     {
-        animator.SetTrigger(parameterHash);
+        monster.animator.SetTrigger(parameterHash);
     }
 }
