@@ -9,12 +9,17 @@ public class WaveGrayEffectManager : MonoBehaviour
     [SerializeField] private float maxWaveRadius = 5f;
     [SerializeField] private Transform playerTransform;
 
-    private List<Renderer> targets = new List<Renderer>();
+    private List<SpriteRenderer> spriteTargets = new List<SpriteRenderer>();
+    private List<TilemapRenderer> tilemapTargets = new List<TilemapRenderer>();
+
+    // 원본 머티리얼 저장
     private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>();
+    // 머티리얼 인스턴스 저장 (활성화 시 1회 생성)
+    private Dictionary<Renderer, Material> effectMaterials = new Dictionary<Renderer, Material>();
 
     private bool isEffectActive = false;
     private float timer = 0f;
-    private bool isExpanding = true;  // 확산 중인지 수축 중인지 상태
+    private bool isExpanding = true;
 
     private void Start()
     {
@@ -22,10 +27,15 @@ public class WaveGrayEffectManager : MonoBehaviour
         {
             if (renderer.gameObject.CompareTag("Player")) continue;
 
-            if (renderer is SpriteRenderer || renderer is TilemapRenderer)
+            if (renderer is SpriteRenderer spriteRenderer)
             {
-                targets.Add(renderer);
-                originalMaterials[renderer] = renderer.sharedMaterial;
+                spriteTargets.Add(spriteRenderer);
+                originalMaterials[spriteRenderer] = spriteRenderer.sharedMaterial;
+            }
+            else if (renderer is TilemapRenderer tilemapRenderer)
+            {
+                tilemapTargets.Add(tilemapRenderer);
+                originalMaterials[tilemapRenderer] = tilemapRenderer.sharedMaterial;
             }
         }
     }
@@ -34,72 +44,120 @@ public class WaveGrayEffectManager : MonoBehaviour
     {
         if (isEffectActive) return;
 
-        // 인스턴스화 및 초기 셋팅
-        foreach (var renderer in targets)
-        {
-            Material instancedMat = new Material(grayUnlitMaterial);
-            instancedMat.renderQueue = 2000; // Geometry queue (Tilemap보다 앞)
-            renderer.material = instancedMat;
-        }
-
         timer = 0f;
         isExpanding = true;
         isEffectActive = true;
+
+        // 머티리얼 인스턴스 초기화
+        effectMaterials.Clear();
     }
 
     private void Update()
     {
-        if (!isEffectActive) return;
-        if (playerTransform == null) return;
+        if (!isEffectActive || playerTransform == null) return;
 
         timer += Time.deltaTime;
-
+        float clampedTimer = Mathf.Min(timer, waveDuration);
         Vector2 playerPos = playerTransform.position;
-        float radius;
-        float grayStrength;
 
-        if (isExpanding)
+        float radius = isExpanding
+            ? Mathf.Lerp(0f, maxWaveRadius, clampedTimer / waveDuration)
+            : Mathf.Lerp(maxWaveRadius, 0f, clampedTimer / waveDuration);
+
+        // SpriteRenderer 처리
+        foreach (var spriteRenderer in spriteTargets)
         {
-            // 확산 (0 -> maxWaveRadius)
-            radius = Mathf.Lerp(0f, maxWaveRadius, timer / waveDuration);
-            grayStrength = 1f;
+            float dist = Vector2.Distance(playerPos, spriteRenderer.transform.position);
+            bool inRange = dist <= radius;
 
-            if (timer >= waveDuration)
+            if (inRange)
             {
-                // 확산 끝, 수축 시작
-                timer = 0f;
+                if (!effectMaterials.ContainsKey(spriteRenderer))
+                {
+                    // 머티리얼 인스턴스 생성 1회
+                    Material instancedMat = new Material(grayUnlitMaterial);
+                    instancedMat.renderQueue = 2000;
+                    spriteRenderer.material = instancedMat;
+                    effectMaterials[spriteRenderer] = instancedMat;
+                }
+            }
+            else
+            {
+                if (effectMaterials.ContainsKey(spriteRenderer))
+                {
+                    // 원본 머티리얼로 복원
+                    if (originalMaterials.TryGetValue(spriteRenderer, out var origMat))
+                    {
+                        spriteRenderer.material = origMat;
+                    }
+                    // 인스턴스 머티리얼 제거
+                    effectMaterials.Remove(spriteRenderer);
+                }
+            }
+        }
+
+        // TilemapRenderer 처리
+        foreach (var tilemapRenderer in tilemapTargets)
+        {
+            float dist = Vector2.Distance(playerPos, tilemapRenderer.transform.position);
+            bool inRange = dist <= radius;
+
+            if (inRange)
+            {
+                if (!effectMaterials.ContainsKey(tilemapRenderer))
+                {
+                    Material instancedMat = new Material(grayUnlitMaterial);
+                    instancedMat.renderQueue = 2000;
+                    tilemapRenderer.material = instancedMat;  // material로 인스턴스 유지
+                    effectMaterials[tilemapRenderer] = instancedMat;
+                }
+            }
+            else
+            {
+                if (effectMaterials.ContainsKey(tilemapRenderer))
+                {
+                    if (originalMaterials.TryGetValue(tilemapRenderer, out var origMat))
+                    {
+                        tilemapRenderer.material = origMat;
+                    }
+                    effectMaterials.Remove(tilemapRenderer);
+                }
+            }
+        }
+
+        // 머티리얼 파라미터 업데이트 (활성된 것만)
+        foreach (var kvp in effectMaterials)
+        {
+            Material mat = kvp.Value;
+            if (mat == null) continue;
+            mat.SetVector("_PlayerPos", playerPos);
+            mat.SetFloat("_WaveRadius", radius);
+            mat.SetFloat("_GrayStrength", 1f);
+        }
+
+        // 효과 상태 전환 및 종료 처리
+        if (timer >= waveDuration)
+        {
+            timer = 0f;
+
+            if (isExpanding)
+            {
                 isExpanding = false;
             }
-        }
-        else
-        {
-            // 수축 (maxWaveRadius -> 0)
-            radius = Mathf.Lerp(maxWaveRadius, 0f, timer / waveDuration);
-            grayStrength = 1f;
-
-            if (timer >= waveDuration)
+            else
             {
-                // 수축 끝, 복원 및 종료
-                foreach (var renderer in targets)
+                // 모두 복원
+                foreach (var kvp in effectMaterials)
                 {
-                    if (originalMaterials.TryGetValue(renderer, out var mat))
+                    Renderer r = kvp.Key;
+                    if (originalMaterials.TryGetValue(r, out var origMat))
                     {
-                        renderer.material = mat;
+                        r.material = origMat;
                     }
                 }
+                effectMaterials.Clear();
                 isEffectActive = false;
-                return;
             }
-        }
-
-        // 머티리얼 파라미터 업데이트
-        foreach (var renderer in targets)
-        {
-            if (renderer.material == null) continue;
-
-            renderer.material.SetVector("_PlayerPos", playerPos);
-            renderer.material.SetFloat("_WaveRadius", radius);
-            renderer.material.SetFloat("_GrayStrength", grayStrength);
         }
     }
 }
