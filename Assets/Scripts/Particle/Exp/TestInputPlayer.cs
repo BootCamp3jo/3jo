@@ -88,17 +88,9 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                Vector2 playerPos = player.transform.position;
-                waveGrayEffectManager.StartWaveEffect();  // 수정된 부분
-            }
-            else
-            {
-                Debug.LogWarning("Player 태그가 붙은 오브젝트를 찾을 수 없습니다.");
-            }
+            CircleMaskEffectController.Instance.TriggerEffect();
         }
+
         // 이동 중 먼지 파티클 생성
         if (input.magnitude > 0.1f && Time.time - lastDustTime > dustEmitInterval)
         {
