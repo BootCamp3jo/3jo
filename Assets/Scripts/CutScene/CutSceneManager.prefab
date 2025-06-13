@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a7b75e1d06efc49b98b0b382a0e5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 1
+  isTest: 0
   streamCutSceneData: {fileID: 11400000, guid: 5e5d1d80647e5de439b7f796e93352c1, type: 2}
   dialogueManager: {fileID: 4654131531209806458}
   audio: {fileID: 1239646683183941970}
@@ -1604,7 +1604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1639783569315427209
 RectTransform:
   m_ObjectHideFlags: 0

@@ -40,10 +40,12 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
         }
 
         skipButton.onClick.AddListener(OnSkip);
+        skipButton.gameObject.SetActive(false);
     }
 
     public void StartCutScene(CutSceneData cutSceneData) // 사용법 : CutSceneManager.Instance.StartCutScene(컷씬 데이터);
     {
+        skipButton.gameObject.SetActive(true);
         this.streamCutSceneData = cutSceneData;
         if (mainCamera == null)
         {

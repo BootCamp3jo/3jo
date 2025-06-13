@@ -1,5 +1,5 @@
 {
-  "curSceneName": "SceneB",
+  "curSceneName": "NpcTest",
   "playerData": null,
   "sceneBundles": {
     "SceneA": {
@@ -45,6 +45,15 @@
         "isPlayerExist": true,
         "posX": 3.05,
         "posY": -2.95,
+        "posZ": 0.0
+      },
+      "npcDataQueue": []
+    },
+    "NpcTest": {
+      "playerStateInScene": {
+        "isPlayerExist": false,
+        "posX": 0.0,
+        "posY": 0.0,
         "posZ": 0.0
       },
       "npcDataQueue": []
