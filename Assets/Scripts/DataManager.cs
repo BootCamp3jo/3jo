@@ -1,27 +1,25 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class DataManager : MonoSingleton<DataManager>
 {
     [SerializeField] private string saveDataDir;
     [SerializeField] private string defaultSaveDataPath;
+    [SerializeField] private string achivementSODir;
     [SerializeField] private List<string> abortSceneNameList = new();
     private HashSet<string> abortSceneNames = new();
+    [SerializeField] private AchievementUnlockUI achievementUnlockUI;
 
-    public static GameManager instance { get; private set; }
     public GameContext gameContext;
 
-    void Awake()
+    protected override void Awake()
     {
-        if (instance != null) {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
+        base.Awake();
         DontDestroyOnLoad(this.gameObject);
-        gameContext = new GameContext(saveDataDir, defaultSaveDataPath);
+        gameContext = new GameContext(saveDataDir, defaultSaveDataPath, achivementSODir, achievementUnlockUI);
 
         foreach(string name in abortSceneNameList)
         {
@@ -31,14 +29,13 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
-    void OnApplicationQuit()
+    protected override void OnApplicationQuit()
     {
-        if (abortSceneNames.Contains(SceneManager.GetActiveScene().name))
+        if (!abortSceneNames.Contains(SceneManager.GetActiveScene().name))
         {
-            return;
+            gameContext.SaveCurrentScene();
         }
-        gameContext.SaveCurrentScene();
-            gameContext.Save();
+        gameContext.Save();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -70,5 +67,26 @@ public class GameManager : MonoBehaviour
     public void DontSaveCurSceneBundle()
     {
         gameContext.DontSaveCurSceneBundle();
+    }
+
+    [Conditional("UNITY_EDITOR")]
+    [ContextMenu("AddKillCountHundred")]
+    public void AddKillCountHundred()
+    {
+        gameContext.addKillCount(100);
+    }
+
+    [Conditional("UNITY_EDITOR")]
+    [ContextMenu("SubKillCountHundred")]
+    public void SubKillCountHundred()
+    {
+        gameContext.addKillCount(-100);
+    }
+
+    [Conditional("UNITY_EDITOR")]
+    [ContextMenu("ResetSave")]
+    public void ResetSave()
+    {
+        gameContext.ResetSave();
     }
 }

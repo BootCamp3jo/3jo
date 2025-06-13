@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +10,7 @@ public class LoadSaveSceneButton : MonoBehaviour
     private string defaultNextScene;
     private void Start()
     {
-        GameContext gameContext = GameManager.instance.gameContext;
+        GameContext gameContext = DataManager.Instance.gameContext;
         if (gameObject.TryGetComponent<Button>(out Button button))
         {
             button.onClick.AddListener(() => SceneManager.LoadScene(gameContext.saveData.curSceneName ?? defaultNextScene));
