@@ -7,13 +7,12 @@ public class GhostTrail : MonoBehaviour
     [SerializeField] private float ghostLifetime = 0.3f;
     [SerializeField] private Color ghostColor = new Color(1, 1, 1, 0.5f);
 
-    private SpriteRenderer playerSprite;
+    [SerializeField] private SpriteRenderer playerSprite;
     private float timer = 0f;
     private bool isDashing = false;
 
     private void Start()
     {
-        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
