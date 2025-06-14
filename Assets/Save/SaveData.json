@@ -7,7 +7,7 @@
   "sceneBundles": {
     "MonsterTestScene": {
       "playerStateInScene": {
-        "isPlayerExist": true,
+        "isPlayerExist": false,
         "posX": 0.0,
         "posY": 0.0,
         "posZ": 0.0

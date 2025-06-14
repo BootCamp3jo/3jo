@@ -9,6 +9,7 @@ public abstract class ANPC : MonoBehaviour
     public NPCData npcData = new NPCData();
     private GameContext gameContext;
     public bool isCreatedBySceneLoader = false;
+    public bool dontNeedSave = true;
 
     protected virtual void Awake()
     {
@@ -17,31 +18,34 @@ public abstract class ANPC : MonoBehaviour
 
     protected virtual void Start()
     {
-        string curSceneName = SceneManager.GetActiveScene().name;
-        // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기(전달 주체는 SceneLoader 지만 신경 쓸 필요 없음)
-        if(npcData == null)
+        if (!dontNeedSave)
         {
-            npcData = new NPCData();
-        }
-        if (gameContext.IsSceneSaved(curSceneName))
-        {
-            if (isCreatedBySceneLoader == false)
+            string curSceneName = SceneManager.GetActiveScene().name;
+            // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기(전달 주체는 SceneLoader 지만 신경 쓸 필요 없음)
+            if (npcData == null)
             {
-                Destroy(gameObject);
-                return;
+                npcData = new NPCData();
             }
-            // 받아온 상태 처리
-            gameObject.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
+            if (gameContext.IsSceneSaved(curSceneName))
+            {
+                if (isCreatedBySceneLoader == false)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                // 받아온 상태 처리
+                gameObject.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
 
-            /*
-             * 
-             *
-             * 
-             * 
-             */
+                /*
+                 * 
+                 *
+                 * 
+                 * 
+                 */
+            }
+            // 동기화 위해서 gameContext에 등록하기
+            gameContext.RegisterNPC(this, npcData);
         }
-        // 동기화 위해서 gameContext에 등록하기
-        gameContext.RegisterNPC(this, npcData);
     }
 
     // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?
