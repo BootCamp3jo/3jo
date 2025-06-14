@@ -5913,6 +5913,18 @@ PrefabInstance:
       propertyPath: spawnInterval
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
+      propertyPath: maxRadius
+      value: 0.565
+      objectReference: {fileID: 0}
+    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
+      propertyPath: expandDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
+      propertyPath: shrinkDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1037089495620979984, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5953,6 +5965,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6854451447265653402, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
+      propertyPath: shockWaveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
     - target: {fileID: 7694232084275543480, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: playerData._experience
       value: 0

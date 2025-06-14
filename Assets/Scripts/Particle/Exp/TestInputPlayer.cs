@@ -55,7 +55,7 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            TriggerShockWave();
+          //  TriggerShockWave();
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
@@ -118,18 +118,5 @@ public class TestInputPlayer : MonoBehaviour
             });
     }
 
-    private void TriggerShockWave()
-    {
-        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-        shockWaveMaterial.SetVector("_Center", new Vector4(viewportPos.x, viewportPos.y, 0, 0));
-        shockWaveMaterial.SetFloat("_WaveTime", 0f);
-        shockWaveMaterial.SetFloat("_Speed", 2f);
-        shockWaveMaterial.SetFloat("_WaveWidth", 0.015f);
-        shockWaveMaterial.SetFloat("_WaveCount", 1f);
-        shockWaveMaterial.SetFloat("_WaveGap", 0.25f);
 
-        ShockWaveFeature.Instance.SetParameters(0.5f, 0.1f, 10f);
-        ShockWaveFeature.Instance.SetCenter(new Vector2(viewportPos.x, viewportPos.y));
-        ShockWaveFeature.Instance.TriggerShockWave();
-    }
 }

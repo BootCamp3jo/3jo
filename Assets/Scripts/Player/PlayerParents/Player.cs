@@ -37,6 +37,7 @@ public class Player : APlayer
         if (Input.GetKeyDown(KeyCode.F10))
         {
             playerEffectController.PlayJustDodgeEffect();
+            playerEffectController.TriggerShockWave();
         }
         // 피격 연결 이후 제거
         if (Input.GetKeyDown(KeyCode.F11))
