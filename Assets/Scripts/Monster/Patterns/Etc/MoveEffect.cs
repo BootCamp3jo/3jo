@@ -1,17 +1,25 @@
 using UnityEngine;
-using DG.Tweening;
+
+public enum MoveType
+{
+    Linear,
+    Curve,
+}
 
 // 공격 이펙트가 이동할 때 사용(탄환, 장판 범위 표시 후 날아가는 투사체 등)
 public class MoveEffect : MonoBehaviour
 {
-    // 이동 타입 !!! >> 튜터님께 보여준 후 타입별로 작업하여 다른 패턴 기반 만들기
-    public PathType pathType;
-    // 이동 시간
-    public float duration = 2f;
+    public MoveType moveType;
+    // 이동 속력
+    public float moveSpeed = 3f;
     // 곡선일 때 중점의 높이
     public float heigthOfPathCurve = 3;
 
     Vector3 startPoint, midPoint, endPoint;
+
+    float t = 0f;
+    float totalLength;
+    bool isMoving = false;
 
 
     void OnEnable()
@@ -19,42 +27,32 @@ public class MoveEffect : MonoBehaviour
         startPoint = transform.parent.position;
         endPoint = PlayerManager.Instance.playerPrefab.transform.position;
 
-        switch (pathType)
+        switch (moveType)
         {
-            case PathType.Linear:
+            case MoveType.Linear:
                 break;
-            case PathType.CatmullRom:
-                Vector3[] path = new Vector3[] { startPoint, midPoint, endPoint };
-                transform.position = startPoint;
-                // DOPath : 여러 점을 따라 곡선 경로로 이동
-                transform.DOPath(path, duration, PathType.CatmullRom)
-                         .SetEase(Ease.InOutSine)
-                         .OnComplete(() => Debug.Log("착탄 이펙트 호출 후 오브젝트 풀에 다시 넣기"));
-                break;
-            case PathType.CubicBezier:
+            case MoveType.Curve:
+                MidPoint(startPoint, endPoint, heigthOfPathCurve);
+                totalLength = EstimateCurveLength(20);
                 break;
             default:
                 break;
         }
     }
 
-    // 이번 패턴 호출 때 시작점과 끝 점을 지정 >> 경로 생성
-    public void SetPath(PathType pathType, Vector3 start, Vector3 end)
+    private void FixedUpdate()
     {
-        switch (pathType)
-        {
-            case PathType.Linear:
-                break;
-            case PathType.CatmullRom:
-                startPoint = start;
-                endPoint = end;
-                midPoint = MidPoint(start, end);
-                break;
-            case PathType.CubicBezier:
-                break;
-            default:
-                break;
-        }
+        if (!isMoving) return;
+
+        t += (moveSpeed * Time.fixedDeltaTime) / totalLength;
+        t = Mathf.Clamp01(t);
+
+        Vector3 pos = CalculateCurvePos(t);
+
+        transform.position = pos;
+
+        if (t >= 1f)
+            isMoving = false;
     }
 
     // 곡선의 중점
@@ -62,5 +60,33 @@ public class MoveEffect : MonoBehaviour
     {
         // 시작과 끝의 중간지점에서 y축 방향으로 원하는 높이만큼 올라간 지점
         return (a + b) / 2f + Vector3.up * heightOffset;
+    }
+
+    // 곡선 길이 추정
+    float EstimateCurveLength(int steps)
+    {
+        float length = 0f;
+        Vector3 prev = startPoint;
+
+        // 구간을 쪼개어 각 길이 대략적으로 추정하여 더하기(미적과 같은 개념)
+        for (int i = 1; i <= steps; i++)
+        {
+            float t = i / (float)steps;
+            Vector3 pos = CalculateCurvePos(t);
+
+            length += Vector3.Distance(prev, pos);
+            prev = pos;
+        }
+
+        return length;
+    }
+
+    Vector3 CalculateCurvePos(float t)
+    {
+        Vector3 pos = Mathf.Pow(1 - t, 2) * startPoint +
+               2 * (1 - t) * t * midPoint +
+               Mathf.Pow(t, 2) * endPoint;
+
+        return pos;
     }
 }

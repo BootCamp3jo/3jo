@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 8795419104019595138}
   - component: {fileID: 7694232084275543480}
   - component: {fileID: 8394472092896199471}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,8 +331,9 @@ MonoBehaviour:
     _currentHealth: 100
     _currentMana: 100
     _level: 1
-    _experience: 100
+    _experience: 0
     _coin: 100
+  playerMovement: {fileID: 0}
 --- !u!114 &8394472092896199471
 MonoBehaviour:
   m_ObjectHideFlags: 0
