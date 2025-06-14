@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8322902136470238397}
   - component: {fileID: 7736746524007250979}
   - component: {fileID: 927727898049179297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Goblin_TNT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,6 +172,14 @@ PrefabInstance:
     - target: {fileID: 927496483953408202, guid: 9fa3372fcae34494f97c71ad124bc26a, type: 3}
       propertyPath: rotationSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019707276979596677, guid: 9fa3372fcae34494f97c71ad124bc26a, type: 3}
+      propertyPath: moveType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506016390486100909, guid: 9fa3372fcae34494f97c71ad124bc26a, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4750250369640817233, guid: 9fa3372fcae34494f97c71ad124bc26a, type: 3}
       propertyPath: m_Name

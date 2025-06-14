@@ -48,8 +48,7 @@ public abstract class MonsterBase : ANPC
 
     protected override void Start()
     {
-        // 에러 때문에 일시적으로 아래로 뺌
-        base.Start();
+
         // 시작할 때 현재 HP를 최대 HP로
 
         atk = monsterData.atk;
@@ -66,6 +65,8 @@ public abstract class MonsterBase : ANPC
             // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
             distanceRangePatterns[i] = new float2(tmpRange.x * tmpRange.x, tmpRange.y * tmpRange.y);
         }
+
+        base.Start();
     }
 
     private void Update()
@@ -163,8 +164,10 @@ public abstract class MonsterBase : ANPC
     }
 
     // 공격 애니메이션 끝날 때 상태 변경용으로 알려주기
-    public void EndAttack()
+    public void EndPattern()
     {
+        Debug.Log("공격 끝");
+        stateMachine.ChangeState(stateMachine.idleState);
         isAttacking = false;
     }
     #endregion
