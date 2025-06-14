@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -56,7 +57,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttacking = false; // 공격 여부를 위한 변수
     private WaitForSeconds waitFor1_19sec;
 
-
+    // Particle
+    private PlayerEffectController playerEffectController; 
+    [SerializeField] private Transform footPivot; // 발 위치
+    [SerializeField] private float dustEmitInterval = 0.2f; // 이동 파티클 생성 주기
+    private float lastDustTime = 0f;
     public bool JustDodgeWindow => justDodgeWindow; // 저스트닷지 불값 반환
 
 
@@ -66,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         playerAnimationHandler = PlayerManager.Instance.playerAnimationHandler;
+        playerEffectController = PlayerManager.Instance.playerEffectController;
         waitFor1_19sec = new WaitForSeconds(1.19f);
         waitForDashCoolDown = new WaitForSeconds(dashCoolDown);
         waitForDodgeTime = new WaitForSeconds(justDodgeTime);
@@ -103,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
             SetLookDirection();
             lastDashDirection = moveInput.normalized; // 마지막 대시 방향 업데이트 (Vector.zero일 때 바라보고 있는 방향으로 대시하기 위함)
         }
+
     }
 
     public void OnRunOrDash(InputAction.CallbackContext context)
@@ -226,6 +233,9 @@ public class PlayerMovement : MonoBehaviour
             shouldResumeFallAfterDash = true; // 대시 후 낙하 재개 여부 설정
         }
 
+        // 대쉬 고스트 시작
+        playerEffectController.PlayTrailEffect();
+
         dashTween = transform.DOMove(targetPosition, dashDuration)
                     .SetEase(Ease.InOutQuad)
                     .OnComplete(() =>
@@ -237,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
                             ResumeFallAfterDash();
                             shouldResumeFallAfterDash = false; // 낙하 재개 여부 초기화
                         }
-
+                        playerEffectController.StopTrailEffect();
                         StartCoroutine(DashCoolDown());
                     });
     }
@@ -246,6 +256,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 move = new Vector2(moveInput.x, moveInput.y);
         transform.position += (Vector3)(move * moveSpeed * Time.deltaTime);
+      
+        //이동시 파티클 생성
+        if (move != Vector2.zero && Time.time - lastDustTime > dustEmitInterval)
+        {
+            ParticleManager.Instance.Play(ParticleType.WalkDust, footPivot.position);
+            lastDustTime = Time.time;
+        }
     }
 
     private void TrackLastDirection()
@@ -275,6 +292,8 @@ public class PlayerMovement : MonoBehaviour
 
         float targetY = transform.position.y + jumpHeight;
 
+        // 점프 시작 파티클
+        playerEffectController.PlayJumpEffect();
         // 점프 업
         activeJumpTween = transform.DOMoveY(targetY, jumpDuration / 2f)
                           .SetEase(Ease.OutQuad)
@@ -285,6 +304,7 @@ public class PlayerMovement : MonoBehaviour
                                                 .SetEase(Ease.InQuad)
                                                 .OnComplete(() =>
                                                 {
+                                                    playerEffectController.PlayLandEffect();
                                                     isJumping = false;
                                                     isGrounded = true; // 점프가 끝나면 착지 상태로 변경
                                                 });

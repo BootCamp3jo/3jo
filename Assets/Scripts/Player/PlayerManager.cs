@@ -12,6 +12,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     [SerializeField] public PlayerAnimationHandler playerAnimationHandler;
     [SerializeField] public PlayerCombatHandler playerCombatHandler;
     [SerializeField] public PlayerStatHandler playerStatHandler;
+    [SerializeField] public PlayerEffectController playerEffectController;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
         playerCombatHandler = GetComponent<PlayerCombatHandler>();
         playerStatHandler = GetComponent<PlayerStatHandler>();
+        playerEffectController = GetComponent<PlayerEffectController>();
     }
 
 }

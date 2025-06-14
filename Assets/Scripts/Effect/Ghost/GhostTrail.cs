@@ -34,11 +34,12 @@ public class GhostTrail : MonoBehaviour
         ghost.GetComponent<Ghost>().Init(
             playerSprite.sprite,
             transform.position,
-            playerSprite.flipX,
+            transform.localScale, // ← 이게 핵심
             ghostColor,
             ghostLifetime
         );
     }
+
 
     public void StartTrail() => isDashing = true;
     public void StopTrail() => isDashing = false;

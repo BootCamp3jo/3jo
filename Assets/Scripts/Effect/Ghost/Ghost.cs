@@ -7,14 +7,14 @@ public class Ghost : MonoBehaviour
     private float fadeTimer;
     private Color startColor;
 
-    public void Init(Sprite sprite, Vector3 position, bool flipX, Color color, float lifetime)
+    public void Init(Sprite sprite, Vector3 position, Vector3 scale, Color color, float lifetime)
     {
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.sprite = sprite;
         transform.position = position;
-        spriteRenderer.flipX = flipX;
+        transform.localScale = scale;
 
         startColor = color;
         fadeTime = lifetime;

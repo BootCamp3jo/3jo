@@ -63,17 +63,17 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            ParticleManager.Instance.Play(ParticleType.JumpDust, footPoint.position);
+       //     ParticleManager.Instance.Play(ParticleType.JumpDust, footPoint.position);
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            ParticleManager.Instance.Play(ParticleType.LandDust, footPoint.position);
+           // ParticleManager.Instance.Play(ParticleType.LandDust, footPoint.position);
         }
         if (Input.GetKeyDown(KeyCode.F6))
         {
-            blinkEffect.StartBlink(invincibleDuration);
+
         }
-        if (Input.GetKeyDown(KeyCode.F7)) // 예시 키
+        if (Input.GetKeyDown(KeyCode.F7)) // 예시 키 적 피격
         {
             hitEffect.PlayHitEffect(1);
             flashEffect.TriggerFlash(); // 직접 호출
@@ -81,21 +81,18 @@ public class TestInputPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F8)) // 예시 키
         {
             shakeEffect.Shake();
-        }
+        }//
         if (Input.GetKeyDown(KeyCode.F9)) // 예시 키
         {
-            CameraShake.Instance.Shake(3);
+        //    CameraShake.Instance.Shake(3);
         }
-        if (Input.GetKeyDown(KeyCode.F10))
-        {
-            CircleMaskEffectController.Instance.TriggerEffect();
-        }
+
 
         // 이동 중 먼지 파티클 생성
         if (input.magnitude > 0.1f && Time.time - lastDustTime > dustEmitInterval)
         {
-            ParticleManager.Instance.Play(ParticleType.WalkDust, footPoint.position);
-            lastDustTime = Time.time;
+           // ParticleManager.Instance.Play(ParticleType.WalkDust, footPoint.position);
+            //lastDustTime = Time.time;
         }
     }
 
