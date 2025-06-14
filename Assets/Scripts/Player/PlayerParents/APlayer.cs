@@ -9,44 +9,47 @@ public abstract class APlayer : MonoBehaviour
     public PlayerData PlayerData => playerData;
     protected PlayerStateInScene playerStateInScene;
     private GameContext gameContext;
-
+    public bool dontNeedSave = true;
 
     protected virtual void Awake()
     {
-        gameContext = DataManager.Instance.gameContext;
-        gameContext.player = this;
-        string curSceneName = SceneManager.GetActiveScene().name;
-        // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기
-        if (gameContext.IsSceneSaved(curSceneName))
+        if (!dontNeedSave)
         {
-            this.playerData = gameContext.saveData.playerData;
-            this.playerStateInScene = gameContext.saveData.sceneBundles[curSceneName].playerStateInScene;
-
-            // 받아온 상태 처리
-            gameObject.transform.position = new Vector3(playerStateInScene.posX, playerStateInScene.posY, playerStateInScene.posZ);
-            /*
-             * 
-             * 
-             * 
-             * 
-             */
-
-            if (playerStateInScene.isPlayerExist == false)
+            gameContext = DataManager.Instance.gameContext;
+            gameContext.player = this;
+            string curSceneName = SceneManager.GetActiveScene().name;
+            // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기
+            if (gameContext.IsSceneSaved(curSceneName))
             {
-                Destroy(gameObject);
+                this.playerData = gameContext.saveData.playerData;
+                this.playerStateInScene = gameContext.saveData.sceneBundles[curSceneName].playerStateInScene;
+
+                // 받아온 상태 처리
+                gameObject.transform.position = new Vector3(playerStateInScene.posX, playerStateInScene.posY, playerStateInScene.posZ);
+                /*
+                 * 
+                 * 
+                 * 
+                 * 
+                 */
+
+                if (playerStateInScene.isPlayerExist == false)
+                {
+                    Destroy(gameObject);
+                }
             }
-        }
-        // 아니면 새로 생성하기
-        else
-        {
-            if (gameContext.playerData == null)
+            // 아니면 새로 생성하기
+            else
             {
-                gameContext.playerData = playerData;
+                if (gameContext.playerData == null)
+                {
+                    gameContext.playerData = playerData;
+                }
+                playerStateInScene = new();
             }
-            playerStateInScene = new();
+            playerStateInScene.isPlayerExist = true;
+            gameContext.playerStateInScene = playerStateInScene;
         }
-        playerStateInScene.isPlayerExist = true;
-        gameContext.playerStateInScene = playerStateInScene;
     }
 
     // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?
