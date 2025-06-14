@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// 오오 유빈 확인!
 public class BulletController : MonoBehaviour
 {
     public Rigidbody2D rb;

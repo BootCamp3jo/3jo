@@ -1,11 +1,18 @@
 {
   "difficultLevel": 0,
-  "curSceneName": null,
+  "curSceneName": "MonsterTestScene",
   "KillCount": 0,
   "achievements": {},
-  "playerData": {
-    "prefabPath": null,
-    "currentHP": 0.0
-  },
-  "sceneBundles": {}
+  "playerData": null,
+  "sceneBundles": {
+    "MonsterTestScene": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0
+      },
+      "npcDataQueue": []
+    }
+  }
 }
