@@ -63,12 +63,18 @@ public abstract class APlayer : MonoBehaviour
     protected virtual void OnDestroy()
     {
         Save();
-        gameContext.player = null;
+        if (gameContext != null)
+        {
+            gameContext.player = null;
+        }
     }
 
     [ContextMenu("RemoveFromSceneBundle")]
     public void RemoveFromSceneBundle()
     {
-        playerStateInScene.isPlayerExist = false;
+        if (playerStateInScene != null)
+        {
+            playerStateInScene.isPlayerExist = false;
+        }
     }
 }

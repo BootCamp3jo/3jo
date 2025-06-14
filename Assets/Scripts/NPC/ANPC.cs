@@ -64,6 +64,9 @@ public abstract class ANPC : MonoBehaviour
     [ContextMenu("RemoveFromSceneBundle")]
     public void RemoveFromSceneBundle()
     {
-        gameContext.UnregisterNPC(this);
+        if (gameContext != null)
+        {
+            gameContext.UnregisterNPC(this);
+        }
     }
 }
