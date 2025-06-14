@@ -1,8 +1,17 @@
 {
   "difficultLevel": 0,
   "curSceneName": "MonsterTestScene",
-  "KillCount": 0,
-  "achievements": {},
+  "KillCount": 100,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
+    },
+    "PentaKill": {
+      "achievementID": 1,
+      "unlocked": true
+    }
+  },
   "playerData": null,
   "sceneBundles": {
     "MonsterTestScene": {
