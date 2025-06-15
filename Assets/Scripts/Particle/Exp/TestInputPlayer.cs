@@ -39,6 +39,11 @@ public class TestInputPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 input;
 
+    // --------------------------------------------- //
+    // 체력바 감소 - 페이드
+    [SerializeField] private HealthBarFade barFade;
+    private float simulatedHp = 1f; // 현재 체력 비율 (0~1)
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,24 +60,21 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-          //  TriggerShockWave();
+            simulatedHp -= 0.1f;
+            simulatedHp = Mathf.Clamp01(simulatedHp); // 0보다 작아지지 않도록
+            barFade.SetHp(simulatedHp);
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            DashWithGhost();
+            simulatedHp += 0.1f;
+            simulatedHp = Mathf.Clamp01(simulatedHp);
+            barFade.SetHp(simulatedHp);
         }
-        if (Input.GetKeyDown(KeyCode.F4))
+        if (Input.GetKeyDown(KeyCode.F11))
         {
-       //     ParticleManager.Instance.Play(ParticleType.JumpDust, footPoint.position);
+         //   DashWithGhost();
         }
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-           // ParticleManager.Instance.Play(ParticleType.LandDust, footPoint.position);
-        }
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
 
-        }
         if (Input.GetKeyDown(KeyCode.F7)) // 예시 키 적 피격
         {
             hitEffect.PlayHitEffect(1);
@@ -82,10 +84,7 @@ public class TestInputPlayer : MonoBehaviour
         {
             shakeEffect.Shake();
         }//
-        if (Input.GetKeyDown(KeyCode.F9)) // 예시 키
-        {
-        //    CameraShake.Instance.Shake(3);
-        }
+    
 
 
         // 이동 중 먼지 파티클 생성
