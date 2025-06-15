@@ -1,27 +1,20 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "MonsterTestScene",
-  "KillCount": 100,
-  "achievements": {
-    "FirstBlood": {
-      "achievementID": 0,
-      "unlocked": true
-    },
-    "PentaKill": {
-      "achievementID": 1,
-      "unlocked": true
-    }
+  "curSceneName": null,
+  "KillCount": 0,
+  "achievements": {},
+  "playerData": {
+    "prefabPath": null,
+    "CurrentHealth": 0.0,
+    "CurrentMana": 0.0,
+    "Level": 1,
+    "Experience": 0.0,
+    "Coin": 0,
+    "MaxHealth": 100,
+    "MaxMana": 100,
+    "MaxLevel": 100,
+    "MaxExperience": 100,
+    "MaxCoin": 999999
   },
-  "playerData": null,
-  "sceneBundles": {
-    "MonsterTestScene": {
-      "playerStateInScene": {
-        "isPlayerExist": false,
-        "posX": 0.0,
-        "posY": 0.0,
-        "posZ": 0.0
-      },
-      "npcDataQueue": []
-    }
-  }
+  "sceneBundles": {}
 }
