@@ -1,32 +1,16 @@
 using UnityEngine;
 
-public class Pattern : MonoBehaviour
+public class Pattern : EffectController
 {
-    RangeAttack rangeAttack;
+    [field:SerializeField] public PatternData patternData { get; private set; }
+    public ChangeEffect changeEffect { get; private set; }
 
-    public float lifeTime = 3f;
-
-    private void Awake()
+    protected virtual void Awake()
     {
-        rangeAttack = GetComponentInChildren<RangeAttack>(true);
-    }
-
-    void OnEnable()
-    {
-        Invoke("LifeEnd", lifeTime);   
-    }
-
-    void LifeEnd()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void GetAtkData(Vector3 targetPos, float damage)
-    {
-        if (rangeAttack != null)
-        {
-            rangeAttack.atkPoint = targetPos;
-            rangeAttack.Damage = damage;
-        }
+        // 패턴의 라이프 사이클을 기억
+        lifeTime = patternData.lifeTime;
+        changeEffect = GetComponentInChildren<ChangeEffect>(true);
+        // 패턴을 비활성화 해둬서 위의 값을 받아올 수 없어 처음 실행 때 위치 에러 발생 >> Awake()만 실행하고 비활성화하게끔 구조 개편
+        LifeEnd();
     }
 }

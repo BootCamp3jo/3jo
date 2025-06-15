@@ -14,11 +14,16 @@ public class MonsterState_Idle : IState
         stateMachine.StartAnime(stateMachine.AnimatorParameters.idleHash);
     }
 
-    // 가만히 대기하는 몬스터
+    // 대기하는 몬스터
     public virtual void Execute()
     {
         // 몬스터 공격 딜레이를 줄여주다가 끝났다면, 공격 상태로!
-        stateMachine.monster.DecreaseDelay(Time.deltaTime);
+        stateMachine.monster.Idle();
+    }
+
+    // 거리 체크
+    public void ExecutePhysically()
+    {
     }
 
     public void Exit()
