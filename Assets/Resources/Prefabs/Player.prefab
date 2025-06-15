@@ -487,6 +487,7 @@ MonoBehaviour:
     _level: 1
     _experience: 100
     _coin: 100
+  dontNeedSave: 0
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
 --- !u!114 &8394472092896199471

@@ -1,20 +1,66 @@
 {
   "difficultLevel": 0,
-  "curSceneName": null,
+  "curSceneName": "SceneB",
   "KillCount": 0,
   "achievements": {},
   "playerData": {
-    "prefabPath": null,
-    "CurrentHealth": 0.0,
-    "CurrentMana": 0.0,
+    "prefabPath": "Prefabs/Player",
+    "CurrentHealth": 100.0,
+    "CurrentMana": 100.0,
     "Level": 1,
-    "Experience": 0.0,
-    "Coin": 0,
+    "Experience": 100.0,
+    "Coin": 100,
     "MaxHealth": 100,
     "MaxMana": 100,
     "MaxLevel": 100,
     "MaxExperience": 100,
     "MaxCoin": 999999
   },
-  "sceneBundles": {}
+  "sceneBundles": {
+    "SceneA": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {
+        "Prefabs/NPC1": [
+          {
+            "prefabPath": "Prefabs/NPC1",
+            "hp": 0.0,
+            "posX": 6.0,
+            "posY": 0.0,
+            "posZ": 0.0
+          },
+          {
+            "prefabPath": "Prefabs/NPC1",
+            "hp": 0.0,
+            "posX": -3.0,
+            "posY": 3.0,
+            "posZ": 0.0
+          }
+        ]
+      }
+    },
+    "SceneB": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {
+        "Prefabs/NPC1": [
+          {
+            "prefabPath": "Prefabs/NPC1",
+            "hp": 0.0,
+            "posX": 4.0,
+            "posY": -1.0,
+            "posZ": 0.0
+          }
+        ]
+      }
+    }
+  }
 }

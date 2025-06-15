@@ -20,7 +20,7 @@ public class GameContext
     public APlayer player = null;
     public PlayerData playerData = null;
     public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
-    public Queue<NPCData> npcDataQueue = new Queue<NPCData>();
+    public Dictionary<string, Queue<NPCData>> npcDataQueues = new Dictionary<string, Queue<NPCData>>();
     public Dictionary<ANPC, NPCData> npcDatas = new Dictionary<ANPC, NPCData>();
     public bool dontSaveCurSceneBundle = false;
 
@@ -156,7 +156,7 @@ public class GameContext
 
     public void ClearBeforeLoad()
     {
-        npcDataQueue.Clear();
+        npcDataQueues.Clear();
         npcDatas.Clear();
     }
 
@@ -180,10 +180,20 @@ public class GameContext
         }
         if (!dontSaveCurSceneBundle)
         {
+            Dictionary<string, Queue<NPCData>> tempNPCDataQueues = new Dictionary<string, Queue<NPCData>>();
+            foreach(KeyValuePair<ANPC, NPCData> pair in npcDatas)
+            {
+                string prefabPath = pair.Value.prefabPath;
+                if (!tempNPCDataQueues.ContainsKey(prefabPath))
+                {
+                    tempNPCDataQueues.Add(prefabPath, new Queue<NPCData>());
+                }
+                tempNPCDataQueues[prefabPath].Enqueue(pair.Value);
+            }
             var bundle = new SceneBundle
             {
                 playerStateInScene = playerStateInScene,
-                npcDataQueue = new Queue<NPCData>(npcDatas.Values)
+                npcDataQueues = tempNPCDataQueues
             };
             if (saveData.sceneBundles.ContainsKey(currentSceneName))
             {
@@ -210,7 +220,7 @@ public class GameContext
         {
             playerStateInScene = bundle.playerStateInScene ?? new PlayerStateInScene();
             npcDatas.Clear();
-            npcDataQueue = new Queue<NPCData>(bundle.npcDataQueue);
+            npcDataQueues = new Dictionary<string, Queue<NPCData>>(bundle.npcDataQueues);
 
             Logger.Log($"[GameContext] Loaded existing SceneBundle for: {sceneName}");
         }
