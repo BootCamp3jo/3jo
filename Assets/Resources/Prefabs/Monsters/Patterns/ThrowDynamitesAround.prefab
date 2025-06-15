@@ -104,7 +104,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1238654475
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6792453, g: 0, b: 0, a: 0.69803923}
@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d096380872da3d46912b8a9f3fa581b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkReadyTime: 3
 --- !u!1 &3230990547889172073
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +203,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1238654475
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.5377358, g: 0, b: 0, a: 0.69803923}
@@ -297,7 +296,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 33554432
-  patternData: {fileID: 11400000, guid: f244cd01d85fec647875e2440e12f17c, type: 2}
 --- !u!1 &4750250369640817233
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,9 +305,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9064938725148264120}
-  - component: {fileID: 8441747667335228267}
+  - component: {fileID: 719997906131743644}
   m_Layer: 0
-  m_Name: Attack0_GoblinTNT
+  m_Name: ThrowDynamitesAround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +330,7 @@ Transform:
   - {fileID: 8435584563286836848}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8441747667335228267
+--- !u!114 &719997906131743644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,10 +339,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4750250369640817233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5580fe3fb16e51444b7e98a6a770238f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dfcd81349985bb418ca95f83cb03063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 3
+  <patternData>k__BackingField: {fileID: 11400000, guid: 4c7847e3d3e69954ba6d506714961cf5, type: 2}
 --- !u!1 &8025852257570558254
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +354,8 @@ GameObject:
   - component: {fileID: 8976998826379539898}
   - component: {fileID: 3495119424021464134}
   - component: {fileID: 9058276344598827774}
-  - component: {fileID: 927496483953408202}
   - component: {fileID: 1019707276979596677}
+  - component: {fileID: 8479761151971204441}
   m_Layer: 0
   m_Name: DynamiteEffect
   m_TagString: Untagged
@@ -453,19 +451,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &927496483953408202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8025852257570558254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73420916ba6dc434ab6998fc51035a1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 10
 --- !u!114 &1019707276979596677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +463,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739f014f72b20b049b06dd949ae1c6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathType: 1
-  duration: 3
+  moveType: 0
+  moveSpeed: 3
   heigthOfPathCurve: 3
+  <isSelfRotating_Default>k__BackingField: 1
+  <rotationSpeed>k__BackingField: 15
+--- !u!114 &8479761151971204441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025852257570558254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230674da71d41264a8529ce35791d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

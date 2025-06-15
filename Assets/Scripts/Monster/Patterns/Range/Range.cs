@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class Range : MonoBehaviour
 {
-    public float atkReadyTime;
+    public float atkReadyTime { get; set; }
     Vector3 scaleChangePerFrame;
-    RangeAttack rangeAttack;
+    PatternRange pattern;
+    bool isAtkStart;
 
     private void Awake()
     {
-        rangeAttack = GetComponentInParent<RangeAttack>();
+        pattern = GetComponentInParent<PatternRange>(true);
     }
 
     private void OnEnable()
     {
+        isAtkStart = false;
         // 범위 표시 초기화
         transform.localScale = Vector3.zero;
         // 프레임 당 스케일 변화량 초기화(atkReadyTime의 변동이 있는 기술 대비)
@@ -24,12 +26,15 @@ public class Range : MonoBehaviour
         // 공격 범위에 맞게 점점 커지는 경고 영역 
         transform.localScale += scaleChangePerFrame * Time.deltaTime;
         // 공격 범위가 다 채워졌다면
-        if (transform.localScale.x >= 1)
+        if (transform.localScale.x >= 1 && !isAtkStart)
         {
+            isAtkStart = true;
             // 범위 밖으로 벗어나지 않게
             transform.localScale = Vector3.one;
             // 공격!
-            rangeAttack.Attack();
+            pattern.rangeAttack.Attack();
+            // 임팩트 애니메이션 재생
+            pattern.changeEffect.ChangeEffectAnime(pattern.changeEffect.impactHash);
         }
     }
 }
