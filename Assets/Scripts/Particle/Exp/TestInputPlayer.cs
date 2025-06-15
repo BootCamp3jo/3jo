@@ -44,6 +44,10 @@ public class TestInputPlayer : MonoBehaviour
     [SerializeField] private HealthBarFade barFade;
     private float simulatedHp = 1f; // 현재 체력 비율 (0~1)
 
+    [Header("월드 체력바")]
+    [SerializeField] private EnemyHpBar enemyHpBar; // 월드 위치 체력바 (슬라이스 떨어짐 효과)
+    private float testEnemyHp = 1f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,6 +74,20 @@ public class TestInputPlayer : MonoBehaviour
             simulatedHp = Mathf.Clamp01(simulatedHp);
             barFade.SetHp(simulatedHp);
         }
+        if (Input.GetKeyDown(KeyCode.F4)) // 체력 감소 → 체력바 조각 떨어짐
+        {
+            testEnemyHp -= 0.1f;
+            testEnemyHp = Mathf.Clamp01(testEnemyHp);
+            enemyHpBar.SetHp(testEnemyHp);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5)) // 체력 회복 → 단순히 증가
+        {
+            testEnemyHp += 0.1f;
+            testEnemyHp = Mathf.Clamp01(testEnemyHp);
+            enemyHpBar.SetHp(testEnemyHp);
+        }
+
         if (Input.GetKeyDown(KeyCode.F11))
         {
          //   DashWithGhost();
