@@ -15,12 +15,10 @@ public class MonsterState_Attack : IState
     }
     public virtual void Execute() 
     {
-        // 공격 모션이 끝났다면 idle로 돌아가기
-       if(!stateMachine.monster.isAttacking)
-        {
-            stateMachine.ChangeState(stateMachine.idleState);
-        }
+        
     }
-
-    public virtual void Exit(){}
+    public virtual void ExecutePhysically(){}
+    public virtual void Exit(){
+        //stateMachine.ChangeState(stateMachine.idleState);
+    }
 }

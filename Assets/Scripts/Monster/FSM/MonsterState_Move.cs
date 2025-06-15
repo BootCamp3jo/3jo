@@ -1,4 +1,4 @@
-using DG.Tweening;
+using System;
 
 public class MonsterState_Move : IState
 {
@@ -14,9 +14,11 @@ public class MonsterState_Move : IState
         stateMachine.StartAnime(stateMachine.AnimatorParameters.moveHash);
     }
 
-    public void Execute()
-    {
+    public void Execute(){}
 
+    public void ExecutePhysically()
+    {
+        
     }
 
     public void Exit()

@@ -4,13 +4,14 @@ public class MonsterAnimatorParameters
 {
     // 애니메이터 파라미터 이름들
     #region Animatior Transition Parameters Name
-    [field: SerializeField] public string idleName { get; private set; } = "Idle";
-    [field: SerializeField] public string moveName { get; private set; } = "Move";
-    [field: SerializeField] public string deathName { get; private set; } = "Death";
+    string idleName = "Idle";
+    string moveName = "Move";
+    string deathName = "Death";
     // 공격 레이어 트랜지션 조건으로 들어갈 파라미터 이름
-    [field: SerializeField] public string attackLayerName { get; private set; } = "@Attack";
+    string attackLayerName = "@Attack";
     // 해당 파라미터는 bool이 아닌 int로 공격 패턴 갈래를 표현
-    [field: SerializeField] public string attackName { get; private set; } = "Attack";
+    string attackName = "Attack";
+    string attackCountRemainName = "AttackCountRemain";
     #endregion
 
     // 이름들을 해시로 변환해둔 값
@@ -20,6 +21,7 @@ public class MonsterAnimatorParameters
     public int deathHash { get; private set; }
     public int attackLayerHash { get; private set; }
     public int attackHash { get; private set; }
+    public int attackCountRemainHash { get; private set; }
     #endregion
 
     // 생성자로 파라미터 이름을 해시로 변환
@@ -30,5 +32,6 @@ public class MonsterAnimatorParameters
         deathHash = Animator.StringToHash(deathName);
         attackLayerHash = Animator.StringToHash(attackLayerName);
         attackHash = Animator.StringToHash(attackName);
+        attackCountRemainHash = Animator.StringToHash(attackCountRemainName);
     }
 }
