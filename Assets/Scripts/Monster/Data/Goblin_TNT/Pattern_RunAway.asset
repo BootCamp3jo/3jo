@@ -15,16 +15,17 @@ MonoBehaviour:
   patternType: 2
   startPointType: 1
   endPointType: 3
+  <atkNumForOnce>k__BackingField: 1
   <atkCoefficient>k__BackingField: 1
   <range>k__BackingField:
     x: 0
-    y: 0.3
+    y: 2.1
   <delay>k__BackingField: 1
   <lifeTime>k__BackingField: 3
   <attackTime>k__BackingField: 0.5
   <randomAtkCount>k__BackingField:
-    x: 5
-    y: 7
+    x: 3
+    y: 5
   <patternRange>k__BackingField:
     c0:
       x: -0.1
