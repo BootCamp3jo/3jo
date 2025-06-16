@@ -1,6 +1,6 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "SceneA",
+  "curSceneName": "MonsterTestScene",
   "KillCount": 0,
   "achievements": {},
   "playerData": null,
@@ -49,6 +49,15 @@
           }
         ]
       }
+    },
+    "MonsterTestScene": {
+      "playerStateInScene": {
+        "isPlayerExist": false,
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
     }
   }
 }

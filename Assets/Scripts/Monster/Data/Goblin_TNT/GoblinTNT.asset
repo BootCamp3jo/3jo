@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <monsterName>k__BackingField: "\uACE0\uBE14\uACE0\uBE14\uB9B0"
   <hpMax>k__BackingField: 10
-  <atk>k__BackingField: 1
+  <atk>k__BackingField: 20
   <moveSpeed>k__BackingField: 15
