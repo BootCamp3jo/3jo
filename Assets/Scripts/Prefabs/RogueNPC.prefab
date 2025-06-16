@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 174678464500147025}
   - component: {fileID: 4610303716184367766}
   - component: {fileID: 5437673796700382742}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &174678464500147025
@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f3a9649637c5935408929e9a91519f08, type: 2}
+  m_sharedMaterial: {fileID: -6221423874918560898, guid: f3a9649637c5935408929e9a91519f08, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 4897155182215053149}
   - component: {fileID: 4036461507570335324}
   - component: {fileID: 1640904406215910031}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,8 @@ GameObject:
   - component: {fileID: 7371025707502263958}
   - component: {fileID: 3394746620228283323}
   - component: {fileID: 4652122808598965025}
-  m_Layer: 0
+  - component: {fileID: 6631151875331250211}
+  m_Layer: 3
   m_Name: RogueNPC
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -297,7 +298,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.7, y: 13.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6566780177771950313}
@@ -387,7 +388,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.100283146, y: 0.849453}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.44444448, y: -0.7733334}
@@ -398,7 +399,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.75}
+  m_Size: {x: 4.8343353, y: 3.448906}
   m_EdgeRadius: 0
 --- !u!114 &3394746620228283323
 MonoBehaviour:
@@ -412,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc1ba8364916e040aeb53c6d8c9333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogueData: {fileID: 0}
+  _dialogueData: {fileID: 11400000, guid: 5e04b72be32a5864f87e5cbaf980ecb4, type: 2}
 --- !u!114 &4652122808598965025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,7 +428,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogueUI: {fileID: 8242331551745546446}
   _dialogueText: {fileID: 4610303716184367766}
-  _delay: 3
+  _charDelay: 0.05
+  _lineDelay: 1
+--- !u!50 &6631151875331250211
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361032545911191062}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8242331551745546446
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +469,7 @@ GameObject:
   - component: {fileID: 7029698353318029951}
   - component: {fileID: 2287977143466858303}
   - component: {fileID: 8006921609387850697}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TextBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
