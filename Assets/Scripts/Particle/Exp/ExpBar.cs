@@ -7,7 +7,7 @@ public class ExpBar : MonoBehaviour
     [SerializeField] private Image expBarImg;
     [SerializeField] private ParticleSystem expParticlePrefab;
 
-    // »õ·Î Ãß°¡: ¹è°æ ÀÌ¹ÌÁö (¶Ç´Â ¹è°æ ¿ÀºêÁ§Æ®)
+    // ìƒˆë¡œ ì¶”ê°€: ë°°ê²½ ì´ë¯¸ì§€ (ë˜ëŠ” ë°°ê²½ ì˜¤ë¸Œì íŠ¸)
     [SerializeField] private RectTransform backgroundRect;
 
     private int maxExp = 1000;
@@ -26,6 +26,10 @@ public class ExpBar : MonoBehaviour
             bgOriginalScale = Vector3.one;
 
         UpdateBar();
+    }
+    private void Start()
+    {
+        
     }
 
     void OnEnable()
@@ -53,14 +57,14 @@ public class ExpBar : MonoBehaviour
     }
 
 
-    // ¾Ö´Ï¸ŞÀÌ¼Ç ¹Ù È¿°ú
+    // ì• ë‹ˆë©”ì´ì…˜ ë°” íš¨ê³¼
     void AnimateBarPop()
     {
         RectTransform rt = expBarImg.rectTransform;
         rt.DOKill();
         rt.localScale = expBarOriginalScale;
 
-        // expBar ¾Ö´Ï¸ŞÀÌ¼Ç
+        // expBar ì• ë‹ˆë©”ì´ì…˜
         Sequence seq = DOTween.Sequence();
         seq.Append(rt.DOScale(expBarOriginalScale * 1.1f, 0.1f).SetEase(Ease.OutQuad));
 
@@ -69,7 +73,7 @@ public class ExpBar : MonoBehaviour
             backgroundRect.DOKill();
             backgroundRect.localScale = bgOriginalScale;
 
-            // ¹è°æ°ú µ¿½Ã¿¡ Ä¿Á³´Ù ÀÛ¾ÆÁö±â (µ¿±âÈ­)
+            // ë°°ê²½ê³¼ ë™ì‹œì— ì»¤ì¡Œë‹¤ ì‘ì•„ì§€ê¸° (ë™ê¸°í™”)
             seq.Join(backgroundRect.DOScale(bgOriginalScale * 1.1f, 0.1f).SetEase(Ease.OutQuad));
             seq.Append(rt.DOScale(expBarOriginalScale, 0.15f).SetEase(Ease.InQuad));
             seq.Join(backgroundRect.DOScale(bgOriginalScale, 0.15f).SetEase(Ease.InQuad));
@@ -80,7 +84,7 @@ public class ExpBar : MonoBehaviour
         }
     }
 
-    // °æÇèÄ¡ ÆÄÆ¼Å¬ »ı¼º
+    // ê²½í—˜ì¹˜ íŒŒí‹°í´ ìƒì„±
     void SpawnParticleAt()
     {
         RectTransform rect = expBarImg.rectTransform;

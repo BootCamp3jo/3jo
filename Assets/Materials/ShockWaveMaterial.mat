@@ -41,16 +41,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0.03
+    - _Amplitude: 0.05
     - _EnableExternalAlpha: 0
     - _Frequency: 30
-    - _Speed: 0.5
+    - _Speed: 1
     - _WaveCount: 1
     - _WaveGap: 0.25
-    - _WaveTime: 10.011734
-    - _WaveWidth: 0.1
+    - _WaveTime: 10.0139675
+    - _WaveWidth: 0.05
     m_Colors:
-    - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Center: {r: 0.48665947, g: 0.7352961, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
