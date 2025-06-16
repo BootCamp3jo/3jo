@@ -20,9 +20,9 @@ public class SkillDamageDealer : A_BaseDamageDealer
 
         foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent(out EnemyHealth enemy) && !currentTargets.Contains(enemy))
+            if (hit.TryGetComponent(out MonsterBase enemy) && !currentTargets.Contains(enemy))
             {
-                enemy.TakeDamage(attackDamage);
+                enemy.GetDamage(attackDamage);
                 currentTargets.Add(enemy);
                 Debug.Log($"Hit {enemy.name} for {attackDamage} damage.");
             }

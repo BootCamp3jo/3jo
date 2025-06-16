@@ -9,7 +9,7 @@ public abstract class A_BaseDamageDealer : MonoBehaviour
     public LayerMask enemyLayer;
     public int attackDamage;
 
-    public HashSet<EnemyHealth> currentTargets = new HashSet<EnemyHealth>();
+    public HashSet<MonsterBase> currentTargets = new HashSet<MonsterBase>();
     public bool isAttacking = false;
 
     protected virtual void Update()

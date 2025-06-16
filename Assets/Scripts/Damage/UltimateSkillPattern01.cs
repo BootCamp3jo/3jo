@@ -40,9 +40,9 @@ public class UltimateSkillPattern01 : MonoBehaviour
             // 데미지를 준다
             foreach (var target in targets)
             {
-                EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+                MonsterBase enemyHealth = target.GetComponent<MonsterBase>();
                 if (enemyHealth != null) 
-                    enemyHealth.TakeDamage(damage);
+                    enemyHealth.GetDamage(damage);
             }
 
             yield return waitForSeconds;
