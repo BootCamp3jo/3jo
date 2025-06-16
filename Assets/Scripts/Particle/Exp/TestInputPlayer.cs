@@ -39,6 +39,15 @@ public class TestInputPlayer : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 input;
 
+    // --------------------------------------------- //
+    // 체력바 감소 - 페이드
+    [SerializeField] private HealthBarFade barFade;
+    private float simulatedHp = 1f; // 현재 체력 비율 (0~1)
+
+    [Header("월드 체력바")]
+    [SerializeField] private EnemyHpBar enemyHpBar; // 월드 위치 체력바 (슬라이스 떨어짐 효과)
+    private float testEnemyHp = 1f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,24 +64,35 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            TriggerShockWave();
+            simulatedHp -= 0.1f;
+            simulatedHp = Mathf.Clamp01(simulatedHp); // 0보다 작아지지 않도록
+            barFade.SetHp(simulatedHp);
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            DashWithGhost();
+            simulatedHp += 0.1f;
+            simulatedHp = Mathf.Clamp01(simulatedHp);
+            barFade.SetHp(simulatedHp);
         }
-        if (Input.GetKeyDown(KeyCode.F4))
+        if (Input.GetKeyDown(KeyCode.F4)) // 체력 감소 → 체력바 조각 떨어짐
         {
-       //     ParticleManager.Instance.Play(ParticleType.JumpDust, footPoint.position);
+            testEnemyHp -= 0.1f;
+            testEnemyHp = Mathf.Clamp01(testEnemyHp);
+            enemyHpBar.SetHp(testEnemyHp);
         }
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-           // ParticleManager.Instance.Play(ParticleType.LandDust, footPoint.position);
-        }
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
 
+        if (Input.GetKeyDown(KeyCode.F5)) // 체력 회복 → 단순히 증가
+        {
+            testEnemyHp += 0.1f;
+            testEnemyHp = Mathf.Clamp01(testEnemyHp);
+            enemyHpBar.SetHp(testEnemyHp);
         }
+
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+         //   DashWithGhost();
+        }
+
         if (Input.GetKeyDown(KeyCode.F7)) // 예시 키 적 피격
         {
             hitEffect.PlayHitEffect(1);
@@ -80,12 +100,11 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F8)) // 예시 키
         {
+            hitEffect.PlayHitEffect(1);
+            flashEffect.TriggerFlash(); // 직접 호출
             shakeEffect.Shake();
         }//
-        if (Input.GetKeyDown(KeyCode.F9)) // 예시 키
-        {
-        //    CameraShake.Instance.Shake(3);
-        }
+    
 
 
         // 이동 중 먼지 파티클 생성
@@ -118,18 +137,5 @@ public class TestInputPlayer : MonoBehaviour
             });
     }
 
-    private void TriggerShockWave()
-    {
-        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-        shockWaveMaterial.SetVector("_Center", new Vector4(viewportPos.x, viewportPos.y, 0, 0));
-        shockWaveMaterial.SetFloat("_WaveTime", 0f);
-        shockWaveMaterial.SetFloat("_Speed", 2f);
-        shockWaveMaterial.SetFloat("_WaveWidth", 0.015f);
-        shockWaveMaterial.SetFloat("_WaveCount", 1f);
-        shockWaveMaterial.SetFloat("_WaveGap", 0.25f);
 
-        ShockWaveFeature.Instance.SetParameters(0.5f, 0.1f, 10f);
-        ShockWaveFeature.Instance.SetCenter(new Vector2(viewportPos.x, viewportPos.y));
-        ShockWaveFeature.Instance.TriggerShockWave();
-    }
 }

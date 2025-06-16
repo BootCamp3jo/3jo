@@ -295,7 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 33554432
+    m_Bits: 128
+  Damage: 20
 --- !u!1 &4750250369640817233
 GameObject:
   m_ObjectHideFlags: 0

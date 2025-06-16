@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class MonsterBase : ANPC
 {
@@ -45,11 +46,38 @@ public abstract class MonsterBase : ANPC
     // 패턴을 발동할 수 있는 거리의 제곱의 영역 x~y 사이. x보다 작거나 y보다 크면 각각 후퇴,추적
     float2 distPoweredBoundary = new(float.MaxValue, float.MinValue);
 
+
+    // 적 이펙트 관련
+    [Header("피격 관련(깜빡임)")]
+    [SerializeField] private FlashEffect flashEffect;
+
+    [Header("피격 관련(파티클)")]
+    [SerializeField] private HitEffect hitEffect;
+
+    [Header("피격 관련(진동)")]
+    [SerializeField] private ShakeEffect shakeEffect;
+
+    // 적 체력 관련
+    private float maxHp;
+    public event Action<float> onHpChanged;
+    [SerializeField] private EnemyHpBar enemyHpBar;
+
     protected override void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        flashEffect = GetComponent<FlashEffect>();
+        hitEffect = GetComponent<HitEffect>();
+        shakeEffect = GetComponent<ShakeEffect>();
         stateMachine = new MonsterStateMachine(this);
+
+        // 체력바 생성
+        if (enemyHpBar != null)
+        {
+            enemyHpBar = Instantiate(enemyHpBar);
+            onHpChanged += enemyHpBar.SetHp;
+        }
+        maxHp = npcData.hp;
 
         base.Awake();
     }
@@ -162,8 +190,13 @@ public abstract class MonsterBase : ANPC
     public void GetDamage(float damage)
     {
         if (isDead) return;
-        // 피격 이펙트가 있다면 여기에!
+
+        hitEffect.PlayHitEffect(1);
+        flashEffect.TriggerFlash();
+        shakeEffect.Shake();
+
         npcData.hp = Mathf.Max(npcData.hp-damage, 0);
+        onHpChanged?.Invoke(npcData.hp/ maxHp);
         if (npcData.hp <= 0)
             Dead();
     }
