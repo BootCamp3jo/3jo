@@ -4,7 +4,11 @@ using UnityEngine;
 // 특정 위치에 잠깐 소환했다 오브젝트 풀로 돌아갈 효과들
 public class EffectController : LifeCycle, IPoolable
 {
-    // 비활성화 대신 풀에 넣어주게끔
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     public override void LifeEnd()
     {
         OnDespawn();
