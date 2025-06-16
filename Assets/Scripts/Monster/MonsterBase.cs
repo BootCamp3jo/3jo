@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public abstract class MonsterBase : ANPC
+// slowRate : 슬로우로 느려지는 정도는 하나로 써야할 것 같기에 GameManager에!
+public interface ISlowAble
+{
+    public bool isSlowed { get; set; }
+    public void StartSlow();
+    public void StopSlow();
+}
+
+public abstract class MonsterBase : ANPC, ISlowAble
 {
     [field: SerializeField] public MonsterData monsterData;
     Pattern[] patterns;
@@ -19,7 +27,7 @@ public abstract class MonsterBase : ANPC
     // 상태 머신 관리용 클래스
     public MonsterStateMachine stateMachine { get; private set; }
 
-    float atk;
+    float atk, moveSpeed;
     // 현재 쿨타임(보스 패턴마다 쿨타임이 달라 기술 사용과 동시에 써주기!!!)
     // 플레이어가 반응할 시간을 주기 위해 초기값
     public float atkDelay { get; private set; } = 1f;
@@ -117,6 +125,7 @@ public abstract class MonsterBase : ANPC
         // 시작할 때 현재 HP를 최대 HP로 >> ANPC에서 할당
 
         atk = monsterData.atk;
+        moveSpeed = monsterData.moveSpeed;
 
         // 플레이어를 타겟으로
         target = PlayerManager.Instance.playerPrefab.transform;
@@ -172,7 +181,7 @@ public abstract class MonsterBase : ANPC
     public void Move()
     {
         // 추적 속도 벡터
-        moveVec = (PlayerManager.Instance.player.transform.position- transform.position).normalized * monsterData.moveSpeed * Time.deltaTime;
+        moveVec = (PlayerManager.Instance.player.transform.position- transform.position).normalized * moveSpeed * Time.deltaTime;
         // 도망은 추적의 역방향으로 가게끔
         if (isFlee)
             moveVec = -moveVec;
@@ -299,6 +308,29 @@ public abstract class MonsterBase : ANPC
     {
         isAttacking = false;
         stateMachine.ChangeState(stateMachine.idleState);
+    }
+
+    // 슬로우/해제 관련 구현
+    // 슬로우 중인지 판정하기 위한 프로퍼티(없으면 감속이 된 건지 아닌지 판정할 수 없기에)
+    public bool isSlowed { get; set; } = false;
+    // 감속 시작!
+    public void StartSlow()
+    {
+        isSlowed = true;
+        float slowRateGlobal = GameManager.Instance.slowRate;
+        // 이동 속도 감속
+        moveSpeed *= slowRateGlobal;
+        // 애니메이터 전체 속도 감속
+        animator.speed = slowRateGlobal;
+    }
+    // 감속 끝!
+    public void StopSlow()
+    {
+        isSlowed = false;
+        // 이동 속도 원복
+        moveSpeed = monsterData.moveSpeed;
+        // 애니메이터 전체 속도 원복
+        animator.speed = 1;
     }
 
     #region Animation Event Methods
