@@ -24,7 +24,6 @@ public abstract class APlayer : MonoBehaviour
         if (gameContext.saveData.playerData == null)
         {
             gameContext.saveData.playerData = playerData;
-            Debug.Log("Asddfsd");
         }
         else
         {

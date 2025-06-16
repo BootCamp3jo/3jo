@@ -53,7 +53,6 @@ public class DataManager : MonoSingleton<DataManager>
         {
             return;
         }
-        gameContext.ClearBeforeLoad();
         gameContext.SetCurrentScene(scene.name);
         gameContext.LoadCurrentSceneData();
     }
@@ -65,6 +64,7 @@ public class DataManager : MonoSingleton<DataManager>
             return;
         }
         gameContext.SaveCurrentScene();
+        gameContext.ClearBeforeLoad();
     }
 
     [ContextMenu("ClearCurSceneBundle")]

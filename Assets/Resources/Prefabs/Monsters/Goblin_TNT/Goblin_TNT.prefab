@@ -139,6 +139,8 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shakeEffect: {fileID: 0}
   enemyHpBar: {fileID: 3100307805611226445, guid: 4e302f7d72adb63489b25b47cbc735b4, type: 3}
+  exp: 50
+  portal: {fileID: 0}
 --- !u!58 &2068483923548008649
 CircleCollider2D:
   m_ObjectHideFlags: 0
