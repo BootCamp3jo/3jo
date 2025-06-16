@@ -464,9 +464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveType: 0
-  moveSpeed: 3
+  moveTime: 3
   heigthOfPathCurve: 3
-  <isSelfRotating_Default>k__BackingField: 1
+  <isSelfRotating_Default>k__BackingField: 0
   <rotationSpeed>k__BackingField: 15
 --- !u!114 &8479761151971204441
 MonoBehaviour:

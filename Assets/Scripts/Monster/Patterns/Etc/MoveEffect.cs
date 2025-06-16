@@ -16,9 +16,10 @@ public class MoveEffect : MonoBehaviour
     public MoveType moveType;
     float rangeMax;
     // 이동 속력
-    public float moveSpeed = 3f;
+    public float moveTime = 3f;
     // 곡선일 때 중점의 높이
     public float heigthOfPathCurve = 3;
+    int loopCount, loopCountMax;
     #endregion
 
     #region SelfRotate
@@ -33,7 +34,7 @@ public class MoveEffect : MonoBehaviour
 
     Vector3 startPoint, midPoint, endPoint;
 
-    float t = 0f;
+    float progressRate = 0f;
     float totalLength;
     bool isMoving = false;
 
@@ -51,6 +52,8 @@ public class MoveEffect : MonoBehaviour
         startPoint_ref = patternData.startPointType;
         endPoint_ref = patternData.endPointType;
         rangeMax = patternData.range.y;
+
+        loopCountMax = (int)(moveTime / Time.fixedDeltaTime);
     }
 
 
@@ -58,7 +61,8 @@ public class MoveEffect : MonoBehaviour
     {
         // 다시 이동할 수 있도록 초기화
         isMoving = true;
-        t = 0f;
+        loopCount = 0;
+        progressRate = 0f;
         isSelfRotating = isSelfRotating_Default;
         //transform.position = startPoint;
 
@@ -169,23 +173,32 @@ public class MoveEffect : MonoBehaviour
     // 이동
     void Move()
     {
-        t += (moveSpeed * Time.fixedDeltaTime) / totalLength;
-        t = Mathf.Clamp01(t);
+        // 속력이 3 unit/s이야.. 0.02s 당 한번씩 경신.
+        // 둘을 곱하면 unit 단위가 나옴(1고정 업데이트 당 이동 거리)
+        // 이걸 이어 붙이면 이동 거리
+        // 그걸 totalLength로 나누면 0~1 사이 값으로 얼마나 진행되었는지 나옴..
+        // 생각은 맞는 것 같은데 멀리 가면 그게 잘 안되네.. 속력으로 할 게 아니라 목적지까지 이동 시간으로 해야 정상 동작할 듯
+
+        // 시간으로 바꿔서 생각해보자
+        // moveTime = 3s 안에 목적지에 도달해야 한다면? 0.02s로 나눠주면 고정 업데이트 몇번만에 가야하는지 나옴 >> loopCountMax
+        // 고정 루프 1번당 loopCount 쌓기 >> loopCount/loopCountMax = 진행도
+        progressRate = (float)(++loopCount) / loopCountMax;
+        progressRate = Mathf.Clamp01(progressRate); // 0~1 사이 값으로 제한하여 넘어가지 않도록
 
         Vector3 pos = Vector2.zero;
         switch (moveType)
         {
             case MoveType.Linear:
-                pos = Vector2.Lerp(startPoint, endPoint, t);
+                pos = Vector2.Lerp(startPoint, endPoint, progressRate);
                 break;
 
             case MoveType.Curve:
-                pos = CalculateCurvePos(t);
+                pos = CalculateCurvePos(progressRate);
                 break;
         }
 
         transform.position = pos;
-        if (t >= 1f)
+        if (progressRate >= 1f)
             isMoving = false;
     }
 

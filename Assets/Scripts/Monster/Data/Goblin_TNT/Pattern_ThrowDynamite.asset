@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fb30799f5930c948b6eba0f24e06b55, type: 3}
-  m_Name: Pattern_Throw3Dynamite
+  m_Name: Pattern_ThrowDynamite
   m_EditorClassIdentifier: 
   patternType: 2
   startPointType: 1
   endPointType: 0
+  <atkNumForOnce>k__BackingField: 1
   <atkCoefficient>k__BackingField: 1
   <range>k__BackingField:
     x: 1.5
-    y: 3
-  <delay>k__BackingField: 1
+    y: 5
+  <delay>k__BackingField: 0.1
   <lifeTime>k__BackingField: 3
   <attackTime>k__BackingField: 0.5
