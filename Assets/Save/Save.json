@@ -1,8 +1,17 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "Particle",
-  "KillCount": 0,
-  "achievements": {},
+  "curSceneName": "LobbyScene",
+  "KillCount": 100,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
+    },
+    "PentaKill": {
+      "achievementID": 1,
+      "unlocked": true
+    }
+  },
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "CurrentHealth": 100.0,
@@ -20,30 +29,11 @@
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.503168,
-        "posY": 8.135866,
+        "posX": -2.1,
+        "posY": -2.61,
         "posZ": 0.0
       },
       "npcDataQueues": {}
-    },
-    "Particle": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": -4.671134,
-        "posY": 9.48418,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {
-        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
-          {
-            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
-            "hp": 100.0,
-            "posX": 0.225913271,
-            "posY": 12.3074064,
-            "posZ": 0.0
-          }
-        ]
-      }
     }
   }
 }
