@@ -183,7 +183,7 @@ public abstract class MonsterBase : ANPC
     // 액션에 따라 자연스럽게 보이게 x플립
     void ChangeFlipX()
     {
-        spriteRenderer.flipX = (transform.position.x - target.transform.position.x > 0);
+        spriteRenderer.flipX = (target.transform.position.x < transform.position.x );
     }
 
     // 대미지 계산
@@ -254,7 +254,11 @@ public abstract class MonsterBase : ANPC
             animator.SetInteger(stateMachine.AnimatorParameters.attackCountRemainHash, randomAtkCountTmp);
         }
         else
+        {
+            // 랜덤 공격 횟수를 지정하지 않는 스킬은 1번만
+            animator.SetInteger(stateMachine.AnimatorParameters.attackCountRemainHash, 1);
             atkDelay = patterns[atkIndex].patternData.delay;
+        }
         // 공격 레이어 진입 >> 설정했던 공격 index로 진입
         // 설정에 실패하였다면 0번째 공격으로 자동 진입 >> 가장 넓은 사거리 영역에서 보편적으로 쓰일 수 있는 패턴을 0번째에 두면 베스트!
         animator.SetTrigger(stateMachine.AnimatorParameters.attackLayerHash);
@@ -279,13 +283,19 @@ public abstract class MonsterBase : ANPC
     // 공격 애니메이션 도중 패턴 생성 타이밍에 맞춰 생성
     public void CallPattern()
     {
-        // 애니메이터에서 공격 횟수가 남았다면, 카운터를 하나 줄이고 공격 1회 수행
-        int atkRemainCount = animator.GetInteger(stateMachine.AnimatorParameters.attackCountRemainHash);
-        if( atkRemainCount > 0 )
-            animator.SetInteger(stateMachine.AnimatorParameters.attackCountRemainHash, atkRemainCount-1);
-
-        // 오브젝트 풀에서 패턴 가져오기
-        ObjectPoolManager.Instance.GetObject(atkIndex, Vector2.zero, quaternion.identity);
+        // 한번에 공격하는 수
+        int atkInOneTime = patterns[atkIndex].patternData.atkNumForOnce;
+        // 남은 공격 수에서 그만큼 실행
+        for (int i = 0; i < atkInOneTime; i++)
+        {
+            // 애니메이터에서 공격 횟수가 남았다면, 카운터를 하나 줄이고 공격 1회 수행
+            int atkRemainCount = animator.GetInteger(stateMachine.AnimatorParameters.attackCountRemainHash);
+            if (atkRemainCount == 0)
+                break;
+            animator.SetInteger(stateMachine.AnimatorParameters.attackCountRemainHash, atkRemainCount - 1);
+            // 오브젝트 풀에서 패턴 가져오기
+            ObjectPoolManager.Instance.GetObject(atkIndex, Vector2.zero, quaternion.identity);
+        }
     }
     #endregion
 }

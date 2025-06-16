@@ -295,7 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 33554560
+    m_Bits: 33554432
 --- !u!1 &4750250369640817233
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 9064938725148264120}
   - component: {fileID: 719997906131743644}
   m_Layer: 0
-  m_Name: ThrowDynamitesAround
+  m_Name: Flee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfcd81349985bb418ca95f83cb03063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <patternData>k__BackingField: {fileID: 11400000, guid: 4c7847e3d3e69954ba6d506714961cf5, type: 2}
+  <patternData>k__BackingField: {fileID: 11400000, guid: 4fff01432ac17344db97211be7c073de, type: 2}
 --- !u!1 &8025852257570558254
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,9 +464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveType: 0
-  moveTime: 1
+  moveTime: 3
   heigthOfPathCurve: 3
-  <isSelfRotating_Default>k__BackingField: 1
+  <isSelfRotating_Default>k__BackingField: 0
   <rotationSpeed>k__BackingField: 15
 --- !u!114 &8479761151971204441
 MonoBehaviour:

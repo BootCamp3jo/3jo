@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 9064938725148264120}
   - component: {fileID: 719997906131743644}
   m_Layer: 0
-  m_Name: Throw3Dynamite
+  m_Name: ThrowDynamite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,8 +18,8 @@ MonoBehaviour:
   <atkNumForOnce>k__BackingField: 1
   <atkCoefficient>k__BackingField: 1
   <range>k__BackingField:
-    x: 1.5
-    y: 5
+    x: 3.9
+    y: 7
   <delay>k__BackingField: 0.1
   <lifeTime>k__BackingField: 3
   <attackTime>k__BackingField: 0.5
