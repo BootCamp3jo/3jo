@@ -5,6 +5,7 @@ using System;
 
 public abstract class MonsterBase : ANPC
 {
+    [SerializeField] private ObjectPoolManager objectPoolManager;
     [field: SerializeField] public MonsterData monsterData;
     Pattern[] patterns;
 
@@ -94,9 +95,9 @@ public abstract class MonsterBase : ANPC
     {
         // 패턴들을 모두 받아오기
         List<Pattern> patternList = new List<Pattern>();
-        for (int i = 0; i < ObjectPoolManager.Instance.prefabs.Length; i++)
+        for (int i = 0; i < objectPoolManager.prefabs.Length; i++)
         {
-            patternList.Add(ObjectPoolManager.Instance.prefabs[i].GetComponent<Pattern>());
+            patternList.Add(objectPoolManager.prefabs[i].GetComponent<Pattern>());
         }
         patterns = patternList.ToArray();
         // 실행 때 비활성화 상태의 패턴이 있다면 활성화
@@ -322,7 +323,7 @@ public abstract class MonsterBase : ANPC
                 break;
             animator.SetInteger(stateMachine.AnimatorParameters.attackCountRemainHash, atkRemainCount - 1);
             // 오브젝트 풀에서 패턴 가져오기
-            ObjectPoolManager.Instance.GetObject(atkIndex, Vector2.zero, quaternion.identity);
+            objectPoolManager.GetObject(atkIndex, Vector2.zero, quaternion.identity);
         }
     }
     #endregion
