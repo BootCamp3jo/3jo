@@ -1,10 +1,13 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
     [SerializeField] private string targetSceneName;
-    public bool IsPlayerInPortal = false;
+    public bool isPlayerInPortal = false;
     [SerializeField] public GameObject guidePanel;
+    [SerializeField] public List<Action> actionBeforeSceneTransitionList = new List<Action>();
 
     private void Start()
     {
@@ -15,7 +18,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player") && !string.IsNullOrEmpty(targetSceneName))
         {
-            IsPlayerInPortal = true;
+            isPlayerInPortal = true;
             guidePanel?.SetActive(true);
             //SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
@@ -25,7 +28,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player") && !string.IsNullOrEmpty(targetSceneName))
         {
-            IsPlayerInPortal = false;
+            isPlayerInPortal = false;
             guidePanel?.SetActive(false);
             //SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
@@ -33,8 +36,12 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && isPlayerInPortal)
         {
+            for (int i = 0; i < actionBeforeSceneTransitionList.Count; i++)
+            {
+                actionBeforeSceneTransitionList[i]?.Invoke();
+            }
             SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
     }
