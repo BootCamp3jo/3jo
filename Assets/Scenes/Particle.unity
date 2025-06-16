@@ -2332,7 +2332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1428079564808094703, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: attackDamage
-      value: 500
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6854451447265653402, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: shockWaveMaterial

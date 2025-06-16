@@ -40,7 +40,10 @@ public class BlinkEffect : MonoBehaviour
             }
         }
 
-        spriteRenderer.color = originalColor;
+        Color finalColor = spriteRenderer.color;
+        finalColor.a = 1f;
+        spriteRenderer.color = finalColor;
+
         blinkRoutine = null;
     }
 }
