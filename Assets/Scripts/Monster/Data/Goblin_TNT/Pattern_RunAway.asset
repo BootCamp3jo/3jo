@@ -28,8 +28,8 @@ MonoBehaviour:
     y: 5
   <patternRange>k__BackingField:
     c0:
-      x: -0.1
-      y: -0.1
+      x: -1
+      y: -1
     c1:
-      x: 0.1
-      y: 0.1
+      x: 1
+      y: 1

@@ -65,6 +65,10 @@ public abstract class MonsterBase : ANPC
     // 경험치 관련 << 추후 Data 에 넣어줘야함
     public int exp = 50;
 
+    // 포탈 관련
+    [SerializeField] private GameObject portal;
+
+
     protected override void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -73,6 +77,8 @@ public abstract class MonsterBase : ANPC
         hitEffect = GetComponent<HitEffect>();
         shakeEffect = GetComponent<ShakeEffect>();
         stateMachine = new MonsterStateMachine(this);
+
+        portal.SetActive(false);
 
         // 체력바 생성
         if (enemyHpBar != null)
@@ -139,6 +145,9 @@ public abstract class MonsterBase : ANPC
     {
         // 죽었다면 다른 동작을 하지 않도록
         if (isDead) return;
+        // 액션에 맞게 타겟 방향/반대 방향을 바라보도록
+        ChangeFlipX();
+
         // 요기서 현 상태의 Execute 실행!
         stateMachine.Execute();
     }
@@ -174,19 +183,17 @@ public abstract class MonsterBase : ANPC
     public void StartFlee()
     {
         isFlee = true;
-        ChangeFlipX();
     }
 
     public void FaceToTarget()
     {
         isFlee = false;
-        ChangeFlipX();
     }
 
     // 액션에 따라 자연스럽게 보이게 x플립
     void ChangeFlipX()
     {
-        spriteRenderer.flipX = (target.transform.position.x < transform.position.x );
+        spriteRenderer.flipX = isFlee ? (target.transform.position.x > transform.position.x) : (target.transform.position.x < transform.position.x );
     }
 
     // 대미지 계산
@@ -212,9 +219,19 @@ public abstract class MonsterBase : ANPC
         // 죽음 모션
         stateMachine.ChangeState(stateMachine.deathState);
         // 아이템 드랍 !!!
-        ExpManager.instance.SpawnExp(transform.position, exp);
-
-        // 다음 스테이지로의 문이 열림 !!!
+        ExpManager.instance.SpawnExp(
+               transform.position,
+               exp,
+               1.5f, // 추가 대기 시간
+               () =>
+               {
+                   OpenNextStagePortal(); // 🔑 원하는 함수 호출
+               }
+           );
+    }
+    private void OpenNextStagePortal()
+    {
+        portal.SetActive(true);
     }
 
     // 어떤 공격 패턴을 사용할지 정하고, 이에 맞는 애니메이션 전환

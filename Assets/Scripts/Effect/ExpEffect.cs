@@ -66,7 +66,6 @@ public class ExpEffect : MonoBehaviour
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         worldPos.z = 0;
 
-        Instantiate(expParticlePrefab, worldPos, Quaternion.identity);
-        expParticlePrefab.transform.SetParent(expBarImg.transform);
+        ParticleSystem particle = Instantiate(expParticlePrefab, worldPos, Quaternion.identity, expBarImg.transform);
     }
 }
