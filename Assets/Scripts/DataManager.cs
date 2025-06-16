@@ -83,14 +83,14 @@ public class DataManager : MonoSingleton<DataManager>
     [ContextMenu("AddKillCountHundred")]
     public void AddKillCountHundred()
     {
-        gameContext.addKillCount(100);
+        gameContext.AddKillCount(100);
     }
 
     [Conditional("UNITY_EDITOR")]
     [ContextMenu("SubKillCountHundred")]
     public void SubKillCountHundred()
     {
-        gameContext.addKillCount(-100);
+        gameContext.AddKillCount(-100);
     }
 
     [Conditional("UNITY_EDITOR")]

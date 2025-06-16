@@ -41,7 +41,7 @@ public class GameContext
         return saveData.difficultLevel;
     }
 
-    public void addKillCount(int count)
+    public void AddKillCount(int count)
     {
         int tmp = saveData.KillCount;
         saveData.KillCount += count;
