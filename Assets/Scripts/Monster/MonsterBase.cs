@@ -118,7 +118,7 @@ public abstract class MonsterBase : ANPC
             enemyHpBar = Instantiate(enemyHpBar);
             onHpChanged += enemyHpBar.SetHp;
         }
-        maxHp = npcData.hp;
+        maxHp = npcData.maxHP;
         // 게임매니저의 보스에 자신을 등록
         GameManager.Instance.InitBoss(this);
 
