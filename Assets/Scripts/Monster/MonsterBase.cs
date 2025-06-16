@@ -65,6 +65,10 @@ public abstract class MonsterBase : ANPC
     // 경험치 관련 << 추후 Data 에 넣어줘야함
     public int exp = 50;
 
+    // 포탈 관련
+    [SerializeField] private GameObject portal;
+
+
     protected override void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -73,6 +77,8 @@ public abstract class MonsterBase : ANPC
         hitEffect = GetComponent<HitEffect>();
         shakeEffect = GetComponent<ShakeEffect>();
         stateMachine = new MonsterStateMachine(this);
+
+        portal.SetActive(false);
 
         // 체력바 생성
         if (enemyHpBar != null)
@@ -212,9 +218,19 @@ public abstract class MonsterBase : ANPC
         // 죽음 모션
         stateMachine.ChangeState(stateMachine.deathState);
         // 아이템 드랍 !!!
-        ExpManager.instance.SpawnExp(transform.position, exp);
-
-        // 다음 스테이지로의 문이 열림 !!!
+        ExpManager.instance.SpawnExp(
+               transform.position,
+               exp,
+               1.5f, // 추가 대기 시간
+               () =>
+               {
+                   OpenNextStagePortal(); // 🔑 원하는 함수 호출
+               }
+           );
+    }
+    private void OpenNextStagePortal()
+    {
+        portal.SetActive(true);
     }
 
     // 어떤 공격 패턴을 사용할지 정하고, 이에 맞는 애니메이션 전환
