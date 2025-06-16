@@ -47,10 +47,10 @@ Material:
     - _Speed: 1
     - _WaveCount: 1
     - _WaveGap: 0.25
-    - _WaveTime: 0.5168996
-    - _WaveWidth: 0.5
+    - _WaveTime: 10.003439
+    - _WaveWidth: 0.05
     m_Colors:
-    - _Center: {r: 0.45918554, g: 0.7886767, b: 0, a: 0}
+    - _Center: {r: 0.54014254, g: 0.50083536, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
