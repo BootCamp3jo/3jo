@@ -71,8 +71,8 @@ MonoBehaviour:
         chatSound: {fileID: 8300000, guid: 07d5fa791e7c4ce4d978f109b53ad471, type: 3}
         lastState: 0
       - dialogueType: 2
-        portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
-        title: "\uC544\uB3CC"
+        portrait: {fileID: 4280352003601948487, guid: 83884a65e5b17b446a6ba4efbf345cc3, type: 3}
+        title: "\uD50C\uB808\uC774\uC5B4"
         content: "\uC774 \uACF3\uC774 \uC804\uC124\uC758 \uD0D1..."
         dialogueCode: 1
         isSelectDialogue: 0
@@ -144,8 +144,8 @@ MonoBehaviour:
         chatSound: {fileID: 0}
         lastState: 0
       - dialogueType: 2
-        portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
-        title: "\uC544\uB3CC"
+        portrait: {fileID: 4280352003601948487, guid: 83884a65e5b17b446a6ba4efbf345cc3, type: 3}
+        title: "\uD50C\uB808\uC774\uC5B4"
         content: "\uAE30\uB2E4\uB824.. \uACE7 \uC0B4\uB824\uC904\uAC8C \uB0B4 \uC560\uC644\uAC1C\uBBF8\uC57C..!!"
         dialogueCode: 3
         isSelectDialogue: 0
@@ -203,8 +203,8 @@ MonoBehaviour:
         chatSound: {fileID: 8300000, guid: 3443310a86f26d940aa4d7187999f917, type: 3}
         lastState: 0
       - dialogueType: 2
-        portrait: {fileID: 6934013284892070054, guid: a69f9e788982b8746a34ef183bb4aacf, type: 3}
-        title: "\uC544\uB3CC"
+        portrait: {fileID: 4280352003601948487, guid: 83884a65e5b17b446a6ba4efbf345cc3, type: 3}
+        title: "\uD50C\uB808\uC774\uC5B4"
         content: "\uC785\uC7A5..!!"
         dialogueCode: 8
         isSelectDialogue: 0
@@ -217,4 +217,4 @@ MonoBehaviour:
       cutImage: {fileID: 0}
       delayTime: 0
       cutSound: {fileID: 0}
-  nextScene: StartScene
+  nextScene: MainScene
