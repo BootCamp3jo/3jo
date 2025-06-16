@@ -1,21 +1,22 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoSingleton<SceneLoader>
 {
     GameContext gameContext;
     private static SceneLoader instance;
     [SerializeField] private List<string> abortSceneNameList = new();
     private HashSet<string> abortSceneNames = new();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
     }
 
-    private void Start()
+    protected void Start()
     {
         if (instance != null)
         {
@@ -28,39 +29,51 @@ public class SceneLoader : MonoBehaviour
         {
             abortSceneNames.Add(name);
         }
-        gameContext = GameManager.instance.gameContext;
+        gameContext = DataManager.Instance.gameContext;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    protected void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (abortSceneNames.Contains(scene.name))
         {
             return;
         }
+
         if (gameContext.IsSceneSaved(scene.name))
         {
-
-            SceneBundle saveData = gameContext.saveData.sceneBundles[scene.name];
-            while (saveData.npcDataQueue.Count > 0)
+            if (!gameContext.saveData.sceneBundles.TryGetValue(scene.name, out var sceneBundle))
             {
-                NPCData npcData = saveData.npcDataQueue.Dequeue();
-                GameObject prefab = Resources.Load<GameObject>(npcData.prefabPath);
-                if (prefab != null)
+                Logger.LogWarning($"SceneBundle not found for scene: {scene.name}");
+                return;
+            }
+
+            foreach (var kvp in sceneBundle.npcDataQueues)
+            {
+                Queue<NPCData> queue = kvp.Value;
+                while (queue.Count > 0)
                 {
-                    GameObject npc = GameObject.Instantiate(prefab);
-                    npc.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
-                    if(npc.TryGetComponent<NPC>(out NPC _npc))
+                    NPCData npcData = queue.Dequeue();
+
+                    GameObject prefab = Resources.Load<GameObject>(npcData.prefabPath);
+                    if (prefab != null)
                     {
-                        _npc.isCreatedBySceneLoader = true;
-                        _npc.npcData = npcData;
+                        GameObject npc = GameObject.Instantiate(prefab);
+                        npc.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
+
+                        if (npc.TryGetComponent<ANPC>(out ANPC _npc))
+                        {
+                            _npc.isCreatedBySceneLoader = true;
+                            _npc.npcData = npcData;
+                        }
                     }
-                }
-                else
-                {
-                    Logger.LogError($"Prefab not found at path: {npcData.prefabPath}");
+                    else
+                    {
+                        Logger.LogError($"Prefab not found at path: {npcData.prefabPath}");
+                    }
                 }
             }
         }
     }
+
 }
