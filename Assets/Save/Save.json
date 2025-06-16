@@ -13,7 +13,7 @@
     "MaxHealth": 100,
     "MaxMana": 100,
     "MaxLevel": 100,
-    "MaxExperience": 2400,
+    "MaxExperience": 100,
     "MaxCoin": 999999
   },
   "sceneBundles": {
