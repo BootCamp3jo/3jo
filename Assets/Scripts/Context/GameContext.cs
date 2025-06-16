@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class GameContext
 {
@@ -16,13 +15,19 @@ public class GameContext
     private Dictionary<AchievementID, AchievementSO> achievementSOs = 
         new Dictionary<AchievementID, AchievementSO>();
 
-    public string currentSceneName = null;
-    public APlayer player = null;
-    public PlayerData playerData = null;
-    public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
-    public Dictionary<string, Queue<NPCData>> npcDataQueues = new Dictionary<string, Queue<NPCData>>();
-    public Dictionary<ANPC, NPCData> npcDatas = new Dictionary<ANPC, NPCData>();
+    #region Save Option
     public bool dontSaveCurSceneBundle = false;
+    #endregion  
+
+    #region Object In Scene
+    public APlayer player = null;
+    public HashSet<ANPC> npcs = new HashSet<ANPC>();
+    #endregion
+
+    #region Temp Scene Data
+    public PlayerStateInScene playerStateInScene = new PlayerStateInScene();
+    public Dictionary<ANPC, NPCData> npcDatas = new Dictionary<ANPC, NPCData>();
+    #endregion
 
     #region API
     // 난이도 선택 옵션
@@ -52,7 +57,7 @@ public class GameContext
 
     public void ClearCurSceneBundle()
     {
-        saveData.sceneBundles.Remove(currentSceneName);
+        saveData.sceneBundles.Remove(saveData.curSceneName);
     }
 
     public void DontSaveCurSceneBundle()
@@ -156,13 +161,23 @@ public class GameContext
 
     public void ClearBeforeLoad()
     {
-        npcDataQueues.Clear();
         npcDatas.Clear();
+        if (player != null)
+        {
+            GameObject.Destroy(player.gameObject);
+        }
+        foreach (ANPC anpc in npcDatas.Keys)
+        {
+            if (anpc != null)
+            {
+                GameObject.Destroy(anpc.gameObject);
+            }
+        }
     }
 
     public void SetCurrentScene(string sceneName)
     {
-        currentSceneName = sceneName;
+        saveData.curSceneName = sceneName;
     }
 
     public void SaveCurrentScene()
@@ -181,7 +196,7 @@ public class GameContext
         if (!dontSaveCurSceneBundle)
         {
             Dictionary<string, Queue<NPCData>> tempNPCDataQueues = new Dictionary<string, Queue<NPCData>>();
-            foreach(KeyValuePair<ANPC, NPCData> pair in npcDatas)
+            foreach (KeyValuePair<ANPC, NPCData> pair in npcDatas)
             {
                 string prefabPath = pair.Value.prefabPath;
                 if (!tempNPCDataQueues.ContainsKey(prefabPath))
@@ -195,32 +210,29 @@ public class GameContext
                 playerStateInScene = playerStateInScene,
                 npcDataQueues = tempNPCDataQueues
             };
-            if (saveData.sceneBundles.ContainsKey(currentSceneName))
+            if (saveData.sceneBundles.ContainsKey(saveData.curSceneName))
             {
-                saveData.sceneBundles[currentSceneName] = bundle;
+                saveData.sceneBundles[saveData.curSceneName] = bundle;
             }
             else
             {
-                saveData.sceneBundles.Add(currentSceneName, bundle);
+                saveData.sceneBundles.Add(saveData.curSceneName, bundle);
             }
         }
         else
         {
             dontSaveCurSceneBundle = false;
         }
-        saveData.curSceneName = currentSceneName;
-        saveData.playerData = playerData;
     }
 
     public void LoadCurrentSceneData()
     {
-        string sceneName = currentSceneName;
+        string sceneName = saveData.curSceneName;
 
         if (saveData.sceneBundles.TryGetValue(sceneName, out var bundle))
         {
             playerStateInScene = bundle.playerStateInScene ?? new PlayerStateInScene();
             npcDatas.Clear();
-            npcDataQueues = new Dictionary<string, Queue<NPCData>>(bundle.npcDataQueues);
 
             Logger.Log($"[GameContext] Loaded existing SceneBundle for: {sceneName}");
         }

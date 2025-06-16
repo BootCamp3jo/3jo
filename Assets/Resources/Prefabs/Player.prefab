@@ -521,6 +521,7 @@ MonoBehaviour:
   dontNeedSave: 1
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
+  playerStatHandler: {fileID: 0}
 --- !u!114 &8394472092896199471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33163c40d1688449b6bbba8c9cdbff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shockWaveMaterial: {fileID: 0}
   footPoint: {fileID: 5590830775526365090}
 --- !u!114 &6979582532826847524
 MonoBehaviour:

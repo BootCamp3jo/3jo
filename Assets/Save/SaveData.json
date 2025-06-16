@@ -1,13 +1,13 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "MonsterTestScene",
+  "curSceneName": "SceneA",
   "KillCount": 0,
   "achievements": {},
   "playerData": null,
   "sceneBundles": {
     "SceneA": {
       "playerStateInScene": {
-        "isPlayerExist": true,
+        "isPlayerExist": false,
         "posX": 0.0,
         "posY": 0.0,
         "posZ": 0.0
@@ -18,14 +18,14 @@
             "prefabPath": "Prefabs/NPC1",
             "hp": 0.0,
             "posX": 6.0,
-            "posY": 0.0,
+            "posY": 2.62,
             "posZ": 0.0
           },
           {
             "prefabPath": "Prefabs/NPC1",
             "hp": 0.0,
             "posX": -3.0,
-            "posY": 3.0,
+            "posY": -1.51,
             "posZ": 0.0
           }
         ]
@@ -33,7 +33,7 @@
     },
     "SceneB": {
       "playerStateInScene": {
-        "isPlayerExist": true,
+        "isPlayerExist": false,
         "posX": 0.0,
         "posY": 0.0,
         "posZ": 0.0
@@ -50,7 +50,7 @@
         ]
       }
     },
-    "MonsterTestScene": {
+    "SceneC": {
       "playerStateInScene": {
         "isPlayerExist": true,
         "posX": 0.0,
