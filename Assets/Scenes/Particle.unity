@@ -676,6 +676,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4578303306399900197, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      propertyPath: expEffect
+      value: 
+      objectReference: {fileID: 1568332299}
     - target: {fileID: 5287795668887491338, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -846,7 +850,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6353479460741060315, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1546226496}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 267810809327430156, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1568332299}
   m_SourcePrefab: {fileID: 100100000, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
 --- !u!1 &687164071
 GameObject:
@@ -1551,9 +1558,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1568332296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1568332295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 267810809327430156, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+  m_PrefabInstance: {fileID: 677417976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1568332296 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6353479460741060315, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+  m_PrefabInstance: {fileID: 677417976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1568332299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568332295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590e9dc6a11c53d4cbf0d8688b28c322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expBarImg: {fileID: 1282601523}
+  expParticlePrefab: {fileID: 4545664314590135333, guid: cf79188ba4206eb4caf295679610b2c8, type: 3}
+  backgroundRect: {fileID: 1617882149}
+--- !u!224 &1617882149 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1547302538784569424, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
   m_PrefabInstance: {fileID: 677417976}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1635738557

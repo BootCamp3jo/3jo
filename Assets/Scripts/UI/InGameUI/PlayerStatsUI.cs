@@ -15,6 +15,8 @@ public class PlayerStatsUI : MonoBehaviour
     [SerializeField] private Image expBar;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI coinText;
+    // 경험치 이펙트
+    [SerializeField] private ExpEffect expEffect;
 
     private void Start()
     {
@@ -48,6 +50,8 @@ public class PlayerStatsUI : MonoBehaviour
     {
         if (playerData.MaxExperience > 0f)
         {
+            expEffect.AnimateBarPop();
+            expEffect.SpawnParticleAt();
             expBar.fillAmount = Mathf.Clamp01(playerData.Experience / playerData.MaxExperience);
         }
     }
