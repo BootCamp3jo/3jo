@@ -170,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 4782247862504779197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.898, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,7 +474,7 @@ MonoBehaviour:
     _coin: 0
   playerMovement: {fileID: 8795419104019595138}
   playerAnimationHandler: {fileID: 5795661413467567411}
-  playerCombatHandler: {fileID: 0}
+  playerCombatHandler: {fileID: 4325494764128292700}
   playerStatHandler: {fileID: 8394472092896199471}
   playerEffectController: {fileID: 6854451447265653402}
 --- !u!114 &8795419104019595138
@@ -516,9 +516,9 @@ MonoBehaviour:
     _currentHealth: 100
     _currentMana: 100
     _level: 1
-    _experience: 100
+    _experience: 0
     _coin: 100
-  dontNeedSave: 0
+  dontNeedSave: 1
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
   playerStatHandler: {fileID: 0}
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33163c40d1688449b6bbba8c9cdbff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shockWaveMaterial: {fileID: 0}
+  shockWaveMaterial: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
   footPoint: {fileID: 5590830775526365090}
 --- !u!114 &6979582532826847524
 MonoBehaviour:
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 254019031439965307, guid: 6c7beac9503e2d6418e701728bceb075, type: 3}
-  spawnInterval: 0.01
+  spawnInterval: 0.03
   ghostLifetime: 0.4
   ghostColor: {r: 1, g: 1, b: 1, a: 0.5}
   playerSprite: {fileID: 11631316236274373}
@@ -763,9 +763,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 5991898878584430392}
-  hitRadius: 0
+  hitRadius: 0.3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 10
+  attackDamage: 20
   isAttacking: 0
