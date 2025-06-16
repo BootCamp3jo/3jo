@@ -474,7 +474,7 @@ MonoBehaviour:
     _coin: 0
   playerMovement: {fileID: 8795419104019595138}
   playerAnimationHandler: {fileID: 5795661413467567411}
-  playerCombatHandler: {fileID: 1428079564808094703}
+  playerCombatHandler: {fileID: 0}
   playerStatHandler: {fileID: 8394472092896199471}
   playerEffectController: {fileID: 6854451447265653402}
 --- !u!114 &8795419104019595138
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 11631316236274373}
   - component: {fileID: 8153134812116897574}
   - component: {fileID: 5795661413467567411}
-  - component: {fileID: 1428079564808094703}
+  - component: {fileID: 4325494764128292700}
   m_Layer: 7
   m_Name: Player_Visual
   m_TagString: Untagged
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8153134812116897574}
---- !u!114 &1428079564808094703
+--- !u!114 &4325494764128292700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -756,11 +756,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9070524762760038767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085ec5db7d6a9504cbec8268497cf4ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e77fc718472ef94d9124c0ac76fad7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 5991898878584430392}
-  hitRadius: 0.3
+  attackPoint: {fileID: 0}
+  hitRadius: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8

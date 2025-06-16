@@ -10,7 +10,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     [SerializeField] public PlayerData playerData;
     [SerializeField] public PlayerMovement playerMovement;
     [SerializeField] public PlayerAnimationHandler playerAnimationHandler;
-    [SerializeField] public PlayerCombatHandler playerCombatHandler;
+    [SerializeField] public PlayerDamageDealer playerCombatHandler;
     [SerializeField] public PlayerStatHandler playerStatHandler;
     [SerializeField] public PlayerEffectController playerEffectController;
 
@@ -25,7 +25,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         playerData = player.PlayerData;
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
-        playerCombatHandler = GetComponent<PlayerCombatHandler>();
+        playerCombatHandler = GetComponent<PlayerDamageDealer>();
         playerStatHandler = GetComponent<PlayerStatHandler>();
         playerEffectController = GetComponent<PlayerEffectController>();
     }
