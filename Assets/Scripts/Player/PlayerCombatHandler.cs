@@ -1,3 +1,4 @@
+using npcDialogue;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class PlayerCombatHandler : MonoBehaviour
     public int attackDamage;
 
     private HashSet<MonsterBase> currentTargets = new HashSet<MonsterBase>();
+    private HashSet<DialogueNpc> currentNpc = new HashSet<DialogueNpc>();
     private bool isAttacking = false;
 
     private void Update()
@@ -41,6 +43,10 @@ public class PlayerCombatHandler : MonoBehaviour
             {
                 currentTargets.Add(enemy);
             }
+            if (hit.TryGetComponent<DialogueNpc>(out DialogueNpc npc))
+            {
+                currentNpc.Add(npc);
+            }
         }
     }
 
@@ -50,6 +56,11 @@ public class PlayerCombatHandler : MonoBehaviour
         {
             target.GetDamage(attackDamage);
             Debug.Log($"Hit {target.name} for {attackDamage} damage.");
+        }
+        foreach (var npc in currentNpc)
+        {
+            npc.InteractiveNPC();
+
         }
 
         currentTargets.Clear();
