@@ -40,6 +40,9 @@ public class PatternData : ScriptableObject
     // 시작, 끝 위치
     public PointType startPointType, endPointType;
 
+    // 한번에 나가는 이펙트..그러니까 1번의 애니메이션 재생 당 나가는 공격의 수
+    [field: SerializeField] public int atkNumForOnce { get; private set; }
+
     // 공격력 계수(몬스터 공격력 * 계수 = 최종 대미지, 단, 플레이어가 HP를 int로 쓴다면 반올림)
     [field: SerializeField] public float atkCoefficient { get; private set; }
     // 해당 패턴이 공격 가능한 거리(최소, 최대)

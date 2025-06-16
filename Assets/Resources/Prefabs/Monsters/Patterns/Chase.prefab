@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 5655933082383704556}
   - component: {fileID: 8823040405373350103}
   - component: {fileID: 3506016390486100909}
-  - component: {fileID: 1472480023690177796}
   m_Layer: 0
   m_Name: WarningRange_Max
   m_TagString: Untagged
@@ -296,23 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
---- !u!114 &1472480023690177796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3230990547889172073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e6ccfa051a6b941bc32f244b77f680, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shockWaveMaterial: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
-  speed: 1
-  width: 0.05
-  duration: 10
+    m_Bits: 33554432
 --- !u!1 &4750250369640817233
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +307,7 @@ GameObject:
   - component: {fileID: 9064938725148264120}
   - component: {fileID: 719997906131743644}
   m_Layer: 0
-  m_Name: Throw3Dynamite
+  m_Name: Chase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfcd81349985bb418ca95f83cb03063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <patternData>k__BackingField: {fileID: 11400000, guid: ef18a185fe422314ab7edc03de73c5b2, type: 2}
+  <patternData>k__BackingField: {fileID: 11400000, guid: 4fff01432ac17344db97211be7c073de, type: 2}
 --- !u!1 &8025852257570558254
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,9 +464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveType: 0
-  moveSpeed: 3
+  moveTime: 3
   heigthOfPathCurve: 3
-  <isSelfRotating_Default>k__BackingField: 1
+  <isSelfRotating_Default>k__BackingField: 0
   <rotationSpeed>k__BackingField: 15
 --- !u!114 &8479761151971204441
 MonoBehaviour:
