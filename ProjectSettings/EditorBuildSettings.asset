@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MonsterTestScene.unity
     guid: 2bf40bcfe02ea764dbe2176620585459
+  - enabled: 1
+    path: Assets/Scenes/Particle.unity
+    guid: e082ba778b26b42498d9f74e5222b973
   m_configObjects: {}
