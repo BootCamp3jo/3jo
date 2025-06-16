@@ -25,9 +25,6 @@ public abstract class MonsterBase : ANPC
     // 플레이어가 반응할 시간을 주기 위해 초기값
     public float atkDelay { get; private set; } = 1f;
 
-    // 쥬금 상태
-    bool isDead;
-
     // 움직일 때 true면 도망, false면 추격
     bool isFlee;
 
@@ -113,13 +110,14 @@ public abstract class MonsterBase : ANPC
     {
 
         base.Start();
+        maxHp = npcData.maxHP;
         // 체력바 생성
         if (enemyHpBar != null)
         {
             enemyHpBar = Instantiate(enemyHpBar);
             onHpChanged += enemyHpBar.SetHp;
+            onHpChanged?.Invoke(npcData.hp / maxHp);
         }
-        maxHp = npcData.maxHP;
         // 게임매니저의 보스에 자신을 등록
         GameManager.Instance.InitBoss(this);
 
@@ -146,12 +144,17 @@ public abstract class MonsterBase : ANPC
             if(distPoweredBoundary.y < tmpRangePow.y)
                 distPoweredBoundary.y = tmpRangePow.y;
         }
+        if (npcData.isDead)
+        {
+            stateMachine.ChangeState(stateMachine.deathState);
+            OpenNextStagePortal();
+        }
     }
 
     private void Update()
     {
         // 죽었다면 다른 동작을 하지 않도록
-        if (isDead) return;
+        if (npcData.isDead) return;
         // 액션에 맞게 타겟 방향/반대 방향을 바라보도록
         ChangeFlipX();
 
@@ -206,7 +209,7 @@ public abstract class MonsterBase : ANPC
     // 대미지 계산
     public void GetDamage(float damage)
     {
-        if (isDead) return;
+        if (npcData.isDead) return;
 
         hitEffect.PlayHitEffect(1);
         flashEffect.TriggerFlash();
@@ -222,7 +225,7 @@ public abstract class MonsterBase : ANPC
     protected void Dead()
     {
         // 사망 상태로 전환
-        isDead = true;
+        npcData.isDead = true;
         // 죽음 모션
         stateMachine.ChangeState(stateMachine.deathState);
         // 아이템 드랍 !!!
@@ -235,6 +238,7 @@ public abstract class MonsterBase : ANPC
                    OpenNextStagePortal(); // 🔑 원하는 함수 호출
                }
            );
+        DataManager.Instance?.gameContext?.AddKillCount( 1 );
     }
     private void OpenNextStagePortal()
     {
