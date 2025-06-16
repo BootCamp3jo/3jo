@@ -100,6 +100,8 @@ public class RangeAttack : MonoBehaviour
         yield return new WaitForSeconds(AttackRemainTime);
         // 다시 트리거를 끄기
         trigger.enabled = false;
+
+        Destroy(transform.parent.gameObject);
     }
 
     void ChangeMarkEnable(bool isEnable)

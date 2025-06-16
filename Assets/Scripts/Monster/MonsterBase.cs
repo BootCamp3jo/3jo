@@ -57,6 +57,8 @@ public abstract class MonsterBase : ANPC
     [Header("피격 관련(진동)")]
     [SerializeField] private ShakeEffect shakeEffect;
 
+    private CircleMaskEffectController circleMask;
+
     // 적 체력 관련
     private float maxHp;
     public event Action<float> onHpChanged;
@@ -121,7 +123,7 @@ public abstract class MonsterBase : ANPC
         maxHp = npcData.maxHP;
         // 게임매니저의 보스에 자신을 등록
         GameManager.Instance.InitBoss(this);
-
+        circleMask = CircleMaskEffectController.Instance;
         // 시작할 때 현재 HP를 최대 HP로 >> ANPC에서 할당
 
         atk = monsterData.atk;
@@ -156,6 +158,8 @@ public abstract class MonsterBase : ANPC
 
         // 요기서 현 상태의 Execute 실행!
         stateMachine.Execute();
+
+        AdjustAnimatorSpeed();
     }
 
     protected override void OnDestroy()
@@ -306,6 +310,27 @@ public abstract class MonsterBase : ANPC
         isAttacking = false;
         stateMachine.ChangeState(stateMachine.idleState);
     }
+
+    private void AdjustAnimatorSpeed()
+    {
+        if (circleMask == null || animator == null) return;
+
+        // 보스 위치 -> 뷰포트로 변환
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        Vector2 pos2D = new Vector2(viewportPos.x, viewportPos.y);
+
+        float distance = Vector2.Distance(pos2D, circleMask.CurrentCenter);
+
+        if (distance <= circleMask.CurrentRadius)
+        {
+            animator.speed = 0.3f; // 느리게
+        }
+        else
+        {
+            animator.speed = 1f; // 원래 속도
+        }
+    }
+
 
     #region Animation Event Methods
     // 공격 애니메이션 도중 패턴 생성 타이밍에 맞춰 생성
