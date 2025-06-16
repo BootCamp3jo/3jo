@@ -42,7 +42,7 @@ public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
             // 해당 풀에 남은 게 없다면, 새로 만들어서 풀에 돌아가는 메서드를 넣어주기
             else
             {
-                obj = Instantiate(prefabs[prefabIndex], transform);
+                obj = Instantiate(prefabs[prefabIndex]);
                 if (obj.TryGetComponent(out IPoolable poolable))
                     poolable.Init(x => ReturnObject(prefabIndex, x));
             }
