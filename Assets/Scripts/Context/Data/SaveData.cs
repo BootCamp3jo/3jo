@@ -17,7 +17,7 @@ public class SaveData
     public string curSceneName;
     public int KillCount = 0;
     public Dictionary<AchievementID, AchievementData> achievements = new Dictionary<AchievementID, AchievementData>();
-    public PlayerData playerData = new();
+    public PlayerData playerData = null;
     public Dictionary<string, SceneBundle> sceneBundles = new Dictionary<string, SceneBundle>();
 }
 

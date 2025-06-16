@@ -518,7 +518,7 @@ MonoBehaviour:
     _level: 1
     _experience: 100
     _coin: 100
-  dontNeedSave: 1
+  dontNeedSave: 0
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
   playerStatHandler: {fileID: 0}
@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2819f2d768c7e0e47891e1959c99b85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincibleDuration: 1.5
 --- !u!114 &6854451447265653402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,3 +768,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 10
+  isAttacking: 0

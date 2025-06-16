@@ -1,0 +1,48 @@
+{
+  "difficultLevel": 0,
+  "curSceneName": "Particle",
+  "KillCount": 100,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
+    },
+    "PentaKill": {
+      "achievementID": 1,
+      "unlocked": true
+    }
+  },
+  "playerData": {
+    "prefabPath": "Prefabs/Player",
+    "CurrentHealth": 100.0,
+    "CurrentMana": 100.0,
+    "Level": 1,
+    "Experience": 100.0,
+    "Coin": 100,
+    "MaxHealth": 100,
+    "MaxMana": 100,
+    "MaxLevel": 100,
+    "MaxExperience": 100,
+    "MaxCoin": 999999
+  },
+  "sceneBundles": {
+    "LobbyScene": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -5.97277,
+        "posY": 8.137034,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
+    },
+    "Particle": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -6.72792053,
+        "posY": 1.385158,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
+    }
+  }
+}

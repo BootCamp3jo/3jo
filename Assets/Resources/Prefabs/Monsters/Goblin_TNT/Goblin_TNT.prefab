@@ -133,12 +133,14 @@ MonoBehaviour:
     posY: 0
     posZ: 0
   isCreatedBySceneLoader: 0
-  dontNeedSave: 1
+  dontNeedSave: 0
   monsterData: {fileID: 11400000, guid: 6ac5826bc3abba740b20dad9a9f2fb5b, type: 2}
   flashEffect: {fileID: 0}
   hitEffect: {fileID: 0}
   shakeEffect: {fileID: 0}
   enemyHpBar: {fileID: 3100307805611226445, guid: 4e302f7d72adb63489b25b47cbc735b4, type: 3}
+  exp: 50
+  portal: {fileID: 0}
 --- !u!58 &2068483923548008649
 CircleCollider2D:
   m_ObjectHideFlags: 0

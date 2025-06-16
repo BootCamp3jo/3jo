@@ -614,7 +614,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 979315278}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
         m_MethodName: OnLoadScene
         m_Mode: 1
@@ -673,10 +673,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 979315273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a28216f643d5ef4cad8a7aa561236cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 387b63d02ba980a4ebbe59c5d3beccba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: LobbyScene
+  defaultNextScene: LobbyScene
 --- !u!1 &1301715238
 GameObject:
   m_ObjectHideFlags: 0
