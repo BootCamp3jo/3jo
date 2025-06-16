@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -7,16 +6,9 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !string.IsNullOrEmpty(targetSceneName))
         {
-            if (!string.IsNullOrEmpty(targetSceneName))
-            {
-                SceneManager.LoadScene(targetSceneName);
-            }
-            else
-            {
-                Debug.LogWarning("Target scene name is not set on Portal.");
-            }
+            SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
     }
 }
