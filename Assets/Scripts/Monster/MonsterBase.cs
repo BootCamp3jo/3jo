@@ -139,6 +139,9 @@ public abstract class MonsterBase : ANPC
     {
         // 죽었다면 다른 동작을 하지 않도록
         if (isDead) return;
+        // 액션에 맞게 타겟 방향/반대 방향을 바라보도록
+        ChangeFlipX();
+
         // 요기서 현 상태의 Execute 실행!
         stateMachine.Execute();
     }
@@ -174,19 +177,17 @@ public abstract class MonsterBase : ANPC
     public void StartFlee()
     {
         isFlee = true;
-        ChangeFlipX();
     }
 
     public void FaceToTarget()
     {
         isFlee = false;
-        ChangeFlipX();
     }
 
     // 액션에 따라 자연스럽게 보이게 x플립
     void ChangeFlipX()
     {
-        spriteRenderer.flipX = (target.transform.position.x < transform.position.x );
+        spriteRenderer.flipX = isFlee ? (target.transform.position.x > transform.position.x) : (target.transform.position.x < transform.position.x );
     }
 
     // 대미지 계산

@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfcd81349985bb418ca95f83cb03063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <patternData>k__BackingField: {fileID: 11400000, guid: 4fff01432ac17344db97211be7c073de, type: 2}
+  <patternData>k__BackingField: {fileID: 11400000, guid: f3f02ba413645a446b0a48d907750858, type: 2}
 --- !u!1 &8025852257570558254
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveType: 0
-  moveTime: 3
+  moveTime: 0.5
   heigthOfPathCurve: 3
   <isSelfRotating_Default>k__BackingField: 0
   <rotationSpeed>k__BackingField: 15
