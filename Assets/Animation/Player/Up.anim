@@ -631,7 +631,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.43
-    functionName: CheckHit
+    functionName: Attack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -652,7 +652,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.1
-    functionName: CheckHit
+    functionName: Attack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
