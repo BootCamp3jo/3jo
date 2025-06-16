@@ -22,10 +22,14 @@ public class RangeAttack : MonoBehaviour
 
     SpriteRenderer[] spriteRenderers;
 
+    // 충격파 효과
+    ShockWaveEffect waveEffect;
+
     private void Awake()
     {
         trigger = GetComponent<Collider2D>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+        waveEffect = GetComponent<ShockWaveEffect>();
         PatternData patternData = GetComponentInParent<Pattern>(true).patternData;
         if (patternData != null) 
         {
@@ -85,6 +89,9 @@ public class RangeAttack : MonoBehaviour
 
     IEnumerator AttackAndEnd()
     {
+        // 연출
+        if (waveEffect != null)
+            waveEffect.TriggerShockWave(transform);
         // 트리거를 켜서 공격!
         trigger.enabled = true;
         // 공격 범위가 남아있으면 안되니 영역 표시 오브젝트 비활성화

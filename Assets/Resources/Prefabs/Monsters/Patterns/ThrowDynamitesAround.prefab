@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 5655933082383704556}
   - component: {fileID: 8823040405373350103}
   - component: {fileID: 3506016390486100909}
+  - component: {fileID: 1974869675760386233}
   m_Layer: 0
   m_Name: WarningRange_Max
   m_TagString: Untagged
@@ -296,7 +297,22 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 33554560
-  Damage: 20
+--- !u!114 &1974869675760386233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230990547889172073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e6ccfa051a6b941bc32f244b77f680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shockWaveMaterial: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
+  speed: 1
+  width: 0.5
+  duration: 1
 --- !u!1 &4750250369640817233
 GameObject:
   m_ObjectHideFlags: 0

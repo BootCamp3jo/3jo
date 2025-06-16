@@ -1624,7 +1624,7 @@ MonoBehaviour:
   hitEffect: {fileID: 1682182604}
   shakeEffect: {fileID: 1682182606}
   waveGrayEffectManager: {fileID: 1858209005}
-  barFade: {fileID: 1214348790}
+  barFade: {fileID: 0}
   enemyHpBar: {fileID: 0}
 --- !u!114 &1682182600
 MonoBehaviour:
@@ -2226,22 +2226,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: maxRadius
-      value: 0.644
-      objectReference: {fileID: 0}
-    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: holdDuration
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: expandDuration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 990613120042443413, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: shrinkDuration
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1037089495620979984, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.1
@@ -2282,25 +2266,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1428079564808094703, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: attackDamage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6854451447265653402, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: shockWaveMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 597e91ae23213304cbee14fc321aa0bb, type: 2}
-    - target: {fileID: 7694232084275543480, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: dontNeedSave
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8359704718906564383, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8359704718906564383, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
