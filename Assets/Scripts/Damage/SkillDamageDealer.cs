@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SkillDamageDealer : A_BaseDamageDealer
 {
+    public GameObject rootGO;
+
     protected override void Update()
     {
         base.Update();
@@ -27,5 +29,10 @@ public class SkillDamageDealer : A_BaseDamageDealer
                 Debug.Log($"Hit {enemy.name} for {attackDamage} damage.");
             }
         }
+    }
+
+    public void DestorySelf()
+    {
+        Destroy(rootGO);
     }
 }

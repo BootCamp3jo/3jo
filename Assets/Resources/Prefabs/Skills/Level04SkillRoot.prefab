@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d306e7c2401c2f646a463983c5cb4175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 4559922528063623787}
   damage: 20
   dealDamageInterval: 0.05
   targetLayer:
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d306e7c2401c2f646a463983c5cb4175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 4559922528063623787}
   damage: 20
   dealDamageInterval: 0.05
   targetLayer:
@@ -406,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d306e7c2401c2f646a463983c5cb4175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 4559922528063623787}
   damage: 20
   dealDamageInterval: 0.05
   targetLayer:
@@ -532,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d306e7c2401c2f646a463983c5cb4175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 4559922528063623787}
   damage: 20
   dealDamageInterval: 0.05
   targetLayer:

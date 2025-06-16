@@ -72,6 +72,8 @@ AnimationClip:
       value: {fileID: 1728653360, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
     - time: 0.96666664
       value: {fileID: -141486900, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
+    - time: 0.98333335
+      value: {fileID: -141486900, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -120,12 +122,13 @@ AnimationClip:
     - {fileID: 793174494, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
     - {fileID: 1728653360, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
     - {fileID: -141486900, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
+    - {fileID: -141486900, guid: 4d46ea8c776af1947a41201a962a9ed9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.9833333
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -154,6 +157,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.96666664
     functionName: StopDamage01
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.98333335
+    functionName: DestorySelf
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

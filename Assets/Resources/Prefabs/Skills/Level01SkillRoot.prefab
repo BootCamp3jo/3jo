@@ -127,6 +127,7 @@ MonoBehaviour:
     m_Bits: 8
   attackDamage: 20
   isAttacking: 0
+  rootGO: {fileID: 5751081566078165181}
 --- !u!1 &615525210074320321
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +286,7 @@ MonoBehaviour:
     m_Bits: 8
   attackDamage: 20
   isAttacking: 0
+  rootGO: {fileID: 5751081566078165181}
 --- !u!1 &3223182315253069767
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,3 +510,4 @@ MonoBehaviour:
     m_Bits: 8
   attackDamage: 20
   isAttacking: 0
+  rootGO: {fileID: 5751081566078165181}

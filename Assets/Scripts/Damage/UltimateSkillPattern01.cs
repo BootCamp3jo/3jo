@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UltimateSkillPattern01 : MonoBehaviour
 {
+    public GameObject rootGO;
     public int damage = 20;
     public float dealDamageInterval = 0.5f;
     public LayerMask targetLayer;
@@ -28,6 +29,11 @@ public class UltimateSkillPattern01 : MonoBehaviour
     {
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);
+    }
+
+    public void DestorySelf()
+    {
+        Destroy(rootGO);
     }
 
     private IEnumerator DamageLoop01()

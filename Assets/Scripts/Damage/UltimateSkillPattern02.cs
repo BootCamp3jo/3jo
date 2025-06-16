@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UltimateSkillPattern02 : MonoBehaviour
 {
+    public GameObject rootGO; // 이 오브젝트의 부모 오브젝트
     public int damage = 30;
     public float dealDamageInterval = 0.2f;
     public LayerMask targetLayer;
@@ -27,6 +28,11 @@ public class UltimateSkillPattern02 : MonoBehaviour
     {
         if (damageCoroutine != null)
             StopCoroutine(damageCoroutine);
+    }
+
+    public void DestorySelf02()
+    {
+        Destroy(rootGO);
     }
 
     private IEnumerator DamageLoop02()

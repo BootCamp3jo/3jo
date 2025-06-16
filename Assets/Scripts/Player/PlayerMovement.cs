@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashCoolDown = 1f;
     [SerializeField] private float doubleTabThreshold = 0.3f;
 
+    [Header("Skill Settings")]
+    [SerializeField] private Transform skillVFXSpawnPoint; // 스킬 VFX 생성 위치
+
     // Move & Look
     private float moveSpeed;
     private Vector2 moveInput;
@@ -281,6 +284,7 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal < 0) facingDirection = -1;
 
         transform.localScale = new Vector3(facingDirection, 1, 1);
+        skillVFXSpawnPoint.localScale = new Vector3(facingDirection, 1, 1); // 스킬 VFX 방향 설정
     }
 
     private void PerformJump()

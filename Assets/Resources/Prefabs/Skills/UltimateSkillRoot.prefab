@@ -152,12 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d306e7c2401c2f646a463983c5cb4175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 2740528030930530606}
   damage: 100
   dealDamageInterval: 0.5
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
   damageAreaSize: {x: 5, y: 3.5}
+  damageAreaOffset: {x: 0, y: 0}
 --- !u!114 &3159051108370811775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07f299c65a19e7499c55dc1426bb1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 2740528030930530606}
   damage: 50
   dealDamageInterval: 0.1
   targetLayer:

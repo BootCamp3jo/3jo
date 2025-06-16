@@ -190,3 +190,4 @@ MonoBehaviour:
     m_Bits: 8
   attackDamage: 60
   isAttacking: 0
+  rootGO: {fileID: 5410527488464783915}

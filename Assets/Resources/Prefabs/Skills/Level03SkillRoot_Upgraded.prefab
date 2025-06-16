@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d306e7c2401c2f646a463983c5cb4175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootGO: {fileID: 650732362046721720}
   damage: 20
   dealDamageInterval: 0.3
   targetLayer:
@@ -381,3 +382,4 @@ MonoBehaviour:
     m_Bits: 8
   attackDamage: 60
   isAttacking: 0
+  rootGO: {fileID: 650732362046721720}

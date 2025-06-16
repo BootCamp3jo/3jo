@@ -7,15 +7,23 @@ public class PlayerSkillHandler : MonoBehaviour
 {
     [SerializeField] private PlayerAnimationHandler playerAnimationHandler;
 
+    private bool isUsingSkill = false;
+
+    private Coroutine aSkillCoroutine;
+    private Coroutine sSkillCoroutine;
+    private Coroutine dSkillCoroutine;
+    private Coroutine wSkillCoroutine;
+    private Coroutine ultSkillCoroutine;
+
     private void Start()
     {
-        playerAnimationHandler = PlayerManager.Instance.playerAnimationHandler;
+        playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
     }
 
 
     public void OnSkillButton(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isUsingSkill)
         {
             var control = context.control;
 
@@ -61,47 +69,44 @@ public class PlayerSkillHandler : MonoBehaviour
     public void UseSkillA()
     {
         Debug.Log("Using Skill A");
-        // Implement skill A logic here
+
+        SkillManager.Instance.SummonSkillVFX(0);
     }
 
     public void UseSkillS()
     {
-        // Update logic if needed
+        SkillManager.Instance.SummonSkillVFX(1);
     }
 
     public void UseSkillD()
     {
-        // Update logic if needed
+        SkillManager.Instance.SummonSkillVFX(2);
     }
 
     public void UseSkillW()
     {
-        // Update logic if needed
+        SkillManager.Instance.SummonSkillVFX(3);
     }
 
     public void UseUltimateSkill()
     {
-        Debug.Log("Using Ultimate Skill");
+        if (ultSkillCoroutine != null)
+            StopCoroutine(ultSkillCoroutine);
 
-        UseUltSkillMotion();
-        SummonUltSkillVFX();
+        ultSkillCoroutine = StartCoroutine(UseUltSkillMotion());
+        SkillManager.Instance.SummonUltVFX();
     }
 
     //------------------------------------------//
     
     private IEnumerator UseUltSkillMotion()
     {
+        isUsingSkill = true;
         playerAnimationHandler.EnterUsingSkill();
         playerAnimationHandler.EnterUsingUlt();
         yield return new WaitForSeconds(2f); // Adjust the duration as needed
         playerAnimationHandler.ExitUsingUlt();
         playerAnimationHandler.ExitUsingSkill();
-    }
-
-    private IEnumerator SummonUltSkillVFX()
-    {
-        SkillManager.Instance.ShowSkillVFX(5); // Assuming 0 is the index for the ultimate skill VFX
-        yield return new WaitForSeconds(2f); // Adjust the duration as needed
-        SkillManager.Instance.HideSkillVFX(5); // Hide the VFX after the skill duration
+        isUsingSkill = false;
     }
 }
