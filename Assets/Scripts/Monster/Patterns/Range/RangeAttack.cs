@@ -69,7 +69,8 @@ public class RangeAttack : MonoBehaviour
         // 머지 이후 플레이어에 25번 Player 레이어 할당하기 !!!
         if ((targetLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
-            // 플레이어 피격... 어디있을까요? 머지 이후 찾아서 연결하기!
+            var player = collision.GetComponent<Player>();
+            player.OnHitByEnemy(Damage);
         }
     }
 

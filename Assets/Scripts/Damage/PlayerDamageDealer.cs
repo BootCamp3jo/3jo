@@ -2,27 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDamageDealer : A_BaseDamageDealer
+public class PlayerCombatHandler : MonoBehaviour
 {
-    protected override void Update()
+    public Transform attackPoint;
+    public float hitRadius;
+    public LayerMask enemyLayer;
+    public int attackDamage;
+
+    private HashSet<MonsterBase> currentTargets = new HashSet<MonsterBase>();
+    private bool isAttacking = false;
+
+    private void Update()
     {
-        base.Update();
         if (isAttacking)
         {
             CollectAttackTargets();
         }
     }
 
-    public override void Attack()
+    public void StartAttack()
     {
-        base.Attack();
-        foreach (var target in currentTargets)
-        {
-            target.TakeDamage(attackDamage);
-            Debug.Log($"Hit {target.name} for {attackDamage} damage.");
-        }
-
+        isAttacking = true;
         currentTargets.Clear();
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 
     public void CollectAttackTargets()
@@ -31,10 +37,30 @@ public class PlayerDamageDealer : A_BaseDamageDealer
 
         foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent<EnemyHealth>(out EnemyHealth enemy))
+            if (hit.TryGetComponent<MonsterBase>(out MonsterBase enemy))
             {
                 currentTargets.Add(enemy);
             }
+        }
+    }
+
+    public void CheckHit()
+    {
+        foreach (var target in currentTargets)
+        {
+            target.GetDamage(attackDamage);
+            Debug.Log($"Hit {target.name} for {attackDamage} damage.");
+        }
+
+        currentTargets.Clear();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackPoint.position, hitRadius);
         }
     }
 }
