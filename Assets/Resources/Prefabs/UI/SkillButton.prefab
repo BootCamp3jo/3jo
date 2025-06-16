@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 15292208588503842}
   - component: {fileID: 6947398609368512346}
   - component: {fileID: 4816136215512846221}
+  - component: {fileID: 8500866000329957053}
   m_Layer: 5
   m_Name: SkillButton
   m_TagString: Untagged
@@ -179,6 +180,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8500866000329957053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204314932209347730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061ba3ee58e0dc74d8b4dab5fd36134f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData: {fileID: 0}
+  skillIcon: {fileID: 5055890439066487744}
+  cooldownTime: 0
 --- !u!1 &5450161573350095386
 GameObject:
   m_ObjectHideFlags: 0
