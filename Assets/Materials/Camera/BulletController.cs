@@ -1,9 +1,13 @@
 using UnityEngine;
 
 // 오오 유빈 확인!
+// 느리게 만들어야 하는 것
+// 1. 패턴 전체의 변하는 값(range 수정 필요),
+// 2. 적 애니메이션 속도(이것만 느리게 해줘도 전체 패턴 발동도 느려짐)
 public class BulletController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    // 슬로우가 원 속도의 40% 정도 메모..
     public float normalSpeed = 5f;
     public float slowSpeed = 2f;
     private float currentSpeed;
