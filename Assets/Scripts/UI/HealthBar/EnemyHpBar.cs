@@ -50,7 +50,7 @@ public class EnemyHpBar : MonoBehaviour
         startColor.a = 1f;
         chunkImage.color = startColor;
 
-        float fallDistance = 20f;
+        float fallDistance = 50f;
         float animDuration = 0.5f;
 
         chunkRect.DOAnchorPosY(chunkRect.anchoredPosition.y - fallDistance, animDuration)

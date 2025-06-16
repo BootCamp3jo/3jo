@@ -9,7 +9,7 @@ public class PlayerStatsUI : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
 
-    [SerializeField] private Image healthBar;
+    [SerializeField] private HealthBarFade healthBar;
     [SerializeField] private Image manaBar;
     [SerializeField] private Image expBar;
     [SerializeField] private TextMeshProUGUI levelText;
@@ -31,7 +31,7 @@ public class PlayerStatsUI : MonoBehaviour
     {
         if (playerData.MaxHealth > 0f)
         {
-            healthBar.fillAmount = Mathf.Clamp01(playerData.CurrentHealth / playerData.MaxHealth);
+            healthBar.SetHp(Mathf.Clamp01(playerData.CurrentHealth / playerData.MaxHealth));
         }
     }
 

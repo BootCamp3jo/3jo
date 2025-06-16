@@ -9,7 +9,7 @@ public class PlayerCombatHandler : MonoBehaviour
     public LayerMask enemyLayer;
     public int attackDamage;
 
-    private HashSet<EnemyHealth> currentTargets = new HashSet<EnemyHealth>();
+    private HashSet<MonsterBase> currentTargets = new HashSet<MonsterBase>();
     private bool isAttacking = false;
 
     private void Update()
@@ -37,7 +37,7 @@ public class PlayerCombatHandler : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            if (hit.TryGetComponent<EnemyHealth>(out EnemyHealth enemy))
+            if (hit.TryGetComponent<MonsterBase>(out MonsterBase enemy))
             {
                 currentTargets.Add(enemy);
             }
@@ -48,7 +48,7 @@ public class PlayerCombatHandler : MonoBehaviour
     {
         foreach (var target in currentTargets)
         {
-            target.TakeDamage(attackDamage);
+            target.GetDamage(attackDamage);
             Debug.Log($"Hit {target.name} for {attackDamage} damage.");
         }
 

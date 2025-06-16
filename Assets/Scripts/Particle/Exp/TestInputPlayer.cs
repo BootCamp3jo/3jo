@@ -100,6 +100,8 @@ public class TestInputPlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F8)) // 예시 키
         {
+            hitEffect.PlayHitEffect(1);
+            flashEffect.TriggerFlash(); // 직접 호출
             shakeEffect.Shake();
         }//
     

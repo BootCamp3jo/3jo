@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : APlayer
 {
     [SerializeField] private PlayerMovement playerMovement;
-     [SerializeField] private PlayerEffectController playerEffectController;
+    [SerializeField] private PlayerEffectController playerEffectController;
+    [SerializeField] private PlayerStatHandler playerStatHandler;
     protected override void Awake()
     {
         base.Awake();
@@ -15,9 +16,10 @@ public class Player : APlayer
     {
         playerMovement = PlayerManager.Instance.playerMovement;
         playerEffectController = PlayerManager.Instance.playerEffectController;
+        playerStatHandler = PlayerManager.Instance.playerStatHandler;
     }
 
-    public void OnHitByEnemy()
+    public void OnHitByEnemy(float damage)
     {
         if (playerMovement.JustDodgeWindow)
         {
@@ -25,7 +27,7 @@ public class Player : APlayer
         }
         else
         {
-            Debug.Log("피격!");
+            playerStatHandler.TakeDamage(damage);
         }
     }
 
