@@ -86,15 +86,14 @@ public abstract class MonsterBase : ANPC, ISlowAble
         shakeEffect = GetComponent<ShakeEffect>();
         stateMachine = new MonsterStateMachine(this);
 
-        portal.SetActive(false);
-
-        // 체력바 생성
-        if (enemyHpBar != null)
+        try
         {
-            enemyHpBar = Instantiate(enemyHpBar);
-            onHpChanged += enemyHpBar.SetHp;
+            portal.SetActive(false);
+        }catch(Exception e)
+        {
+
         }
-        maxHp = npcData.hp;
+
 
         base.Awake();
     }
@@ -119,6 +118,15 @@ public abstract class MonsterBase : ANPC, ISlowAble
 
     protected override void Start()
     {
+
+        base.Start();
+        // 체력바 생성
+        if (enemyHpBar != null)
+        {
+            enemyHpBar = Instantiate(enemyHpBar);
+            onHpChanged += enemyHpBar.SetHp;
+        }
+        maxHp = npcData.hp;
         // 게임매니저의 보스에 자신을 등록
         GameManager.Instance.InitBoss(this);
 
@@ -146,8 +154,6 @@ public abstract class MonsterBase : ANPC, ISlowAble
             if(distPoweredBoundary.y < tmpRangePow.y)
                 distPoweredBoundary.y = tmpRangePow.y;
         }
-
-        base.Start();
     }
 
     private void Update()

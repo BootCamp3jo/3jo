@@ -5,10 +5,10 @@
   "achievements": {},
   "playerData": {
     "prefabPath": "Prefabs/Player",
-    "CurrentHealth": 50.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
     "Level": 1,
-    "Experience": 100.0,
+    "Experience": 0.0,
     "Coin": 100,
     "MaxHealth": 100,
     "MaxMana": 100,
@@ -20,8 +20,8 @@
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -6.101045,
-        "posY": 8.171758,
+        "posX": -5.503168,
+        "posY": 8.135866,
         "posZ": 0.0
       },
       "npcDataQueues": {}
@@ -29,11 +29,21 @@
     "Particle": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -1.01896918,
-        "posY": -1.3599261,
+        "posX": -4.671134,
+        "posY": 9.48418,
         "posZ": 0.0
       },
-      "npcDataQueues": {}
+      "npcDataQueues": {
+        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
+          {
+            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
+            "hp": 100.0,
+            "posX": 0.225913271,
+            "posY": 12.3074064,
+            "posZ": 0.0
+          }
+        ]
+      }
     }
   }
 }
