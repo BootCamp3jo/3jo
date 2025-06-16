@@ -67,7 +67,7 @@ public class RangeAttack : MonoBehaviour
         }
     }
 
-    // 트리거가 켜지면, 그 안의 타겟에 1번만 피해를 입힘
+    // 트리거가 켜지면, 그 안의 타겟에 피해를 입힘
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 머지 이후 플레이어에 25번 Player 레이어 할당하기 !!!
