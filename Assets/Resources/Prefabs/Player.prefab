@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f531f33d3193e9843b73f1259d213a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRadius: 0.471
-  expandDuration: 1
-  holdDuration: 1
-  shrinkDuration: 1
+  maxRadius: 0.644
+  expandDuration: 0.5
+  holdDuration: 4
+  shrinkDuration: 0.5
   effectCenter: {fileID: 5108279510368970679}
   pivotOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &752031207906461240
@@ -175,6 +175,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8497041166622144174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5406020700440866338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4826512541397581729}
+  m_Layer: 7
+  m_Name: Shock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4826512541397581729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5406020700440866338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6191483791137416108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7005318716655128825
 GameObject:
@@ -487,7 +518,7 @@ MonoBehaviour:
     _level: 1
     _experience: 100
     _coin: 100
-  dontNeedSave: 0
+  dontNeedSave: 1
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
 --- !u!114 &8394472092896199471
@@ -590,6 +621,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3596904678137026797}
+  - {fileID: 4826512541397581729}
   m_Father: {fileID: 1037089495620979984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9070524762760038767
@@ -732,4 +764,4 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 1
+  attackDamage: 10
