@@ -2,7 +2,8 @@
 public interface IState
 {
     void Enter(); // 해당 상태에 진입할 때 수행할 내용
-    void Execute(); // 해당 상태 도중 수행할 내용
+    void Execute(); // 해당 상태 도중 수행할 내용(Update)
+    void ExecutePhysically(); // 해당 상태 도중 수행할 내용(FixedUpdate)
     void Exit(); // 해당 상태에서 나갈 때 수행할 내용
 }
 
