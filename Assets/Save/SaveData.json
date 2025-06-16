@@ -1,21 +1,9 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "SceneB",
+  "curSceneName": "SceneA",
   "KillCount": 0,
   "achievements": {},
-  "playerData": {
-    "prefabPath": "Prefabs/Player",
-    "CurrentHealth": 100.0,
-    "CurrentMana": 100.0,
-    "Level": 1,
-    "Experience": 100.0,
-    "Coin": 100,
-    "MaxHealth": 100,
-    "MaxMana": 100,
-    "MaxLevel": 100,
-    "MaxExperience": 100,
-    "MaxCoin": 999999
-  },
+  "playerData": null,
   "sceneBundles": {
     "SceneA": {
       "playerStateInScene": {
