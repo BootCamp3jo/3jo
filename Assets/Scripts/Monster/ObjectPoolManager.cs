@@ -8,7 +8,7 @@ public interface IPoolable
     void OnDespawn();
 }
 
-public class ObjectPoolManager : MonoSingleton<ObjectPoolManager>
+public class ObjectPoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
     Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>();
