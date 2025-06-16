@@ -1,17 +1,14 @@
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
-public class ExpBar : MonoBehaviour
+public class ExpEffect : MonoBehaviour
 {
     [SerializeField] private Image expBarImg;
     [SerializeField] private ParticleSystem expParticlePrefab;
-
-    // 새로 추가: 배경 이미지 (또는 배경 오브젝트)
     [SerializeField] private RectTransform backgroundRect;
-
-    private int maxExp = 1000;
-    private int nowExp = 0;
 
     private Vector3 expBarOriginalScale;
     private Vector3 bgOriginalScale;
@@ -24,41 +21,8 @@ public class ExpBar : MonoBehaviour
             bgOriginalScale = backgroundRect.localScale;
         else
             bgOriginalScale = Vector3.one;
-
-        UpdateBar();
     }
-    private void Start()
-    {
-        
-    }
-
-    void OnEnable()
-    {
-        ExpManager.OnExpGained += AddExp;
-    }
-
-    void OnDisable()
-    {
-        ExpManager.OnExpGained -= AddExp;
-    }
-
-    void AddExp(int amount)
-    {
-        nowExp += amount;
-        nowExp = Mathf.Min(nowExp, maxExp);
-        UpdateBar();
-        SpawnParticleAt();
-        AnimateBarPop();
-    }
-
-    void UpdateBar()
-    {
-        expBarImg.fillAmount = (float)nowExp / maxExp;
-    }
-
-
-    // 애니메이션 바 효과
-    void AnimateBarPop()
+    public void AnimateBarPop()
     {
         RectTransform rt = expBarImg.rectTransform;
         rt.DOKill();
@@ -66,7 +30,7 @@ public class ExpBar : MonoBehaviour
 
         // expBar 애니메이션
         Sequence seq = DOTween.Sequence();
-        seq.Append(rt.DOScale(expBarOriginalScale * 1.1f, 0.1f).SetEase(Ease.OutQuad));
+        seq.Append(rt.DOScale(expBarOriginalScale * 1.05f, 0.1f).SetEase(Ease.OutQuad));
 
         if (backgroundRect != null)
         {
@@ -74,7 +38,7 @@ public class ExpBar : MonoBehaviour
             backgroundRect.localScale = bgOriginalScale;
 
             // 배경과 동시에 커졌다 작아지기 (동기화)
-            seq.Join(backgroundRect.DOScale(bgOriginalScale * 1.1f, 0.1f).SetEase(Ease.OutQuad));
+            seq.Join(backgroundRect.DOScale(bgOriginalScale * 1.05f, 0.1f).SetEase(Ease.OutQuad));
             seq.Append(rt.DOScale(expBarOriginalScale, 0.15f).SetEase(Ease.InQuad));
             seq.Join(backgroundRect.DOScale(bgOriginalScale, 0.15f).SetEase(Ease.InQuad));
         }
@@ -84,8 +48,7 @@ public class ExpBar : MonoBehaviour
         }
     }
 
-    // 경험치 파티클 생성
-    void SpawnParticleAt()
+    public void SpawnParticleAt()
     {
         RectTransform rect = expBarImg.rectTransform;
         float fill = expBarImg.fillAmount;
@@ -104,5 +67,6 @@ public class ExpBar : MonoBehaviour
         worldPos.z = 0;
 
         Instantiate(expParticlePrefab, worldPos, Quaternion.identity);
+        expParticlePrefab.transform.SetParent(expBarImg.transform);
     }
 }

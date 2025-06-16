@@ -5,11 +5,12 @@ Shader "Unlit/URP2DShockWave"
         _MainTex ("Texture", 2D) = "white" {}
         _Center ("Center", Vector) = (0.5, 0.5, 0, 0)
         _WaveTime ("Wave Time", Float) = 0
-        _Speed ("Speed", Float) = 1.0
-        _WaveWidth ("Wave Width", Float) = 0.1
-        _WaveCount ("Wave Count", Float) = 3
-        _WaveGap ("Wave Gap", Float) = 0.3
+        _Speed ("Speed", Float) = 1.0          // 진행 속도
+        _WaveWidth ("Wave Width", Float) = 0.1 // 파동 폭
+        _WaveCount ("Wave Count", Float) = 3   // 파동 개수
+        _WaveGap ("Wave Gap", Float) = 0.3     // 파동 간격
     }
+
     SubShader
     {
         Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "Opaque" "Queue" = "Transparent" }
@@ -66,7 +67,6 @@ Shader "Unlit/URP2DShockWave"
 
                 float wave = 0.0;
 
-                // 최대 10개까지만 처리
                 [unroll(10)]
                 for (int i = 0; i < 10; i++)
                 {
@@ -74,6 +74,8 @@ Shader "Unlit/URP2DShockWave"
 
                     float waveRadius = _WaveTime * _Speed - i * _WaveGap;
                     float diff = abs(dist - waveRadius);
+
+                    // 고정 왜곡량 (0.02), 부드러운 경계
                     wave += smoothstep(_WaveWidth, 0.0, diff) * 0.02;
                 }
 

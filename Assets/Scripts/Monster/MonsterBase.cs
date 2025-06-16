@@ -62,6 +62,9 @@ public abstract class MonsterBase : ANPC
     public event Action<float> onHpChanged;
     [SerializeField] private EnemyHpBar enemyHpBar;
 
+    // 경험치 관련 << 추후 Data 에 넣어줘야함
+    public int exp = 50;
+
     protected override void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -209,6 +212,8 @@ public abstract class MonsterBase : ANPC
         // 죽음 모션
         stateMachine.ChangeState(stateMachine.deathState);
         // 아이템 드랍 !!!
+        ExpManager.instance.SpawnExp(transform.position, exp);
+
         // 다음 스테이지로의 문이 열림 !!!
     }
 

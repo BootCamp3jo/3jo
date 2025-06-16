@@ -24,9 +24,12 @@ public class Player : APlayer
         if (playerMovement.JustDodgeWindow)
         {
             playerEffectController.PlayJustDodgeEffect();
+            playerEffectController.TriggerShockWave();
         }
         else
         {
+            playerEffectController.PlayBlinkEffect(playerStatHandler.invincibleDuration);
+            playerEffectController.PlayShakePlayerEffect();
             playerStatHandler.TakeDamage(damage);
         }
     }
@@ -35,17 +38,6 @@ public class Player : APlayer
     // 테스트용 함수 추후 제거 필요
     private void Update()
     {
-        // 저스트 회피 연결 후 제거
-        if (Input.GetKeyDown(KeyCode.F10))
-        {
-            playerEffectController.PlayJustDodgeEffect();
-            playerEffectController.TriggerShockWave();
-        }
-        // 피격 연결 이후 제거
-        if (Input.GetKeyDown(KeyCode.F11))
-        {
-            playerEffectController.PlayBlinkEffect();
-            playerEffectController.PlayShakePlayerEffect();
-        }
+
     }
 }
