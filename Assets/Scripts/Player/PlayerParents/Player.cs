@@ -28,7 +28,7 @@ public class Player : APlayer
         }
         else
         {
-            playerEffectController.PlayBlinkEffect();
+            playerEffectController.PlayBlinkEffect(playerStatHandler.invincibleDuration);
             playerEffectController.PlayShakePlayerEffect();
             playerStatHandler.TakeDamage(damage);
         }

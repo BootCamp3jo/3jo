@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStatHandler : MonoBehaviour, IDamageable
 {
     private PlayerData playerData;
     private PlayerStatsUI playerStatsUI;
+
+    // 무적시간체크
+    private bool isInvincible = false;      // 무적 상태 여부
+    public float invincibleDuration = 1.5f; // 무적 시간
 
     private void Start()
     {
@@ -15,8 +20,19 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     // ------------------- 체력 ------------------- //
     public void TakeDamage(float amount)
     {
+        if (isInvincible) return; // 무적 상태면 데미지 무시
+
         playerData.CurrentHealth -= amount;
         playerStatsUI.UpdateHealthBar();
+
+        StartCoroutine(InvincibilityCoroutine());
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleDuration);
+        isInvincible = false;
     }
 
     public void Heal(float amount)

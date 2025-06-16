@@ -9,7 +9,6 @@ public class PlayerEffectController : MonoBehaviour
 
     private ShakeEffect shakeEffect;
     private BlinkEffect blinkEffect;
-     private float invincibleDuration = 2f;
     private GhostTrail ghostTrail; // 대쉬 고스트
     private void Awake()
     {
@@ -25,9 +24,9 @@ public class PlayerEffectController : MonoBehaviour
     {
         shakeEffect.Shake();
     }
-    public void PlayBlinkEffect()
+    public void PlayBlinkEffect(float duration)
     {
-        blinkEffect.StartBlink(invincibleDuration);
+        blinkEffect.StartBlink(duration);
     }
     public void PlayJumpEffect()
     {
