@@ -58,6 +58,7 @@ public class SceneLoader : MonoSingleton<SceneLoader>
                     GameObject prefab = Resources.Load<GameObject>(npcData.prefabPath);
                     if (prefab != null)
                     {
+                        Debug.Log("instantiate");
                         GameObject npc = GameObject.Instantiate(prefab);
                         npc.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
 

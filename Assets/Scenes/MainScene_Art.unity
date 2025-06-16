@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1474357554905409989, guid: 8d0b448f74845104a845702910c4b412, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2325653091357356314, guid: 8d0b448f74845104a845702910c4b412, type: 3}
       propertyPath: m_LocalPosition.x
       value: 256.23798
@@ -170,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 2325653091357356314, guid: 8d0b448f74845104a845702910c4b412, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219290147821433983, guid: 8d0b448f74845104a845702910c4b412, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4440737621601762233, guid: 8d0b448f74845104a845702910c4b412, type: 3}
       propertyPath: m_Name
@@ -1020,7 +1028,7 @@ GameObject:
   - component: {fileID: 639577045}
   - component: {fileID: 639577044}
   - component: {fileID: 639577043}
-  - component: {fileID: 639577042}
+  - component: {fileID: 639577046}
   m_Layer: 5
   m_Name: LoadBtn
   m_TagString: Untagged
@@ -1048,19 +1056,6 @@ RectTransform:
   m_AnchoredPosition: {x: -275, y: -95.76634}
   m_SizeDelta: {x: 189.0913, y: 52.2574}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &639577042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639577040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a28216f643d5ef4cad8a7aa561236cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: LobbyScene
 --- !u!114 &639577043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1105,7 +1100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 639577042}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
         m_MethodName: OnLoadScene
         m_Mode: 1
@@ -1155,6 +1150,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639577040}
   m_CullTransparentMesh: 1
+--- !u!114 &639577046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639577040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387b63d02ba980a4ebbe59c5d3beccba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultNextScene: LobbyScene
 --- !u!1001 &1152974295
 PrefabInstance:
   m_ObjectHideFlags: 0

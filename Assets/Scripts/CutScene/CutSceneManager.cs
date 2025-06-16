@@ -195,4 +195,12 @@ public class CutSceneManager : MonoSingleton<CutSceneManager>
             Fade.LoadScene(streamCutSceneData.nextScene);
         }
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadNextScene();
+        }
+    }
 }

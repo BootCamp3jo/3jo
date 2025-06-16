@@ -11,6 +11,6 @@ public class Pattern : EffectController
         lifeTime = patternData.lifeTime;
         changeEffect = GetComponentInChildren<ChangeEffect>(true);
         // 패턴을 비활성화 해둬서 위의 값을 받아올 수 없어 처음 실행 때 위치 에러 발생 >> Awake()만 실행하고 비활성화하게끔 구조 개편
-        LifeEnd();
+       // LifeEnd();
     }
 }

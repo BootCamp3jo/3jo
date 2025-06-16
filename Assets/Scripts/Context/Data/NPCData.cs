@@ -8,6 +8,7 @@ public class NPCData
 {
     public string prefabPath;
     public float hp;
+    public float maxHP;
     public float posX;
     public float posY;
     public float posZ;

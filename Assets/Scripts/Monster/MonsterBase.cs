@@ -5,6 +5,7 @@ using System;
 
 public abstract class MonsterBase : ANPC
 {
+    [SerializeField] private ObjectPoolManager objectPoolManager;
     [field: SerializeField] public MonsterData monsterData;
     Pattern[] patterns;
 
@@ -57,6 +58,8 @@ public abstract class MonsterBase : ANPC
     [Header("피격 관련(진동)")]
     [SerializeField] private ShakeEffect shakeEffect;
 
+    private CircleMaskEffectController circleMask;
+
     // 적 체력 관련
     private float maxHp;
     public event Action<float> onHpChanged;
@@ -78,15 +81,14 @@ public abstract class MonsterBase : ANPC
         shakeEffect = GetComponent<ShakeEffect>();
         stateMachine = new MonsterStateMachine(this);
 
-        portal.SetActive(false);
-
-        // 체력바 생성
-        if (enemyHpBar != null)
+        try
         {
-            enemyHpBar = Instantiate(enemyHpBar);
-            onHpChanged += enemyHpBar.SetHp;
+            portal.SetActive(false);
+        }catch(Exception e)
+        {
+
         }
-        maxHp = npcData.hp;
+
 
         base.Awake();
     }
@@ -95,9 +97,9 @@ public abstract class MonsterBase : ANPC
     {
         // 패턴들을 모두 받아오기
         List<Pattern> patternList = new List<Pattern>();
-        for (int i = 0; i < ObjectPoolManager.Instance.prefabs.Length; i++)
+        for (int i = 0; i < objectPoolManager.prefabs.Length; i++)
         {
-            patternList.Add(ObjectPoolManager.Instance.prefabs[i].GetComponent<Pattern>());
+            patternList.Add(objectPoolManager.prefabs[i].GetComponent<Pattern>());
         }
         patterns = patternList.ToArray();
         // 실행 때 비활성화 상태의 패턴이 있다면 활성화
@@ -111,9 +113,18 @@ public abstract class MonsterBase : ANPC
 
     protected override void Start()
     {
+
+        base.Start();
+        // 체력바 생성
+        if (enemyHpBar != null)
+        {
+            enemyHpBar = Instantiate(enemyHpBar);
+            onHpChanged += enemyHpBar.SetHp;
+        }
+        maxHp = npcData.maxHP;
         // 게임매니저의 보스에 자신을 등록
         GameManager.Instance.InitBoss(this);
-
+        circleMask = CircleMaskEffectController.Instance;
         // 시작할 때 현재 HP를 최대 HP로 >> ANPC에서 할당
 
         atk = monsterData.atk;
@@ -137,8 +148,6 @@ public abstract class MonsterBase : ANPC
             if(distPoweredBoundary.y < tmpRangePow.y)
                 distPoweredBoundary.y = tmpRangePow.y;
         }
-
-        base.Start();
     }
 
     private void Update()
@@ -150,6 +159,8 @@ public abstract class MonsterBase : ANPC
 
         // 요기서 현 상태의 Execute 실행!
         stateMachine.Execute();
+
+        AdjustAnimatorSpeed();
     }
 
     protected override void OnDestroy()
@@ -301,6 +312,27 @@ public abstract class MonsterBase : ANPC
         stateMachine.ChangeState(stateMachine.idleState);
     }
 
+    private void AdjustAnimatorSpeed()
+    {
+        if (circleMask == null || animator == null) return;
+
+        // 보스 위치 -> 뷰포트로 변환
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        Vector2 pos2D = new Vector2(viewportPos.x, viewportPos.y);
+
+        float distance = Vector2.Distance(pos2D, circleMask.CurrentCenter);
+
+        if (distance <= circleMask.CurrentRadius)
+        {
+            animator.speed = 0.3f; // 느리게
+        }
+        else
+        {
+            animator.speed = 1f; // 원래 속도
+        }
+    }
+
+
     #region Animation Event Methods
     // 공격 애니메이션 도중 패턴 생성 타이밍에 맞춰 생성
     public void CallPattern()
@@ -316,7 +348,7 @@ public abstract class MonsterBase : ANPC
                 break;
             animator.SetInteger(stateMachine.AnimatorParameters.attackCountRemainHash, atkRemainCount - 1);
             // 오브젝트 풀에서 패턴 가져오기
-            ObjectPoolManager.Instance.GetObject(atkIndex, Vector2.zero, quaternion.identity);
+            objectPoolManager.GetObject(atkIndex, Vector2.zero, quaternion.identity);
         }
     }
     #endregion

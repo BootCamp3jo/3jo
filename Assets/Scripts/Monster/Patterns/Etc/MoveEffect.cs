@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum MoveType
@@ -11,6 +12,8 @@ public class MoveEffect : MonoBehaviour
 {
     Transform rangeCenter;
     PointType startPoint_ref, endPoint_ref;
+    CircleMaskEffectController circleMask;
+    float moveSpeedMultiplier = 1f;
 
     #region Move
     public MoveType moveType;
@@ -32,6 +35,7 @@ public class MoveEffect : MonoBehaviour
     Quaternion rotationPerFixedFrame;
     #endregion
 
+
     Vector3 startPoint, midPoint, endPoint;
 
     float progressRate = 0f;
@@ -42,7 +46,7 @@ public class MoveEffect : MonoBehaviour
 
     private void Awake()
     {
-
+        circleMask = CircleMaskEffectController.Instance;
         PatternRange patternRange = GetComponentInParent<PatternRange>(true);
         if (patternRange != null)
         {
@@ -55,7 +59,7 @@ public class MoveEffect : MonoBehaviour
 
         loopCountMax = (int)(moveTime / Time.fixedDeltaTime);
     }
-
+    
 
     void OnEnable()
     {
@@ -128,6 +132,8 @@ public class MoveEffect : MonoBehaviour
     {
         // 이동이 끝나면 회전도 끝나게끔
         if (!isMoving) return;
+
+        AdjustSpeedByMask();
         // 이동
         Move();
         // 자전
@@ -182,8 +188,8 @@ public class MoveEffect : MonoBehaviour
         // 시간으로 바꿔서 생각해보자
         // moveTime = 3s 안에 목적지에 도달해야 한다면? 0.02s로 나눠주면 고정 업데이트 몇번만에 가야하는지 나옴 >> loopCountMax
         // 고정 루프 1번당 loopCount 쌓기 >> loopCount/loopCountMax = 진행도
-        progressRate = (float)(++loopCount) / loopCountMax;
-        progressRate = Mathf.Clamp01(progressRate); // 0~1 사이 값으로 제한하여 넘어가지 않도록
+        progressRate += (1f / loopCountMax) * moveSpeedMultiplier;
+        progressRate = Mathf.Clamp01(progressRate);
 
         Vector3 pos = Vector2.zero;
         switch (moveType)
@@ -199,15 +205,30 @@ public class MoveEffect : MonoBehaviour
 
         transform.position = pos;
         if (progressRate >= 1f)
+        {
             isMoving = false;
+        }
+
     }
 
     // 자전
     void SelfRotate()
     {
-        if(isSelfRotating)
-            // 쿼터니언의 곱은 순서 중요!
-            // q1 * q2 = q2 회전 후 q1 회전하여 더하는 효과 >> 회전
-            transform.rotation = rotationPerFixedFrame * transform.rotation;
+        if (isSelfRotating)
+        {
+            Quaternion actualRotation = Quaternion.Euler(Vector3.forward * rotationSpeed * moveSpeedMultiplier);
+            transform.rotation = actualRotation * transform.rotation;
+        }
+    }
+
+    private void AdjustSpeedByMask()
+    {
+        if (circleMask == null) return;
+
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        Vector2 pos2D = new Vector2(viewportPos.x, viewportPos.y);
+        float dist = Vector2.Distance(pos2D, circleMask.CurrentCenter);
+
+        moveSpeedMultiplier = (dist <= circleMask.CurrentRadius) ? 0.5f : 1f;
     }
 }

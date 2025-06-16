@@ -1,0 +1,50 @@
+{
+  "difficultLevel": 0,
+  "curSceneName": "LobbyScene",
+  "KillCount": 0,
+  "achievements": {},
+  "playerData": {
+    "prefabPath": "Prefabs/Player",
+    "CurrentHealth": 60.0,
+    "CurrentMana": 100.0,
+    "Level": 4,
+    "Experience": 600.0,
+    "Coin": 100,
+    "MaxHealth": 100,
+    "MaxMana": 100,
+    "MaxLevel": 100,
+    "MaxExperience": 2400,
+    "MaxCoin": 999999
+  },
+  "sceneBundles": {
+    "LobbyScene": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -6.098634,
+        "posY": 9.068628,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
+    },
+    "Particle": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -0.481730163,
+        "posY": 10.0308666,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {
+        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
+          {
+            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
+            "hp": 0.0,
+            "maxHP": 400.0,
+            "posX": -0.379454881,
+            "posY": 8.056868,
+            "posZ": 0.0
+          }
+        ]
+      }
+    }
+  }
+}

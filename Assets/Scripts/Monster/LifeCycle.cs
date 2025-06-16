@@ -7,7 +7,7 @@ public class LifeCycle : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        Invoke("LifeEnd", lifeTime);
+      //  Invoke("LifeEnd", lifeTime);
     }
 
     public virtual void LifeEnd()

@@ -7,34 +7,46 @@ public class Range : MonoBehaviour
     PatternRange pattern;
     bool isAtkStart;
 
+    CircleMaskEffectController circleMask;
+    float scaleSpeedMultiplier = 1f;
+
     private void Awake()
     {
         pattern = GetComponentInParent<PatternRange>(true);
+        circleMask = CircleMaskEffectController.Instance;
     }
 
     private void OnEnable()
     {
         isAtkStart = false;
-        // 범위 표시 초기화
         transform.localScale = Vector3.zero;
-        // 프레임 당 스케일 변화량 초기화(atkReadyTime의 변동이 있는 기술 대비)
         scaleChangePerFrame = Vector3.one / atkReadyTime;
     }
 
     private void Update()
     {
-        // 공격 범위에 맞게 점점 커지는 경고 영역 
-        transform.localScale += scaleChangePerFrame * Time.deltaTime;
-        // 공격 범위가 다 채워졌다면
-        if (transform.localScale.x >= 1 && !isAtkStart)
+        AdjustSpeedByMask();
+
+        transform.localScale += scaleChangePerFrame * Time.deltaTime * scaleSpeedMultiplier;
+
+        if (transform.localScale.x >= 1f && !isAtkStart)
         {
             isAtkStart = true;
-            // 범위 밖으로 벗어나지 않게
             transform.localScale = Vector3.one;
-            // 공격!
+
             pattern.rangeAttack.Attack();
-            // 임팩트 애니메이션 재생
             pattern.changeEffect.ChangeEffectAnime(pattern.changeEffect.impactHash);
         }
+    }
+
+    private void AdjustSpeedByMask()
+    {
+        if (circleMask == null || Camera.main == null) return;
+
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+        Vector2 pos2D = new Vector2(viewportPos.x, viewportPos.y);
+        float dist = Vector2.Distance(pos2D, circleMask.CurrentCenter);
+
+        scaleSpeedMultiplier = (dist <= circleMask.CurrentRadius) ? 0.5f : 1f;
     }
 }
