@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAnimationHandler : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class PlayerAnimationHandler : MonoBehaviour
     private int isFrontAttacking;
     private int isUpAttacking;
     private int isDownAttacking;
+
+    private int isUsingSkill;
+    private int usingSkillA;
+    private int usingSkillS;
+    private int usingSkillD;
+    private int usingSkillW;
+    private int usingUlt;
 
     //------------------------------------------//
 
@@ -31,6 +39,12 @@ public class PlayerAnimationHandler : MonoBehaviour
         isFrontAttacking = Animator.StringToHash("IsFrontAttacking");
         isUpAttacking = Animator.StringToHash("IsUpAttacking");
         isDownAttacking = Animator.StringToHash("IsDownAttacking");
+        isUsingSkill = Animator.StringToHash("IsUsingSkill");
+        usingSkillA = Animator.StringToHash("UsingSkillA");
+        usingSkillS = Animator.StringToHash("UsingSkillS");
+        usingSkillD = Animator.StringToHash("UsingSkillD");
+        usingSkillW = Animator.StringToHash("UsingSkillW");
+        usingUlt = Animator.StringToHash("UsingUlt");
     }
 
     //------------------------------------------//
@@ -91,5 +105,77 @@ public class PlayerAnimationHandler : MonoBehaviour
     public void ExitDownAttacking()
     {
         animator.SetBool(isDownAttacking, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterUsingSkill()
+    {
+        animator.SetBool(isUsingSkill, true);
+    }
+
+    public void ExitUsingSkill()
+    {
+        animator.SetBool(isUsingSkill, false);
+    }
+
+    //------------------------------------------// 
+
+    public void EnterUsingSkillA()
+    {
+        animator.SetBool(usingSkillA, true);
+    }
+
+    public void ExitUsingSkillA()
+    {
+        animator.SetBool(usingSkillA, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterUsingSkillS()
+    {
+        animator.SetBool(usingSkillS, true);
+    }
+
+    public void ExitUsingSkillS()
+    {
+        animator.SetBool(usingSkillS, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterUsingSkillD()
+    {
+        animator.SetBool(usingSkillD, true);
+    }
+
+    public void ExitUsingSkillD()
+    {
+        animator.SetBool(usingSkillD, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterUsingSkillW()
+    {
+        animator.SetBool(usingSkillW, true);
+    }
+
+    public void ExitUsingSkillW()
+    {
+        animator.SetBool(usingSkillW, false);
+    }
+
+    //------------------------------------------//
+
+    public void EnterUsingUlt()
+    {
+        animator.SetBool(usingUlt, true);
+    }
+
+    public void ExitUsingUlt()
+    {
+        animator.SetBool(usingUlt, false);
     }
 }

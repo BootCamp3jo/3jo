@@ -14,4 +14,9 @@ public class SkillSlotData : MonoBehaviour
         this.skillData = skillData;
         skillIcon.sprite = skillData.icon;
     }
+
+    public BaseSkillData GetSkillData()
+    {
+        return skillData;
+    }
 }

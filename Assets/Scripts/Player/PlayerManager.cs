@@ -13,6 +13,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
     [SerializeField] public PlayerDamageDealer playerCombatHandler;
     [SerializeField] public PlayerStatHandler playerStatHandler;
     [SerializeField] public PlayerEffectController playerEffectController;
+    [SerializeField] public PlayerSkillHandler playerSkillHandler;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class PlayerManager : MonoSingleton<PlayerManager>
         playerCombatHandler = GetComponent<PlayerDamageDealer>();
         playerStatHandler = GetComponent<PlayerStatHandler>();
         playerEffectController = GetComponent<PlayerEffectController>();
+        playerSkillHandler = GetComponent<PlayerSkillHandler>();
     }
 
 }

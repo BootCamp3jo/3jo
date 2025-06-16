@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 6353479460741060315}
   - component: {fileID: 8150776533861797111}
   - component: {fileID: 1209178315168842056}
+  - component: {fileID: 5161611666319464514}
   m_Layer: 5
   m_Name: ExpBar
   m_TagString: Untagged
@@ -134,6 +135,7 @@ RectTransform:
   m_Children:
   - {fileID: 1547302538784569424}
   - {fileID: 8207940042616781680}
+  - {fileID: 2361985006834745675}
   m_Father: {fileID: 3312772521833562076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -179,6 +181,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5161611666319464514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267810809327430156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590e9dc6a11c53d4cbf0d8688b28c322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expBarImg: {fileID: 4911291301664092580}
+  expParticlePrefab: {fileID: 4545664314590135333, guid: cf79188ba4206eb4caf295679610b2c8, type: 3}
+  backgroundRect: {fileID: 1547302538784569424}
 --- !u!1 &282982071885281884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,6 +2509,53 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7002925503405294074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2361985006834745675}
+  - component: {fileID: 7748300812834915026}
+  m_Layer: 0
+  m_Name: ExpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2361985006834745675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002925503405294074}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -322.82202, y: -910.04706, z: 3.809221}
+  m_LocalScale: {x: 1.2757473, y: 1.2757473, z: 1.2757473}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6353479460741060315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7748300812834915026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002925503405294074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1f2f04da596d147870e62646bcd63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expOrbPrefab: {fileID: 6159923407398737282, guid: 34a9246e6fc70ab48b546a1fb9b6b1ad, type: 3}
+  uiTarget: {fileID: 8207940042616781680}
+  uiImage: {fileID: 4911291301664092580}
 --- !u!1 &7027663835746572000
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,6 +3404,7 @@ MonoBehaviour:
   expBar: {fileID: 4911291301664092580}
   levelText: {fileID: 5810354168971573559}
   coinText: {fileID: 2200926786017521793}
+  expEffect: {fileID: 5161611666319464514}
 --- !u!114 &4953300181230131855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3486,7 +3551,7 @@ Canvas:
   m_GameObject: {fileID: 8902736227102605817}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

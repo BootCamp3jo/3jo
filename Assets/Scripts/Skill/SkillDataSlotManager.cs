@@ -56,4 +56,14 @@ public class SkillDataSlotManager : MonoBehaviour
     {
         ultSkillSlotData.SetSkillToSlot(SkillManager.Instance.ultimateSkillList[0]);
     }
+
+    public SkillSlotData GetSkillSlotData(int index)
+    {
+        if (index < 0 || index >= skilSlotDatas.Count)
+        {
+            Debug.LogError("SkillDataSlotManager: Index out of range.");
+            return null;
+        }
+        return skilSlotDatas[index];
+    }
 }
