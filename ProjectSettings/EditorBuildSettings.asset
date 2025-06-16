@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LobbyScene.unity
     guid: d0eef3776c49bf44086e06fee8ea5320
   - enabled: 1
+    path: Assets/Scenes/MainScene_Art.unity
+    guid: b5dadfa98de7e6e41943615cb6b5a63d
+  - enabled: 1
     path: Assets/Scenes/Particle.unity
     guid: e082ba778b26b42498d9f74e5222b973
   m_configObjects: {}
