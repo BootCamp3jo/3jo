@@ -8,6 +8,7 @@ public class UltimateSkillPattern01 : MonoBehaviour
     public float dealDamageInterval = 0.5f;
     public LayerMask targetLayer;
     public Vector2 damageAreaSize = new Vector2(5f, 3.5f);
+    public Vector2 damageAreaOffset = Vector2.zero;
 
     private Coroutine damageCoroutine;
     private WaitForSeconds waitForSeconds;
@@ -51,6 +52,7 @@ public class UltimateSkillPattern01 : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, damageAreaSize);
+        Vector2 boxCenter = (Vector2) transform.position + damageAreaOffset;
+        Gizmos.DrawWireCube(boxCenter, damageAreaSize);
     }
 }

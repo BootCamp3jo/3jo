@@ -27,6 +27,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
 
-        Debug.Log($"Enemy took {amount} damage. Current health: {_currentHealth}/{maxHealth}");
+        Debug.Log($"{gameObject.name} took {amount} damage. Current health: {_currentHealth}/{maxHealth}");
     }
 }
