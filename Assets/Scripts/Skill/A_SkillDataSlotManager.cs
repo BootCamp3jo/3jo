@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
-public class SkillDataSlotManager : MonoBehaviour
+public abstract class A_SkillDataSlotManager : MonoBehaviour
 {
-    public SkillSlotData ultSkillSlotData;
+    [SerializeField]
+    protected SkillSlotData ultSkillSlotData;
 
-    private int skillSlotDataCounts = 4; 
+    [SerializeField]
+    protected int skillSlotDataCounts;
 
-    List<SkillSlotData> skilSlotDatas;
+    [SerializeField]
+    protected List<SkillSlotData> skillSlotDatas;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         SkillDataSlotInit();
         SkillsToSlotInit();
-        UltSkillInit(); 
+        UltSkillInit();
     }
 
-    public void SkillDataSlotInit()
+    protected void SkillDataSlotInit()
     {
-        skilSlotDatas = new List<SkillSlotData>();
+        skillSlotDatas = new List<SkillSlotData>();
 
         Transform parent = transform;
 
@@ -32,38 +35,43 @@ public class SkillDataSlotManager : MonoBehaviour
 
             if (skillDataSlot != null)
             {
-                skilSlotDatas.Add(skillDataSlot);
+                skillSlotDatas.Add(skillDataSlot);
             }
 #if UNITY_EDITOR
             else Debug.LogError("SkillDataSlotManager: Child at index " + i + " does not have a SkillSlotData component.");
 #endif
         }
 
-        Debug.Log("SkillDataSlotManager: Initialized " + skilSlotDatas.Count + " skill data slots.");
+        Debug.Log("SkillDataSlotManager: Initialized " + skillSlotDatas.Count + " skill data slots.");
     }
 
-    public void SkillsToSlotInit()
+    protected virtual void SkillsToSlotInit()
     {
-        for (int i = 0; i < skillSlotDataCounts; i++)
-        {
-            skilSlotDatas[i].SetSkillToSlot(SkillManager.Instance.basicSkillList[i]);
-        }
-
-        Debug.Log("SkillDataSlotManager: Assigned skills to slots.");
+       
     }
 
-    public void UltSkillInit()
+    protected void UltSkillInit()
     {
         ultSkillSlotData.SetSkillToSlot(SkillManager.Instance.ultimateSkillList[0]);
     }
 
+    public SkillSlotData GetUltSkillSlotData()
+    {
+        if (ultSkillSlotData == null)
+        {
+            Debug.LogError("SkillDataSlotManager: Ultimate skill slot data is not set.");
+            return null;
+        }
+        return ultSkillSlotData;
+    }
+
     public SkillSlotData GetSkillSlotData(int index)
     {
-        if (index < 0 || index >= skilSlotDatas.Count)
+        if (index < 0 || index >= skillSlotDatas.Count)
         {
             Debug.LogError("SkillDataSlotManager: Index out of range.");
             return null;
         }
-        return skilSlotDatas[index];
+        return skillSlotDatas[index];
     }
 }

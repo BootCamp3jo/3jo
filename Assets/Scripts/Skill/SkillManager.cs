@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillManager : MonoSingleton<SkillManager>
 {
     [Header("SkillManager")]
-    [SerializeField] private SkillDataSlotManager skillDataSlotManager;
+    [SerializeField] private SkillUIDataSlotManager skillUiDataSlotManager;
     [SerializeField] private Transform VFXSpawnPoint;
 
     public List<BaseSkillData> basicSkillList;
@@ -57,14 +57,14 @@ public class SkillManager : MonoSingleton<SkillManager>
         ultVFX.transform.localScale = localScale;
     }
 
-    private BaseSkillData GetSkillData(int skillIndex)
+    public BaseSkillData GetSkillData(int skillIndex)
     {
-        return skillDataSlotManager.GetSkillSlotData(skillIndex).GetSkillDataFromSlot();
+        return skillUiDataSlotManager.GetSkillSlotData(skillIndex).GetSkillDataFromSlot();
     }
 
-    private BaseSkillData GetUltSkillData()
+    public BaseSkillData GetUltSkillData()
     {
-        return skillDataSlotManager.ultSkillSlotData.GetSkillDataFromSlot();
+        return skillUiDataSlotManager.GetUltSkillSlotData().GetSkillDataFromSlot();
     }
 }
 
