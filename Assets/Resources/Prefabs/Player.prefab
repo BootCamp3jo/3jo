@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3596904678137026797}
   - component: {fileID: 990613120042443413}
+  - component: {fileID: 1754627328636514713}
   m_Layer: 0
   m_Name: CircleMaskController
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 656231733946651965}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.2004318, y: 7.337162, z: -0.14183001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,6 +51,41 @@ MonoBehaviour:
   shrinkDuration: 0.5
   effectCenter: {fileID: 5108279510368970679}
   pivotOffset: {x: 0, y: 0, z: 0}
+--- !u!58 &1754627328636514713
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656231733946651965}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
 --- !u!1 &752031207906461240
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2819f2d768c7e0e47891e1959c99b85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincibleDuration: 1.5
 --- !u!114 &6854451447265653402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,3 +804,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 10
+  isAttacking: 0

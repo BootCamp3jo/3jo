@@ -101,6 +101,9 @@ public abstract class MonsterBase : ANPC, ISlowAble
 
     private void OnEnable()
     {
+        // 플레이어를 타겟으로
+        target = PlayerManager.Instance.playerPrefab.transform;
+
         // 패턴들을 모두 받아오기
         List<Pattern> patternList = new List<Pattern>();
         for (int i = 0; i < ObjectPoolManager.Instance.prefabs.Length; i++)
@@ -122,13 +125,10 @@ public abstract class MonsterBase : ANPC, ISlowAble
         // 게임매니저의 보스에 자신을 등록
         GameManager.Instance.InitBoss(this);
 
-        // 시작할 때 현재 HP를 최대 HP로 >> ANPC에서 할당
+        // 시작할 때 현재 HP >> ANPC에서 저장된 값 할당
 
         atk = monsterData.atk;
         moveSpeed = monsterData.moveSpeed;
-
-        // 플레이어를 타겟으로
-        target = PlayerManager.Instance.playerPrefab.transform;
 
         // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
         distanceRangePatterns = new float2[patterns.Length];
