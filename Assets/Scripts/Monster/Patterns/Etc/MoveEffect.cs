@@ -7,7 +7,7 @@ public enum MoveType
 }
 
 // 공격 이펙트가 이동할 때 사용(탄환, 장판 범위 표시 후 날아가는 투사체 등)
-public class MoveEffect : MonoBehaviour, ISlowAble
+public class MoveEffect : MonoBehaviour
 {
     Transform rangeCenter;
     PointType startPoint_ref, endPoint_ref;
@@ -15,11 +15,11 @@ public class MoveEffect : MonoBehaviour, ISlowAble
     #region Move
     public MoveType moveType;
     float rangeMax;
-    // 이동에 소요되는 시간
+    // 이동 속력
     public float moveTime = 3f;
     // 곡선일 때 중점의 높이
     public float heigthOfPathCurve = 3;
-    float loopCount, loopCountMax;
+    int loopCount, loopCountMax;
     #endregion
 
     #region SelfRotate
@@ -53,7 +53,7 @@ public class MoveEffect : MonoBehaviour, ISlowAble
         endPoint_ref = patternData.endPointType;
         rangeMax = patternData.range.y;
 
-        loopCountMax = moveTime / Time.fixedDeltaTime;
+        loopCountMax = (int)(moveTime / Time.fixedDeltaTime);
     }
 
 
@@ -182,15 +182,7 @@ public class MoveEffect : MonoBehaviour, ISlowAble
         // 시간으로 바꿔서 생각해보자
         // moveTime = 3s 안에 목적지에 도달해야 한다면? 0.02s로 나눠주면 고정 업데이트 몇번만에 가야하는지 나옴 >> loopCountMax
         // 고정 루프 1번당 loopCount 쌓기 >> loopCount/loopCountMax = 진행도
-
-        // 슬로우는 어떻게 해줘야 할까
-        // loopCount를 float으로 바꿔버리면 되는 게 아닐까?
-        // 평상시엔 1씩 더하다 슬로우 상태에서는 GameManager.Instance.slowRate 만큼씩 더하는걸루
-        if (isSlowed)
-            loopCount += GameManager.Instance.slowRate;
-        else
-            loopCount++;
-        progressRate = loopCount / loopCountMax;
+        progressRate = (float)(++loopCount) / loopCountMax;
         progressRate = Mathf.Clamp01(progressRate); // 0~1 사이 값으로 제한하여 넘어가지 않도록
 
         Vector3 pos = Vector2.zero;
@@ -217,24 +209,5 @@ public class MoveEffect : MonoBehaviour, ISlowAble
             // 쿼터니언의 곱은 순서 중요!
             // q1 * q2 = q2 회전 후 q1 회전하여 더하는 효과 >> 회전
             transform.rotation = rotationPerFixedFrame * transform.rotation;
-    }
-
-
-    // 슬로우/해제 관련 구현
-    // 슬로우 중인지 판정하기 위한 프로퍼티(없으면 감속이 된 건지 아닌지 판정할 수 없기에)
-    public bool isSlowed { get; set; } = false;
-    // 감속 시작!
-    public void StartSlow()
-    {
-        isSlowed = true;
-        if(isSelfRotating_Default)
-            rotationPerFixedFrame = Quaternion.Euler(Vector3.forward * rotationSpeed * GameManager.Instance.slowRate);
-    }
-    // 감속 끝!
-    public void StopSlow()
-    {
-        isSlowed = false;
-        if (isSelfRotating_Default)
-            rotationPerFixedFrame = Quaternion.Euler(Vector3.forward * rotationSpeed);
     }
 }

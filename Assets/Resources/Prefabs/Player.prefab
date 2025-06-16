@@ -534,7 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2819f2d768c7e0e47891e1959c99b85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibleDuration: 1.5
 --- !u!114 &6854451447265653402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,5 +766,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
+<<<<<<< HEAD
   attackDamage: 20
   isAttacking: 0
+=======
+  attackDamage: 10
+>>>>>>> parent of 2ad3e88 (feat: 슬로우 기능 생성 완료. 머지 이후 테스트 필요)

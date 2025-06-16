@@ -18,18 +18,10 @@ public class CircleMaskEffectController : MonoBehaviour
     private State currentState = State.Idle;
     private float timer = 0f;
 
-    // ISlowable의 입출입을 판정하기가 쉽지 않음.. 트리거로 해볼게요
-    CircleCollider2D trigger;
-
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        TryGetComponent(out trigger);
     }
 
     private void Update()
@@ -39,7 +31,6 @@ public class CircleMaskEffectController : MonoBehaviour
             case State.Expanding:
                 timer += Time.deltaTime;
                 CurrentRadius = Mathf.Lerp(0f, maxRadius, timer / expandDuration);
-                trigger.radius = CurrentRadius;
                 if (timer >= expandDuration)
                 {
                     currentState = State.Holding;
@@ -50,7 +41,6 @@ public class CircleMaskEffectController : MonoBehaviour
             case State.Holding:
                 timer += Time.deltaTime;
                 CurrentRadius = maxRadius;
-                trigger.radius = CurrentRadius;
                 if (timer >= holdDuration)
                 {
                     currentState = State.Shrinking;
@@ -61,7 +51,6 @@ public class CircleMaskEffectController : MonoBehaviour
             case State.Shrinking:
                 timer += Time.deltaTime;
                 CurrentRadius = Mathf.Lerp(maxRadius, 0f, timer / shrinkDuration);
-                trigger.radius = CurrentRadius;
                 if (timer >= shrinkDuration)
                 {
                     currentState = State.Idle;
@@ -72,7 +61,6 @@ public class CircleMaskEffectController : MonoBehaviour
 
             case State.Idle:
                 CurrentRadius = 0f;
-                trigger.enabled = false;
                 break;
         }
     }
@@ -92,35 +80,12 @@ public void TriggerEffect()
             Vector3 viewportPos = cam.WorldToViewportPoint(worldPos);
             Debug.Log($"Effect center viewportPos: {viewportPos}");
 
-            CurrentCenter = trigger.offset = new Vector2(viewportPos.x, viewportPos.y);
-            trigger.enabled = true;
+            CurrentCenter = new Vector2(viewportPos.x, viewportPos.y);
         }
     }
 
     currentState = State.Expanding;
     timer = 0f;
 }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out ISlowAble slowableObj))
-        {
-            if (!slowableObj.isSlowed)
-            {
-                slowableObj.StartSlow();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out ISlowAble slowableObj))
-        {
-            if (slowableObj.isSlowed)
-            {
-                slowableObj.StopSlow();
-            }
-        }
-    }
 
 }
