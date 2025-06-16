@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ac32733a564434db33f342db931a77, type: 3}
+  m_Name: UltSkillData
+  m_EditorClassIdentifier: 
+  skillName: "\uAD81\uADF9\uAE30"
+  description: "\uC5BC\uC74C\uAE30\uC0AC\uC758 \uAD81\uADF9\uAE30\uC774\uB2E4"
+  icon: {fileID: 0}
+  skillPrefab: {fileID: 0}
+  maxUltCharge: 0

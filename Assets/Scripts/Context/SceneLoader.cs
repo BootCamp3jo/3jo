@@ -1,21 +1,22 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoSingleton<SceneLoader>
 {
     GameContext gameContext;
     private static SceneLoader instance;
     [SerializeField] private List<string> abortSceneNameList = new();
     private HashSet<string> abortSceneNames = new();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
     }
 
-    private void Start()
+    protected void Start()
     {
         if (instance != null)
         {
@@ -28,11 +29,11 @@ public class SceneLoader : MonoBehaviour
         {
             abortSceneNames.Add(name);
         }
-        gameContext = GameManager.instance.gameContext;
+        gameContext = DataManager.Instance.gameContext;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    protected void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (abortSceneNames.Contains(scene.name))
         {
@@ -42,15 +43,15 @@ public class SceneLoader : MonoBehaviour
         {
 
             SceneBundle saveData = gameContext.saveData.sceneBundles[scene.name];
-            while (saveData.npcDataQueue.Count > 0)
+            while (gameContext.npcDataQueue.Count > 0)
             {
-                NPCData npcData = saveData.npcDataQueue.Dequeue();
+                NPCData npcData = gameContext.npcDataQueue.Dequeue();
                 GameObject prefab = Resources.Load<GameObject>(npcData.prefabPath);
                 if (prefab != null)
                 {
                     GameObject npc = GameObject.Instantiate(prefab);
                     npc.transform.position = new Vector3(npcData.posX, npcData.posY, npcData.posZ);
-                    if(npc.TryGetComponent<NPC>(out NPC _npc))
+                    if(npc.TryGetComponent<ANPC>(out ANPC _npc))
                     {
                         _npc.isCreatedBySceneLoader = true;
                         _npc.npcData = npcData;

@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using DG.Tweening;
 
-public class MonsterState_Move : MonoBehaviour
+public class MonsterState_Move : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    MonsterStateMachine stateMachine;
+    public MonsterState_Move(MonsterStateMachine monsterStateMachine)
     {
-        
+        this.stateMachine = monsterStateMachine;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        // 이동 모션 재생 시작(이동 스프라이트가 없다면 이후 잔상 효과로 대체 !!!)
+        stateMachine.StartAnime(stateMachine.AnimatorParameters.moveHash);
+    }
+
+    public void Execute()
+    {
+
+    }
+
+    public void Exit()
+    {
+        // 대기 모션 재생 종료
+        stateMachine.StopAnime(stateMachine.AnimatorParameters.moveHash);
     }
 }
