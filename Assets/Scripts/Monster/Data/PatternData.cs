@@ -1,6 +1,16 @@
 using UnityEngine;
 using Unity.Mathematics;
-using UnityEngine.Events;
+
+// 패턴 수가 랜덤인 패턴들에 추가
+public interface IRandomAtkCount
+{
+    public int2 randomAtkCount { get; set; }
+}
+
+public interface IRandomPosRange
+{
+    public float2x2 patternRange {  get; set; }
+}
 
 public enum PatternType
 {
@@ -9,18 +19,35 @@ public enum PatternType
     Range, // 범위
 }
 
+// 패턴의 시작 위치가 어딘지 나타내는 타입
+public enum PointType
+{
+    Player,
+    Enemy,
+    Random,
+    Random_AroundEnemy,
+    Random_AroundPlayer,
+    RangeCenter,
+}
+
 [CreateAssetMenu(fileName = "Pattern_", menuName = "Data/Pattern")]
 public class PatternData : ScriptableObject
 {
     // 각 몬스터 패턴에는 무엇이 공통적으로 필요할까?
     // 패턴 타입
     public PatternType patternType;
+
+    // 시작, 끝 위치
+    public PointType startPointType, endPointType;
+
     // 공격력 계수(몬스터 공격력 * 계수 = 최종 대미지, 단, 플레이어가 HP를 int로 쓴다면 반올림)
     [field: SerializeField] public float atkCoefficient { get; private set; }
     // 해당 패턴이 공격 가능한 거리(최소, 최대)
     [field: SerializeField] public float2 range { get; private set; }
     // 해당 패턴 이후의 공격 딜레이
     [field: SerializeField] public float delay { get; private set; }
+    // 패턴 지속 시간
+    [field: SerializeField] public float lifeTime {  get; private set; }
 }
 
 // 어느 상황에 어떤 패턴을 쓰는지 어떻게 정할까?

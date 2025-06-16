@@ -13,48 +13,53 @@ public abstract class APlayer : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (!dontNeedSave)
+        if (dontNeedSave)
         {
-            gameContext = DataManager.Instance.gameContext;
-            gameContext.player = this;
-            string curSceneName = SceneManager.GetActiveScene().name;
-            // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기
-            if (gameContext.IsSceneSaved(curSceneName))
-            {
-                this.playerData = gameContext.saveData.playerData;
-                this.playerStateInScene = gameContext.saveData.sceneBundles[curSceneName].playerStateInScene;
-
-                // 받아온 상태 처리
-                gameObject.transform.position = new Vector3(playerStateInScene.posX, playerStateInScene.posY, playerStateInScene.posZ);
-                /*
-                 * 
-                 * 
-                 * 
-                 * 
-                 */
-
-                if (playerStateInScene.isPlayerExist == false)
-                {
-                    Destroy(gameObject);
-                }
-            }
-            // 아니면 새로 생성하기
-            else
-            {
-                if (gameContext.playerData == null)
-                {
-                    gameContext.playerData = playerData;
-                }
-                playerStateInScene = new();
-            }
-            playerStateInScene.isPlayerExist = true;
-            gameContext.playerStateInScene = playerStateInScene;
+            return;
         }
+        gameContext = DataManager.Instance.gameContext;
+        gameContext.player = this;
+        string curSceneName = SceneManager.GetActiveScene().name;
+        // 해당 Scene 내용이 저장되어 있으면 saveData에서 상태 받아오기
+        if (gameContext.IsSceneSaved(curSceneName))
+        {
+            this.playerData = gameContext.saveData.playerData;
+            this.playerStateInScene = gameContext.saveData.sceneBundles[curSceneName].playerStateInScene;
+
+            // 받아온 상태 처리
+            gameObject.transform.position = new Vector3(playerStateInScene.posX, playerStateInScene.posY, playerStateInScene.posZ);
+            /*
+             * 
+             * 
+             * 
+             * 
+             */
+
+            if (playerStateInScene.isPlayerExist == false)
+            {
+                Destroy(gameObject);
+            }
+        }
+        // 아니면 새로 생성하기
+        else
+        {
+            if (gameContext.playerData == null)
+            {
+                gameContext.playerData = playerData;
+            }
+            playerStateInScene = new();
+        }
+        playerStateInScene.isPlayerExist = true;
+        gameContext.playerStateInScene = playerStateInScene;
     }
 
     // Update에서 호출하지 말고 Save 지점에서만 호출할 방법 고민?
     public virtual void Save()
     {
+        if (playerStateInScene == null)
+        {
+            return;
+        }
         playerStateInScene.posX = gameObject.transform.position.x;
         playerStateInScene.posY = gameObject.transform.position.y;
         playerStateInScene.posZ = gameObject.transform.position.z;
@@ -72,9 +77,10 @@ public abstract class APlayer : MonoBehaviour
     [ContextMenu("RemoveFromSceneBundle")]
     public void RemoveFromSceneBundle()
     {
-        if (playerStateInScene != null)
+        if (playerStateInScene == null)
         {
-            playerStateInScene.isPlayerExist = false;
+            return;
         }
+        playerStateInScene.isPlayerExist = false;
     }
 }
