@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 2681828394660667541}
   - component: {fileID: 4164343200465703411}
   - component: {fileID: 6456797830826491460}
+  - component: {fileID: 5789749552631372124}
   m_Layer: 0
   m_Name: Level01Skill
   m_TagString: Untagged
@@ -511,3 +512,16 @@ MonoBehaviour:
   attackDamage: 20
   isAttacking: 0
   rootGO: {fileID: 5751081566078165181}
+--- !u!114 &5789749552631372124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672578671939633380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bb316805257a041b7e0b819fa890f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 11

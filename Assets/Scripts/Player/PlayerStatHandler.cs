@@ -28,14 +28,33 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     // ------------------- 체력 ------------------- //
     public void TakeDamage(float amount)
     {
-        if (isInvincible) return; // 무적 상태면 데미지 무시
+        if (isInvincible) return;
 
         playerData.CurrentHealth -= amount;
         playerStatsUI.UpdateHealthBar();
 
-        StartCoroutine(InvincibilityCoroutine());
+        if (playerData.CurrentHealth <= 0)
+        {
+            playerData.CurrentHealth = 0;
+            OnPlayerDeath(); // ← 사망 처리 호출
+        }
+        else
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
     }
+    private void OnPlayerDeath()
+    {
+        // 게임 오버 UI 띄우기
+        GameOverUI.Instance.Show();
 
+        // 플레이어 조작 막기 등 추가 처리
+        StopManaRegeneration();
+        // 예: GetComponent<PlayerController>().enabled = false;
+
+        // 게임 정지
+        Time.timeScale = 0f;
+    }
     private IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
