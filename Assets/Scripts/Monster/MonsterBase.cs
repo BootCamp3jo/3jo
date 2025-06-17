@@ -14,7 +14,7 @@ public abstract class MonsterBase : ANPC
     // 패턴을 만들다 보면 타겟이 플레이어가 아니게 되는 경우도 있으니 이름을 타겟으로 변경
     protected Transform target;
 
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     public Animator animator { get; private set; }
 
     // 상태 머신 관리용 클래스

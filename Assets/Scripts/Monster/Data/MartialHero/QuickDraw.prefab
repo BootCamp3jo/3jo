@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7392949314056723941}
   - component: {fileID: 1658154959827679160}
   - component: {fileID: 4423288214217433549}
+  - component: {fileID: 5669835978811760438}
+  - component: {fileID: 6827859851906346190}
   m_Layer: 0
   m_Name: SlashEffect
   m_TagString: Untagged
@@ -28,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 480508006640614896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 30, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3667747745621489629}
@@ -170,6 +172,34 @@ PolygonCollider2D:
       - {x: 0.30847403, y: 0.121557824}
       - {x: 0.30313313, y: 0.22948083}
   m_UseDelaunayMesh: 0
+--- !u!114 &5669835978811760438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480508006640614896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 33554560
+  <Damage>k__BackingField: 20
+--- !u!114 &6827859851906346190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480508006640614896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4f8f8e8c31584458455089038b53bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1893876919370925934
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +243,7 @@ GameObject:
   - component: {fileID: 2137899526837235737}
   - component: {fileID: 2288333889403751912}
   m_Layer: 0
-  m_Name: Slash
+  m_Name: QuickDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +258,7 @@ Transform:
   m_GameObject: {fileID: 6126466430207574204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -247,4 +277,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5580fe3fb16e51444b7e98a6a770238f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <patternData>k__BackingField: {fileID: 11400000, guid: 374af95e861322a4da1a72ad4df4168f, type: 2}
+  <patternData>k__BackingField: {fileID: 11400000, guid: 8f445a392d2a6c441a5cf62dee223acb, type: 2}
