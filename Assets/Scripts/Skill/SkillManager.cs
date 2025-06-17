@@ -9,7 +9,7 @@ public class SkillManager : MonoSingleton<SkillManager>
     [SerializeField] public SkillUIDataSlotManager skillUiDataSlotManager;
     [SerializeField] public SkillTreeDataSlotManager skillTreeDataSlotManager;
     [SerializeField] public SkillCoolTimeHandler skillCoolTimeHandler;
-
+    private PlayerSkillHandler skillHandler;
 
     [SerializeField] private Transform VFXSpawnPoint;
     [SerializeField] private TextMeshProUGUI skillPointText;
@@ -17,6 +17,10 @@ public class SkillManager : MonoSingleton<SkillManager>
     public List<BaseSkillData> basicSkillList;
     public List<BaseSkillData> upgradedSkillList;
     public List<BaseSkillData> ultimateSkillList;
+    private void Start()
+    {
+        skillHandler = PlayerManager.Instance.playerSkillHandler;
+    }
 
     public void SummonSkillVFX(int skillIndex)
     {

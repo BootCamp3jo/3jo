@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Portal : MonoBehaviour
 {
@@ -43,5 +44,14 @@ public class Portal : MonoBehaviour
             }
             SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
+    }
+
+    public void MoveScene()
+    {
+        foreach (Action action in actionBeforeSceneTransitionList)
+        {
+            action.Invoke();
+        }
+        SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
     }
 }

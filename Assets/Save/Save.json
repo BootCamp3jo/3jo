@@ -1,7 +1,7 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "JayeonScene",
-  "KillCount": 10,
+  "curSceneName": "LobbyScene",
+  "KillCount": 18,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
