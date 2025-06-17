@@ -669,6 +669,7 @@ GameObject:
   - component: {fileID: 8153134812116897574}
   - component: {fileID: 5795661413467567411}
   - component: {fileID: 4325494764128292700}
+  - component: {fileID: 7705398551312075986}
   m_Layer: 7
   m_Name: Player_Visual
   m_TagString: Untagged
@@ -731,7 +732,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1559176219
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 100
   m_Sprite: {fileID: 4280352003601948487, guid: 83884a65e5b17b446a6ba4efbf345cc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -797,3 +798,15 @@ MonoBehaviour:
     m_Bits: 8
   attackDamage: 20
   isAttacking: 0
+--- !u!114 &7705398551312075986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9070524762760038767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059ab09cfb964ae458f2c1d06657cec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
