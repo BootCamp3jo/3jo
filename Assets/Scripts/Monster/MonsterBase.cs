@@ -12,7 +12,7 @@ public abstract class MonsterBase : ANPC
     // 타겟이 될 대상의 레이어(보통은 플레이어).. 그런데 레이어가 필요한가? 플레이어 트랜스폼만 있으면 되는 게 아닐까?
     // 게임매니저에 플레이어에 접근할 수 있도록 했다고 하니 그걸 써보자
     // 패턴을 만들다 보면 타겟이 플레이어가 아니게 되는 경우도 있으니 이름을 타겟으로 변경
-    Transform target;
+    protected Transform target;
 
     SpriteRenderer spriteRenderer;
     public Animator animator { get; private set; }
@@ -42,10 +42,12 @@ public abstract class MonsterBase : ANPC
     List<int> patternsAvailable = new List<int>();
 
     // 이동 벡터
-    Vector2 moveVec;
+    protected Vector2 moveVec;
 
     // 패턴을 발동할 수 있는 거리의 제곱의 영역 x~y 사이. x보다 작거나 y보다 크면 각각 후퇴,추적
-    float2 distPoweredBoundary = new(float.MaxValue, float.MinValue);
+    protected float2 distPoweredBoundary = new(float.MaxValue, float.MinValue);
+    // 타겟과의 거리의 제곱
+    protected float distPowered;
 
 
     // 적 이펙트 관련
@@ -163,13 +165,19 @@ public abstract class MonsterBase : ANPC
         AdjustAnimatorSpeed();
     }
 
+    private void FixedUpdate()
+    {
+        //현 상태의 ExecutePhysically 실행
+        stateMachine.ExecutePhysically();
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
     }
 
     // idle 상태일 때 딜레이 감소 및 공격 상태 전환
-    public void Idle()
+    public virtual void Idle()
     {
         if (!isAttacking)
         {
@@ -180,7 +188,7 @@ public abstract class MonsterBase : ANPC
     }
 
     // 보스의 이동 관련
-    public void Move()
+    public virtual void Move()
     {
         // 추적 속도 벡터
         moveVec = (PlayerManager.Instance.player.transform.position- transform.position).normalized * monsterData.moveSpeed * Time.deltaTime;
@@ -232,7 +240,7 @@ public abstract class MonsterBase : ANPC
         // 아이템 드랍 !!!
         ExpManager.instance.SpawnExp(
                transform.position,
-               exp,
+               monsterData.dropData.exp,
                1.5f, // 추가 대기 시간
                () =>
                {

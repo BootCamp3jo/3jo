@@ -18,7 +18,7 @@ public class MonsterState_Move : IState
 
     public void ExecutePhysically()
     {
-        
+        stateMachine.monster.Move();
     }
 
     public void Exit()
