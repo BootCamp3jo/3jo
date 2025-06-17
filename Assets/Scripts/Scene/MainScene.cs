@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainScene : MonoBehaviour
 {
 
-    private void Start()
+    private void OnEnable()
     {
         AudioManager.instance.PlayBGM(BGMType.Main);
     }

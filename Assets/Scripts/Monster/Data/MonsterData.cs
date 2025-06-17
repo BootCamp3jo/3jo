@@ -18,14 +18,14 @@ public class MonsterData : ScriptableObject
     // 공격 딜레이는 패턴 데이터에
 
     // 사망 시 드랍하는 내용
-    [field: SerializeField] DropData dropData; 
+    [field: SerializeField] public DropData dropData; 
 }
 
 [Serializable]
 public class DropData
 {
-    int exp; // 경험치
-    DropItem[] dropItems; // 드랍 아이템 풀
+    public int exp; // 경험치
+    public DropItem[] dropItems; // 드랍 아이템 풀
 }
 
 // !!! 아이템이 만들어진 후 작성하기!

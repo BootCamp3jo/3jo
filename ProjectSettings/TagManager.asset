@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Npc
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,18 @@ TagManager:
   - name: Deco
     uniqueID: 453080195
     locked: 0
+  - name: BackEffect
+    uniqueID: 1765151281
+    locked: 0
+  - name: Enemy
+    uniqueID: 3202111163
+    locked: 0
+  - name: MidEffect
+    uniqueID: 3904383235
+    locked: 0
   - name: Player
     uniqueID: 2735791077
+    locked: 0
+  - name: FrontEffect
+    uniqueID: 1376446771
     locked: 0

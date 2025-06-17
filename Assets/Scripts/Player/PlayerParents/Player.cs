@@ -23,6 +23,7 @@ public class Player : APlayer
     {
         if (playerMovement.JustDodgeWindow)
         {
+            AudioManager.instance.PlaySFX(SFXType.SlowMotion);
             playerEffectController.PlayJustDodgeEffect();
             playerEffectController.TriggerShockWave();
         }

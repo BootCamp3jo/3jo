@@ -19,6 +19,7 @@ public class PlayerDamageDealer : A_BaseDamageDealer
     {
         isAttacking = true;
         currentTargets.Clear();
+        AudioManager.instance.PlaySFX(SFXType.Attack, 0.7f, 1.0f);
     }
 
     public override void EndAttack()

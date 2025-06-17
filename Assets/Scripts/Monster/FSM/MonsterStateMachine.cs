@@ -10,7 +10,7 @@ public interface IState
 public class MonsterStateMachine
 {
     // 상태 중에 몬스터의 메서드를 사용할 수 있기에 연결!
-    public MonsterBase monster {get; private set;}
+    public MonsterBase monster { get; private set; }
     public MonsterStateMachine(MonsterBase monster)
     {
         this.monster = monster;
@@ -41,6 +41,11 @@ public class MonsterStateMachine
     public void Execute()
     {
         currentState?.Execute();
+    }
+
+    public void ExecutePhysically()
+    {
+        currentState?.ExecutePhysically();
     }
 
     // 상태 전환

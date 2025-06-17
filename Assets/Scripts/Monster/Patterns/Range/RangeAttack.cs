@@ -94,6 +94,7 @@ public class RangeAttack : MonoBehaviour
             waveEffect.TriggerShockWave(transform);
         // 트리거를 켜서 공격!
         trigger.enabled = true;
+        AudioManager.instance.PlaySFX(SFXType.Boom, 0.8f, 1f);
         // 공격 범위가 남아있으면 안되니 영역 표시 오브젝트 비활성화
         ChangeMarkEnable(false);
         // 지속 시간 동안 영역에 대미지
