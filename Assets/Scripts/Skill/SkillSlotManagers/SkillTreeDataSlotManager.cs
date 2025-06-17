@@ -26,4 +26,21 @@ public class SkillTreeDataSlotManager : A_SkillDataSlotManager
 
         Debug.Log("SkillDataSlotManager: Assigned skills to slots.");
     }
+
+    public bool Is2ndSkillUnlocked()
+    {
+        if (IsSkillUnlocked(skillSlotDatas[2])) return true;
+        else return false;
+    }
+
+    public bool IsThis3rdSkill(SkillTreeSlotData skillTreeSlot)
+    {
+        if (skillTreeSlot == skillSlotDatas[3]) return true;
+        else return false;
+    }
+
+    public void Upgrade3rdSkill()
+    {
+        skillSlotDatas[3].MatchingSkillSlotData.SetSkillToSlot(SkillManager.Instance.upgradedSkillList[0]);
+    }
 }

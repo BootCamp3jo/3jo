@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SkillManager : MonoSingleton<SkillManager>
 {
     [Header("SkillManager")]
-    [SerializeField] private SkillUIDataSlotManager skillUiDataSlotManager;
+    [SerializeField] public SkillUIDataSlotManager skillUiDataSlotManager;
+    [SerializeField] public SkillTreeDataSlotManager skillTreeDataSlotManager;
+    [SerializeField] public SkillCoolTimeHandler skillCoolTimeHandler;
+
+
     [SerializeField] private Transform VFXSpawnPoint;
+    [SerializeField] private TextMeshProUGUI skillPointText;
 
     public List<BaseSkillData> basicSkillList;
     public List<BaseSkillData> upgradedSkillList;
@@ -57,6 +63,11 @@ public class SkillManager : MonoSingleton<SkillManager>
         ultVFX.transform.localScale = localScale;
     }
 
+    public void SetSkillPointText()
+    {
+        skillPointText.text = PlayerManager.Instance.playerData.SkillPoint.ToString("D2");
+    }
+
     public BaseSkillData GetSkillData(int skillIndex)
     {
         return skillUiDataSlotManager.GetSkillSlotData(skillIndex).GetSkillDataFromSlot();
@@ -66,6 +77,11 @@ public class SkillManager : MonoSingleton<SkillManager>
     {
         return skillUiDataSlotManager.GetUltSkillSlotData().GetSkillDataFromSlot();
     }
-}
 
+    public void LockIconBlinking(SkillSlotData skillSlotData)
+    {
+        if (skillSlotData.SkillIcon.sprite == skillTreeDataSlotManager.LockedSkillIcon)
+            skillSlotData.SkillIcon.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time, 0.7f) + 0.2f);
+    }
+}
 

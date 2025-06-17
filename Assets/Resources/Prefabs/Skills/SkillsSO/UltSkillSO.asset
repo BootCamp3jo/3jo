@@ -17,4 +17,6 @@ MonoBehaviour:
     \uC801\uB4E4\uC744 \uD729\uC4F8\uC5B4\uBC84\uB9B0\uB2E4"
   icon: {fileID: 21300000, guid: b288e855d9bd55e48a3504ee999bce0f, type: 3}
   skillPrefab: {fileID: 2740528030930530606, guid: c31e70b3a5c5c1c40877437b61e22ca7, type: 3}
+  coolDown: 15
+  skillPointCost: 15
   maxUltCharge: 100

@@ -193,8 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillData: {fileID: 0}
-  skillIcon: {fileID: 5055890439066487744}
+  _skillIcon: {fileID: 5055890439066487744}
   cooldownTime: 0
+  isUnlocked: 0
 --- !u!1 &5450161573350095386
 GameObject:
   m_ObjectHideFlags: 0

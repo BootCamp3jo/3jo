@@ -13,12 +13,13 @@ public class PlayerData
     [SerializeField] private int _level = 1;
     [SerializeField] private float _experience;
     [SerializeField] private int _coin;
+    [SerializeField] private int _skillPoint = 0;
 
     [Header("Max Stats")]
-    private int _maxHealth = 100;
-    private int _maxMana = 100;
+    private float _maxHealth = 100;
+    private float _maxMana = 100;
     private int _maxLevel = 100;
-    private int _maxExperience = 100;
+    private float _maxExperience = 100f;
     private int _maxCoin = 999_999;
 
     //--------------------------------------//
@@ -52,18 +53,24 @@ public class PlayerData
         set => _coin = Mathf.Clamp(value, 0, _maxCoin);
     }
 
+    public int SkillPoint
+    {
+        get => _skillPoint;
+        set => _skillPoint = Mathf.Max(value, 0);
+    }
+
     //--------------------------------------//
-    public int MaxHealth => _maxHealth;
-    public int MaxMana => _maxMana;
+    public float MaxHealth => _maxHealth;
+    public float MaxMana => _maxMana;
     public int MaxLevel => _maxLevel;
-    public int MaxExperience => _maxExperience;
+    public float MaxExperience => _maxExperience;
     public int MaxCoin => _maxCoin;
 
     //--------------------------------------//
     public void SetMaxHealth(int value) => _maxHealth = value;
     public void SetMaxMana(int value) => _maxMana = value;
     public void SetMaxLevel(int value) => _maxLevel = value;
-    public void SetMaxExperience(int levelMultiplier) => _maxExperience *= levelMultiplier;
+    public void SetMaxExperience(float maxExpModifier) => _maxExperience += maxExpModifier;
 
     //--------------------------------------//
 }

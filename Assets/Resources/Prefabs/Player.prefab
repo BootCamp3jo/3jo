@@ -486,6 +486,7 @@ MonoBehaviour:
     _level: 1
     _experience: 0
     _coin: 0
+    _skillPoint: 2
   playerMovement: {fileID: 8795419104019595138}
   playerAnimationHandler: {fileID: 5795661413467567411}
   playerCombatHandler: {fileID: 4325494764128292700}
@@ -547,6 +548,7 @@ MonoBehaviour:
     _level: 1
     _experience: 0
     _coin: 100
+    _skillPoint: 0
   dontNeedSave: 1
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}

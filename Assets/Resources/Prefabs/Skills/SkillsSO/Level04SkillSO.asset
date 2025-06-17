@@ -17,4 +17,6 @@ MonoBehaviour:
     \uB124 \uAC1C\uB97C \uD53C\uC6CC\uB0B8\uB2E4"
   icon: {fileID: 21300000, guid: 93b81f9ed56d5f74397f9a605cb86d61, type: 3}
   skillPrefab: {fileID: 4559922528063623787, guid: 4b6ddf99b9590cf488d68b56212c66a5, type: 3}
-  coolDown: 10
+  skillPointCost: 10
+  coolDown: 11
+  manaCost: 25
