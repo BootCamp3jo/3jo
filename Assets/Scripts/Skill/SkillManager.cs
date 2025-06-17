@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SkillManager : MonoSingleton<SkillManager>
 {
     [Header("SkillManager")]
     [SerializeField] private SkillUIDataSlotManager skillUiDataSlotManager;
+    [SerializeField] private SkillTreeDataSlotManager skillTreeDataSlotManager;
+
+
     [SerializeField] private Transform VFXSpawnPoint;
+    [SerializeField] private TextMeshProUGUI skillPointText;
 
     public List<BaseSkillData> basicSkillList;
     public List<BaseSkillData> upgradedSkillList;
@@ -55,6 +60,11 @@ public class SkillManager : MonoSingleton<SkillManager>
             localScale.x = -Mathf.Abs(localScale.x);
 
         ultVFX.transform.localScale = localScale;
+    }
+
+    public void SetSkillPointText()
+    {
+        skillPointText.text = PlayerManager.Instance.playerData.SkillPoint.ToString("D2");
     }
 
     public BaseSkillData GetSkillData(int skillIndex)

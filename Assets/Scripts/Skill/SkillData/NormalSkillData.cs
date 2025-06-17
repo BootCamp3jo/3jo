@@ -6,4 +6,5 @@ using UnityEngine;
 public class NormalSkillData : BaseSkillData
 {
     public float coolDown;
+    public float manaCost;
 }

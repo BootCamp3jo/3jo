@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class A_SkillDataSlotManager : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
     protected int skillSlotDataCounts;
 
     [SerializeField]
+    protected Sprite lockedSkillIcon;
+
+    [SerializeField]
     protected List<SkillSlotData> skillSlotDatas;
 
     // Start is called before the first frame update
@@ -19,7 +24,9 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
     {
         SkillDataSlotInit();
         SkillsToSlotInit();
+        isUnlockedSkillInit();
         UltSkillInit();
+        isUnLockedUltSkillInit();
     }
 
     protected void SkillDataSlotInit()
@@ -53,6 +60,68 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
     protected void UltSkillInit()
     {
         ultSkillSlotData.SetSkillToSlot(SkillManager.Instance.ultimateSkillList[0]);
+    }
+
+    protected void isUnlockedSkillInit()
+    {
+        for (int i = 0; i < skillSlotDatas.Count; i++)
+        {
+            if (!isSkillUnlocked(skillSlotDatas[i]))
+            {
+                SetLockIcon(skillSlotDatas[i]);
+            }
+            else
+            {
+                RemoveLockIcon(skillSlotDatas[i]);
+            }
+        }
+    }
+
+    protected void isUnLockedUltSkillInit()
+    {
+        if (!isUltSkillUnlocked())
+            SetLockIcon(ultSkillSlotData);
+     
+        else RemoveLockIcon(ultSkillSlotData);
+    }
+
+    public bool isUltSkillUnlocked()
+    {
+        if (ultSkillSlotData == null)
+        {
+#if UnityEditor
+            Debug.LogError("SkillDataSlotManager: Ultimate skill slot data is not set.");
+#endif
+            return false;
+        }
+
+        if (!ultSkillSlotData.isUnlocked) return false;
+        return true;
+    }
+
+    public bool isSkillUnlocked(SkillSlotData skillSlotData)
+    {  
+        if (!skillSlotData.isUnlocked) return false;
+
+        return true;
+    }
+
+    private void SetLockIcon(SkillSlotData skillSlotData)
+    {
+        skillSlotData.skillIcon.sprite = lockedSkillIcon;
+    }
+
+    private void RemoveLockIcon(SkillSlotData skillSlotData)
+    {
+        if (skillSlotData.GetSkillDataFromSlot() == null)
+        {
+#if UNITY_EDITOR
+            Debug.LogError("SkillDataSlotManager: Skill data is null, cannot remove unlock icon.");
+#endif
+            return;
+        }
+
+        skillSlotData.skillIcon.sprite = skillSlotData.GetSkillDataFromSlot().icon;
     }
 
     public SkillSlotData GetUltSkillSlotData()

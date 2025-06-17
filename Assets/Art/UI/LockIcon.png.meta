@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1ea465733445a864f9cf361a12eb9912
+guid: 84626e85a1f44ed40a39fac6b264c248
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -136,22 +136,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ribbon_Red_3Slides_0
+      name: LockIcon_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 186
-        height: 61
+        x: 178
+        y: 95
+        width: 668
+        height: 815
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 41, y: 17, z: 41, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 026dfe0d44d85894e9631cd6a314bdd2
-      internalID: -551700040
+      spriteID: 215cf3f4cdc9e384587c6e4b986e17f1
+      internalID: 1094203894
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ribbon_Red_3Slides_0: -551700040
+      LockIcon_0: 1094203894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

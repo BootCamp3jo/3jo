@@ -28,6 +28,9 @@ public class PlayerStatsUI : MonoBehaviour
     {
         coinText.text = playerData.Coin.ToString();
         levelText.text = playerData.Level.ToString();
+
+        // 기본 스탯 UI 업데이트
+        SkillManager.Instance.SetSkillPointText();
     }
 
     public void UpdateHealthBar()

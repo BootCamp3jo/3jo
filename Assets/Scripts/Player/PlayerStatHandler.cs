@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class PlayerStatHandler : MonoBehaviour, IDamageable
 {
@@ -68,7 +69,7 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
         {
             playerData.Experience -= playerData.MaxExperience;
             LevelUp();
-            playerData.SetMaxExperience(playerData.Level);
+            playerData.SetMaxExperience(CalculateMaxExpModifier(playerData.Level));
         }
 
         playerStatsUI.UpdateExpBar();
@@ -76,8 +77,14 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
 
     private void LevelUp()
     {
+        AddSkillPoint(playerData.Level);
         playerData.Level++;
         playerStatsUI.UpdateLevelText();
+    }
+
+    private float CalculateMaxExpModifier(int level)
+    {
+        return (50 * level);
     }
 
     // ------------------- 코인 ------------------- //
@@ -96,5 +103,54 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
             return true;
         }
         return false;
+    }
+
+    // ------------------- 스킬포인트 ------------------- //
+
+    public void AddSkillPoint(int level)
+    {
+        int amount = SkillPointCalculation(level);
+
+        playerData.SkillPoint += amount;
+        SkillManager.Instance.SetSkillPointText();
+    }
+
+    public void UseSkillPoint(int amount)
+    {
+
+        int skillPoint = playerData.SkillPoint;
+        if (skillPoint >= amount)
+        {
+            skillPoint -= amount;
+            SkillManager.Instance.SetSkillPointText();
+        }
+        else
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning("Not enough skill points!");
+#endif
+        }
+    }
+
+    private int SkillPointCalculation(int level)
+    {
+        int calculatedSkillPoint = 0;
+
+        if (level <= 2)
+            calculatedSkillPoint = 1; // Level 1 - 2
+
+        else if (level <= 4)
+            calculatedSkillPoint = 2; // Level 3 - 4
+
+        else if (level <= 6)
+            calculatedSkillPoint = 3; // Level 5 - 6
+
+        else if (level <= 8)
+            calculatedSkillPoint = 4; // Level 7 - 8
+
+        else
+            calculatedSkillPoint = 5; // Level 9 ~
+
+        return calculatedSkillPoint;
     }
 }

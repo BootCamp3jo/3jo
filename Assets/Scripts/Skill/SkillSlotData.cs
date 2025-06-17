@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class SkillSlotData : MonoBehaviour
 {
     [SerializeField] private BaseSkillData skillData;
-    [SerializeField] private Image skillIcon;
+    [SerializeField] public Image skillIcon;
     [SerializeField] private float cooldownTime;
+    [SerializeField] public bool isUnlocked = false;
 
     public void SetSkillToSlot(BaseSkillData skillData)
     {

@@ -9,4 +9,6 @@ public abstract class BaseSkillData : ScriptableObject
     public string description;
     public Sprite icon;
     public GameObject skillPrefab;
+
+    public float skillPointCost;   
 }
