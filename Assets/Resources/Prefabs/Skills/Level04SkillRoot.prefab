@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 4457421836847000145}
   - component: {fileID: 3848761760845293498}
   - component: {fileID: 7998278662218227901}
+  - component: {fileID: 5091510085085815687}
   m_Layer: 0
   m_Name: Level04Skill
   m_TagString: Untagged
@@ -416,6 +417,19 @@ MonoBehaviour:
     m_Bits: 8
   damageAreaSize: {x: 1, y: 1}
   damageAreaOffset: {x: 0, y: 0}
+--- !u!114 &5091510085085815687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619554898222164161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bb316805257a041b7e0b819fa890f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 16
 --- !u!1 &8460389771947120908
 GameObject:
   m_ObjectHideFlags: 0

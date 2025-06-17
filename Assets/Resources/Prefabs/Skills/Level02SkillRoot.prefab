@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8376439250184490179}
   - component: {fileID: 1927866219910070046}
   - component: {fileID: 5781923050430324337}
+  - component: {fileID: 1057413007676404586}
   m_Layer: 0
   m_Name: IceShatter
   m_TagString: Untagged
@@ -159,3 +160,16 @@ MonoBehaviour:
     m_Bits: 8
   damageAreaSize: {x: 3, y: 3}
   damageAreaOffset: {x: 0, y: 0}
+--- !u!114 &1057413007676404586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858299178352918787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bb316805257a041b7e0b819fa890f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 12

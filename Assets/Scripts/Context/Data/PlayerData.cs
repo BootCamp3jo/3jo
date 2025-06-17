@@ -1,5 +1,15 @@
+using JetBrains.Annotations;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class SkillData
+{
+    public string skillSOPath;
+    public bool isUnlock;
+    public bool isUpgraded;
+}
 
 [Serializable]
 public class PlayerData
@@ -21,6 +31,9 @@ public class PlayerData
     private int _maxLevel = 100;
     private float _maxExperience = 100f;
     private int _maxCoin = 999_999;
+
+    [Header("Skill Data")]
+    [SerializeField] public List<SkillData> skillDatas = new List<SkillData>();
 
     //--------------------------------------//
     public float CurrentHealth

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Npc
   - NPC
+  - InventorySlot
+  - InventoryUI
   layers:
   - Default
   - TransparentFX

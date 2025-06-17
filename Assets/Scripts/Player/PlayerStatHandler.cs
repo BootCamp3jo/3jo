@@ -8,6 +8,10 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     private PlayerData playerData;
     private PlayerStatsUI playerStatsUI;
 
+    private Coroutine manaRegeneration;
+    private WaitForSeconds waitForSeconds;
+    private float manaRegenRate = 0.03f; // 마나 회복 속도
+
     // 무적시간체크
     private bool isInvincible = false;      // 무적 상태 여부
     public float invincibleDuration = 1.5f; // 무적 시간
@@ -17,19 +21,40 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     {
         playerData = PlayerManager.Instance.playerData;
         playerStatsUI = UIManager.Instance.playerStatsUI;
+        waitForSeconds = new WaitForSeconds(1f);
+        StartManaRegeneration();
     }
 
     // ------------------- 체력 ------------------- //
     public void TakeDamage(float amount)
     {
-        if (isInvincible) return; // 무적 상태면 데미지 무시
+        if (isInvincible) return;
 
         playerData.CurrentHealth -= amount;
         playerStatsUI.UpdateHealthBar();
 
-        StartCoroutine(InvincibilityCoroutine());
+        if (playerData.CurrentHealth <= 0)
+        {
+            playerData.CurrentHealth = 0;
+            OnPlayerDeath(); // ← 사망 처리 호출
+        }
+        else
+        {
+            StartCoroutine(InvincibilityCoroutine());
+        }
     }
+    private void OnPlayerDeath()
+    {
+        // 게임 오버 UI 띄우기
+        GameOverUI.Instance.Show();
 
+        // 플레이어 조작 막기 등 추가 처리
+        StopManaRegeneration();
+        // 예: GetComponent<PlayerController>().enabled = false;
+
+        // 게임 정지
+        Time.timeScale = 0f;
+    }
     private IEnumerator InvincibilityCoroutine()
     {
         isInvincible = true;
@@ -57,7 +82,36 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     {
         playerData.CurrentMana += amount;
         playerStatsUI.UpdateManaBar();
+    }
 
+    public void StartManaRegeneration()
+    {
+        if (manaRegeneration == null)
+        {
+            manaRegeneration = StartCoroutine(ManaRegenLoop());
+        }
+    }
+
+    public void StopManaRegeneration()
+    {
+        if (manaRegeneration != null)
+        {
+            StopCoroutine(manaRegeneration);
+            manaRegeneration = null;
+        }
+    }
+
+    private IEnumerator ManaRegenLoop()
+    {
+        while (true)
+        {
+            if (playerData.CurrentMana < playerData.MaxMana)
+            {
+                playerData.CurrentMana += playerData.MaxMana * manaRegenRate; // 1
+                playerStatsUI.UpdateManaBar();
+            }
+            yield return waitForSeconds;
+        }
     }
 
     // ------------------- 경험치 & 레벨 ------------------- //
