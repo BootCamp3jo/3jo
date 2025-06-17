@@ -33,7 +33,7 @@ public class Portal : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && IsPlayerInPortal)
         {
             SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }

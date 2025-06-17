@@ -216,6 +216,8 @@ public abstract class MonsterBase : ANPC
         flashEffect.TriggerFlash();
         shakeEffect.Shake();
 
+        AudioManager.instance.PlaySFX(SFXType.Hit, 0.8f, 1f);
+
         npcData.hp = Mathf.Max(npcData.hp-damage, 0);
         onHpChanged?.Invoke(npcData.hp/ maxHp);
         if (npcData.hp <= 0)
@@ -229,6 +231,7 @@ public abstract class MonsterBase : ANPC
         isDead = true;
         // 죽음 모션
         stateMachine.ChangeState(stateMachine.deathState);
+        AudioManager.instance.PlaySFX(SFXType.Goblin_Die);
         // 아이템 드랍 !!!
         ExpManager.instance.SpawnExp(
                transform.position,
@@ -254,6 +257,7 @@ public abstract class MonsterBase : ANPC
         // 공격 애니메이션 재생 중으로 변화
         isAttacking = true;
         // 재생할 공격 애니메이션
+        AudioManager.instance.PlaySFX(SFXType.Goblin_Attack,1f,1.2f);
         int tmpAtkIndex = 0;
         // 패턴 값들 초기화
         patternsAvailable.Clear();

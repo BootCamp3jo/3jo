@@ -92,4 +92,8 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         animator.SetBool(isDownAttacking, false);
     }
+    public void PlayWalkSound()
+    {
+        AudioManager.instance.PlaySFX(SFXType.WalkGrass, 0.8f, 1.2f);
+    }
 }

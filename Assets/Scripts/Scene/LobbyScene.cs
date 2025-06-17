@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainScene : MonoBehaviour
+public class LobbyScene : MonoBehaviour
 {
-
     private void OnEnable()
     {
-        AudioManager.instance.PlayBGM(BGMType.Main);
+        AudioManager.instance.PlayBGM(BGMType.Lobby);
     }
-
 }
