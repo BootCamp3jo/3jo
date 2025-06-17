@@ -548,7 +548,7 @@ MonoBehaviour:
     _level: 1
     _experience: 0
     _coin: 100
-    _skillPoint: 2
+    _skillPoint: 0
   dontNeedSave: 1
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
@@ -733,7 +733,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1559176219
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 100
   m_Sprite: {fileID: 4280352003601948487, guid: 83884a65e5b17b446a6ba4efbf345cc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

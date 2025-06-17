@@ -2308,10 +2308,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7694232084275543480, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
-      propertyPath: playerData._skillPoint
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8359704718906564383, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2680,6 +2676,10 @@ PrefabInstance:
       propertyPath: skillUiDataSlotManager
       value: 
       objectReference: {fileID: 384439794}
+    - target: {fileID: 4027168675939235020, guid: 9046077d995cb994496872218ecf2175, type: 3}
+      propertyPath: skillTreeDataSlotManager
+      value: 
+      objectReference: {fileID: 360621003}
     - target: {fileID: 4027168675939235020, guid: 9046077d995cb994496872218ecf2175, type: 3}
       propertyPath: skillList.Array.data[0].skillListName
       value: Basic Skill List
@@ -4724,7 +4724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: LobbyScene
-  isPlayerInPortal: 0
+  IsPlayerInPortal: 0
   guidePanel: {fileID: 0}
 --- !u!61 &1222691466
 BoxCollider2D:
@@ -4762,7 +4762,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

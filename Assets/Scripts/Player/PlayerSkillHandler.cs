@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerSkillHandler : MonoBehaviour
 {
     [SerializeField] private PlayerAnimationHandler playerAnimationHandler;
+
+    private SkillUIDataSlotManager skillUIDataSlotManager;
 
     private bool isUsingSkill = false;
 
@@ -18,6 +21,7 @@ public class PlayerSkillHandler : MonoBehaviour
     private void Start()
     {
         playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
+        skillUIDataSlotManager = SkillManager.Instance.skillUiDataSlotManager;
     }
 
 
@@ -30,39 +34,66 @@ public class PlayerSkillHandler : MonoBehaviour
             // Level 01 skill 
             if (control == Keyboard.current.aKey)
             {
-                Debug.Log("A Key Skill Activated");
-                UseSkillA();
+                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(0);
+
+                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
+                {
+                    UseSkillA();
+                }
+                else Debug.LogWarning("A skill is not unlocked yet.");
             }
 
             // Level 02 skill
             else if (control == Keyboard.current.sKey)
             {
-                Debug.Log("S Key Skill Activated");
-                UseSkillS();
+                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(1);
+
+                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
+                {
+                    UseSkillS();
+                }
+                else Debug.LogWarning("S skill is not unlocked yet.");
             }
 
             // Level 03 skill
             else if (control == Keyboard.current.dKey)
             {
-                Debug.Log("D Key Skill Activated");
-                UseSkillD();
+                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(2);
+
+                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
+                {
+                    UseSkillD();
+                }
+                else Debug.LogWarning("D skill is not unlocked yet.");
             }
 
             // Level 04 skill
             else if (control == Keyboard.current.wKey)
             {
-                Debug.Log("W Key Skill Activated");
-                UseSkillW();
+                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(3);
+
+                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
+                {
+                    UseSkillW();
+                }
+                else Debug.LogWarning("W skill is not unlocked yet.");                    
             }   
 
             // Ultimate skill
             else if (control == Keyboard.current.qKey)
             {
-                Debug.Log("Ultimate Key Skill Activated");
-                UseUltimateSkill();
+                SkillSlotData skillSlotData = skillUIDataSlotManager.GetUltSkillSlotData();
+
+                if (skillUIDataSlotManager.IsUltSkillUnlocked())
+                {
+                    UseUltimateSkill();
+                }
+                else Debug.LogWarning("Ultimate skill is not unlocked yet.");
             }
         }
     }
+
+
 
     //------------------------------------------//
 

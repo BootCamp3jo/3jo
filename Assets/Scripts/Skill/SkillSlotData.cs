@@ -5,15 +5,24 @@ using UnityEngine.UI;
 
 public class SkillSlotData : MonoBehaviour
 {
-    [SerializeField] private BaseSkillData skillData;
-    [SerializeField] public Image skillIcon;
-    [SerializeField] private float cooldownTime;
+    [SerializeField] protected BaseSkillData skillData;
+
+    [SerializeField]
+    protected Image _skillIcon;
+    public Image SkillIcon
+    {
+        get { return _skillIcon; }
+        set { _skillIcon = value; }
+    }
+
+
+    [SerializeField] protected float cooldownTime;
     [SerializeField] public bool isUnlocked = false;
 
     public void SetSkillToSlot(BaseSkillData skillData)
     {
         this.skillData = skillData;
-        skillIcon.sprite = skillData.icon;
+        SkillIcon.sprite = skillData.icon;
     }
 
     public BaseSkillData GetSkillDataFromSlot()

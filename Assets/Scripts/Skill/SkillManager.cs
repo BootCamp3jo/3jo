@@ -6,8 +6,8 @@ using UnityEngine;
 public class SkillManager : MonoSingleton<SkillManager>
 {
     [Header("SkillManager")]
-    [SerializeField] private SkillUIDataSlotManager skillUiDataSlotManager;
-    [SerializeField] private SkillTreeDataSlotManager skillTreeDataSlotManager;
+    [SerializeField] public SkillUIDataSlotManager skillUiDataSlotManager;
+    [SerializeField] public SkillTreeDataSlotManager skillTreeDataSlotManager;
 
 
     [SerializeField] private Transform VFXSpawnPoint;
@@ -76,6 +76,13 @@ public class SkillManager : MonoSingleton<SkillManager>
     {
         return skillUiDataSlotManager.GetUltSkillSlotData().GetSkillDataFromSlot();
     }
-}
 
+    public void LockIconBlinking(SkillSlotData skillSlotData)
+    {
+        if (skillSlotData.SkillIcon.sprite == skillTreeDataSlotManager.LockedSkillIcon)
+            skillSlotData.SkillIcon.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time, 1f));
+    }
+
+    //public void SetSkillSlotInteractable(SkillSlotData skillSlotData, bool)
+}
 
