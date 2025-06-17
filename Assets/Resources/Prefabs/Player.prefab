@@ -512,6 +512,7 @@ MonoBehaviour:
   dashDuration: 0.1
   dashCoolDown: 1
   doubleTabThreshold: 0.25
+  skillVFXSpawnPoint: {fileID: 2287008629296866603}
   footPivot: {fileID: 5590830775526365090}
   dustEmitInterval: 0.2
 --- !u!114 &8662042166332387626
