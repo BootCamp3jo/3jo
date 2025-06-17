@@ -30,8 +30,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene_Art.unity
     guid: b5dadfa98de7e6e41943615cb6b5a63d
   - enabled: 1
-    path: Assets/Scenes/Particle.unity
-    guid: e082ba778b26b42498d9f74e5222b973
+    path: Assets/Scenes/Battle.unity
+    guid: 5f6f1abe7abab9f499886ee1bd4b0c0a
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: e11333f613cbb5d4d88c53a5433e61bf

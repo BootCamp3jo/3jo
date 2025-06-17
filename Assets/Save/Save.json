@@ -1,7 +1,7 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "Particle",
-  "KillCount": 1,
+  "curSceneName": "Battle",
+  "KillCount": 2,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
@@ -15,10 +15,11 @@
     "Level": 3,
     "Experience": 200.0,
     "Coin": 100,
-    "MaxHealth": 100,
-    "MaxMana": 100,
+    "SkillPoint": 0,
+    "MaxHealth": 100.0,
+    "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 100,
+    "MaxExperience": 100.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
@@ -51,6 +52,15 @@
           }
         ]
       }
+    },
+    "Battle": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -5.909761,
+        "posY": 9.001586,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
     }
   }
 }
