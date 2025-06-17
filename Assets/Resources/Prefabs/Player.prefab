@@ -550,7 +550,7 @@ MonoBehaviour:
     _experience: 0
     _coin: 100
     _skillPoint: 0
-  dontNeedSave: 1
+  dontNeedSave: 0
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
   playerStatHandler: {fileID: 0}
