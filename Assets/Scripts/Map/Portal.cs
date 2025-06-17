@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
@@ -5,7 +7,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private string targetSceneName;
     public bool IsPlayerInPortal = false;
     [SerializeField] public GameObject guidePanel;
-
+    [SerializeField] public List<Action> actionBeforeSceneTransitionList = new List<Action>();
     private void Start()
     {
         guidePanel.SetActive(false);
