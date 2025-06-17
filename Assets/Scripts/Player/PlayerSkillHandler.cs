@@ -5,8 +5,6 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-
 public class PlayerSkillHandler : MonoBehaviour
 {
     [SerializeField] private PlayerAnimationHandler playerAnimationHandler;

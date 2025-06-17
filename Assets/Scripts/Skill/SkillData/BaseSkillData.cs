@@ -11,5 +11,6 @@ public abstract class BaseSkillData : ScriptableObject
     public GameObject skillPrefab;
 
     public float coolDown;
+    public float manaCost;
     public int skillPointCost;   
 }

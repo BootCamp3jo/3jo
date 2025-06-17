@@ -27,6 +27,9 @@ public class SkillManager : MonoSingleton<SkillManager>
             GameObject skillVFX = Instantiate(currentSkillData.skillPrefab, VFXSpawnPoint.position, Quaternion.identity);
             skillVFX.transform.SetParent(VFXSpawnPoint);
             FlipVFX(skillVFX);
+
+            // 마나 소모
+            PlayerManager.Instance.playerStatHandler.UseMana(currentSkillData.manaCost);
         }
         else
         {
