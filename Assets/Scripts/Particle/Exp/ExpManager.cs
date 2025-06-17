@@ -23,11 +23,12 @@ public class ExpManager : MonoBehaviour
         }
         instance = this;
 
-        audioManager = AudioManager.instance;
+
     }
     private void Start()
     {
-         playerStatHandler = PlayerManager.Instance.playerStatHandler;
+        audioManager = AudioManager.instance;
+        playerStatHandler = PlayerManager.Instance.playerStatHandler;
     }
     public void SpawnExp(Vector3 worldPosition, int count, float delayAfter = 0f, System.Action onComplete = null)
     {

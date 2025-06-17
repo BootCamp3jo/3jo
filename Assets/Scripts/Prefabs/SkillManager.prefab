@@ -77,6 +77,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710973fe1e545764f8e4cdd0aa4f3bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canUseSkillA: 1
+  canUseSkillS: 1
+  canUseSkillD: 1
+  canUseSkillW: 1
+  canUseUltSkill: 1
+  skillACoolTime: 5
+  skillSCoolTime: 10
+  skillDCoolTime: 15
+  skillWCoolTime: 15
+  ultSkillCoolTime: 30
+  skillAImage: {fileID: 0}
+  skillSImage: {fileID: 0}
+  skillDImage: {fileID: 0}
+  skillWImage: {fileID: 0}
+  ultSkillImage: {fileID: 0}
 --- !u!1001 &1771797750712020018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,7 +214,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7048041793048630845, guid: 0546ffbe15d3ace45b535d30239347b7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

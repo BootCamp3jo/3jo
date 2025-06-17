@@ -23,6 +23,14 @@ public enum SFXType
     WalkGrass,
     SlowMotion,
     Dash,
+    Ice_A,
+    Ice_S,
+    Ice_D,
+    Ice_DP,
+    Ice_Q,
+    Ice_W
+
+
 }
 
 public class AudioManager : MonoBehaviour
