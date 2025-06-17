@@ -7,7 +7,7 @@ public abstract class MonsterBase : ANPC
 {
     [SerializeField] private ObjectPoolManager objectPoolManager;
     [field: SerializeField] public MonsterData monsterData;
-    Pattern[] patterns;
+    protected Pattern[] patterns;
 
     // 타겟이 될 대상의 레이어(보통은 플레이어).. 그런데 레이어가 필요한가? 플레이어 트랜스폼만 있으면 되는 게 아닐까?
     // 게임매니저에 플레이어에 접근할 수 있도록 했다고 하니 그걸 써보자
@@ -23,20 +23,20 @@ public abstract class MonsterBase : ANPC
     float atk;
     // 현재 쿨타임(보스 패턴마다 쿨타임이 달라 기술 사용과 동시에 써주기!!!)
     // 플레이어가 반응할 시간을 주기 위해 초기값
-    public float atkDelay { get; private set; } = 1f;
+    public float atkDelay { get; protected set; } = 1f;
 
     // 움직일 때 true면 도망, false면 추격
     bool isFlee;
 
     // 이번에 공격할 패턴의 인덱스
-    int atkIndex = 0;
+    protected int atkIndex = 0;
     // 공격 패턴 재생 중인지 여부
-    public bool isAttacking { get; private set; } = false;
+    public bool isAttacking { get; protected set; } = false;
 
     // 패턴들의 최대/최소 거리의 배열!
-    float2[] distanceRangePatterns;
+    protected float2[] distanceRangePatterns;
     // 이번에 공격 가능한 패턴들(공격은 자주 이뤄지기에 매번 생성하기보다 하나를 생성하고 Clear()하면 더 낫지 않을까?)
-    List<int> patternsAvailable = new List<int>();
+    protected List<int> patternsAvailable = new List<int>();
 
     // 이동 벡터
     protected Vector2 moveVec;
@@ -260,16 +260,17 @@ public abstract class MonsterBase : ANPC
         portal.SetActive(true);
     }
 
+    // !!! 나중에 PlaySFX에 들어갈 매개변수를 넣어서 호출하게끔 하면 하나로 해결할 수 있지!.. 우선은 오버라이드해서 쓰기
     // 어떤 공격 패턴을 사용할지 정하고, 이에 맞는 애니메이션 전환
     // distPowered = 타겟과의 거리의 제곱
-    public void ChoiceAttack()
+    public virtual void ChoiceAttack()
     {
         // 공격 중일 때 다시 들어오지 않도록
         if(isAttacking) return;
         // 공격 애니메이션 재생 중으로 변화
         isAttacking = true;
         // 재생할 공격 애니메이션
-        AudioManager.instance.PlaySFX(SFXType.Goblin_Attack,1f,1.2f);
+        AudioManager.instance?.PlaySFX(SFXType.Goblin_Attack,1f,1.2f);
         int tmpAtkIndex = 0;
         // 패턴 값들 초기화
         patternsAvailable.Clear();

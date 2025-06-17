@@ -5,6 +5,7 @@ public class MonsterPatternEnd : StateMachineBehaviour
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // 여기서 공격 애니메이션이 끝날 때 동작할 내용을 수행하면 안전
         GameManager.Instance.boss.StartDelay();
     }
 
