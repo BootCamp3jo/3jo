@@ -767,6 +767,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e8c352e7c7af0442b2368a40f25dae4, type: 3}
+--- !u!20 &575844903810747741 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2152324273502303234, guid: 9e8c352e7c7af0442b2368a40f25dae4, type: 3}
+  m_PrefabInstance: {fileID: 575844903810747740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6027929923976841814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1041,6 +1046,14 @@ PrefabInstance:
     - target: {fileID: 3325139103562341578, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599531838611968958, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 575844903810747741}
+    - target: {fileID: 3599531838611968958, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3653056780677805291, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchorMax.y
