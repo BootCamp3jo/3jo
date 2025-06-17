@@ -70,7 +70,6 @@ public class ItemSlotData : MonoBehaviour, IDropHandler
     private void Start()
     {
         itemQuantityText = GetComponentInChildren<TextMeshProUGUI>();
-        itemDropPosition = GameObject.Find("DropPosition").transform;
     }
     #endregion
 
@@ -173,7 +172,7 @@ public class ItemSlotData : MonoBehaviour, IDropHandler
         Transform tempParentSaved = transform.parent;
 
         // 슬롯 교체 : newItem을 현재 슬롯의 부모의 자식으로 설정하고, newItem의 부모를 현재 itemSlotData의 부모로 설정한다.
-        if (transform.parent.CompareTag("ItemSlot"))
+        if (transform.parent.CompareTag("InventorySlot"))
         {
             newItem.transform.SetParent(tempParentSaved);
             transform.SetParent(newDraggableItem.originalParent);

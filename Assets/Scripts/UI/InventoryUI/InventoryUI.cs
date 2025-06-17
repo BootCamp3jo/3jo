@@ -19,10 +19,6 @@ public class InventoryUI : MonoBehaviour
     //     [Inspector Window]
     // ========================== //
     #region [Inspector Window]
-    [Header("Connected Components")]
-    private UIManager uiManager;
-    private InventoryWindowManager inventoryWindowMangaer;
-
     [Header("Inventory Settings")]
     public ItemSlotData[] itemSlotDatas;
     public GameObject inventoryUI;
@@ -37,8 +33,8 @@ public class InventoryUI : MonoBehaviour
     #region [Unity LifeCycle]
     private void Start()
     {
-        uiManager = GetComponentInParent<UIManager>();
-        inventoryWindowMangaer = GetComponent<InventoryWindowManager>();
+        inventoryUI = gameObject;
+        slotPanel = gameObject.transform.GetChild(0);
         InventoryInit();
     }
     #endregion
@@ -48,28 +44,6 @@ public class InventoryUI : MonoBehaviour
     //     [Public Methods]
     // ========================== //
     #region [Public Methods]
-    public bool IsInventoryOpen()
-    {
-        /// • (Completed) IsInventoryOpen : 인벤토리가 열려있는지 확인
-        return inventoryUI.activeSelf;
-    }
-
-    public void ToggleInventory()
-    {
-        /// • (Completed) ToggleInventory : 인벤토리 UI의 현재 상태를 확인하고, 인벤토리를 열거나 닫는다
-
-        if (IsInventoryOpen())
-        {
-            inventoryUI.SetActive(false);
-         
-        }
-        else
-        {
-            inventoryUI.SetActive(true);
-            inventoryWindowMangaer.InventoryTransformInit(); // 인벤토리 패널 초기화
-        }
-    }
-
     public void AddItem(BasicItemData newItemData)
     {
         /// • (Completed) AddItem : 아이템을 인벤토리에 추가한다
@@ -91,7 +65,9 @@ public class InventoryUI : MonoBehaviour
       
         if (GetItemSlotToSubtract(newItemData, out ItemSlotData existingItemSlotData))
         {
+            // 인벤토리에서 아이템의 수량을 줄이고 월드에 아이템을 드랍한다.
             existingItemSlotData.SubtractItemQuantity(quantity);
+            ThrowItem(newItemData, quantity);
             return;
         }
         else
@@ -137,17 +113,6 @@ public class InventoryUI : MonoBehaviour
             Instantiate(newItemData.itemPrefab, itemDropPosition.position, Quaternion.identity);
         }
     }
-
-    // Used for buttons -------------------
-    public void OnInventory(InputAction.CallbackContext context)
-    {
-        /// • (Completed) OnInventory : 인벤토리 UI를 열거나 닫는 행위를 인풋시스템의 단축키를 통해서 작동할수 있도록 연결해주는 메서드
-        if (context.phase == InputActionPhase.Started)
-        {
-            ToggleInventory();
-        }
-    }
-    // ------------------------------------
     #endregion
 
 

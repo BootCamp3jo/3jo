@@ -55,7 +55,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("End drag");
-        if (!transform.parent.CompareTag("ItemSlot") && !transform.parent.CompareTag("PlayerUI")) transform.SetParent(originalParent);
+        if (!transform.parent.CompareTag("InventorySlot") && !transform.parent.CompareTag("InventoryUI")) transform.SetParent(originalParent);
         transform.SetAsFirstSibling();
         iconImage.raycastTarget = true;
     }

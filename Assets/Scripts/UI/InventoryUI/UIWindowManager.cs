@@ -4,41 +4,41 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryWindowManager : MonoBehaviour
+public class UIWindowManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private Button inventoryButton;
-    [SerializeField] private GameObject CraftingPanel;
-    [SerializeField] private Button craftingButton;
+    [SerializeField] private GameObject skillTreePanel;
+    [SerializeField] private Button skillTreeButton;
     [SerializeField] private RectTransform TransformAlone;
     [SerializeField] private RectTransform inventoryPaneltTransform;
-    [SerializeField] private RectTransform craftingPanelRectTransform;
+    [SerializeField] private RectTransform skillTreePanelRectTransform;
 
     public void InventoryTransformInit()
     {
-        CraftingPanel.SetActive(false);
+        skillTreePanel.SetActive(false);
         inventoryPanel.GetComponent<RectTransform>().anchoredPosition = TransformAlone.anchoredPosition;
     }
 
     public void OnInventoryButton()
     {
-        if (CraftingPanel.activeInHierarchy)
+        if (skillTreePanel.activeInHierarchy)
         {
-            CraftingPanel.SetActive(false);
+            skillTreePanel.SetActive(false);
             inventoryPanel.GetComponent<RectTransform>().anchoredPosition = TransformAlone.anchoredPosition;
         }
     }
 
-    public void OnCraftingButton()
+    public void OnskillTreeButton()
     {
-        if (CraftingPanel.activeInHierarchy)
+        if (skillTreePanel.activeInHierarchy)
         {
-            CraftingPanel.SetActive(false);
+            skillTreePanel.SetActive(false);
             inventoryPanel.GetComponent<RectTransform>().anchoredPosition = TransformAlone.anchoredPosition;
         }
-        else if (!CraftingPanel.activeInHierarchy)
+        else if (!skillTreePanel.activeInHierarchy)
         {
-            CraftingPanel.SetActive(true);
+            skillTreePanel.SetActive(true);
             inventoryPanel.GetComponent<RectTransform>().anchoredPosition = inventoryPaneltTransform.anchoredPosition;
         }
     }

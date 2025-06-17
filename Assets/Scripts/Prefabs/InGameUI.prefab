@@ -4252,7 +4252,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5081223675030542427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4283,7 +4283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGameUIButtons: {fileID: 0}
+  inventoryUI: {fileID: 0}
   playerStatsUI: {fileID: 0}
+  uIWindowManager: {fileID: 0}
   skillUI: {fileID: 0}
 --- !u!114 &4193080593409131848
 MonoBehaviour:
