@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class SkillSlotData : MonoBehaviour
     [SerializeField] protected BaseSkillData skillData;
 
     [SerializeField] private SkillSlotData matchingSkillSlotData;
+
+    public Action invokeAfterUnlock;
+
     public SkillSlotData MatchingSkillSlotData
     {
         get { return matchingSkillSlotData; }
@@ -47,5 +51,15 @@ public class SkillSlotData : MonoBehaviour
 
         // 스킬포인트에서 소모된 스킬포인트 차감
         PlayerManager.Instance.playerStatHandler.UseSkillPoint(skillData.skillPointCost);
+    }
+
+    public void UnlockSkillWithoutReducePoint()
+    {
+        isUnlocked = true;
+        SkillIcon.sprite = skillData.icon;
+
+        // 스킬 아이콘 투명도 1f로 변경
+        SkillIcon.color = new Color(SkillIcon.color.r, SkillIcon.color.g, SkillIcon.color.b, 1f);
+
     }
 }

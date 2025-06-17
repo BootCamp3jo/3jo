@@ -306,7 +306,7 @@ MonoBehaviour:
     posY: 0
     posZ: 0
   isCreatedBySceneLoader: 0
-  dontNeedSave: 1
+  dontNeedSave: 0
   objectPoolManager: {fileID: 4337102216868017475}
   monsterData: {fileID: 11400000, guid: 6ac5826bc3abba740b20dad9a9f2fb5b, type: 2}
   flashEffect: {fileID: 0}

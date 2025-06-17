@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class SkillTreeDataSlotManager : A_SkillDataSlotManager
 {
+    private void Awake()
+    {
+        actionFor3rdSkillUpgrade = Upgrade3rdSkill;
+    }
     protected override void SkillsToSlotInit()
     {
         for (int i = 0; i < skillSlotDataCounts; i++)
@@ -27,6 +31,7 @@ public class SkillTreeDataSlotManager : A_SkillDataSlotManager
         Debug.Log("SkillDataSlotManager: Assigned skills to slots.");
     }
 
+
     public bool Is2ndSkillUnlocked()
     {
         if (IsSkillUnlocked(skillSlotDatas[2])) return true;
@@ -42,5 +47,7 @@ public class SkillTreeDataSlotManager : A_SkillDataSlotManager
     public void Upgrade3rdSkill()
     {
         skillSlotDatas[3].MatchingSkillSlotData.SetSkillToSlot(SkillManager.Instance.upgradedSkillList[0]);
+        skillDatas[2].isUpgraded = true;
+        skillSlotDatas[3].UnlockSkill();
     }
 }

@@ -1,25 +1,53 @@
 {
   "difficultLevel": 0,
   "curSceneName": "LobbyScene",
-  "KillCount": 21,
+  "KillCount": 1,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
-      "unlocked": true
-    },
-    "PentaKill": {
-      "achievementID": 1,
       "unlocked": true
     }
   },
   "playerData": {
     "prefabPath": "Prefabs/Player",
-    "CurrentHealth": 40.0,
+    "skillDatas": [
+      {
+        "skillSOPath": "Prefabs/Skills/SkillsSO/Level01SkillSO",
+        "isUnlock": false,
+        "isUpgraded": false
+      },
+      {
+        "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
+        "isUnlock": false,
+        "isUpgraded": false
+      },
+      {
+        "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
+        "isUnlock": false,
+        "isUpgraded": false
+      },
+      {
+        "skillSOPath": "Prefabs/Skills/SkillsSO/Level03SkillSO",
+        "isUnlock": false,
+        "isUpgraded": false
+      },
+      {
+        "skillSOPath": "Prefabs/Skills/SkillsSO/Level04SkillSO",
+        "isUnlock": false,
+        "isUpgraded": false
+      },
+      {
+        "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
+        "isUnlock": true,
+        "isUpgraded": false
+      }
+    ],
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 3,
-    "Experience": 200.0,
+    "Level": 10,
+    "Experience": 1800.0,
     "Coin": 100,
-    "SkillPoint": 0,
+    "SkillPoint": 10,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
@@ -30,38 +58,8 @@
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.909761,
-        "posY": 9.001586,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {}
-    },
-    "Particle": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": 0.04231725,
-        "posY": -5.601094,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {
-        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
-          {
-            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
-            "hp": 400.0,
-            "isDead": false,
-            "maxHP": 400.0,
-            "posX": 5.806761,
-            "posY": -2.681916,
-            "posZ": 0.0
-          }
-        ]
-      }
-    },
-    "JayeonScene": {
-      "playerStateInScene": {
-        "isPlayerExist": false,
-        "posX": 0.0,
-        "posY": 0.0,
+        "posX": -5.32373762,
+        "posY": 4.383951,
         "posZ": 0.0
       },
       "npcDataQueues": {}
