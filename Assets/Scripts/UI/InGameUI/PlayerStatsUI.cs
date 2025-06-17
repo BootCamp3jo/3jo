@@ -22,6 +22,7 @@ public class PlayerStatsUI : MonoBehaviour
     {
         playerData = PlayerManager.Instance.playerData;
         Init();
+        UpdateHealthBar();
     }
 
     private void Init()

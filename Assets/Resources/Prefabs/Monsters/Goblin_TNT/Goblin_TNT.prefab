@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: LobbyScene
-  isPlayerInPortal: 0
+  IsPlayerInPortal: 0
   guidePanel: {fileID: 3787277139994846513}
 --- !u!1 &993160782477387767
 GameObject:
@@ -284,7 +284,7 @@ MonoBehaviour:
     posY: 0
     posZ: 0
   isCreatedBySceneLoader: 0
-  dontNeedSave: 1
+  dontNeedSave: 0
   objectPoolManager: {fileID: 4337102216868017475}
   monsterData: {fileID: 11400000, guid: 6ac5826bc3abba740b20dad9a9f2fb5b, type: 2}
   flashEffect: {fileID: 0}
