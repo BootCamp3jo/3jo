@@ -6,12 +6,23 @@ public enum BGMType
 {
     None,
     Main,
+    Lobby,
+    Battle
 }
+
 public enum SFXType
 {
     None,
     DropExp,
     AddExp,
+    Attack,
+    Boom,
+    Goblin_Attack,
+    Goblin_Die,
+    Hit,
+    WalkGrass,
+    SlowMotion,
+    Dash,
 }
 
 public class AudioManager : MonoBehaviour
@@ -22,12 +33,16 @@ public class AudioManager : MonoBehaviour
     [Header("Background Music")]
     public AudioSource BgmSource;
 
-    [Header("Sound Effects")]
-    public AudioSource SfxSource;
+    [Header("SFX Template Source")]
+    public AudioSource SfxSource; // 풀링을 위한 템플릿으로만 사용
+
+    [Header("SFX Pool Settings")]
+    public int sfxPoolSize = 10;
 
     private Dictionary<BGMType, AudioClip> bgmDict = new Dictionary<BGMType, AudioClip>();
     private Dictionary<SFXType, AudioClip> sfxDict = new Dictionary<SFXType, AudioClip>();
 
+    private List<AudioSource> sfxSourcePool = new List<AudioSource>();
     private AudioSource loopSource;
 
     public static AudioManager instance { get; private set; }
@@ -45,10 +60,9 @@ public class AudioManager : MonoBehaviour
 
         LoadAudioClips("Audio/BGM", bgmDict);
         LoadAudioClips("Audio/SFX", sfxDict);
+        InitializeSFXPool();
     }
 
-
-    // 오디오 클립 로드 (BGM/SFX)
     void LoadAudioClips<TEnum>(string folderPath, Dictionary<TEnum, AudioClip> dict) where TEnum : System.Enum
     {
         AudioClip[] clips = Resources.LoadAll<AudioClip>(folderPath);
@@ -58,7 +72,6 @@ public class AudioManager : MonoBehaviour
         {
             foreach (TEnum enumValue in System.Enum.GetValues(typeof(TEnum)))
             {
-                // None 이나 기본값은 건너뜀
                 if (enumValue.Equals(default(TEnum))) continue;
 
                 if (clip.name == enumValue.ToString())
@@ -70,7 +83,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 배경음 출력
+    void InitializeSFXPool()
+    {
+        for (int i = 0; i < sfxPoolSize; i++)
+        {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.playOnAwake = false;
+            source.outputAudioMixerGroup = SfxSource.outputAudioMixerGroup;
+            sfxSourcePool.Add(source);
+        }
+    }
+
+    AudioSource GetAvailableSFXSource()
+    {
+        foreach (var source in sfxSourcePool)
+        {
+            if (!source.isPlaying)
+                return source;
+        }
+        return null; // 부족하면 새로 생성하거나 무시
+    }
+
     public void PlayBGM(BGMType bgmType)
     {
         if (bgmDict.TryGetValue(bgmType, out AudioClip clip))
@@ -85,12 +118,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 효과음 출력
     public void PlaySFX(SFXType sfxType)
     {
         if (sfxDict.TryGetValue(sfxType, out AudioClip clip))
         {
-            SfxSource.PlayOneShot(clip);
+            AudioSource source = GetAvailableSFXSource();
+            if (source != null)
+            {
+                source.pitch = 1f;
+                source.clip = clip;
+                source.Play();
+            }
         }
         else
         {
@@ -98,36 +136,42 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 효과음 출력 - 피치 볼륨 조절
-    public void PlaySFX(SFXType sfxType,float pitch)
+    public void PlaySFX(SFXType sfxType, float pitch)
     {
         if (sfxDict.TryGetValue(sfxType, out AudioClip clip))
         {
-            SfxSource.pitch = pitch;
-            SfxSource.PlayOneShot(clip);
-            SfxSource.pitch = 1f;
+            AudioSource source = GetAvailableSFXSource();
+            if (source != null)
+            {
+                source.pitch = pitch;
+                source.clip = clip;
+                source.Play();
+            }
         }
         else
         {
             Debug.LogWarning($"SFX '{sfxType}' 을(를) 찾을 수 없습니다.");
         }
     }
-    // 랜덤 피치 효과음 출력
+
     public void PlaySFX(SFXType sfxType, float minPitch, float maxPitch)
     {
         if (sfxDict.TryGetValue(sfxType, out AudioClip clip))
         {
-            float randomPitch = Random.Range(minPitch, maxPitch);
-            SfxSource.pitch = randomPitch;
-            SfxSource.clip = clip;
-            SfxSource.Play();
-            // 끝나면 pitch 원래대로 복구 필요하면 추가
+            AudioSource source = GetAvailableSFXSource();
+            if (source != null)
+            {
+                source.pitch = Random.Range(minPitch, maxPitch);
+                source.clip = clip;
+                source.Play();
+            }
         }
         else
         {
             Debug.LogWarning($"SFX '{sfxType}' 을(를) 찾을 수 없습니다.");
         }
     }
+
     public void PlaySFXLoop(SFXType sfxType)
     {
         if (loopSource == null)
@@ -135,6 +179,7 @@ public class AudioManager : MonoBehaviour
             loopSource = gameObject.AddComponent<AudioSource>();
             loopSource.loop = true;
             loopSource.playOnAwake = false;
+            loopSource.outputAudioMixerGroup = SfxSource.outputAudioMixerGroup;
         }
 
         if (sfxDict.TryGetValue(sfxType, out AudioClip clip))
@@ -156,12 +201,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 배경음 볼륨 조절
     public void SetBGMVolume(float value)
     {
         AudioMixer.SetFloat("BGM", Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
     }
-    // 효과음 볼륨 조절
+
     public void SetSFXVolume(float value)
     {
         AudioMixer.SetFloat("SFX", Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);

@@ -21,11 +21,14 @@ namespace npcDialogue
 
         public void ShowLines(List<string> lines)
         {
-            _dialogueUI.SetActive(true);
-
             if (_displayCoroutine != null)
+            {
                 StopCoroutine(_displayCoroutine);
+                _displayCoroutine = null;
+            }
 
+            _dialogueText.text = "";
+            _dialogueUI.SetActive(true);
             _displayCoroutine = StartCoroutine(ShowLinesCoroutine(lines));
         }
 

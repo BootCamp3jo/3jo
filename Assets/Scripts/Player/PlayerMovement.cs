@@ -238,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
 
         // 대쉬 고스트 시작
         playerEffectController.PlayTrailEffect();
-
+        AudioManager.instance.PlaySFX(SFXType.Dash, 0.8f, 1.0f);
         dashTween = transform.DOMove(targetPosition, dashDuration)
                     .SetEase(Ease.InOutQuad)
                     .OnComplete(() =>
@@ -298,6 +298,7 @@ public class PlayerMovement : MonoBehaviour
 
         // 점프 시작 파티클
         playerEffectController.PlayJumpEffect();
+        AudioManager.instance.PlaySFX(SFXType.Dash, 0.8f, 1.0f);
         // 점프 업
         activeJumpTween = transform.DOMoveY(targetY, jumpDuration / 2f)
                           .SetEase(Ease.OutQuad)
@@ -308,6 +309,7 @@ public class PlayerMovement : MonoBehaviour
                                                 .SetEase(Ease.InQuad)
                                                 .OnComplete(() =>
                                                 {
+                                                    AudioManager.instance.PlaySFX(SFXType.WalkGrass, 0.8f, 1.0f);
                                                     playerEffectController.PlayLandEffect();
                                                     isJumping = false;
                                                     isGrounded = true; // 점프가 끝나면 착지 상태로 변경
