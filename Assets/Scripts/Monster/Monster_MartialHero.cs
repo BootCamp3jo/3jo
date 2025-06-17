@@ -11,7 +11,7 @@ public class Monster_MartialHero : MonsterBase
     public override void Idle()
     {
         // Idle 상태에서 Update마다 체크
-        Vector2 posDiff = target.position - transform.position;
+        Vector2 posDiff = PlayerManager.Instance.playerPrefab.transform.position - transform.position;
         distPowered = Vector2.SqrMagnitude(posDiff);
 
         // 최대 사거리를 벗어났다면, 이동 상태로
@@ -29,7 +29,7 @@ public class Monster_MartialHero : MonsterBase
     public override void Move()
     {
         // 추적 속도 벡터
-        Vector2 posDiff = target.position - transform.position;
+        Vector2 posDiff = PlayerManager.Instance.playerPrefab.transform.position - transform.position;
         // 속도만큼 이동
         moveVec = posDiff.normalized * monsterData.moveSpeed * Time.deltaTime;
         transform.position += (Vector3)moveVec;
