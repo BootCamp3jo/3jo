@@ -8,6 +8,10 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     private PlayerData playerData;
     private PlayerStatsUI playerStatsUI;
 
+    private Coroutine manaRegeneration;
+    private WaitForSeconds waitForSeconds;
+    private float manaRegenRate = 0.03f; // 마나 회복 속도
+
     // 무적시간체크
     private bool isInvincible = false;      // 무적 상태 여부
     public float invincibleDuration = 1.5f; // 무적 시간
@@ -17,6 +21,8 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     {
         playerData = PlayerManager.Instance.playerData;
         playerStatsUI = UIManager.Instance.playerStatsUI;
+        waitForSeconds = new WaitForSeconds(1f);
+        StartManaRegeneration();
     }
 
     // ------------------- 체력 ------------------- //
@@ -57,7 +63,36 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     {
         playerData.CurrentMana += amount;
         playerStatsUI.UpdateManaBar();
+    }
 
+    public void StartManaRegeneration()
+    {
+        if (manaRegeneration == null)
+        {
+            manaRegeneration = StartCoroutine(ManaRegenLoop());
+        }
+    }
+
+    public void StopManaRegeneration()
+    {
+        if (manaRegeneration != null)
+        {
+            StopCoroutine(manaRegeneration);
+            manaRegeneration = null;
+        }
+    }
+
+    private IEnumerator ManaRegenLoop()
+    {
+        while (true)
+        {
+            if (playerData.CurrentMana < playerData.MaxMana)
+            {
+                playerData.CurrentMana += playerData.MaxMana * manaRegenRate; // 1
+                playerStatsUI.UpdateManaBar();
+            }
+            yield return waitForSeconds;
+        }
     }
 
     // ------------------- 경험치 & 레벨 ------------------- //
