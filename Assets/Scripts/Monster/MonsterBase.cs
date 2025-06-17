@@ -108,6 +108,28 @@ public abstract class MonsterBase : ANPC
             if (!patterns[i].gameObject.activeSelf)
                 patterns[i].gameObject.SetActive(true);
         }
+
+        // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
+        distanceRangePatterns = new float2[patterns.Length];
+        for (int i = 0; i < distanceRangePatterns.Length; i++)
+        {
+            float2 tmpRange = patterns[i].patternData.range;
+            // 제곱값
+            float2 tmpRangePow = new float2(tmpRange.x * tmpRange.x, tmpRange.y * tmpRange.y);
+            distanceRangePatterns[i] = tmpRangePow;
+
+            // 패턴 중 가장 작은 발동 가능 범위 값의 제곱
+            if (distPoweredBoundary.x > tmpRangePow.x)
+                distPoweredBoundary.x = tmpRangePow.x;
+            // 패턴 중 가장 큰 발동 가능 범위 값의 제곱
+            if (distPoweredBoundary.y < tmpRangePow.y)
+                distPoweredBoundary.y = tmpRangePow.y;
+        }
+        if (npcData.isDead)
+        {
+            stateMachine.ChangeState(stateMachine.deathState);
+            OpenNextStagePortal();
+        }
     }
 
     protected override void Start()
@@ -131,28 +153,6 @@ public abstract class MonsterBase : ANPC
 
         // 플레이어를 타겟으로
         //target = PlayerManager.Instance.playerPrefab.transform;
-
-        // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
-        distanceRangePatterns = new float2[patterns.Length];
-        for (int i = 0; i < distanceRangePatterns.Length; i++)
-        {
-            float2 tmpRange = patterns[i].patternData.range;
-            // 제곱값
-            float2 tmpRangePow = new float2(tmpRange.x * tmpRange.x, tmpRange.y * tmpRange.y);
-            distanceRangePatterns[i] = tmpRangePow;
-
-            // 패턴 중 가장 작은 발동 가능 범위 값의 제곱
-            if (distPoweredBoundary.x > tmpRangePow.x)
-                distPoweredBoundary.x = tmpRangePow.x;
-            // 패턴 중 가장 큰 발동 가능 범위 값의 제곱
-            if(distPoweredBoundary.y < tmpRangePow.y)
-                distPoweredBoundary.y = tmpRangePow.y;
-        }
-        if (npcData.isDead)
-        {
-            stateMachine.ChangeState(stateMachine.deathState);
-            OpenNextStagePortal();
-        }
     }
 
     private void Update()
