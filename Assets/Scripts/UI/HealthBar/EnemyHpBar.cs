@@ -5,24 +5,41 @@ using DG.Tweening;
 public class EnemyHpBar : MonoBehaviour
 {
     [Header("UI 바")]
-    [SerializeField] private Image mainBar; // 실제 체력 바
-    [SerializeField] private RectTransform dropChunkContainer; // 조각이 생성될 부모
-    [SerializeField] private GameObject dropChunkPrefab; // 떨어지는 조각 프리팹
+    [SerializeField] private Image mainBar;                    // 실제 체력 바
+    [SerializeField] private GameObject dropChunkPrefab;       // 떨어지는 조각 프리팹
 
     private float currentHpPercent = 1f; // 현재 체력 상태 (0~1)
 
+    private void Awake()
+    {
+        // dropChunkPrefab이 연결되지 않았으면 Resources에서 자동 로드
+        if (dropChunkPrefab == null)
+        {
+            dropChunkPrefab = Resources.Load<GameObject>("DropChunkPrefab");
+            if (dropChunkPrefab == null)
+            {
+                Debug.LogError("DropChunkPrefab이 Resources 폴더에 없습니다. 경로: Resources/DropChunkPrefab");
+            }
+        }
+
+        // mainBar 자동 할당 (옵션)
+        if (mainBar == null)
+        {
+            mainBar = GetComponentInChildren<Image>();
+            if (mainBar == null)
+                Debug.LogError("mainBar가 설정되지 않았고 자동으로도 찾을 수 없습니다.");
+        }
+    }
 
     public void SetHp(float hpPercent)
     {
         hpPercent = Mathf.Clamp01(hpPercent);
 
-        /*
         if (hpPercent < currentHpPercent)
         {
             float lostPercent = currentHpPercent - hpPercent;
             CreateDropChunk(lostPercent);
         }
-        */
 
         currentHpPercent = hpPercent;
         mainBar.fillAmount = currentHpPercent;
@@ -30,22 +47,25 @@ public class EnemyHpBar : MonoBehaviour
 
     private void CreateDropChunk(float lostPercent)
     {
-        if (lostPercent <= 0f) return;
+        if (dropChunkPrefab == null || lostPercent <= 0f) return;
 
-        GameObject chunk = Instantiate(dropChunkPrefab, dropChunkContainer);
+        GameObject chunk = Instantiate(dropChunkPrefab);
+        chunk.transform.SetParent(mainBar.rectTransform, false); // 부모를 mainBar로 설정
+
         Image chunkImage = chunk.GetComponent<Image>();
         RectTransform chunkRect = chunk.GetComponent<RectTransform>();
 
-        // 체력바 너비
         float totalWidth = mainBar.rectTransform.rect.width;
-
         float lostWidth = totalWidth * lostPercent;
+        float fillX = totalWidth * currentHpPercent;
 
-        float fillEdgeX = totalWidth * currentHpPercent;
-        float pivotOffset = (mainBar.rectTransform.pivot.x - 0.5f) * totalWidth;
-        float posX = fillEdgeX + pivotOffset;
+        // 좌측 기준 앵커/피벗 고정
+        chunkRect.anchorMin = new Vector2(0f, 0.5f);
+        chunkRect.anchorMax = new Vector2(0f, 0.5f);
+        chunkRect.pivot = new Vector2(0f, 0.5f);
 
-        chunkRect.anchoredPosition = new Vector2(posX, 0f);
+        // ✅ 수정: 생성 위치를 lostWidth 만큼 왼쪽으로 이동
+        chunkRect.anchoredPosition = new Vector2(fillX - lostWidth, 0f);
         chunkRect.sizeDelta = new Vector2(lostWidth, chunkRect.sizeDelta.y);
 
         Color startColor = chunkImage.color;
