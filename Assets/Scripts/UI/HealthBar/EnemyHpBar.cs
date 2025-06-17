@@ -16,11 +16,13 @@ public class EnemyHpBar : MonoBehaviour
     {
         hpPercent = Mathf.Clamp01(hpPercent);
 
+        /*
         if (hpPercent < currentHpPercent)
         {
             float lostPercent = currentHpPercent - hpPercent;
             CreateDropChunk(lostPercent);
         }
+        */
 
         currentHpPercent = hpPercent;
         mainBar.fillAmount = currentHpPercent;

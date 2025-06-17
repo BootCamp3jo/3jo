@@ -37,6 +37,10 @@ public class Portal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && IsPlayerInPortal)
         {
+            foreach (Action action in actionBeforeSceneTransitionList)
+            {
+                action.Invoke();
+            }
             SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
     }

@@ -22,12 +22,16 @@ public class PlayerStatsUI : MonoBehaviour
     {
         playerData = PlayerManager.Instance.playerData;
         Init();
+        UpdateHealthBar();
     }
 
     private void Init()
     {
         coinText.text = playerData.Coin.ToString();
         levelText.text = playerData.Level.ToString();
+
+        // 기본 스탯 UI 업데이트
+        SkillManager.Instance.SetSkillPointText();
     }
 
     public void UpdateHealthBar()

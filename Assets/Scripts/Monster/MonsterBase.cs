@@ -118,7 +118,7 @@ public abstract class MonsterBase : ANPC
         // 체력바 생성
         if (enemyHpBar != null)
         {
-            enemyHpBar = Instantiate(enemyHpBar);
+           enemyHpBar = Instantiate(enemyHpBar);
             onHpChanged += enemyHpBar.SetHp;
             onHpChanged?.Invoke(npcData.hp / maxHp);
         }
