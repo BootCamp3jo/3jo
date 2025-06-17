@@ -487,6 +487,7 @@ MonoBehaviour:
     _experience: 0
     _coin: 0
     _skillPoint: 2
+    skillDatas: []
   playerMovement: {fileID: 8795419104019595138}
   playerAnimationHandler: {fileID: 5795661413467567411}
   playerCombatHandler: {fileID: 4325494764128292700}
@@ -549,6 +550,19 @@ MonoBehaviour:
     _experience: 0
     _coin: 100
     _skillPoint: 0
+    skillDatas:
+    - skillSOPath: Prefabs/Skills/SkillsSO/Level01SkillSO
+      isUnlock: 0
+    - skillSOPath: Prefabs/Skills/SkillsSO/Level02SkillSO
+      isUnlock: 0
+    - skillSOPath: Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO
+      isUnlock: 0
+    - skillSOPath: Prefabs/Skills/SkillsSO/Level03SkillSO
+      isUnlock: 0
+    - skillSOPath: Prefabs/Skills/SkillsSO/Level04SkillSO
+      isUnlock: 0
+    - skillSOPath: Prefabs/Skills/SkillsSO/UltSkillSO
+      isUnlock: 0
   dontNeedSave: 0
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}

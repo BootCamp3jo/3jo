@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,7 +8,6 @@ using UnityEngine.UI;
 public class SkillTreeSlotData : SkillSlotData
 {
     [SerializeField] private Button skillTreeSlotButton;
-
     
 
     private void Start()
@@ -30,21 +30,27 @@ public class SkillTreeSlotData : SkillSlotData
 
     public void OnSkillTreeButton()
     {
+        if (PlayerManager.Instance.playerData.SkillPoint < skillData.skillPointCost)
+        {
+            return;
+        }
         // 이 스킬슬롯 데이터가 3번째 업그레이드 가능한 스킬인지 확인
         if (SkillManager.Instance.skillTreeDataSlotManager.IsThis3rdSkill(this))
         {
             // 3번째 업그레이드 가능한 스킬이라면, 업그레이드 전 베이스 스킬이 언락되었는지 확인
-            if (SkillManager.Instance.skillTreeDataSlotManager.Is2ndSkillUnlocked())
+            if (!SkillManager.Instance.skillTreeDataSlotManager.Is2ndSkillUnlocked())
             {
-                UnlockSkill();
-                SkillManager.Instance.skillTreeDataSlotManager.Upgrade3rdSkill();
+                Debug.Log("SkillTreeDataSlotManager: Unlock the base skill first before upgrading!");
             }
-            else Debug.Log("SkillTreeDataSlotManager: Unlock the base skill first before upgrading!");
-
+            else
+            {
+                SkillManager.Instance.skillTreeDataSlotManager.Upgrade3rdSkill();
+                UnlockSkill();
+            }
             return;
         }
-
         UnlockSkill();
+        invokeAfterUnlock?.Invoke();
         MatchingSkillSlotData.UnlockSkill();
     }
 

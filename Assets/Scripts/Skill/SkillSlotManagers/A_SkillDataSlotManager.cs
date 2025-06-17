@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
@@ -21,8 +22,11 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
         set { lockedSkillIcon = value; }
     }
 
+    public Action actionFor3rdSkillUpgrade;
+
     [SerializeField]
     protected List<SkillSlotData> skillSlotDatas;
+    protected List<SkillData> skillDatas;
 
     // Start is called before the first frame update
     protected void OnEnable()
@@ -38,6 +42,7 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
 
     protected void SkillDataSlotInit()
     {
+        skillDatas = DataManager.Instance.gameContext.saveData.playerData.skillDatas;
         skillSlotDatas = new List<SkillSlotData>();
 
         Transform parent = transform;
@@ -46,14 +51,40 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
         {
             Transform child = parent.GetChild(i);
             SkillSlotData skillDataSlot = child.GetComponent<SkillSlotData>();
+            int index = i;
 
             if (skillDataSlot != null)
             {
                 skillSlotDatas.Add(skillDataSlot);
+                if (skillDatas[i].isUnlock)
+                {
+                    skillSlotDatas[i].UnlockSkillWithoutReducePoint();
+                }
+                skillSlotDatas[index].invokeAfterUnlock = () =>
+                {
+                    skillDatas[index].isUnlock = true;
+                };
             }
 #if UNITY_EDITOR
             else Debug.LogError("SkillDataSlotManager: Child at index " + i + " does not have a SkillSlotData component.");
 #endif
+        }
+
+        if(ultSkillSlotData != null)
+        {
+            if (skillDatas[5].isUnlock)
+            {
+                ultSkillSlotData.UnlockSkillWithoutReducePoint();
+            }
+            ultSkillSlotData.invokeAfterUnlock = () =>
+            {
+                skillDatas[5].isUnlock = true;
+            };
+        }
+
+        if (skillDatas[2].isUnlock && skillDatas[2].isUpgraded)
+        {
+            actionFor3rdSkillUpgrade?.Invoke();
         }
 
         Debug.Log("SkillDataSlotManager: Initialized " + skillSlotDatas.Count + " skill data slots.");
