@@ -40,7 +40,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         Debug.Log("begin drag");
         originalParent = transform.parent;
-        transform.SetParent(UIManager.Instance.playerUI.inventoryUI.transform);
+        transform.SetParent(UIManager.Instance.inventoryUI.transform);
         transform.SetAsLastSibling();
         SelectedItemUI.Instance.GetItemSlotData(itemSlotData);
         iconImage.raycastTarget = false;

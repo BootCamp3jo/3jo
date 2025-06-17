@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] public InGameUIButtons inGameUIButtons;
+    [SerializeField] public InventoryUI inventoryUI;
     [SerializeField] public PlayerStatsUI playerStatsUI;
     [SerializeField] public SkillUI skillUI;
 
