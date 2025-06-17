@@ -119,6 +119,7 @@ MonoBehaviour:
   inGameUIButtons: {fileID: 0}
   inventoryUI: {fileID: 0}
   playerStatsUI: {fileID: 0}
+  uIWindowManager: {fileID: 0}
   skillUI: {fileID: 0}
 --- !u!1 &3157646539374715736
 GameObject:
@@ -1026,6 +1027,10 @@ PrefabInstance:
       propertyPath: matchingSkillSlotData
       value: 
       objectReference: {fileID: 4416918867213740898}
+    - target: {fileID: 7754827869753927778, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7787685102424716681, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1525,6 +1530,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7994715356858353231, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838699007243680797, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
