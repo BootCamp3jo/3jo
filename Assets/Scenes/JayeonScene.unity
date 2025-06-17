@@ -3946,8 +3946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expOrbPrefab: {fileID: 6159923407398737282, guid: 34a9246e6fc70ab48b546a1fb9b6b1ad, type: 3}
-  uiTarget: {fileID: 0}
-  uiImage: {fileID: 0}
+  uiTarget: {fileID: 352191766}
+  uiImage: {fileID: 352191767}
 --- !u!1001 &943878133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6549,7 +6549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c3efab320986794fb7289b2b302c335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allSkillList: []
 --- !u!1001 &1918458145
 PrefabInstance:
   m_ObjectHideFlags: 0
