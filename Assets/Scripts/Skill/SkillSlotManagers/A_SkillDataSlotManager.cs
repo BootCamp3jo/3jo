@@ -25,7 +25,7 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
     protected List<SkillSlotData> skillSlotDatas;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected void OnEnable()
     {
         SkillDataSlotInit();
         SkillsToSlotInit();

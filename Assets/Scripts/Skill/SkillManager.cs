@@ -8,6 +8,7 @@ public class SkillManager : MonoSingleton<SkillManager>
     [Header("SkillManager")]
     [SerializeField] public SkillUIDataSlotManager skillUiDataSlotManager;
     [SerializeField] public SkillTreeDataSlotManager skillTreeDataSlotManager;
+    [SerializeField] public SkillCoolTimeHandler skillCoolTimeHandler;
 
 
     [SerializeField] private Transform VFXSpawnPoint;
@@ -80,9 +81,7 @@ public class SkillManager : MonoSingleton<SkillManager>
     public void LockIconBlinking(SkillSlotData skillSlotData)
     {
         if (skillSlotData.SkillIcon.sprite == skillTreeDataSlotManager.LockedSkillIcon)
-            skillSlotData.SkillIcon.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time, 1f));
+            skillSlotData.SkillIcon.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time, 0.7f) + 0.2f);
     }
-
-    //public void SetSkillSlotInteractable(SkillSlotData skillSlotData, bool)
 }
 

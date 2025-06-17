@@ -15,8 +15,8 @@ MonoBehaviour:
   skillName: "\uC544\uC774\uC2A4\uD5E4\uBA38\uBC84\uC2A4\uD130"
   description: "\uC5BC\uC74C\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uB9DD\uCE58\uB97C
     \uC18C\uD658\uD574 \uB0B4\uB824\uCE5C\uB4A4 \uC5BC\uC74C\uD3ED\uD48D\uC744 \uC77C\uC73C\uD0A8\uB2E4"
-  skillPointCost: 8
-  icon: {fileID: 21300000, guid: 372fd715f903c7249a218e4647ee7041, type: 3}
+  icon: {fileID: 21300000, guid: 2e85ad80b5a7da545a4a327b610f8c00, type: 3}
   skillPrefab: {fileID: 650732362046721720, guid: 519ea568e1b388048a26805fdcc20955, type: 3}
-  coolDown: 9
+  skillPointCost: 8
+  coolDown: 11
   manaCost: 25

@@ -1,16 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class PlayerSkillHandler : MonoBehaviour
 {
     [SerializeField] private PlayerAnimationHandler playerAnimationHandler;
 
     private SkillUIDataSlotManager skillUIDataSlotManager;
+    private SkillCoolTimeHandler skillCoolTimeHandler;
 
-    private bool isUsingSkill = false;
+
+    private bool isUsingSkill = false; // 스킬 애니메이션 관련 bool값
 
     private Coroutine aSkillCoroutine;
     private Coroutine sSkillCoroutine;
@@ -22,6 +27,7 @@ public class PlayerSkillHandler : MonoBehaviour
     {
         playerAnimationHandler = GetComponentInChildren<PlayerAnimationHandler>();
         skillUIDataSlotManager = SkillManager.Instance.skillUiDataSlotManager;
+        skillCoolTimeHandler = SkillManager.Instance.skillCoolTimeHandler;
     }
 
 
@@ -34,65 +40,130 @@ public class PlayerSkillHandler : MonoBehaviour
             // Level 01 skill 
             if (control == Keyboard.current.aKey)
             {
-                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(0);
-
-                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
-                {
-                    UseSkillA();
-                }
-                else Debug.LogWarning("A skill is not unlocked yet.");
+                EnterUsingSkillProcess(0,
+                                       () => skillCoolTimeHandler.canUseSkillA,
+                                       c => skillCoolTimeHandler.canUseSkillA = c, 
+                                       ref skillCoolTimeHandler.skillACoolTimeCoroutine,
+                                       skillCoolTimeHandler.skillACoolTime,
+                                       skillCoolTimeHandler. waitForSeconds_ASkill, 
+                                       UseSkillA);
             }
 
             // Level 02 skill
             else if (control == Keyboard.current.sKey)
             {
-                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(1);
-
-                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
-                {
-                    UseSkillS();
-                }
-                else Debug.LogWarning("S skill is not unlocked yet.");
+                EnterUsingSkillProcess(1,
+                                       () => skillCoolTimeHandler.canUseSkillS,
+                                       c => skillCoolTimeHandler.canUseSkillS = c,
+                                       ref skillCoolTimeHandler.skillSCoolTimeCoroutine,
+                                       skillCoolTimeHandler.skillSCoolTime,
+                                       skillCoolTimeHandler.waitForSeconds_SSkill,
+                                       UseSkillS);
             }
 
             // Level 03 skill
             else if (control == Keyboard.current.dKey)
             {
-                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(2);
-
-                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
-                {
-                    UseSkillD();
-                }
-                else Debug.LogWarning("D skill is not unlocked yet.");
+                EnterUsingSkillProcess(2,
+                                       () => skillCoolTimeHandler.canUseSkillD,
+                                       c => skillCoolTimeHandler.canUseSkillD = c,
+                                       ref skillCoolTimeHandler.skillDCoolTimeCoroutine,
+                                       skillCoolTimeHandler.skillDCoolTime,
+                                       skillCoolTimeHandler.waitForSeconds_DSkill,
+                                       UseSkillD);
             }
 
             // Level 04 skill
             else if (control == Keyboard.current.wKey)
             {
-                SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(3);
-
-                if (skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
-                {
-                    UseSkillW();
-                }
-                else Debug.LogWarning("W skill is not unlocked yet.");                    
-            }   
+                EnterUsingSkillProcess(3,
+                                       () => skillCoolTimeHandler.canUseSkillW, 
+                                       c => skillCoolTimeHandler.canUseSkillW = c,
+                                       ref skillCoolTimeHandler.skillWCoolTimeCoroutine,
+                                       skillCoolTimeHandler.skillWCoolTime,
+                                       skillCoolTimeHandler.waitForSeconds_WSkill,
+                                       UseSkillW);
+            }
 
             // Ultimate skill
             else if (control == Keyboard.current.qKey)
             {
-                SkillSlotData skillSlotData = skillUIDataSlotManager.GetUltSkillSlotData();
-
-                if (skillUIDataSlotManager.IsUltSkillUnlocked())
-                {
-                    UseUltimateSkill();
-                }
-                else Debug.LogWarning("Ultimate skill is not unlocked yet.");
+                EnterUsingUltProcess(() => skillCoolTimeHandler.canUseUltSkill,
+                                      c => skillCoolTimeHandler.canUseUltSkill = c,
+                                      ref skillCoolTimeHandler.ultSkillCoolTimeCoroutine,
+                                      skillCoolTimeHandler.ultSkillCoolTime,
+                                      skillCoolTimeHandler.waitForSeconds_UltSkill,
+                                      UseUltimateSkill);
             }
         }
     }
 
+    //------------------------------------------//
+
+    public void EnterUsingSkillProcess(int slotIndex,
+                                      Func<bool> getCanUseSkill,      
+                                      Action<bool> setCanUseSkill,
+                                      ref Coroutine cooldownCoroutine,
+                                      float cooldownTime,
+                                      WaitForSeconds waitForSeconds,
+                                      Action useSkillAction)
+    {
+        SkillSlotData skillSlotData = skillUIDataSlotManager.GetSkillSlotData(slotIndex);
+
+        if (!skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
+        {
+            Debug.LogWarning($"Skill in slot {slotIndex} is not unlocked.");
+            return;
+        }
+
+        if (!getCanUseSkill())
+        {
+            Debug.LogWarning($"Skill in slot {slotIndex} is on cooldown.");
+            return;
+        }
+
+        if (cooldownCoroutine != null)
+            StopCoroutine(cooldownCoroutine);
+
+        useSkillAction.Invoke();
+
+        cooldownCoroutine = StartCoroutine(
+                            skillCoolTimeHandler.SkillCoolTime(cooldownTime,
+                                                               c => setCanUseSkill(c),
+                                                               waitForSeconds));
+    }
+
+    public void EnterUsingUltProcess( Func<bool> getCanUseSkill,
+                                      Action<bool> setCanUseSkill,
+                                      ref Coroutine cooldownCoroutine,
+                                      float cooldownTime,
+                                      WaitForSeconds waitForSeconds,
+                                      Action useSkillAction)
+    {
+        SkillSlotData skillSlotData = skillUIDataSlotManager.GetUltSkillSlotData();
+
+        if (!skillUIDataSlotManager.IsSkillUnlocked(skillSlotData))
+        {
+            Debug.LogWarning($"Ult Skill is not unlocked.");
+            return;
+        }
+
+        if (!getCanUseSkill())
+        {
+            Debug.LogWarning($"Ult Skill is on cooldown.");
+            return;
+        }
+
+        if (cooldownCoroutine != null)
+            StopCoroutine(cooldownCoroutine);
+
+        useSkillAction.Invoke();
+
+        cooldownCoroutine = StartCoroutine(
+                            skillCoolTimeHandler.SkillCoolTime(cooldownTime,
+                                                               c => setCanUseSkill(c),
+                                                               waitForSeconds));
+    }
 
 
     //------------------------------------------//
@@ -129,7 +200,7 @@ public class PlayerSkillHandler : MonoBehaviour
     }
 
     //------------------------------------------//
-    
+
     private IEnumerator UseUltSkillMotion()
     {
         isUsingSkill = true;

@@ -117,11 +117,9 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
 
     public void UseSkillPoint(int amount)
     {
-
-        int skillPoint = playerData.SkillPoint;
-        if (skillPoint >= amount)
+        if (playerData.SkillPoint >= amount)
         {
-            skillPoint -= amount;
+            playerData.SkillPoint -= amount;
             SkillManager.Instance.SetSkillPointText();
         }
         else

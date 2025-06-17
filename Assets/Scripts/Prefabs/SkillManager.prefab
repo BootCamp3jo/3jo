@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3673092943041153814}
   - component: {fileID: 4027168675939235020}
+  - component: {fileID: 1377415766712735299}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7841782325928053005}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
   m_ConstrainProportionsScale: 0
@@ -50,8 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e24729fef8cc54e96420be06c5ed84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillDataSlotManager: {fileID: 0}
+  skillUiDataSlotManager: {fileID: 0}
+  skillTreeDataSlotManager: {fileID: 0}
+  skillCoolTimeHandler: {fileID: 1377415766712735299}
   VFXSpawnPoint: {fileID: 0}
+  skillPointText: {fileID: 0}
   basicSkillList:
   - {fileID: 11400000, guid: 4a9f0940a54949f458ba35112570442e, type: 2}
   - {fileID: 11400000, guid: f4fdd963c87add446a110cf2efb9ff61, type: 2}
@@ -61,6 +65,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ad33324c1ce964344949d128cd419cd0, type: 2}
   ultimateSkillList:
   - {fileID: 11400000, guid: 69601f663d45df64fb4ec88fe0bfbd13, type: 2}
+--- !u!114 &1377415766712735299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841782325928053005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710973fe1e545764f8e4cdd0aa4f3bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1771797750712020018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751081566078165181, guid: 0546ffbe15d3ace45b535d30239347b7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
