@@ -16,3 +16,6 @@ MonoBehaviour:
   <hpMax>k__BackingField: 10
   <atk>k__BackingField: 10
   <moveSpeed>k__BackingField: 15
+  dropData:
+    exp: 50
+    dropItems: []
