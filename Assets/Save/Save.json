@@ -1,10 +1,14 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "Battle",
-  "KillCount": 2,
+  "curSceneName": "LobbyScene",
+  "KillCount": 10,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
+      "unlocked": true
+    },
+    "PentaKill": {
+      "achievementID": 1,
       "unlocked": true
     }
   },
@@ -58,6 +62,15 @@
         "isPlayerExist": true,
         "posX": -5.909761,
         "posY": 9.001586,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
+    },
+    "JayeonScene": {
+      "playerStateInScene": {
+        "isPlayerExist": false,
+        "posX": 0.0,
+        "posY": 0.0,
         "posZ": 0.0
       },
       "npcDataQueues": {}

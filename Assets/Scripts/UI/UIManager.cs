@@ -11,7 +11,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     void Awake()
     {
-        inGameUIButtons = GetComponent<InGameUIButtons>();
+        inGameUIButtons = GetComponentInChildren<InGameUIButtons>();
+        inventoryUI = GetComponentInChildren<InventoryUI>();
         playerStatsUI = GetComponentInChildren<PlayerStatsUI>();
         skillUI = GetComponentInChildren<SkillUI>();
     }
