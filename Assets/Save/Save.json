@@ -1,6 +1,6 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "LobbyScene",
+  "curSceneName": "JayeonScene",
   "KillCount": 1,
   "achievements": {
     "FirstBlood": {
@@ -60,6 +60,15 @@
         "isPlayerExist": true,
         "posX": -5.32373762,
         "posY": 4.383951,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
+    },
+    "JayeonScene": {
+      "playerStateInScene": {
+        "isPlayerExist": false,
+        "posX": 0.0,
+        "posY": 0.0,
         "posZ": 0.0
       },
       "npcDataQueues": {}
