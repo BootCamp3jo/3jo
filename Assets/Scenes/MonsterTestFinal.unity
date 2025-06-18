@@ -1033,25 +1033,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 193575401754954226, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: targetLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 1269459519834541983, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: dontNeedSave
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1685892392062551191, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2787365737424974371, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
       propertyPath: m_Name
       value: MartialHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787365737424974371, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3254999510386029768, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1092,10 +1076,6 @@ PrefabInstance:
     - target: {fileID: 3254999510386029768, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8214470904670938643, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: targetLayer.m_Bits
-      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1936,7 +1916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7694232084275543480, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: dontNeedSave
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8359704718906564383, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: m_Name

@@ -28,9 +28,11 @@ public enum SFXType
     Ice_D,
     Ice_DP,
     Ice_Q,
-    Ice_W
-
-
+    Ice_W,
+    MartialHero_Attack,
+    MartialHero_SPAttack,
+    MartialHero_Sheath,
+    MartialHero_Die,
 }
 
 public class AudioManager : MonoBehaviour

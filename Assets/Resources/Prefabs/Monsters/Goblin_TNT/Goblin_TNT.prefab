@@ -309,6 +309,7 @@ MonoBehaviour:
   dontNeedSave: 0
   objectPoolManager: {fileID: 4337102216868017475}
   monsterData: {fileID: 11400000, guid: 6ac5826bc3abba740b20dad9a9f2fb5b, type: 2}
+  sfxDead: 6
   flashEffect: {fileID: 0}
   hitEffect: {fileID: 0}
   shakeEffect: {fileID: 0}
@@ -597,6 +598,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7718795173821900011}
     m_Modifications:
+    - target: {fileID: 2401982669376117468, guid: 9d22945478af0f64ebd2cd9bca164b47, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3194510953754435040, guid: 9d22945478af0f64ebd2cd9bca164b47, type: 3}
       propertyPath: m_Name
       value: PortalGuideImage

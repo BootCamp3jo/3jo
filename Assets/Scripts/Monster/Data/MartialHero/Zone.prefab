@@ -184,9 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &1398805202177381935
 MonoBehaviour:
@@ -384,9 +381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &7759106326262698719
 MonoBehaviour:
@@ -584,9 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &3826201947289609113
 MonoBehaviour:
@@ -656,6 +647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3160327294593288043}
+  - component: {fileID: 6937887012063804871}
   m_Layer: 0
   m_Name: AttackEffect
   m_TagString: Untagged
@@ -685,6 +677,18 @@ Transform:
   - {fileID: 7251238915357117846}
   m_Father: {fileID: 8569308631965146555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6937887012063804871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220757491437247607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08cc83cbfbf4b464e82900b0a26faed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5907755683963455336
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,9 +873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &8623515073755235859
 MonoBehaviour:
@@ -1190,9 +1191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &3049461295783422555
 MonoBehaviour:
@@ -1390,9 +1388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &6615590731727487244
 MonoBehaviour:
@@ -1590,9 +1585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128e7d0c70b36f9449556fa1e6ca01ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   <Damage>k__BackingField: 10
 --- !u!114 &4847416752683453591
 MonoBehaviour:
