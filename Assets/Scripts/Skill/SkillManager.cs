@@ -90,5 +90,10 @@ public class SkillManager : MonoSingleton<SkillManager>
         if (skillSlotData.SkillIcon.sprite == skillTreeDataSlotManager.LockedSkillIcon)
             skillSlotData.SkillIcon.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time, 0.7f) + 0.2f);
     }
+
+    public void StopLockIconBlinking(SkillSlotData skillSlotData)
+    {
+        skillSlotData.SkillIcon.color = new Color(1f, 1f, 1f, 1f);
+    }
 }
 
