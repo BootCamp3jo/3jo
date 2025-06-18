@@ -121,7 +121,6 @@ MonoBehaviour:
   playerStatsUI: {fileID: 0}
   uIWindowManager: {fileID: 0}
   skillUI: {fileID: 0}
-  ultGuageBarManager: {fileID: 0}
 --- !u!1001 &5878613526412013923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -306,10 +305,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4696406137289272165, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5032776181677559992, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
       propertyPath: panel
       value: 
       objectReference: {fileID: 5638183822308198224}
+    - target: {fileID: 5032776181677559992, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      propertyPath: closePanels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032776181677559992, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      propertyPath: closePanels.Array.data[0]
+      value: 
+      objectReference: {fileID: 1509987286816108431}
     - target: {fileID: 6768720217861000062, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
       propertyPath: m_Name
       value: InGameUI
@@ -318,6 +329,10 @@ PrefabInstance:
       propertyPath: matchingSkillSlotData
       value: 
       objectReference: {fileID: 4416918867213740898}
+    - target: {fileID: 7754827869753927778, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8115584105355586575, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -502,10 +517,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8006964458682462555, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 833832464365506087, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6351718365788566333}
   m_SourcePrefab: {fileID: 100100000, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
 --- !u!114 &3172825610196102364 stripped
 MonoBehaviour:
@@ -556,6 +575,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061ba3ee58e0dc74d8b4dab5fd36134f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6487252668147957572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 833832464365506087, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
+  m_PrefabInstance: {fileID: 5878613526412013923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6351718365788566333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6487252668147957572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4c9d823efcb1d45aaa16905a80eafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 1509987286816108431}
+  isStopTime: 0
+  closePanels:
+  - {fileID: 5638183822308198224}
 --- !u!114 &6623164325877741909 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 756379363844507702, guid: c60fb77f5061ea94fb6e52c7ec0415c7, type: 3}
@@ -1225,7 +1265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7994715356858353231, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7999566599838915732, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -1336,6 +1376,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
+--- !u!1 &1509987286816108431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7018587158074691785, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
+  m_PrefabInstance: {fileID: 8472267857230479174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3025400055442901224 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6660801756914628526, guid: a4d220ee22529ac4ea90d502e570d38e, type: 3}
