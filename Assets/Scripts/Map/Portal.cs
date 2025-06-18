@@ -42,6 +42,7 @@ public class Portal : MonoBehaviour
             {
                 action.Invoke();
             }
+
             SceneTransitionController.Instance.StartSceneTransition(targetSceneName);
         }
     }

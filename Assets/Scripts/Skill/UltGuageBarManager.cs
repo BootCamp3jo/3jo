@@ -68,12 +68,12 @@ public class UltGuageBarManager : MonoBehaviour
         if (currentUltGuagePercent >= 1f)
         {
             // 원래 궁극기 아이콘으로 변경
-            SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultSkillData.icon; 
+            SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultSkillData.icon;
         }
         else if (currentUltGuagePercent < 1f)
         {
             // 궁극기 바가 다 차지 않았을 때 표시할 이미지로 변경
-            SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultNotAvailable; 
+            SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultNotAvailable;
             Debug.Log("UltGuageBarManager: 궁극기 게이지가 아직 다 차지 않았습니다.");
         }
     }
@@ -88,7 +88,7 @@ public class UltGuageBarManager : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
 
-        return ((currentScene == "JayeonScene" || currentScene == "Battle") && PlayerManager.Instance.playerData.skillDatas[5].isUnlock);
+        return (!(currentScene == "LobbyScene") && PlayerManager.Instance.playerData.skillDatas[5].isUnlock);
     }
 
     public bool CanUltGuageBeUsed()

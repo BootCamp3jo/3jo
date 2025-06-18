@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MonsterTestFinal.unity
     guid: 12dd50d4125ef3444a9f09943d2160fc
+  - enabled: 1
+    path: Assets/Scenes/MonsterTestScene_Merge.unity
+    guid: 375cdd9405e93fa4f87ea7b610d7e041
   m_configObjects: {}
