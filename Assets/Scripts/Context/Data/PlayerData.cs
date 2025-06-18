@@ -101,6 +101,7 @@ public class PlayerData
 [Serializable]
 public class PlayerStateInScene
 {
+    public float currentUltGuagePercent = 0f;
     public bool isPlayerExist;
     public float posX;
     public float posY;

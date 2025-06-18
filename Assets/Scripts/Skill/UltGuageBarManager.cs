@@ -11,7 +11,7 @@ public class UltGuageBarManager : MonoBehaviour
     [SerializeField] private Image mainBar;                    // 실제 체력 바
     [SerializeField] public Sprite ultNotAvailable;            // 궁극기 바가 다 차지 않았을 때 표시할 이미지
 
-    private float currentUltGuagePercent = 0f; // 현재 궁극기 차오름 상태 (0~1)
+    private PlayerStateInScene playerStateInScene;
 
     private void Awake()
     {
@@ -34,9 +34,10 @@ public class UltGuageBarManager : MonoBehaviour
 
     private void Start()
     {
+        playerStateInScene = DataManager.Instance.gameContext.playerStateInScene;
+        mainBar.fillAmount = playerStateInScene.currentUltGuagePercent;
         ActivateUltGuageBar();
         SetUltAvailabilitySprite();
-        mainBar.fillAmount = currentUltGuagePercent;
     }
 
     private void Update()
@@ -49,15 +50,15 @@ public class UltGuageBarManager : MonoBehaviour
         chargePercent = Mathf.Clamp01(chargePercent);
 
         // 현재 궁극기 게이지가 가득 찼다면 증가하지 않음
-        if (currentUltGuagePercent == 1f) return;
+        if (playerStateInScene.currentUltGuagePercent == 1f) return;
 
-        currentUltGuagePercent += chargePercent;
-        mainBar.fillAmount = currentUltGuagePercent;
+        playerStateInScene.currentUltGuagePercent += chargePercent;
+        mainBar.fillAmount = playerStateInScene.currentUltGuagePercent;
 
         // 궁극기 게이지에 따라 궁극기 아이콘을 변경 (궁 사용 가능 / 불가능)
         SetUltAvailabilitySprite();
 
-        Debug.Log($"UltGuageBarManager: 현재 궁극기 게이지 상태: {currentUltGuagePercent * 100f}%");
+        Debug.Log($"UltGuageBarManager: 현재 궁극기 게이지 상태: {playerStateInScene.currentUltGuagePercent * 100f}%");
     }
 
     public void SetUltAvailabilitySprite()
@@ -65,12 +66,12 @@ public class UltGuageBarManager : MonoBehaviour
         if (!CheckUltGuageConditions()) return;
 
         // 궁극기 게이지가 가득 찼을 때 스프라이트 변경
-        if (currentUltGuagePercent >= 1f)
+        if (playerStateInScene.currentUltGuagePercent >= 1f)
         {
             // 원래 궁극기 아이콘으로 변경
             SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultSkillData.icon;
         }
-        else if (currentUltGuagePercent < 1f)
+        else if (playerStateInScene.currentUltGuagePercent < 1f)
         {
             // 궁극기 바가 다 차지 않았을 때 표시할 이미지로 변경
             SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultNotAvailable;
@@ -94,7 +95,7 @@ public class UltGuageBarManager : MonoBehaviour
     public bool CanUltGuageBeUsed()
     {
         // 궁극기 게이지가 가득 찼는지 확인하는 로직
-        return currentUltGuagePercent >= 1f;
+        return playerStateInScene.currentUltGuagePercent >= 1f;
     }
 
     public bool IsUltGuageActive()
@@ -106,10 +107,10 @@ public class UltGuageBarManager : MonoBehaviour
     public void ResetUltGuage()
     {
         // 궁극기 게이지를 소모하는 로직
-        if (currentUltGuagePercent >= 1f)
+        if (playerStateInScene.currentUltGuagePercent >= 1f)
         {
-            currentUltGuagePercent = 0f;
-            mainBar.fillAmount = currentUltGuagePercent;
+            playerStateInScene.currentUltGuagePercent = 0f;
+            mainBar.fillAmount = playerStateInScene.currentUltGuagePercent;
             Debug.Log("UltGuageBarManager: 궁극기 게이지가 소모되었습니다.");
         }
         else
