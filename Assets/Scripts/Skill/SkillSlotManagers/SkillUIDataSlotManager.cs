@@ -13,6 +13,10 @@ public class SkillUIDataSlotManager : A_SkillDataSlotManager
         {
             skillSlotDatas[i].SetSkillToSlot(SkillManager.Instance.basicSkillList[i]);
         }
+        if (skillDatas[2].isUnlock && skillDatas[2].isUpgraded)
+        {
+            skillSlotDatas[2].SetSkillToSlot(SkillManager.Instance.upgradedSkillList[0]);
+        }
 
         Debug.Log("SkillDataSlotManager: Assigned skills to slots.");
     }

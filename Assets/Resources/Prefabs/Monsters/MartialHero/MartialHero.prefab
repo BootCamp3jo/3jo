@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcData:
-    prefabPath: 
+    prefabPath: Prefabs/Monsters/MartialHero/MartialHero
     hp: 600
     isDead: 0
     maxHP: 600

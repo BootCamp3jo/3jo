@@ -70,7 +70,16 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
 #endif
         }
 
-        if(ultSkillSlotData != null)
+        if (skillDatas[4].isUnlock)
+        {
+            if (this is SkillTreeDataSlotManager)
+                skillSlotDatas[4].UnlockSkillWithoutReducePoint();
+
+            if (this is SkillUIDataSlotManager)
+                skillSlotDatas[3].UnlockSkillWithoutReducePoint();
+        }
+
+        if (ultSkillSlotData != null)
         {
             if (skillDatas[5].isUnlock)
             {
@@ -84,7 +93,9 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
 
         if (skillDatas[2].isUnlock && skillDatas[2].isUpgraded)
         {
-            actionFor3rdSkillUpgrade?.Invoke();
+            skillSlotDatas[3].MatchingSkillSlotData.SetSkillToSlot(SkillManager.Instance.upgradedSkillList[0]);
+            skillDatas[2].isUpgraded = true;
+            skillSlotDatas[3].UnlockSkillWithoutReducePoint();
         }
 
         Debug.Log("SkillDataSlotManager: Initialized " + skillSlotDatas.Count + " skill data slots.");

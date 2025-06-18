@@ -154,6 +154,11 @@ public abstract class MonsterBase : ANPC
 
         atk = monsterData.atk;
 
+        if (npcData.isDead)
+        {
+            stateMachine.ChangeState(stateMachine.deathState);
+            OpenNextStagePortal();
+        }
         // 플레이어를 타겟으로
         //target = PlayerManager.Instance.playerPrefab.transform;
     }

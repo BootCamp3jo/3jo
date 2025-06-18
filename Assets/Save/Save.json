@@ -1,13 +1,8 @@
 {
   "difficultLevel": 0,
   "curSceneName": "MonsterTestFinal",
-  "KillCount": 3,
-  "achievements": {
-    "FirstBlood": {
-      "achievementID": 0,
-      "unlocked": true
-    }
-  },
+  "KillCount": 0,
+  "achievements": {},
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "skillDatas": [
@@ -23,7 +18,7 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
@@ -38,22 +33,22 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       }
     ],
     "AttackPower": 5.0,
-    "CurrentHealth": 90.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 13,
-    "Experience": 1200.0,
+    "Level": 10,
+    "Experience": 1300.0,
     "Coin": 100,
-    "SkillPoint": 25,
+    "SkillPoint": 13,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 4600.0,
+    "MaxExperience": 2800.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
@@ -61,21 +56,33 @@
       "playerStateInScene": {
         "currentUltGuagePercent": 0.0,
         "isPlayerExist": true,
-        "posX": 3.815131,
-        "posY": 8.718065,
+        "posX": 3.47499967,
+        "posY": 8.715309,
         "posZ": 0.0
       },
       "npcDataQueues": {}
     },
     "MonsterTestFinal": {
       "playerStateInScene": {
-        "currentUltGuagePercent": 0.05,
+        "currentUltGuagePercent": 0.0,
         "isPlayerExist": true,
-        "posX": -0.3975543,
-        "posY": 3.25620317,
+        "posX": -2.1,
+        "posY": -2.61,
         "posZ": 0.0
       },
-      "npcDataQueues": {}
+      "npcDataQueues": {
+        "Prefabs/Monsters/MartialHero/MartialHero": [
+          {
+            "prefabPath": "Prefabs/Monsters/MartialHero/MartialHero",
+            "hp": 600.0,
+            "isDead": false,
+            "maxHP": 600.0,
+            "posX": -0.5850658,
+            "posY": 1.79773712,
+            "posZ": 0.0
+          }
+        ]
+      }
     }
   }
 }

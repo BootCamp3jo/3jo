@@ -16,10 +16,14 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
     private bool isInvincible = false;      // 무적 상태 여부
     public float invincibleDuration = 1.5f; // 무적 시간
 
-
-     private void Start()
+    private void Awake()
     {
-        playerData = PlayerManager.Instance.playerData;
+        playerData = DataManager.Instance.gameContext.saveData.playerData;
+    }
+
+    private void Start()
+    {
+        playerData = DataManager.Instance.gameContext.saveData.playerData;
         playerStatsUI = UIManager.Instance.playerStatsUI;
         waitForSeconds = new WaitForSeconds(1f);
         StartManaRegeneration();
