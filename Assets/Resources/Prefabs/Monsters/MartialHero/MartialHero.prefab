@@ -221,7 +221,7 @@ MonoBehaviour:
     posY: 0
     posZ: 0
   isCreatedBySceneLoader: 0
-  dontNeedSave: 1
+  dontNeedSave: 0
   objectPoolManager: {fileID: 2506477102189826019}
   monsterData: {fileID: 11400000, guid: ac9dc2a0bd1cceb479cdb56c71da3f61, type: 2}
   flashEffect: {fileID: 0}
@@ -460,6 +460,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 6126466430207574204, guid: 1a8cd2be73da10844964ff853635dd78, type: 3}
   - {fileID: 6126466430207574204, guid: ed4361f25eec1994aa0faa96009127bc, type: 3}
+  - {fileID: 4520662809916044946, guid: 7f356b3852d04a449a26db9e9e55355f, type: 3}
 --- !u!1 &6842093138897342592
 GameObject:
   m_ObjectHideFlags: 0

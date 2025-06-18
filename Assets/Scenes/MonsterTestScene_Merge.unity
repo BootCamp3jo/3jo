@@ -920,7 +920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7694232084275543480, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: dontNeedSave
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8359704718906564383, guid: eab1c7aafbb70274d83fc41df4ee95b9, type: 3}
       propertyPath: m_Name
@@ -944,21 +944,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2506477102189826019, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: prefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2506477102189826019, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: prefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 4520662809916044946, guid: 7f356b3852d04a449a26db9e9e55355f, type: 3}
     - target: {fileID: 2787365737424974371, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
       propertyPath: m_Name
       value: MartialHero
-      objectReference: {fileID: 0}
-    - target: {fileID: 2787365737424974371, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3254999510386029768, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1990,10 +1978,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 927727898049179297, guid: 3d1b8fb4b858dcc4bb87343cb2bafc62, type: 3}
-      propertyPath: dontNeedSave
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 993160782477387767, guid: 3d1b8fb4b858dcc4bb87343cb2bafc62, type: 3}
       propertyPath: m_Name
       value: Goblin_TNT
