@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RandomRotateAnime : StateMachineBehaviour
+public class ExplosionAnime : StateMachineBehaviour
 {
     // 폭발 이펙트가 랜덤한 방향으로 회전하여 시작하도록
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

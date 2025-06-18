@@ -15,21 +15,29 @@ public class MonsterAttack : MonoBehaviour
     // 공격력은 언제 받아둘까? 디버프 같은 게 있을지 모르니 쓸 때 받는걸로.. 했는데 디버프가 없기에 Pattern을 거치지 않고 직접 써줄 수 있게 직렬화
     [field:SerializeField] public float Damage { get; set; }
 
+    public PatternData patternData { get; set; }
+
     protected virtual void Awake()
     {
-        PatternData patternData = GetComponentInParent<Pattern>(true).patternData;
-        if (patternData != null)
-        {
-            endPointType = patternData.endPointType;
 
-            IRandomPosRange randomPosRange = patternData as IRandomPosRange;
-            if (randomPosRange != null)
-                range = randomPosRange.patternRange;
-        }
     }
 
     protected virtual void OnEnable()
     {
+        Pattern pattern = GetComponent<Pattern>();
+        if (pattern != null)
+        {
+            PatternData patternData = GetComponentInParent<Pattern>(true).patternData;
+            if (patternData != null)
+            {
+                endPointType = patternData.endPointType;
+
+                IRandomPosRange randomPosRange = patternData as IRandomPosRange;
+                if (randomPosRange != null)
+                    range = randomPosRange.patternRange;
+            }
+        }
+
         // 목표 위치로 공격 범위 경고 오브젝트 이동
         switch (endPointType)
         {
