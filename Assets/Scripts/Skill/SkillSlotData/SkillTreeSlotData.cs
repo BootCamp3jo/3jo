@@ -26,6 +26,12 @@ public class SkillTreeSlotData : SkillSlotData
             SkillTreeSlotButtonOn();
             SkillManager.Instance.LockIconBlinking(this);
         }
+        if (!IsSkillUnlockable())
+        {
+            // lockIcon 깜빡임 중지 && 알파값 1로 변경
+            SkillTreeSlotButtonOff();
+            SkillManager.Instance.StopLockIconBlinking(this);
+        }
     }
 
     public void OnSkillTreeButton()
@@ -34,6 +40,7 @@ public class SkillTreeSlotData : SkillSlotData
         {
             return;
         }
+
         // 이 스킬슬롯 데이터가 3번째 업그레이드 가능한 스킬인지 확인
         if (SkillManager.Instance.skillTreeDataSlotManager.IsThis3rdSkill(this))
         {
