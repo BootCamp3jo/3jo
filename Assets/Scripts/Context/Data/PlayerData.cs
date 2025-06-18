@@ -18,6 +18,7 @@ public class PlayerData
     public string prefabPath;
 
     [Header("Player Stats")]
+    [SerializeField] private float _attackPower;
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _currentMana;
     [SerializeField] private int _level = 1;
@@ -26,6 +27,7 @@ public class PlayerData
     [SerializeField] private int _skillPoint = 0;
 
     [Header("Max Stats")]
+    private float _maxAttackPower = 9999f; // 최대 공격력
     private float _maxHealth = 100;
     private float _maxMana = 100;
     private int _maxLevel = 100;
@@ -36,6 +38,12 @@ public class PlayerData
     [SerializeField] public List<SkillData> skillDatas = new List<SkillData>();
 
     //--------------------------------------//
+    public float AttackPower
+    {
+        get => _attackPower;
+        set => _attackPower = Mathf.Clamp(value, 0, _maxAttackPower);
+    }
+
     public float CurrentHealth
     {
         get => _currentHealth;
@@ -73,6 +81,7 @@ public class PlayerData
     }
 
     //--------------------------------------//
+    public float MaxAttackPower => _maxAttackPower;
     public float MaxHealth => _maxHealth;
     public float MaxMana => _maxMana;
     public int MaxLevel => _maxLevel;
@@ -80,6 +89,7 @@ public class PlayerData
     public int MaxCoin => _maxCoin;
 
     //--------------------------------------//
+    public void SetAttackPower(float value) => _attackPower = Mathf.Clamp(value, 0, _maxAttackPower);
     public void SetMaxHealth(int value) => _maxHealth = value;
     public void SetMaxMana(int value) => _maxMana = value;
     public void SetMaxLevel(int value) => _maxLevel = value;

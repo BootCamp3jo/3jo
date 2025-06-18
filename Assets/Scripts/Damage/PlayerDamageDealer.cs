@@ -49,6 +49,7 @@ public class PlayerDamageDealer : A_BaseDamageDealer
         foreach (var target in currentTargets)
         {
             target.GetDamage(attackDamage);
+            UIManager.Instance.ultGuageBarManager.IncreaseUltGuage(0.1f); // 공격 시 궁극기 게이지 증가
             Debug.Log($"Hit {target.name} for {attackDamage} damage.");
         }
         foreach (var npc in currentNpc)

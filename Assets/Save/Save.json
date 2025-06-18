@@ -1,6 +1,6 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "LobbyScene",
+  "curSceneName": "JayeonScene",
   "KillCount": 2,
   "achievements": {
     "FirstBlood": {
@@ -13,7 +13,7 @@
     "skillDatas": [
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level01SkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       },
       {
@@ -42,24 +42,56 @@
         "isUpgraded": false
       }
     ],
-    "CurrentHealth": 100.0,
+    "AttackPower": 100.0,
+    "CurrentHealth": 0.0,
     "CurrentMana": 100.0,
     "Level": 4,
-    "Experience": 350.0,
+    "Experience": 200.0,
     "Coin": 100,
-    "SkillPoint": 2,
+    "SkillPoint": 4,
+    "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 550.0,
+    "MaxExperience": 100.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.67304373,
-        "posY": 8.585231,
+        "posX": -6.28777027,
+        "posY": 9.427337,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
+    },
+    "Battle": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -9.037246,
+        "posY": 2.230805,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {
+        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
+          {
+            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
+            "hp": 100.0,
+            "isDead": false,
+            "maxHP": 400.0,
+            "posX": -4.074539,
+            "posY": 3.06430459,
+            "posZ": 0.0
+          }
+        ]
+      }
+    },
+    "JayeonScene": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -0.02791537,
+        "posY": -6.52161837,
         "posZ": 0.0
       },
       "npcDataQueues": {}

@@ -427,6 +427,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2687567659807037812, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687567659807037812, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819755797395372500, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819755797395372500, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2875292989281861397, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -474,6 +490,14 @@ PrefabInstance:
     - target: {fileID: 2934925764624496727, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060203404090009973, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060203404090009973, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3081323999380349248, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -899,6 +923,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -44.504257
       objectReference: {fileID: 0}
+    - target: {fileID: 8977744132472762811, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: mainBar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977744132472762811, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: dropChunkPrefab
+      value: 
+      objectReference: {fileID: 7037209318250987229, guid: 25207aa6f06e6c14a859eef7b168f4cf, type: 3}
     - target: {fileID: 9035213669608603065, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

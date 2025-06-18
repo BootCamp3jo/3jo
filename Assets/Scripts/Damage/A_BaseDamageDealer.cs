@@ -4,13 +4,21 @@ using UnityEngine;
 
 public abstract class A_BaseDamageDealer : MonoBehaviour
 {
+    private PlayerData playerData;
+
     public Transform attackPoint;
     public float hitRadius;
     public LayerMask enemyLayer;
-    public int attackDamage;
+    protected float attackDamage;
 
     public HashSet<MonsterBase> currentTargets = new HashSet<MonsterBase>();
     public bool isAttacking = false;
+
+    protected void Start()
+    {
+        playerData = PlayerManager.Instance.playerData;
+        attackDamage = playerData.AttackPower;
+    }
 
     protected virtual void Update()
     {
