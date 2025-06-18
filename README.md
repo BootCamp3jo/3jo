@@ -19,63 +19,95 @@
 
 ![Moving](https://github.com/user-attachments/assets/0348a4c8-80bb-47bf-8c83-bbab5ff8d0f9)
 
--
+- 탑 다운 환경에 맞춰 4방향으로 애니메이션과 8방향 이동이 가능합니다.
+- 점프 및 대쉬시 파티클과 이펙트가 추가되었습니다.
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (필수) 충돌 처리 및 피해량 계산 </summary>
 
   ![Attack](https://github.com/user-attachments/assets/b889bd80-f0d8-495c-86bb-0c056cd86dbc)
 
+- 각자가 공격할때에 지정된 위치에 Collision Trigger 로 레이어를 왁인하겨 공격을 전달합니다.
 
 -
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (필수) UI/UX </summary>
 
+![UI](https://github.com/user-attachments/assets/5464e84b-d921-427b-aa9a-a37c859066a7)
 
--
+- 체력, 마나, 경험치와 같은 기본 UI 를 구성했습니다.
+- 인벤토리와 스킬트리 UI를 구현했습니다.
+- 스킬 사용시 쿨타임을 확인 할 수 있는 UI를 구성했습니다.
+
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (필수) 인트로 씬 </summary>
 
+![Intro](https://github.com/user-attachments/assets/9bfcd991-fc94-460f-befb-e7b2ed2bc9aa)
 
--
+- 게임의 대략적인 스토리를 알 수 있는 인트로 씬을 씨네머신을 이용해 구성했습니다.
+- 또한 선택지 시스템도 포함하고 있습니다.
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 저장 및 불러오기 시스템 </summary>
 
+![Save](https://github.com/user-attachments/assets/c5e75f0b-0ec7-45a7-89bf-fcfa357dd7b1)
 
--
+
+- 실시간으로 데이터를 저장하는(종료시 저장) 시스템을 구성했습니다.
+- 씬 위치와 적 & 플레이어 체력, 위치값 등 모든 정보를 저장하고 불러 올 수 있습니다.
+- 적이나 플레이어 데이터는 Scriptable Object로, 실시간 데이터 저장은 Json 을 사용 했습니다.
+
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 경험치 및 스킬 시스템 </summary>
 
+![Skill](https://github.com/user-attachments/assets/15caaf37-0733-4e08-9589-37bb42a90dfc)
 
--
+- 적 처치시 경험치 구슬을 얻게 되고, 이를 통해 레벨업을 진행 할 수 있습니다.
+- 레벨업시 스킬 포인트가 주어지고 스킬 트리에 따라 스킬을 획득 -> 사용 할 수 있습니다.
+
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 복잡한 적 AI </summary>
 
+![AI](https://github.com/user-attachments/assets/4008032f-9c65-441f-ade9-f58be739a01a)
 
--
+- FSM 을 통해 적 AI 를 구성했고 상황에 맞게 공격, 회피, 추격을 진행합니다.
+  
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 파티클, 셰이더 시스템</summary>
 
 
--
+-![Effect](https://github.com/user-attachments/assets/21134fc9-3a9b-466a-a81f-09f4c5d98d19)
+
+- URP + 셰이더, 파티클 시스템을 이용해 게임에 여러 효과들을 추가했습니다
+- 폭탄이 터질때 충격파가 발생하는 이펙트를 추가했습니다.
+- 정확한 타이밍에 회피하면 주변이 회색으로 변하면서 속도가 느려지는 효과를 구현했습니다.
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 업적 시스템 </summary>
 
+![achive](https://github.com/user-attachments/assets/caf6ec7a-565e-418e-ba39-a1997a40e5b0)
 
--
+- 특정 조건을 달성하면 상단에 보여지는 업적 시스템을 작성했습니다.
+
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 환경과 배경 설정 </summary>
 
+![Map](https://github.com/user-attachments/assets/8bf66843-9563-436e-8e9d-fbf445867d75)
 
--
+- 파티클 시스템과 포스트 프로세싱을 이용하여 좀 더 풍성한 환경을 구성했습니다.
+
 </details>
 
 
