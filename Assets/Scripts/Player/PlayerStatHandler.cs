@@ -23,6 +23,11 @@ public class PlayerStatHandler : MonoBehaviour, IDamageable
         playerStatsUI = UIManager.Instance.playerStatsUI;
         waitForSeconds = new WaitForSeconds(1f);
         StartManaRegeneration();
+        if (playerData.CurrentHealth <= 0)
+        {
+            playerData.CurrentHealth = 0;
+            OnPlayerDeath(); // ← 사망 처리 호출
+        }
     }
 
     // ------------------- 체력 ------------------- //

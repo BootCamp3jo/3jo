@@ -6,9 +6,19 @@ public class UIToggleButton : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
     public bool isStopTime = false;
+    [SerializeField] private GameObject[] closePanels;
 
     public void ToggleUI()
     {
+        if(closePanels.Length != 0)
+        {
+            for(int i = 0; i < closePanels.Length; i++)
+            {
+                closePanels[i].SetActive(false);
+            }
+        }
+
+
         if (panel.activeSelf == false)
         {
             panel.SetActive(true);

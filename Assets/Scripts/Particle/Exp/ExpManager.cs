@@ -14,6 +14,7 @@ public class ExpManager : MonoBehaviour
     private WaitForSeconds waitTime = new WaitForSeconds(0.1f);
     private AudioManager audioManager;
     private PlayerStatHandler playerStatHandler;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -41,7 +42,8 @@ public class ExpManager : MonoBehaviour
         {
             Vector3 spawnPos = worldPosition + new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), 0, 0);
             GameObject orb = Instantiate(expOrbPrefab, spawnPos, Quaternion.identity);
-            orb.GetComponent<ExpOrb>().Init(uiImage, uiTarget, () => OnXPCollected(10));
+            var expPerOrb = orb.GetComponent<ExpOrb>().orbPerExp;
+            orb.GetComponent<ExpOrb>().Init(uiImage, uiTarget, () => OnXPCollected(expPerOrb));
 
             yield return waitTime;
         }
