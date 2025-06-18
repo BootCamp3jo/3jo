@@ -7917,7 +7917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94305eccfd1075247bb2f8d82af00c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Battle
+  targetSceneName: MonsterTestFinal
   IsPlayerInPortal: 0
   guidePanel: {fileID: 1295747807}
 --- !u!1001 &1425053100
