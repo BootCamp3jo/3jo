@@ -51,9 +51,11 @@
 
 ![Intro](https://github.com/user-attachments/assets/9bfcd991-fc94-460f-befb-e7b2ed2bc9aa)
 
-- 게임의 대략적인 스토리를 알 수 있는 인트로 씬을 씨네머신을 이용해 구성했습니다.
-- 또한 선택지 시스템도 포함하고 있습니다.
-
+- 게임의 대략적인 스토리를 알 수 있는 인트로 씬을 커스텀 씬 시스템을 개발하여 구현하였습니다.
+- 카메라 컷씬, 이미지, 대화 다이얼로그 기능이 있습니다.
+- 대화 씬은 DoTween을 사용하여 UX경험의 질을 상승시켰습니다.
+- 대화 선택지 시스템 또한 구현되어 있습니다.
+  
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (도전) 저장 및 불러오기 시스템 </summary>
