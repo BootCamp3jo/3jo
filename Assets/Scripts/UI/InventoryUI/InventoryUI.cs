@@ -21,7 +21,7 @@ public class InventoryUI : MonoBehaviour
     #region [Inspector Window]
     [Header("Inventory Settings")]
     public ItemSlotData[] itemSlotDatas;
-    public GameObject inventoryUI;
+    public GameObject inventoryUIWrapper;
     public Transform slotPanel;
     public Transform itemDropPosition;
     #endregion
@@ -31,10 +31,17 @@ public class InventoryUI : MonoBehaviour
     //     [Unity LifeCycle]
     // ========================== //
     #region [Unity LifeCycle]
+
+    private void Awake()
+    {
+        // 인벤토리 UI 스크립트가 붙어있는 오브젝트는 켜고 시작
+        gameObject.SetActive(true);
+    }
+
     private void Start()
     {
-        inventoryUI = gameObject;
-        slotPanel = gameObject.transform.GetChild(0);
+        inventoryUIWrapper = gameObject.transform.GetChild(0).gameObject;
+        slotPanel = inventoryUIWrapper.transform.GetChild(0);
         InventoryInit();
     }
     #endregion
@@ -44,7 +51,7 @@ public class InventoryUI : MonoBehaviour
     //     [Public Methods]
     // ========================== //
     #region [Public Methods]
-    public void AddItem(BasicItemData newItemData)
+    public void AddItem(BasicItemData newItemData) 
     {
         /// • (Completed) AddItem : 아이템을 인벤토리에 추가한다
 
@@ -122,17 +129,15 @@ public class InventoryUI : MonoBehaviour
     #region [Private Methods]
     private void InventoryInit()
     {
-        /// • (Completed) InventoryInit : 인벤토리 UI 초기화
+        // 인벤토리 끄고 시작
+        inventoryUIWrapper.SetActive(false);
 
-        // 인벤토리 비활성화 상태로 시작
-        inventoryUI.SetActive(false);
-
-        // 각 슬롯에 있는 ItemSlotData를 가져와 ItemSlotDatas 배열에 저장
         itemSlotDatas = new ItemSlotData[slotPanel.childCount];
 
+        // 각 슬롯에 있는 ItemSlotData를 가져와 ItemSlotDatas 배열에 저장
         for (int i = 0; i < slotPanel.childCount; i++)
         {
-            // 각 슬롯의 ItemSlotData 컴포넌트를 가져와 itemSlotDatas 배열에 저장
+            // 각 슬롯의 ItemSlotData 컴포넌트를 가져와 quickSlotDatas 배열에 저장
             itemSlotDatas[i] = slotPanel.GetChild(i).GetComponentInChildren<ItemSlotData>();
 
             // 각 ItemSlotData의 인덱스를 설정

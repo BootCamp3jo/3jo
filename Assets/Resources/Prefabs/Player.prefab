@@ -461,6 +461,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 59807e77-8b70-42b3-82ac-b48c5bff22a5
     m_ActionName: PlayerMovement/Skill[/Keyboard/a,/Keyboard/s,/Keyboard/d,/Keyboard/g,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7694232084275543480}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnQuickSlotButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 869a52d8-a4f0-4a35-bb26-fb8abc63890b
+    m_ActionName: UI/QuickSlot[/Keyboard/1,/Keyboard/2,/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMovement
