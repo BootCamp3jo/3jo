@@ -1,7 +1,7 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "LobbyScene",
-  "KillCount": 4,
+  "curSceneName": "Battle",
+  "KillCount": 2,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
@@ -18,12 +18,12 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
@@ -33,7 +33,7 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level04SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
@@ -45,26 +45,49 @@
     "AttackPower": 5.0,
     "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 23,
-    "Experience": 1150.0,
+    "Level": 16,
+    "Experience": 1450.0,
     "Coin": 100,
-    "SkillPoint": 67,
+    "SkillPoint": 10,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 4400.0,
+    "MaxExperience": 4150.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
+        "currentUltGuagePercent": 0.0,
         "isPlayerExist": true,
-        "posX": -5.547037,
-        "posY": 8.959639,
+        "posX": -6.2727704,
+        "posY": 8.787561,
         "posZ": 0.0
       },
       "npcDataQueues": {}
+    },
+    "Battle": {
+      "playerStateInScene": {
+        "currentUltGuagePercent": 0.0,
+        "isPlayerExist": true,
+        "posX": -2.1,
+        "posY": -2.61,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {
+        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
+          {
+            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
+            "hp": 400.0,
+            "isDead": false,
+            "maxHP": 400.0,
+            "posX": -2.44,
+            "posY": -0.19,
+            "posZ": 0.0
+          }
+        ]
+      }
     }
   }
 }
