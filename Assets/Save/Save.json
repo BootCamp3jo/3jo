@@ -1,8 +1,13 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "Battle",
-  "KillCount": 0,
-  "achievements": {},
+  "curSceneName": "MonsterTestFinal",
+  "KillCount": 3,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
+    }
+  },
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "skillDatas": [
@@ -33,54 +38,42 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       }
     ],
     "AttackPower": 5.0,
-    "CurrentHealth": 60.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 1,
-    "Experience": 0.0,
+    "Level": 15,
+    "Experience": 1300.0,
     "Coin": 100,
-    "SkillPoint": 0,
+    "SkillPoint": 20,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 100.0,
+    "MaxExperience": 6050.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.77321863,
-        "posY": 9.513603,
+        "posX": 4.01326,
+        "posY": 8.822363,
         "posZ": 0.0
       },
       "npcDataQueues": {}
     },
-    "Battle": {
+    "MonsterTestFinal": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -0.744196236,
-        "posY": -2.62529731,
+        "posX": 4.01326,
+        "posY": 8.822363,
         "posZ": 0.0
       },
-      "npcDataQueues": {
-        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
-          {
-            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
-            "hp": 330.0,
-            "isDead": false,
-            "maxHP": 400.0,
-            "posX": 1.39097047,
-            "posY": -1.44303727,
-            "posZ": 0.0
-          }
-        ]
-      }
+      "npcDataQueues": {}
     }
   }
 }

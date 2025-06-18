@@ -396,10 +396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin_TNT
       objectReference: {fileID: 0}
-    - target: {fileID: 993160782477387767, guid: 3d1b8fb4b858dcc4bb87343cb2bafc62, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1890990487042905357, guid: 3d1b8fb4b858dcc4bb87343cb2bafc62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.44
@@ -1091,6 +1087,14 @@ PrefabInstance:
     - target: {fileID: 5768696462498058301, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896748659031367990, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -631.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896748659031367990, guid: 5554f0dd98785844facd8975226438a5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 277.48
       objectReference: {fileID: 0}
     - target: {fileID: 6427458876598711848, guid: 5554f0dd98785844facd8975226438a5, type: 3}
       propertyPath: m_AnchorMax.y
