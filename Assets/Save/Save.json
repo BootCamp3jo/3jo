@@ -1,13 +1,8 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "MonsterTestFinal",
-  "KillCount": 1,
-  "achievements": {
-    "FirstBlood": {
-      "achievementID": 0,
-      "unlocked": true
-    }
-  },
+  "curSceneName": "LobbyScene",
+  "KillCount": 0,
+  "achievements": {},
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "skillDatas": [
@@ -23,8 +18,8 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": true,
-        "isUpgraded": true
+        "isUnlock": false,
+        "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03SkillSO",
@@ -43,12 +38,12 @@
       }
     ],
     "AttackPower": 5.0,
-    "CurrentHealth": 20.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 10,
-    "Experience": 1300.0,
+    "Level": 1,
+    "Experience": 0.0,
     "Coin": 100,
-    "SkillPoint": 5,
+    "SkillPoint": 0,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
@@ -61,33 +56,11 @@
       "playerStateInScene": {
         "currentUltGuagePercent": 0.0,
         "isPlayerExist": true,
-        "posX": 4.16833162,
-        "posY": 8.715309,
+        "posX": -5.172866,
+        "posY": 1.34580135,
         "posZ": 0.0
       },
       "npcDataQueues": {}
-    },
-    "MonsterTestFinal": {
-      "playerStateInScene": {
-        "currentUltGuagePercent": 0.0,
-        "isPlayerExist": true,
-        "posX": 3.85737085,
-        "posY": -3.1204474,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {
-        "Prefabs/Monsters/MartialHero/MartialHero": [
-          {
-            "prefabPath": "Prefabs/Monsters/MartialHero/MartialHero",
-            "hp": 175.0,
-            "isDead": false,
-            "maxHP": 600.0,
-            "posX": 4.03837061,
-            "posY": -0.762015939,
-            "posZ": 0.0
-          }
-        ]
-      }
     }
   }
 }
