@@ -481,6 +481,7 @@ MonoBehaviour:
   player: {fileID: 7694232084275543480}
   playerData:
     prefabPath: 
+    _attackPower: 0
     _currentHealth: 0
     _currentMana: 0
     _level: 1
@@ -544,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData:
     prefabPath: Prefabs/Player
+    _attackPower: 20
     _currentHealth: 100
     _currentMana: 100
     _level: 1
@@ -818,7 +820,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 20
   isAttacking: 0
 --- !u!114 &7705398551312075986
 MonoBehaviour:

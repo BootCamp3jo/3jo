@@ -1,8 +1,13 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "LobbyScene",
-  "KillCount": 0,
-  "achievements": {},
+  "curSceneName": "Battle",
+  "KillCount": 2,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
+    }
+  },
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "skillDatas": [
@@ -33,30 +38,30 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       }
     ],
-    "AttackPower": 20.0,
-    "CurrentHealth": 0.0,
+    "AttackPower": 5.0,
+    "CurrentHealth": 60.0,
     "CurrentMana": 100.0,
-    "Level": 1,
-    "Experience": 0.0,
+    "Level": 13,
+    "Experience": 1200.0,
     "Coin": 100,
-    "SkillPoint": 0,
+    "SkillPoint": 25,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 100.0,
+    "MaxExperience": 4600.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -6.1467967,
-        "posY": 8.843172,
+        "posX": -5.91646338,
+        "posY": 8.983181,
         "posZ": 0.0
       },
       "npcDataQueues": {}
@@ -64,32 +69,23 @@
     "Battle": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -4.92247152,
-        "posY": 1.96156323,
+        "posX": -8.971787,
+        "posY": 5.82302952,
         "posZ": 0.0
       },
       "npcDataQueues": {
         "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
           {
             "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
-            "hp": 400.0,
-            "isDead": false,
+            "hp": 0.0,
+            "isDead": true,
             "maxHP": 400.0,
-            "posX": -4.890064,
-            "posY": 3.13024855,
+            "posX": -11.8966036,
+            "posY": 9.041636,
             "posZ": 0.0
           }
         ]
       }
-    },
-    "JayeonScene": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": -3.18819523,
-        "posY": -1.32475531,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {}
     }
   }
 }

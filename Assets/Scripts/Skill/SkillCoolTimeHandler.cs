@@ -49,6 +49,7 @@ public class SkillCoolTimeHandler : MonoBehaviour
         skillWCoolTime = SkillManager.Instance.GetSkillData(3).coolDown;
         ultSkillCoolTime = SkillManager.Instance.GetUltSkillData().coolDown;
     }
+    #endregion
 
     public IEnumerator SkillCoolTime(float coolTime, Action<bool> setCanUseSkill, Image fillImage)
     {
@@ -81,6 +82,4 @@ public class SkillCoolTimeHandler : MonoBehaviour
     }
 
     public Image GetUltFillImage() => ultSkillImage;
-
-    #endregion
 }
