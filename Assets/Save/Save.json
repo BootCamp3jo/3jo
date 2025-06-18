@@ -1,7 +1,7 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "MonsterTestFinal",
-  "KillCount": 3,
+  "curSceneName": "LobbyScene",
+  "KillCount": 1,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
@@ -38,22 +38,22 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       }
     ],
     "AttackPower": 5.0,
-    "CurrentHealth": 90.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 13,
-    "Experience": 1200.0,
+    "Level": 8,
+    "Experience": 450.0,
     "Coin": 100,
-    "SkillPoint": 25,
+    "SkillPoint": 16,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 4600.0,
+    "MaxExperience": 1850.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
@@ -61,18 +61,8 @@
       "playerStateInScene": {
         "currentUltGuagePercent": 0.0,
         "isPlayerExist": true,
-        "posX": 3.815131,
-        "posY": 8.718065,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {}
-    },
-    "MonsterTestFinal": {
-      "playerStateInScene": {
-        "currentUltGuagePercent": 0.05,
-        "isPlayerExist": true,
-        "posX": -0.3975543,
-        "posY": 3.25620317,
+        "posX": 4.23724556,
+        "posY": 8.715309,
         "posZ": 0.0
       },
       "npcDataQueues": {}
