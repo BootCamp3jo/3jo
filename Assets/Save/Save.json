@@ -1,7 +1,7 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "LobbyScene",
-  "KillCount": 2,
+  "curSceneName": "Battle",
+  "KillCount": 1,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
@@ -18,13 +18,13 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": false,
-        "isUpgraded": false
+        "isUnlock": true,
+        "isUpgraded": true
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03SkillSO",
@@ -33,36 +33,57 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level04SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       }
     ],
-    "CurrentHealth": 100.0,
+    "CurrentHealth": 90.0,
     "CurrentMana": 100.0,
-    "Level": 4,
-    "Experience": 350.0,
+    "Level": 39,
+    "Experience": 4050.0,
     "Coin": 100,
-    "SkillPoint": 2,
+    "SkillPoint": 80,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 550.0,
+    "MaxExperience": 39050.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.67304373,
-        "posY": 8.585231,
+        "posX": -5.94583035,
+        "posY": 8.57123852,
         "posZ": 0.0
       },
       "npcDataQueues": {}
+    },
+    "Battle": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -4.58770466,
+        "posY": 2.73590541,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {
+        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
+          {
+            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
+            "hp": 0.0,
+            "isDead": true,
+            "maxHP": 400.0,
+            "posX": -3.24949956,
+            "posY": 3.72518444,
+            "posZ": 0.0
+          }
+        ]
+      }
     }
   }
 }

@@ -15,7 +15,7 @@ public class ExpOrb : MonoBehaviour
     private float elapsed = 0f;
 
     private bool isMoving = false;
-
+    public int orbPerExp = 100;
     public void Init(Image expBarImage, RectTransform expBarRT, System.Action onReached)
     {
         this.expBarImage = expBarImage;

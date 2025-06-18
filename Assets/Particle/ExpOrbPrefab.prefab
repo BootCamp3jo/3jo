@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 1.5
+  orbPerExp: 100
 --- !u!96 &-6239572365640988748
 TrailRenderer:
   serializedVersion: 3

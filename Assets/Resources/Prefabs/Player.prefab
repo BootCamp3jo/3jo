@@ -553,16 +553,22 @@ MonoBehaviour:
     skillDatas:
     - skillSOPath: Prefabs/Skills/SkillsSO/Level01SkillSO
       isUnlock: 0
+      isUpgraded: 0
     - skillSOPath: Prefabs/Skills/SkillsSO/Level02SkillSO
       isUnlock: 0
+      isUpgraded: 0
     - skillSOPath: Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO
       isUnlock: 0
+      isUpgraded: 0
     - skillSOPath: Prefabs/Skills/SkillsSO/Level03SkillSO
       isUnlock: 0
+      isUpgraded: 0
     - skillSOPath: Prefabs/Skills/SkillsSO/Level04SkillSO
       isUnlock: 0
+      isUpgraded: 0
     - skillSOPath: Prefabs/Skills/SkillsSO/UltSkillSO
       isUnlock: 0
+      isUpgraded: 0
   dontNeedSave: 0
   playerMovement: {fileID: 0}
   playerEffectController: {fileID: 0}
@@ -812,7 +818,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 500
+  attackDamage: 20
   isAttacking: 0
 --- !u!114 &7705398551312075986
 MonoBehaviour:
