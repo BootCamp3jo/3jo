@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;  
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : APlayer
 {
@@ -32,6 +33,28 @@ public class Player : APlayer
             playerEffectController.PlayBlinkEffect(playerStatHandler.invincibleDuration);
             playerEffectController.PlayShakePlayerEffect();
             playerStatHandler.TakeDamage(damage);
+        }
+    }
+
+    public void OnQuickSlotButton(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            var control = context.control;
+
+            if (control == Keyboard.current.digit1Key)
+            {
+                UIManager.Instance.quickSlotUI.UseItem(0);
+
+            }
+            else if (control == Keyboard.current.digit2Key)
+            {
+                UIManager.Instance.quickSlotUI.UseItem(1);
+            }
+            else if (control == Keyboard.current.digit3Key)
+            {
+                UIManager.Instance.quickSlotUI.UseItem(2);
+            }
         }
     }
 

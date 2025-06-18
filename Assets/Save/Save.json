@@ -1,24 +1,29 @@
 {
   "difficultLevel": 0,
   "curSceneName": "JayeonScene",
-  "KillCount": 0,
-  "achievements": {},
+  "KillCount": 1,
+  "achievements": {
+    "FirstBlood": {
+      "achievementID": 0,
+      "unlocked": true
+    }
+  },
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "skillDatas": [
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level01SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
@@ -38,7 +43,7 @@
       }
     ],
     "AttackPower": 5.0,
-    "CurrentHealth": 60.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
     "Level": 1,
     "Experience": 0.0,
@@ -55,17 +60,8 @@
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.77321863,
-        "posY": 9.513603,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {}
-    },
-    "Battle": {
-      "playerStateInScene": {
-        "isPlayerExist": true,
-        "posX": -0.744196236,
-        "posY": -2.62529731,
+        "posX": -2.1,
+        "posY": -2.61,
         "posZ": 0.0
       },
       "npcDataQueues": {}
@@ -73,8 +69,8 @@
     "JayeonScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -0.869745433,
-        "posY": -0.5654742,
+        "posX": -0.496232331,
+        "posY": -0.193004847,
         "posZ": 0.0
       },
       "npcDataQueues": {}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67569c9b9ff6b884b83e12311c738817, type: 3}
   m_Name: ConsumableItem_ManaPotion
   m_EditorClassIdentifier: 
-  itemName: Mana Potion
+  itemName: Mana_Potion
   itemDescription: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD574\uC8FC\uB294 \uC544\uC774\uD15C\uC774\uB2E4"
   itemType: 1
   itemIcon: {fileID: 21300000, guid: 3b2bca32f6876104f9417b90fe88906f, type: 3}

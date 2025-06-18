@@ -70,7 +70,11 @@ public abstract class A_SkillDataSlotManager : MonoBehaviour
 #endif
         }
 
-        if(ultSkillSlotData != null)
+        skillSlotDatas[3].UnlockSkillWithoutReducePoint();
+
+
+
+        if (ultSkillSlotData != null)
         {
             if (skillDatas[5].isUnlock)
             {

@@ -10,6 +10,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] public UIWindowManager uIWindowManager;
     [SerializeField] public SkillUI skillUI;
     [SerializeField] public UltGuageBarManager ultGuageBarManager;
+    [SerializeField] public QuickSlotUI quickSlotUI;
 
     void Awake()
     {
@@ -19,5 +20,6 @@ public class UIManager : MonoSingleton<UIManager>
         uIWindowManager = GetComponentInChildren<UIWindowManager>();
         skillUI = GetComponentInChildren<SkillUI>();
         ultGuageBarManager = GetComponentInChildren<UltGuageBarManager>();
+        quickSlotUI = GetComponentInChildren<QuickSlotUI>();
     }
 }
