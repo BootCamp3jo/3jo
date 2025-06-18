@@ -6,7 +6,7 @@ using UnityEngine;
 public enum ConsumableType
 {
     Health,
-    Hunger,
+    Mana,
     SpeedBoost,
 }
 

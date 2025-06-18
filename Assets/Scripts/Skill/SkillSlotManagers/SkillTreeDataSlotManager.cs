@@ -50,4 +50,11 @@ public class SkillTreeDataSlotManager : A_SkillDataSlotManager
         skillDatas[2].isUpgraded = true;
         skillSlotDatas[3].UnlockSkill();
     }
+
+    public void Upgrade3rdSkillWithoutReducePoint()
+    {
+        skillSlotDatas[3].MatchingSkillSlotData.SetSkillToSlot(SkillManager.Instance.upgradedSkillList[0]);
+        skillDatas[2].isUpgraded = true;
+        skillSlotDatas[3].UnlockSkillWithoutReducePoint();
+    }
 }

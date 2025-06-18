@@ -16,7 +16,7 @@ MonoBehaviour:
   startPointType: 1
   endPointType: 1
   <atkNumForOnce>k__BackingField: 1
-  <atkCoefficient>k__BackingField: 2
+  <atkCoefficient>k__BackingField: 1
   <range>k__BackingField:
     x: 0
     y: 3

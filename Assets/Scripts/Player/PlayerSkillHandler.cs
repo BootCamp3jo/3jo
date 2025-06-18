@@ -70,6 +70,14 @@ public class PlayerSkillHandler : MonoBehaviour
             }
             else if (control == Keyboard.current.qKey)
             {
+                if (!UIManager.Instance.ultGuageBarManager.CanUltGuageBeUsed())
+                {
+                    Debug.LogWarning("Ultimate skill cannot be used yet. Fill up the ult guage bar first.");
+                    return;
+                }
+
+                UIManager.Instance.ultGuageBarManager.ResetUltGuage();
+
                 EnterUsingUltProcess(() => skillCoolTimeHandler.canUseUltSkill,
                                      c => skillCoolTimeHandler.canUseUltSkill = c,
                                      ref skillCoolTimeHandler.ultSkillCoolTimeCoroutine,

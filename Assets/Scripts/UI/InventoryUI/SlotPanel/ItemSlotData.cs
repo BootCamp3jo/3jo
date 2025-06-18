@@ -195,12 +195,12 @@ public class ItemSlotData : MonoBehaviour, IDropHandler
         if (itemData.isStackable && _itemQuantity > 1)
         {
             itemQuantityText.text = _itemQuantity.ToString();
-            itemIconBackground.SetActive(true); // 아이템 아이콘 배경을 활성화한다.
+            itemQuantityBG.SetActive(true); // 아이템 아이콘 배경을 활성화한다.
         }
         else
         {
             itemQuantityText.text = string.Empty;
-            itemIconBackground.SetActive(false); // 아이템 아이콘 배경을 비활성화한다.
+            itemQuantityBG.SetActive(false); // 아이템 아이콘 배경을 비활성화한다.
         }
     }
     #endregion

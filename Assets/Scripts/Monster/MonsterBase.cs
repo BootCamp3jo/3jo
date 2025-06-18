@@ -7,6 +7,8 @@ public abstract class MonsterBase : ANPC
 {
     [SerializeField] private ObjectPoolManager objectPoolManager;
     [field: SerializeField] public MonsterData monsterData;
+
+    public SFXType sfxDead;
     protected Pattern[] patterns;
 
     // 타겟이 될 대상의 레이어(보통은 플레이어).. 그런데 레이어가 필요한가? 플레이어 트랜스폼만 있으면 되는 게 아닐까?
@@ -137,10 +139,11 @@ public abstract class MonsterBase : ANPC
 
         base.Start();
         maxHp = npcData.maxHP;
+
         // 체력바 생성
         if (enemyHpBar != null)
         {
-           enemyHpBar = Instantiate(enemyHpBar);
+            enemyHpBar = Instantiate(enemyHpBar);
             onHpChanged += enemyHpBar.SetHp;
             onHpChanged?.Invoke(npcData.hp / maxHp);
         }
@@ -151,6 +154,11 @@ public abstract class MonsterBase : ANPC
 
         atk = monsterData.atk;
 
+        if (npcData.isDead)
+        {
+            stateMachine.ChangeState(stateMachine.deathState);
+            OpenNextStagePortal();
+        }
         // 플레이어를 타겟으로
         //target = PlayerManager.Instance.playerPrefab.transform;
     }
@@ -219,7 +227,7 @@ public abstract class MonsterBase : ANPC
     }
 
     // 대미지 계산
-    public void GetDamage(float damage)
+    public virtual void GetDamage(float damage)
     {
         if (npcData.isDead) return;
 
@@ -242,7 +250,7 @@ public abstract class MonsterBase : ANPC
         npcData.isDead = true;
         // 죽음 모션
         stateMachine.ChangeState(stateMachine.deathState);
-        AudioManager.instance.PlaySFX(SFXType.Goblin_Die);
+        AudioManager.instance.PlaySFX(sfxDead);
         // 아이템 드랍 !!!
         ExpManager.instance.SpawnExp(
                transform.position,
@@ -260,17 +268,21 @@ public abstract class MonsterBase : ANPC
         portal.SetActive(true);
     }
 
-    // !!! 나중에 PlaySFX에 들어갈 매개변수를 넣어서 호출하게끔 하면 하나로 해결할 수 있지!.. 우선은 오버라이드해서 쓰기
     // 어떤 공격 패턴을 사용할지 정하고, 이에 맞는 애니메이션 전환
     // distPowered = 타겟과의 거리의 제곱
     public virtual void ChoiceAttack()
     {
+        // 고블린은 공격할 때 소리를 지르는 게 더 자연스러우니 여기가 맞음
+        AudioManager.instance?.PlaySFX(SFXType.Goblin_Attack,1f,1.2f);
+        ChoiceAtk_NoSound();
+    }
+
+    public void ChoiceAtk_NoSound()
+    {
         // 공격 중일 때 다시 들어오지 않도록
-        if(isAttacking) return;
+        if (isAttacking) return;
         // 공격 애니메이션 재생 중으로 변화
         isAttacking = true;
-        // 재생할 공격 애니메이션
-        AudioManager.instance?.PlaySFX(SFXType.Goblin_Attack,1f,1.2f);
         int tmpAtkIndex = 0;
         // 패턴 값들 초기화
         patternsAvailable.Clear();
@@ -279,7 +291,7 @@ public abstract class MonsterBase : ANPC
         for (int i = 0; i < distanceRangePatterns.Length; i++)
         {
             // 해당 패턴의 사거리 범위 안에 있다면, 사용 가능한 패턴 리스트에 추가
-           if(distanceRangePatterns[i].x < distPowered && distPowered < distanceRangePatterns[i].y)
+            if (distanceRangePatterns[i].x < distPowered && distPowered < distanceRangePatterns[i].y)
             {
                 patternsAvailable.Add(i);
             }

@@ -38,6 +38,13 @@ public class SceneTransitionController : MonoBehaviour
 
         yield return StartCoroutine(Fade(1f, 0f)); // 검은 화면 걷기
         Time.timeScale = 1f;
+
+        if (targetScene == "LobbyScene")
+        {
+            // 마을로 돌아가는 경우, 플레이어 힐해주기
+            PlayerData playerData = PlayerManager.Instance.playerData;
+            PlayerManager.Instance.playerStatHandler.Heal(playerData.MaxHealth - playerData.CurrentHealth);
+        }
     }
 
     private IEnumerator Fade(float from, float to)

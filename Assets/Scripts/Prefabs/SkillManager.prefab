@@ -92,6 +92,7 @@ MonoBehaviour:
   skillDImage: {fileID: 0}
   skillWImage: {fileID: 0}
   ultSkillImage: {fileID: 0}
+  ultNotAvailable: {fileID: 0}
 --- !u!1001 &1771797750712020018
 PrefabInstance:
   m_ObjectHideFlags: 0

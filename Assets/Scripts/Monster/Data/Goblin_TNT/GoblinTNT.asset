@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoblinTNT
   m_EditorClassIdentifier: 
   <monsterName>k__BackingField: "\uACE0\uBE14\uACE0\uBE14\uB9B0"
-  <hpMax>k__BackingField: 10
-  <atk>k__BackingField: 10
+  <hpMax>k__BackingField: 400
+  <atk>k__BackingField: 5
   <moveSpeed>k__BackingField: 7
   dropData:
     exp: 50

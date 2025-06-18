@@ -7,6 +7,9 @@ public class Monster_MartialHero : MonsterBase
 
     Vector3 flipScale = new Vector3(-1, 1, 1);
 
+    // 애니메이션 이벤트에는 enum 매개변수를 받을 수 없기에 int로 치환하여 적용
+    int[] soundSfxInt = new int[3] { (int)SFXType.MartialHero_Attack, (int)SFXType.MartialHero_SPAttack,(int)SFXType.MartialHero_Sheath };
+
     // idle 상태일 때 딜레이 감소 및 공격 상태 전환
     public override void Idle()
     {
@@ -25,7 +28,6 @@ public class Monster_MartialHero : MonsterBase
             return;
         }
     }
-
     public override void Move()
     {
         // 추적 속도 벡터
@@ -38,6 +40,17 @@ public class Monster_MartialHero : MonsterBase
         distPowered = Vector2.SqrMagnitude(posDiff);
         if (distPowered < distPoweredBoundary.y && !isAttacking)
             stateMachine.ChangeState(stateMachine.attackState);
+    }
+
+    // 마셜 히어로는 공격 모션 도중에 SFX를 집어넣어 이를 패턴 전조로 활용하기에 발동 시점을 이동
+    public override void ChoiceAttack()
+    {
+        ChoiceAtk_NoSound();
+    }
+
+    public void AtkSoundPlay(int soundIndex)
+    {
+        AudioManager.instance.PlaySFX((SFXType)soundSfxInt[soundIndex]);
     }
 
     // 보스가 근접 공격을 할 때 어떤 트리거를 활성화할지

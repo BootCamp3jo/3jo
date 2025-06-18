@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 6979582532826847524}
   - component: {fileID: 3256025564824922013}
   - component: {fileID: 112392400146748966}
+  - component: {fileID: 7905205155011772217}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -346,7 +347,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2744920610279156458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +461,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 59807e77-8b70-42b3-82ac-b48c5bff22a5
     m_ActionName: PlayerMovement/Skill[/Keyboard/a,/Keyboard/s,/Keyboard/d,/Keyboard/g,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7694232084275543480}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnQuickSlotButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 869a52d8-a4f0-4a35-bb26-fb8abc63890b
+    m_ActionName: UI/QuickSlot[/Keyboard/1,/Keyboard/2,/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMovement
@@ -481,6 +498,7 @@ MonoBehaviour:
   player: {fileID: 7694232084275543480}
   playerData:
     prefabPath: 
+    _attackPower: 0
     _currentHealth: 0
     _currentMana: 0
     _level: 1
@@ -544,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData:
     prefabPath: Prefabs/Player
+    _attackPower: 5
     _currentHealth: 100
     _currentMana: 100
     _level: 1
@@ -645,6 +664,51 @@ MonoBehaviour:
   ghostLifetime: 0.4
   ghostColor: {r: 1, g: 1, b: 1, a: 0.5}
   playerSprite: {fileID: 11631316236274373}
+--- !u!61 &7905205155011772217
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359704718906564383}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.6977315}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.2839193}
+  m_EdgeRadius: 0
 --- !u!1 &9045181092255284108
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +882,6 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 20
   isAttacking: 0
 --- !u!114 &7705398551312075986
 MonoBehaviour:

@@ -28,17 +28,6 @@ public class RangeAttack : MonsterAttack
         base.OnEnable();
     }
 
-    // 트리거가 켜지면, 그 안의 타겟에 1번만 피해를 입힘
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        if ((targetLayer.value & (1 << collision.gameObject.layer)) != 0)
-        {
-            var player = collision.GetComponent<Player>();
-            player.OnHitByEnemy(Damage);
-        }
-    }
-
-
     Coroutine coroutine_atk;
     public void Attack()
     {

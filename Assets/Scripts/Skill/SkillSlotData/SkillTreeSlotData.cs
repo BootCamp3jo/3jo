@@ -56,9 +56,16 @@ public class SkillTreeSlotData : SkillSlotData
             }
             return;
         }
+
         UnlockSkill();
         invokeAfterUnlock?.Invoke();
         MatchingSkillSlotData.UnlockSkill();
+
+        if (this == SkillManager.Instance.skillTreeDataSlotManager.GetUltSkillSlotData())
+        {
+            if (UIManager.Instance.ultGuageBarManager.CheckUltGuageConditions())
+                matchingSkillSlotData.SkillIcon.sprite = UIManager.Instance.ultGuageBarManager.ultNotAvailable;
+        }
     }
 
     public bool IsSkillUnlockable()

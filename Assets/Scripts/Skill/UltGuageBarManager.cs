@@ -1,87 +1,121 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UltGuageBarManager : MonoBehaviour
 {
     [Header("UI 바")]
-    [SerializeField] private UltSkillData ultSkillData;         // 스킬 데이터 (필요시)
+    [SerializeField] private UltSkillData ultSkillData;        // 스킬 데이터 (필요시)
+    [SerializeField] private GameObject ultGuageBarWrapper;    // 궁극기 게이지 바 프리팹 (필요시)
     [SerializeField] private Image mainBar;                    // 실제 체력 바
-    [SerializeField] private GameObject dropChunkPrefab;       // 떨어지는 조각 프리팹
+    [SerializeField] public Sprite ultNotAvailable;            // 궁극기 바가 다 차지 않았을 때 표시할 이미지
 
-    private float currentUltGuagePercent = 1f; // 현재 체력 상태 (0~1)
+    private PlayerStateInScene playerStateInScene;
 
     private void Awake()
     {
-        // dropChunkPrefab이 연결되지 않았으면 Resources에서 자동 로드
-        if (dropChunkPrefab == null)
-        {
-            dropChunkPrefab = Resources.Load<GameObject>("DropChunkPrefab");
-            if (dropChunkPrefab == null)
-            {
-                Debug.LogError("DropChunkPrefab이 Resources 폴더에 없습니다. 경로: Resources/DropChunkPrefab");
-            }
-        }
-
         // mainBar 자동 할당 (옵션)
         if (mainBar == null)
         {
-            mainBar = GetComponentInChildren<Image>();
+            mainBar = gameObject.transform.GetChild(0).GetChild(1).GetComponent<Image>();
             if (mainBar == null)
                 Debug.LogError("mainBar가 설정되지 않았고 자동으로도 찾을 수 없습니다.");
         }
-    }
 
-    public void SetCharge(float charge)
-    {
-        charge = Mathf.Clamp01(charge);
-
-        if (charge < currentUltGuagePercent)
+        // ultGuageBarWrapper 자동 할당 (옵션)
+        if (ultGuageBarWrapper == null)
         {
-            float lostPercent = currentUltGuagePercent - charge;
-            CreateDropChunk(lostPercent);
+            ultGuageBarWrapper = gameObject.transform.GetChild(0).gameObject;
+            if (ultGuageBarWrapper == null)
+                Debug.LogError("ultGuageBarWrapper가 설정되지 않았고 자동으로도 찾을 수 없습니다.");
         }
-
-        currentUltGuagePercent = charge;
-        mainBar.fillAmount = currentUltGuagePercent;
     }
 
-    private void CreateDropChunk(float lostPercent)
+    private void Start()
     {
-        if (dropChunkPrefab == null || lostPercent <= 0f) return;
+        playerStateInScene = DataManager.Instance.gameContext.playerStateInScene;
+        mainBar.fillAmount = playerStateInScene.currentUltGuagePercent;
+        ActivateUltGuageBar();
+        SetUltAvailabilitySprite();
+    }
 
-        GameObject chunk = Instantiate(dropChunkPrefab);
-        chunk.transform.SetParent(mainBar.rectTransform, false); // 부모를 mainBar로 설정
+    private void Update()
+    {
+        ActivateUltGuageBar();
+    }
 
-        Image chunkImage = chunk.GetComponent<Image>();
-        RectTransform chunkRect = chunk.GetComponent<RectTransform>();
+    public void IncreaseUltGuage(float chargePercent)
+    {
+        chargePercent = Mathf.Clamp01(chargePercent);
 
-        float totalWidth = mainBar.rectTransform.rect.width;
-        float lostWidth = totalWidth * lostPercent;
-        float fillX = totalWidth * currentUltGuagePercent;
+        // 현재 궁극기 게이지가 가득 찼다면 증가하지 않음
+        if (playerStateInScene.currentUltGuagePercent == 1f) return;
 
-        // 좌측 기준 앵커/피벗 고정
-        chunkRect.anchorMin = new Vector2(0f, 0.5f);
-        chunkRect.anchorMax = new Vector2(0f, 0.5f);
-        chunkRect.pivot = new Vector2(0f, 0.5f);
+        playerStateInScene.currentUltGuagePercent += chargePercent;
+        mainBar.fillAmount = playerStateInScene.currentUltGuagePercent;
 
-        // ✅ 수정: 생성 위치를 lostWidth 만큼 왼쪽으로 이동
-        chunkRect.anchoredPosition = new Vector2(fillX - lostWidth, 0f);
-        chunkRect.sizeDelta = new Vector2(lostWidth, chunkRect.sizeDelta.y);
+        // 궁극기 게이지에 따라 궁극기 아이콘을 변경 (궁 사용 가능 / 불가능)
+        SetUltAvailabilitySprite();
 
-        Color startColor = chunkImage.color;
-        startColor.a = 1f;
-        chunkImage.color = startColor;
+        Debug.Log($"UltGuageBarManager: 현재 궁극기 게이지 상태: {playerStateInScene.currentUltGuagePercent * 100f}%");
+    }
 
-        float fallDistance = 50f;
-        float animDuration = 0.5f;
+    public void SetUltAvailabilitySprite()
+    {
+        if (!CheckUltGuageConditions()) return;
 
-        chunkRect.DOAnchorPosY(chunkRect.anchoredPosition.y - fallDistance, animDuration)
-            .SetEase(Ease.OutQuad);
-
-        chunkImage.DOFade(0f, animDuration).OnComplete(() =>
+        // 궁극기 게이지가 가득 찼을 때 스프라이트 변경
+        if (playerStateInScene.currentUltGuagePercent >= 1f)
         {
-            Destroy(chunk);
-        });
+            // 원래 궁극기 아이콘으로 변경
+            SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultSkillData.icon;
+        }
+        else if (playerStateInScene.currentUltGuagePercent < 1f)
+        {
+            // 궁극기 바가 다 차지 않았을 때 표시할 이미지로 변경
+            SkillManager.Instance.skillUiDataSlotManager.GetUltSkillSlotData().transform.GetChild(1).GetComponent<Image>().sprite = ultNotAvailable;
+            Debug.Log("UltGuageBarManager: 궁극기 게이지가 아직 다 차지 않았습니다.");
+        }
+    }
+
+    public void ActivateUltGuageBar()
+    {
+        if (CheckUltGuageConditions()) ultGuageBarWrapper.SetActive(true);
+        else ultGuageBarWrapper.SetActive(false);
+    }
+
+    public bool CheckUltGuageConditions()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        return (!(currentScene == "LobbyScene") && PlayerManager.Instance.playerData.skillDatas[5].isUnlock);
+    }
+
+    public bool CanUltGuageBeUsed()
+    {
+        // 궁극기 게이지가 가득 찼는지 확인하는 로직
+        return playerStateInScene.currentUltGuagePercent >= 1f;
+    }
+
+    public bool IsUltGuageActive()
+    {
+        // 궁극기 게이지가 하이어라키 내에 활성화 상태인지 확인하는 로직
+        return ultGuageBarWrapper.activeSelf;
+    }
+
+    public void ResetUltGuage()
+    {
+        // 궁극기 게이지를 소모하는 로직
+        if (playerStateInScene.currentUltGuagePercent >= 1f)
+        {
+            playerStateInScene.currentUltGuagePercent = 0f;
+            mainBar.fillAmount = playerStateInScene.currentUltGuagePercent;
+            Debug.Log("UltGuageBarManager: 궁극기 게이지가 소모되었습니다.");
+        }
+        else
+        {
+            Debug.LogWarning("UltGuageBarManager: 궁극기 게이지가 이미 비어 있습니다.");
+        }
     }
 }

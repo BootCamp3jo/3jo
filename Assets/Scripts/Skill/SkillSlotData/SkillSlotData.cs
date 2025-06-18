@@ -8,7 +8,7 @@ public class SkillSlotData : MonoBehaviour
 {
     [SerializeField] protected BaseSkillData skillData;
 
-    [SerializeField] private SkillSlotData matchingSkillSlotData;
+    [SerializeField] protected SkillSlotData matchingSkillSlotData;
 
     public Action invokeAfterUnlock;
 
