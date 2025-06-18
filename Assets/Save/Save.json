@@ -18,13 +18,13 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": true,
-        "isUpgraded": true
+        "isUnlock": false,
+        "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03SkillSO",
@@ -33,33 +33,33 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level04SkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       }
     ],
-    "CurrentHealth": 80.0,
+    "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 17,
-    "Experience": 2050.0,
+    "Level": 4,
+    "Experience": 350.0,
     "Coin": 100,
-    "SkillPoint": 5,
+    "SkillPoint": 2,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 4450.0,
+    "MaxExperience": 550.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.722627,
-        "posY": 2.43773866,
+        "posX": -5.67304373,
+        "posY": 8.585231,
         "posZ": 0.0
       },
       "npcDataQueues": {}

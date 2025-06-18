@@ -12,7 +12,7 @@ public abstract class MonsterBase : ANPC
     // 타겟이 될 대상의 레이어(보통은 플레이어).. 그런데 레이어가 필요한가? 플레이어 트랜스폼만 있으면 되는 게 아닐까?
     // 게임매니저에 플레이어에 접근할 수 있도록 했다고 하니 그걸 써보자
     // 패턴을 만들다 보면 타겟이 플레이어가 아니게 되는 경우도 있으니 이름을 타겟으로 변경
-    protected Transform target;
+   // protected Transform target;
 
     protected SpriteRenderer spriteRenderer;
     public Animator animator { get; private set; }
@@ -108,6 +108,28 @@ public abstract class MonsterBase : ANPC
             if (!patterns[i].gameObject.activeSelf)
                 patterns[i].gameObject.SetActive(true);
         }
+
+        // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
+        distanceRangePatterns = new float2[patterns.Length];
+        for (int i = 0; i < distanceRangePatterns.Length; i++)
+        {
+            float2 tmpRange = patterns[i].patternData.range;
+            // 제곱값
+            float2 tmpRangePow = new float2(tmpRange.x * tmpRange.x, tmpRange.y * tmpRange.y);
+            distanceRangePatterns[i] = tmpRangePow;
+
+            // 패턴 중 가장 작은 발동 가능 범위 값의 제곱
+            if (distPoweredBoundary.x > tmpRangePow.x)
+                distPoweredBoundary.x = tmpRangePow.x;
+            // 패턴 중 가장 큰 발동 가능 범위 값의 제곱
+            if (distPoweredBoundary.y < tmpRangePow.y)
+                distPoweredBoundary.y = tmpRangePow.y;
+        }
+        if (npcData.isDead)
+        {
+            stateMachine.ChangeState(stateMachine.deathState);
+            OpenNextStagePortal();
+        }
     }
 
     protected override void Start()
@@ -130,29 +152,7 @@ public abstract class MonsterBase : ANPC
         atk = monsterData.atk;
 
         // 플레이어를 타겟으로
-        target = PlayerManager.Instance.playerPrefab.transform;
-
-        // 거리 비교할 때 Vector2.SqrMagnitude 를 사용할 것이기에 미리 제곱한 값을 가지고 있도록
-        distanceRangePatterns = new float2[patterns.Length];
-        for (int i = 0; i < distanceRangePatterns.Length; i++)
-        {
-            float2 tmpRange = patterns[i].patternData.range;
-            // 제곱값
-            float2 tmpRangePow = new float2(tmpRange.x * tmpRange.x, tmpRange.y * tmpRange.y);
-            distanceRangePatterns[i] = tmpRangePow;
-
-            // 패턴 중 가장 작은 발동 가능 범위 값의 제곱
-            if (distPoweredBoundary.x > tmpRangePow.x)
-                distPoweredBoundary.x = tmpRangePow.x;
-            // 패턴 중 가장 큰 발동 가능 범위 값의 제곱
-            if(distPoweredBoundary.y < tmpRangePow.y)
-                distPoweredBoundary.y = tmpRangePow.y;
-        }
-        if (npcData.isDead)
-        {
-            stateMachine.ChangeState(stateMachine.deathState);
-            OpenNextStagePortal();
-        }
+        //target = PlayerManager.Instance.playerPrefab.transform;
     }
 
     private void Update()
@@ -215,7 +215,7 @@ public abstract class MonsterBase : ANPC
     // 액션에 따라 자연스럽게 보이게 x플립
     void ChangeFlipX()
     {
-        spriteRenderer.flipX = isFlee ? (target.transform.position.x > transform.position.x) : (target.transform.position.x < transform.position.x );
+        spriteRenderer.flipX = isFlee ? (PlayerManager.Instance.playerPrefab.transform.position.x > transform.position.x) : (PlayerManager.Instance.playerPrefab.transform.position.x < transform.position.x );
     }
 
     // 대미지 계산
@@ -274,7 +274,7 @@ public abstract class MonsterBase : ANPC
         int tmpAtkIndex = 0;
         // 패턴 값들 초기화
         patternsAvailable.Clear();
-        float distPowered = Vector2.SqrMagnitude(target.transform.position - transform.position);
+        float distPowered = Vector2.SqrMagnitude(PlayerManager.Instance.playerPrefab.transform.position - transform.position);
         // 미리 제곱으로 기억해둔 값과 비교하여 어떤 공격들이 적합한지 판정
         for (int i = 0; i < distanceRangePatterns.Length; i++)
         {
