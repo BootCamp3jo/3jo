@@ -1,7 +1,7 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "JayeonScene",
-  "KillCount": 1,
+  "curSceneName": "LobbyScene",
+  "KillCount": 2,
   "achievements": {
     "FirstBlood": {
       "achievementID": 0,
@@ -13,7 +13,7 @@
     "skillDatas": [
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level01SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
@@ -38,37 +38,28 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       }
     ],
-    "CurrentHealth": 100.0,
+    "CurrentHealth": 80.0,
     "CurrentMana": 100.0,
-    "Level": 10,
-    "Experience": 1800.0,
+    "Level": 4,
+    "Experience": 350.0,
     "Coin": 100,
-    "SkillPoint": 10,
+    "SkillPoint": 0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 100.0,
+    "MaxExperience": 550.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.32373762,
-        "posY": 4.383951,
-        "posZ": 0.0
-      },
-      "npcDataQueues": {}
-    },
-    "JayeonScene": {
-      "playerStateInScene": {
-        "isPlayerExist": false,
-        "posX": 0.0,
-        "posY": 0.0,
+        "posX": -5.722627,
+        "posY": 2.43773866,
         "posZ": 0.0
       },
       "npcDataQueues": {}
