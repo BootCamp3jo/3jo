@@ -8,7 +8,7 @@
     "skillDatas": [
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level01SkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       },
       {
@@ -33,22 +33,22 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": true,
+        "isUnlock": false,
         "isUpgraded": false
       }
     ],
     "AttackPower": 5.0,
     "CurrentHealth": 100.0,
     "CurrentMana": 100.0,
-    "Level": 10,
-    "Experience": 1300.0,
+    "Level": 1,
+    "Experience": 0.0,
     "Coin": 100,
-    "SkillPoint": 6,
+    "SkillPoint": 0,
     "MaxAttackPower": 9999.0,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 2800.0,
+    "MaxExperience": 100.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
@@ -56,8 +56,8 @@
       "playerStateInScene": {
         "currentUltGuagePercent": 0.0,
         "isPlayerExist": true,
-        "posX": -6.126149,
-        "posY": 8.715359,
+        "posX": 3.803371,
+        "posY": 8.272696,
         "posZ": 0.0
       },
       "npcDataQueues": {}
