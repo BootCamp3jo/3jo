@@ -31,9 +31,8 @@
 
   ![Attack](https://github.com/user-attachments/assets/b889bd80-f0d8-495c-86bb-0c056cd86dbc)
 
-- 각자가 공격할때에 지정된 위치에 Collision Trigger 로 레이어를 왁인하겨 공격을 전달합니다.
+- 플레이어 공격, 스킬, 몬스터의 각 패턴은 Collision Trigger 로 대상을 확인하여 공격을 전달합니다.
 
--
 </details>
 <details>
 <summary><input type="checkbox" checked disabled> (필수) UI/UX </summary>
@@ -141,8 +140,8 @@
  - 이름: 이자연(팀원)
 - 연락처 : 
 
-- 이름: 박유빈(팀원)
-- 연락처 : 
+- 이름: 박유빈(팀원) - 몬스터 AI, 패턴
+- 연락처 : uvinjjang@gmail.com
 
 - 이름: 손종욱(팀원)
 - 연락처 : 
