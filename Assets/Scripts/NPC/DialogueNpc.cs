@@ -44,7 +44,10 @@ namespace npcDialogue
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("PlayerOnly"))
             {
-                ShowTextBox(DialogueKey.Near.ToString());
+                if (!_dialogueController.IsDialoguePlaying)
+                {
+                    ShowTextBox(DialogueKey.Near.ToString());
+                }
             }
         }
     }

@@ -1,24 +1,19 @@
 {
   "difficultLevel": 0,
   "curSceneName": "LobbyScene",
-  "KillCount": 1,
-  "achievements": {
-    "FirstBlood": {
-      "achievementID": 0,
-      "unlocked": true
-    }
-  },
+  "KillCount": 0,
+  "achievements": {},
   "playerData": {
     "prefabPath": "Prefabs/Player",
     "skillDatas": [
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level01SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
@@ -38,16 +33,16 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       }
     ],
-    "CurrentHealth": 100.0,
-    "CurrentMana": 100.0,
-    "Level": 8,
-    "Experience": 450.0,
+    "CurrentHealth": 90.0,
+    "CurrentMana": 94.0,
+    "Level": 10,
+    "Experience": 1300.0,
     "Coin": 100,
-    "SkillPoint": 16,
+    "SkillPoint": 2,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
@@ -58,8 +53,8 @@
     "LobbyScene": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -5.85514355,
-        "posY": 8.796514,
+        "posX": -5.980147,
+        "posY": 9.004406,
         "posZ": 0.0
       },
       "npcDataQueues": {}
@@ -67,19 +62,19 @@
     "Battle": {
       "playerStateInScene": {
         "isPlayerExist": true,
-        "posX": -2.39048147,
-        "posY": -1.80238187,
+        "posX": -1.3085835,
+        "posY": -0.847902536,
         "posZ": 0.0
       },
       "npcDataQueues": {
         "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
           {
             "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
-            "hp": 360.0,
+            "hp": 10.0,
             "isDead": false,
             "maxHP": 400.0,
-            "posX": -2.56733871,
-            "posY": 3.95631671,
+            "posX": -5.994255,
+            "posY": 2.19918466,
             "posZ": 0.0
           }
         ]
