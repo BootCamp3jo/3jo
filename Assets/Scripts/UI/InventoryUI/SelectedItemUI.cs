@@ -31,13 +31,13 @@ public class SelectedItemUI : MonoSingleton<SelectedItemUI>
     public void OnThrowItemButton()
     {
         itemSlotData.SubtractItemQuantity(1); // 아이템 수량을 1 감소시킨다.
-        //UIManager.Instance.playerUI.inventoryUI.ThrowItem(itemSlotData.itemData, 1); // 아이템을 월드에 생성한다
+        //UIManager.Instance.playerUI.inventoryUIWrapper.ThrowItem(itemSlotData.itemData, 1); // 아이템을 월드에 생성한다
     }
 
     public void OnThrowAllItmeButton()
     {
         itemSlotData.ClearSlot(); // 아이템 수량을 0으로 설정하여 아이템을 제거한다.
-        //UIManager.Instance.playerUI.inventoryUI.ThrowItem(itemSlotData.itemData, itemSlotData.ItemQuantity);
+        //UIManager.Instance.playerUI.inventoryUIWrapper.ThrowItem(itemSlotData.itemData, itemSlotData.ItemQuantity);
     }
 
     public void OnUseItemButton()

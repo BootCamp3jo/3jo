@@ -21,7 +21,7 @@ public class InventoryUI : MonoBehaviour
     #region [Inspector Window]
     [Header("Inventory Settings")]
     public ItemSlotData[] itemSlotDatas;
-    public GameObject inventoryUI;
+    public GameObject inventoryUIWrapper;
     public Transform slotPanel;
     public Transform itemDropPosition;
     #endregion
@@ -31,10 +31,17 @@ public class InventoryUI : MonoBehaviour
     //     [Unity LifeCycle]
     // ========================== //
     #region [Unity LifeCycle]
+
+    private void Awake()
+    {
+        // 인벤토리 UI 스크립트가 붙어있는 오브젝트는 켜고 시작
+        gameObject.SetActive(true);
+    }
+
     private void Start()
     {
-        inventoryUI = gameObject;
-        slotPanel = gameObject.transform.GetChild(0);
+        inventoryUIWrapper = gameObject.transform.GetChild(0).transform;
+        slotPanel = inventoryUIWrapper.GetChild(0);
         InventoryInit();
     }
     #endregion
@@ -122,11 +129,6 @@ public class InventoryUI : MonoBehaviour
     #region [Private Methods]
     private void InventoryInit()
     {
-        /// • (Completed) InventoryInit : 인벤토리 UI 초기화
-
-        // 인벤토리 비활성화 상태로 시작
-        inventoryUI.SetActive(false);
-
         // 각 슬롯에 있는 ItemSlotData를 가져와 ItemSlotDatas 배열에 저장
         itemSlotDatas = new ItemSlotData[slotPanel.childCount];
 

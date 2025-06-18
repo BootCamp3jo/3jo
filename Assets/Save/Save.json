@@ -1,6 +1,6 @@
 {
   "difficultLevel": 0,
-  "curSceneName": "Battle",
+  "curSceneName": "JayeonScene",
   "KillCount": 0,
   "achievements": {},
   "playerData": {
@@ -68,19 +68,16 @@
         "posY": -2.62529731,
         "posZ": 0.0
       },
-      "npcDataQueues": {
-        "Prefabs/Monsters/Goblin_TNT/Goblin_TNT": [
-          {
-            "prefabPath": "Prefabs/Monsters/Goblin_TNT/Goblin_TNT",
-            "hp": 330.0,
-            "isDead": false,
-            "maxHP": 400.0,
-            "posX": 1.39097047,
-            "posY": -1.44303727,
-            "posZ": 0.0
-          }
-        ]
-      }
+      "npcDataQueues": {}
+    },
+    "JayeonScene": {
+      "playerStateInScene": {
+        "isPlayerExist": true,
+        "posX": -0.869745433,
+        "posY": -0.5654742,
+        "posZ": 0.0
+      },
+      "npcDataQueues": {}
     }
   }
 }
