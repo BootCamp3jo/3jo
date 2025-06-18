@@ -36,27 +36,27 @@ public class MonsterAttack : MonoBehaviour
                 IRandomPosRange randomPosRange = patternData as IRandomPosRange;
                 if (randomPosRange != null)
                     range = randomPosRange.patternRange;
-            }
-        }
 
-        // 목표 위치로 공격 범위 경고 오브젝트 이동
-        switch (endPointType)
-        {
-            case PointType.Player:
-                transform.position = atkPoint = PlayerManager.Instance.playerPrefab.transform.position;
-                break;
-            case PointType.Enemy:
-                transform.position = atkPoint = GameManager.Instance.boss.transform.position;
-                break;
-            case PointType.Random:
-                transform.position = atkPoint = new Vector2(UnityEngine.Random.Range(range.c0.x, range.c1.x), UnityEngine.Random.Range(range.c0.y, range.c1.y));
-                break;
-            case PointType.Random_AroundPlayer:
-                transform.position = atkPoint = (Vector2)PlayerManager.Instance.playerPrefab.transform.position + new Vector2(UnityEngine.Random.Range(range.c0.x, range.c1.x), UnityEngine.Random.Range(range.c0.y, range.c1.y));
-                break;
-            case PointType.Random_AroundEnemy:
-                transform.position = atkPoint = (Vector2)GameManager.Instance.boss.transform.position + new Vector2(UnityEngine.Random.Range(range.c0.x, range.c1.x), UnityEngine.Random.Range(range.c0.y, range.c1.y));
-                break;
+                // 목표 위치로 공격 범위 경고 오브젝트 이동
+                switch (endPointType)
+                {
+                    case PointType.Player:
+                        transform.position = atkPoint = PlayerManager.Instance.playerPrefab.transform.position;
+                        break;
+                    case PointType.Enemy:
+                        transform.position = atkPoint = GameManager.Instance.boss.transform.position;
+                        break;
+                    case PointType.Random:
+                        transform.position = atkPoint = new Vector2(UnityEngine.Random.Range(range.c0.x, range.c1.x), UnityEngine.Random.Range(range.c0.y, range.c1.y));
+                        break;
+                    case PointType.Random_AroundPlayer:
+                        transform.position = atkPoint = (Vector2)PlayerManager.Instance.playerPrefab.transform.position + new Vector2(UnityEngine.Random.Range(range.c0.x, range.c1.x), UnityEngine.Random.Range(range.c0.y, range.c1.y));
+                        break;
+                    case PointType.Random_AroundEnemy:
+                        transform.position = atkPoint = (Vector2)GameManager.Instance.boss.transform.position + new Vector2(UnityEngine.Random.Range(range.c0.x, range.c1.x), UnityEngine.Random.Range(range.c0.y, range.c1.y));
+                        break;
+                }
+            }
         }
     }
 
