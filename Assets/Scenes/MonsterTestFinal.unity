@@ -1108,10 +1108,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 688482738053701266, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2787365737424974371, guid: e5ade69c195dcdd41aa48124f52075fb, type: 3}
       propertyPath: m_Name
       value: MartialHero
