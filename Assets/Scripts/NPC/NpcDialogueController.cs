@@ -9,10 +9,13 @@ namespace npcDialogue
     {
         [SerializeField] private GameObject _dialogueUI;
         [SerializeField] private TMP_Text _dialogueText;
-        [SerializeField] private float _charDelay = 0.05f; // 글자당 딜레이
-        [SerializeField] private float _lineDelay = 1.0f;  // 줄 간 딜레이
+        [SerializeField] private float _charDelay = 0.05f;
+        [SerializeField] private float _lineDelay = 1.0f;
 
         private Coroutine _displayCoroutine;
+        private bool _isDialoguePlaying = false;
+
+        public bool IsDialoguePlaying => _isDialoguePlaying;
 
         private void Awake()
         {
@@ -21,19 +24,24 @@ namespace npcDialogue
 
         public void ShowLines(List<string> lines)
         {
+            if (_isDialoguePlaying)
+                return;
+
             if (_displayCoroutine != null)
             {
                 StopCoroutine(_displayCoroutine);
                 _displayCoroutine = null;
             }
 
-            _dialogueText.text = "";
-            _dialogueUI.SetActive(true);
             _displayCoroutine = StartCoroutine(ShowLinesCoroutine(lines));
         }
 
         private IEnumerator ShowLinesCoroutine(List<string> lines)
         {
+            _isDialoguePlaying = true;
+            _dialogueText.text = "";
+            _dialogueUI.SetActive(true);
+
             foreach (string line in lines)
             {
                 yield return StartCoroutine(TypeText(line));
@@ -41,6 +49,7 @@ namespace npcDialogue
             }
 
             _dialogueUI.SetActive(false);
+            _isDialoguePlaying = false;
             _displayCoroutine = null;
         }
 
