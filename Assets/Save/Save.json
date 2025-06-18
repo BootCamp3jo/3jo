@@ -18,13 +18,13 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level02SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03Skill_UpgradedSO",
-        "isUnlock": false,
-        "isUpgraded": false
+        "isUnlock": true,
+        "isUpgraded": true
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level03SkillSO",
@@ -33,25 +33,25 @@
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/Level04SkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       },
       {
         "skillSOPath": "Prefabs/Skills/SkillsSO/UltSkillSO",
-        "isUnlock": false,
+        "isUnlock": true,
         "isUpgraded": false
       }
     ],
     "CurrentHealth": 80.0,
     "CurrentMana": 100.0,
-    "Level": 4,
-    "Experience": 350.0,
+    "Level": 17,
+    "Experience": 2050.0,
     "Coin": 100,
-    "SkillPoint": 0,
+    "SkillPoint": 5,
     "MaxHealth": 100.0,
     "MaxMana": 100.0,
     "MaxLevel": 100,
-    "MaxExperience": 550.0,
+    "MaxExperience": 4450.0,
     "MaxCoin": 999999
   },
   "sceneBundles": {
